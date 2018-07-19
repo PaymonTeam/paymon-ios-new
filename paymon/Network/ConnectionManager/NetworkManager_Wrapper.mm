@@ -68,7 +68,8 @@ static const NSTimeInterval sleepTimeout = 60.0;
     self = [super init];
     if (self != nil) {
         self.delegate = delegate;
-//        _nr = [[NetworkReachability alloc] initWithDelegate:self];
+//        _nr = [[NetworkReachability alloc]]
+        _nr = [[NetworkReachability alloc] self];
         _needsReconnection = true;
         _isNetworkAvailable = true;
 
