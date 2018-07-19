@@ -35,7 +35,7 @@ class RegistrViewController : UIViewController {
     }
 
     @objc func onNavBarItemRightClicked(){
-        NotificationCenter.default.post(name: NSNotification.Name("registr"), object: nil)
+        NotificationCenter.default.post(name: .register, object: nil)
 
         if (canRegistr) {
 
@@ -73,19 +73,19 @@ class RegistrViewController : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        observerRegistrFalse = NotificationCenter.default.addObserver(forName: NSNotification.Name("registrFalse"), object: nil, queue: nil) {
+        observerRegistrFalse = NotificationCenter.default.addObserver(forName: .registerFalse, object: nil, queue: nil) {
             notification in
 
             self.updateNavigationBar(visibleRight: true)
         }
 
-        observerRegistrButton = NotificationCenter.default.addObserver(forName: NSNotification.Name("clickRegistrButton"), object: nil, queue: nil) {
+        observerRegistrButton = NotificationCenter.default.addObserver(forName: .clickRegisterButton, object: nil, queue: nil) {
             notification in
 
             self.onNavBarItemRightClicked()
         }
 
-        observerCanRegistrTrue = NotificationCenter.default.addObserver(forName: NSNotification.Name("canRegistrTrue"), object: nil, queue: nil) {
+        observerCanRegistrTrue = NotificationCenter.default.addObserver(forName: .canRegisterTrue, object: nil, queue: nil) {
             notification in
 
             self.canRegistr = true
@@ -93,18 +93,15 @@ class RegistrViewController : UIViewController {
             self.updateNavigationBar(visibleRight: true)
         }
 
-        observerCanRegistrFalse = NotificationCenter.default.addObserver(forName: NSNotification.Name("canRegistrFalse"), object: nil, queue: nil) {
+        observerCanRegistrFalse = NotificationCenter.default.addObserver(forName: .canRegisterFalse, object: nil, queue: nil) {
             notification in
 
             self.canRegistr = false
 
             self.updateNavigationBar(visibleRight: false)
-
         }
 
-        observerRegistrHideIndicator = NotificationCenter.default.addObserver(forName: NSNotification.Name("hideIndicatorRegistr"), object: nil, queue: nil, using: stopIndicator)
-
-
+        observerRegistrHideIndicator = NotificationCenter.default.addObserver(forName: .hideIndicatorRegister, object: nil, queue: nil, using: stopIndicator)
     }
 
     override func viewDidLoad() {

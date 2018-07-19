@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
         }
         if let vc = vc {
             let auth = RPC.PM_authToken()
+            print(auth.token)
             auth.token = User.currentUser!.token
             let _ = NetworkManager.instance.sendPacket(auth) { p, e in
 //                self.willAuth = false
@@ -35,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
                     } else {
                         User.isAuthenticated = true
                         User.currentUser = (p as! RPC.PM_userFull)
+                        print(User.currentUser ?? "user nil")
                         User.saveConfig()
                         User.loadConfig()
                         
@@ -53,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        User.loadConfig()
+//        User.loadConfig()
         
         if vc == nil {
             vc = window?.rootViewController ?? nil

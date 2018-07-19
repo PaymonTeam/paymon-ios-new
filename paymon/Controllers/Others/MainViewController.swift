@@ -20,8 +20,8 @@ class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         
 //        if User.currentUser == nil {
-            let startViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as! StartViewController
-            present(startViewController, animated: true)
+//            let startViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as! StartViewController
+//            present(startViewController, animated: true)
 //        } else if User.securitySwitchPasswordProtected && !User.securityPasswordProtectedString.isEmpty {
 //            let keyGuard = storyboard?.instantiateViewController(withIdentifier: "KeyGuardViewController") as! KeyGuardViewController
 //            present(keyGuard, animated: true)

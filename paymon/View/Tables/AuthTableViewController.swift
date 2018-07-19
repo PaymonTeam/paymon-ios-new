@@ -55,13 +55,13 @@ class AuthTableViewController: UITableViewController, UITextFieldDelegate {
 
                     print("true login")
 
-                    NotificationCenter.default.post(name: NSNotification.Name("hideIndicatorLogin"), object: nil)
+                    NotificationCenter.default.post(name: .hideIndicatorLogin, object: nil)
 
-                    let tabsView = StoryBoard.tabs.instantiateViewController(withIdentifier: "TabsViewController") as! TabsViewController
-                    self.present(tabsView, animated: true)
+                    let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
+                    self.present(tabsViewController, animated: true)
                 } else {
-                    NotificationCenter.default.post(name: NSNotification.Name("hideIndicatorLogin"), object: nil)
-                    NotificationCenter.default.post(name: NSNotification.Name("loginFalse"), object: nil)
+                    NotificationCenter.default.post(name: .hideIndicatorLogin, object: nil)
+                    NotificationCenter.default.post(name: .loginFalse, object: nil)
 
                     let alert = UIAlertController(title: "Confirmation email".localized,
                             message: String(format: NSLocalizedString("You did not verify your account by email \n %@ \n\n Send mail again?".localized, comment: ""), user.email),
@@ -74,56 +74,51 @@ class AuthTableViewController: UITableViewController, UITextFieldDelegate {
                     }))
 
                     alert.addAction(UIAlertAction(title: "Send".localized, style: .default, handler: { (action) in
-                        //Todo Отправлять email на почту еще раз
 
                         let resendEmail = RPC.PM_resendEmail()
-                        if !user.confirmed {
-                            NetworkManager.instance.sendPacket(resendEmail) { response, error in
-                                if response is RPC.PM_boolTrue {
-                                    print("Я переслал письмо")
-//                                    NetworkManager.instance.reconnect()
-                                    let alert = UIAlertController(title: "Confirmation email".localized,
-                                            message: "The letter was sent".localized,
-                                            preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
+                        
+                        NetworkManager.instance.sendPacket(resendEmail) { response, error in
+                            if response is RPC.PM_boolTrue {
+                                print("Я переслал письмо")
 
-                                    }))
-                                    DispatchQueue.main.async {
-                                        self.present(alert, animated: true)
-                                    }
-                                } else {
-                                    let alert = UIAlertController(title: "Confirmation email".localized,
-                                            message: "The email was not sent. Check your internet connection.".localized,
-                                            preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
+                                let alert = UIAlertController(title: "Confirmation email".localized,
+                                        message: "The letter was sent".localized,
+                                        preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
 
-                                    }))
-                                    DispatchQueue.main.async {
-                                        self.present(alert, animated: true)
-                                    }
+                                }))
+                                DispatchQueue.main.async {
+                                    self.present(alert, animated: true)
+                                }
+                            } else {
+                                let alert = UIAlertController(title: "Confirmation email".localized,
+                                        message: "The email was not sent. Check your internet connection.".localized,
+                                        preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
 
-                                    print(error ?? "Я не смог отправить письмо")
+                                }))
+                                DispatchQueue.main.async {
+                                    self.present(alert, animated: true)
                                 }
 
-                                User.clearConfig()
-                                NetworkManager.instance.reset()
-                                NetworkManager.instance.reconnect()
+                                print(error ?? "Я не смог отправить письмо")
                             }
+
+                            User.clearConfig()
+                            NetworkManager.instance.reset()
+                            NetworkManager.instance.reconnect()
                         }
+                        
                     }))
                     DispatchQueue.main.async {
                         self.present(alert, animated: true, completion: nil)
                     }
                 }
-//                self.dismiss(animated: true, completion: {
-//                    NotificationManager.instance.postNotificationName(id: NotificationManager.userDidLoggedIn)
-//
-//                })
 
             } else if let error = e {
 
-                NotificationCenter.default.post(name: NSNotification.Name("hideIndicatorLogin"), object: nil)
-                NotificationCenter.default.post(name: NSNotification.Name("loginFalse"), object: nil)
+                NotificationCenter.default.post(name: .hideIndicatorLogin, object: nil)
+                NotificationCenter.default.post(name: .loginFalse, object: nil)
                 print("User login failed")
 
                 let msg = (error.code == RPC.ERROR_AUTH ? "Invalid login or password".localized : "Unknown error")
@@ -144,11 +139,11 @@ class AuthTableViewController: UITableViewController, UITextFieldDelegate {
     @objc func textFieldDidChanged(_ textField: UITextField) {
         if !(loginTextField.text?.isEmpty)! && !(passwordTextField.text?.isEmpty)! {
 
-            NotificationCenter.default.post(name: NSNotification.Name("canLoginTrue"), object: nil)
+            NotificationCenter.default.post(name: .canLoginTrue, object: nil)
 
         } else {
 
-            NotificationCenter.default.post(name: NSNotification.Name("canLoginFalse"), object: nil)
+            NotificationCenter.default.post(name: .canLoginFalse, object: nil)
 
         }
     }
@@ -156,7 +151,7 @@ class AuthTableViewController: UITableViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        observerLogin = NotificationCenter.default.addObserver(forName: NSNotification.Name("login"), object: nil, queue: nil, using: auth)
+        observerLogin = NotificationCenter.default.addObserver(forName: .login, object: nil, queue: nil, using: auth)
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -196,7 +191,7 @@ class AuthTableViewController: UITableViewController, UITextFieldDelegate {
         if textField == loginTextField {
             passwordTextField.becomeFirstResponder()
         } else if textField == passwordTextField {
-            NotificationCenter.default.post(name: NSNotification.Name("returnKeyLogin"), object: nil)
+            NotificationCenter.default.post(name: .returnKeyLogin, object: nil)
         }
 
         return true

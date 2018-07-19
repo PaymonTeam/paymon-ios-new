@@ -35,7 +35,7 @@ class StartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-//        self.view.addUIViewBackground(name: "main_back")
+        self.view.addUIViewBackground(name: "MainBackground")
 
     }
 

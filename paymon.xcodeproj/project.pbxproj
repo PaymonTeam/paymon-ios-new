@@ -13,6 +13,8 @@
 		B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B692100A1C400A3CBF1 /* SyncMode.swift */; };
 		B0011B6C2100A1C400A3CBF1 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B6A2100A1C400A3CBF1 /* Defaults.swift */; };
 		B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B6D2100A1F000A3CBF1 /* UserDefaults.swift */; };
+		B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */; };
+		B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B722100F15E00A3CBF1 /* NotificationName.swift */; };
 		B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D320FFA8DA00F3DDB0 /* Keychain.swift */; };
 		B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */; };
 		B01954DF20FFA92100F3DDB0 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D720FFA92000F3DDB0 /* Ethereum.swift */; };
@@ -70,7 +72,6 @@
 		B019555620FFAD7500F3DDB0 /* PMTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = B019554A20FFAD7400F3DDB0 /* PMTimer.m */; };
 		B019555720FFAD7500F3DDB0 /* Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019554C20FFAD7400F3DDB0 /* Packet.swift */; };
 		B019555820FFAD7500F3DDB0 /* Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = B019554E20FFAD7400F3DDB0 /* Connection.m */; };
-		B019555920FFAD7500F3DDB0 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B019554F20FFAD7400F3DDB0 /* GCDAsyncSocket.m */; };
 		B019555A20FFAD7500F3DDB0 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = B019555220FFAD7400F3DDB0 /* Queue.m */; };
 		B019555B20FFAD7500F3DDB0 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B019555420FFAD7400F3DDB0 /* Request.m */; };
 		B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555520FFAD7500F3DDB0 /* RPC.swift */; };
@@ -117,6 +118,9 @@
 		B0011B692100A1C400A3CBF1 /* SyncMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncMode.swift; sourceTree = "<group>"; };
 		B0011B6A2100A1C400A3CBF1 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		B0011B6D2100A1F000A3CBF1 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		B0011B6F2100D88A00A3CBF1 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		B0011B722100F15E00A3CBF1 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		B01954D320FFA8DA00F3DDB0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		B01954D720FFA92000F3DDB0 /* Ethereum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
@@ -183,11 +187,9 @@
 		B019554420FFAC5900F3DDB0 /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		B019554820FFAC7B00F3DDB0 /* EthernService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EthernService.swift; sourceTree = "<group>"; };
 		B019554A20FFAD7400F3DDB0 /* PMTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMTimer.m; sourceTree = "<group>"; };
-		B019554B20FFAD7400F3DDB0 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		B019554C20FFAD7400F3DDB0 /* Packet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packet.swift; sourceTree = "<group>"; };
 		B019554D20FFAD7400F3DDB0 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		B019554E20FFAD7400F3DDB0 /* Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Connection.m; sourceTree = "<group>"; };
-		B019554F20FFAD7400F3DDB0 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		B019555020FFAD7400F3DDB0 /* Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		B019555120FFAD7400F3DDB0 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
 		B019555220FFAD7400F3DDB0 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				B01954FE20FFAA3E00F3DDB0 /* DecimalExtension.swift */,
 				B01954FC20FFAA3E00F3DDB0 /* String+Helpers.swift */,
 				B01954FD20FFAA3E00F3DDB0 /* UIView+Loading.swift */,
+				B0011B722100F15E00A3CBF1 /* NotificationName.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -688,10 +691,10 @@
 		B099CA2020FDE0C100718608 /* AsyncSocket */ = {
 			isa = PBXGroup;
 			children = (
+				B0011B6F2100D88A00A3CBF1 /* GCDAsyncSocket.h */,
+				B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */,
 				B019555120FFAD7400F3DDB0 /* Connection.h */,
 				B019554E20FFAD7400F3DDB0 /* Connection.m */,
-				B019554B20FFAD7400F3DDB0 /* GCDAsyncSocket.h */,
-				B019554F20FFAD7400F3DDB0 /* GCDAsyncSocket.m */,
 				B019554C20FFAD7400F3DDB0 /* Packet.swift */,
 				B019555320FFAD7400F3DDB0 /* PMTimer.h */,
 				B019554A20FFAD7400F3DDB0 /* PMTimer.m */,
@@ -937,6 +940,7 @@
 				B01954EA20FFA94600F3DDB0 /* Chain.swift in Sources */,
 				B019551720FFAA6600F3DDB0 /* SerializedStream.mm in Sources */,
 				B019552920FFAA9200F3DDB0 /* KeyGenerator.cpp in Sources */,
+				B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */,
 				B019551E20FFAA6600F3DDB0 /* KeychainItemAccessibility.swift in Sources */,
 				B01954F220FFA9B400F3DDB0 /* TransactionService.swift in Sources */,
 				B019552820FFAA9200F3DDB0 /* SerializedBuffer.cpp in Sources */,
@@ -970,8 +974,8 @@
 				B019551620FFAA6600F3DDB0 /* SerializedBuffer-Wrapper.mm in Sources */,
 				B019551A20FFAA6600F3DDB0 /* Utils.swift in Sources */,
 				B019555720FFAD7500F3DDB0 /* Packet.swift in Sources */,
+				B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */,
 				B019554720FFAC5900F3DDB0 /* BaseService.swift in Sources */,
-				B019555920FFAD7500F3DDB0 /* GCDAsyncSocket.m in Sources */,
 				B019554620FFAC5900F3DDB0 /* API.swift in Sources */,
 				B019552720FFAA9200F3DDB0 /* BuffersStorage.cpp in Sources */,
 				B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */,

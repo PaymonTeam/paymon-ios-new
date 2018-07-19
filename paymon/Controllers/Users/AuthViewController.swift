@@ -33,7 +33,7 @@ class AuthViewController: UIViewController {
 
     @IBAction private func onNavBarItemRightClicked() {
 
-        NotificationCenter.default.post(name: NSNotification.Name("login"), object: nil)
+        NotificationCenter.default.post(name: .login, object: nil)
 
         if (canLogin) {
 
@@ -74,26 +74,26 @@ class AuthViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        observerReturnKeyLogin = NotificationCenter.default.addObserver(forName: NSNotification.Name("returnKeyLogin"), object: nil, queue: nil) {
+        observerReturnKeyLogin = NotificationCenter.default.addObserver(forName: .returnKeyLogin, object: nil, queue: nil) {
             notification in
 
             self.onNavBarItemRightClicked()
         }
 
-        observerLoginFalse = NotificationCenter.default.addObserver(forName: NSNotification.Name("loginFalse"), object: nil, queue: nil) {
+        observerLoginFalse = NotificationCenter.default.addObserver(forName: .loginFalse, object: nil, queue: nil) {
             notification in
 
             self.updateNavigationBar(visibleRight: true)
         }
-        observerLoginHideIndicator = NotificationCenter.default.addObserver(forName: NSNotification.Name("hideIndicatorLogin"), object: nil, queue: nil, using: stopIndicator)
+        observerLoginHideIndicator = NotificationCenter.default.addObserver(forName: .hideIndicatorLogin, object: nil, queue: nil, using: stopIndicator)
 
-        observerCanLoginTrue = NotificationCenter.default.addObserver(forName: NSNotification.Name("canLoginTrue"), object: nil, queue: nil) {
+        observerCanLoginTrue = NotificationCenter.default.addObserver(forName: .canLoginTrue, object: nil, queue: nil) {
             notification in
 
             self.changeStatusLogin(canLogin: true)
         }
 
-        observerCanLoginFalse = NotificationCenter.default.addObserver(forName: NSNotification.Name("canLoginFalse"), object: nil, queue: nil) {
+        observerCanLoginFalse = NotificationCenter.default.addObserver(forName: .canLoginFalse, object: nil, queue: nil) {
             notification in
 
             self.changeStatusLogin(canLogin: false)

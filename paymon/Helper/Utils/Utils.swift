@@ -17,6 +17,25 @@ open class Utils {
     public static func printData(_ data:Data!) {
         print(data.map { String(format: "%02x", $0) }.joined())
     }
+    
+    public static func validatePassword(_ password:String) -> Bool {
+        let matched = password.utf8.count >= 8
+        return matched
+    }
+    
+    public static func validateEmail(_ email:String) -> Bool {
+        let regexStr = ".+@.+\\..+"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regexStr)
+        return predicate.evaluate(with: email)
+    }
+    
+    public static func validateLogin(_ login:String) -> Bool {
+        if login.utf8.count < 3 { return false }
+        
+        let regexStr = "^[a-zA-Z0-9-_\\.]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regexStr)
+        return predicate.evaluate(with: login)
+    }
 
     static func formatUserName(_ user:RPC.UserObject) -> String {
         if (user.first_name != nil && user.last_name != nil && !user.first_name.isEmpty && !user.last_name.isEmpty) {
@@ -64,29 +83,6 @@ open class Utils {
         }
         
         return result
-//        let minute = (timestamp / 60) % 60
-//        var hour = (timestamp / 60 / 60) % 24
-//        var dpstr = ""
-//
-//        if (!format24h) {
-//            if (hour > 12) {
-//                dpstr = " pm"
-//            } else {
-//                dpstr = " am"
-//            }
-//            hour %= 12
-//        }
-//        var hstr = String(hour)
-//        var mstr = String(minute)
-//
-//        if (hour < 10) {
-//            hstr = "0" + hstr
-//        }
-//        if (minute < 10) {
-//            mstr = "0" + mstr
-//        }
-//        let tstr = hstr + ":" + mstr + dpstr
-//        return tstr
     }
 
     final class Box<T> {
