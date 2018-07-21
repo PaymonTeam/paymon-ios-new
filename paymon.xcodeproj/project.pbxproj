@@ -15,6 +15,9 @@
 		B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B6D2100A1F000A3CBF1 /* UserDefaults.swift */; };
 		B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */; };
 		B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B722100F15E00A3CBF1 /* NotificationName.swift */; };
+		B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B762101E10400A3CBF1 /* SignUpViewController.swift */; };
+		B0011B81210236EF00A3CBF1 /* UIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B80210236EF00A3CBF1 /* UIColors.swift */; };
+		B0011B8321023F9000A3CBF1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B8221023F9000A3CBF1 /* UserManager.swift */; };
 		B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D320FFA8DA00F3DDB0 /* Keychain.swift */; };
 		B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */; };
 		B01954DF20FFA92100F3DDB0 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D720FFA92000F3DDB0 /* Ethereum.swift */; };
@@ -56,10 +59,6 @@
 		B019552B20FFAAD600F3DDB0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B019552A20FFAAD600F3DDB0 /* Localizable.strings */; };
 		B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */; };
 		B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */; };
-		B019553220FFAB9400F3DDB0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553020FFAB9300F3DDB0 /* AuthViewController.swift */; };
-		B019553320FFAB9400F3DDB0 /* RegistrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553120FFAB9400F3DDB0 /* RegistrViewController.swift */; };
-		B019553620FFABDD00F3DDB0 /* AuthTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553420FFABDD00F3DDB0 /* AuthTableViewController.swift */; };
-		B019553720FFABDD00F3DDB0 /* RegistrTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553520FFABDD00F3DDB0 /* RegistrTableViewController.swift */; };
 		B019553D20FFAC0F00F3DDB0 /* ETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553820FFAC0E00F3DDB0 /* ETH.swift */; };
 		B019553E20FFAC0F00F3DDB0 /* ObservableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553920FFAC0F00F3DDB0 /* ObservableImageView.swift */; };
 		B019553F20FFAC0F00F3DDB0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553A20FFAC0F00F3DDB0 /* Transaction.swift */; };
@@ -81,6 +80,7 @@
 		B01CBAC120FF6C5B00A061FB /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC020FF6C5B00A061FB /* libcryptopp.a */; };
 		B01CBAC320FF7D1600A061FB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
 		B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01CBAC420FF85EC00A061FB /* MainViewController.swift */; };
+		B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA88A21030F2100AAA805 /* SignInViewController.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
 		B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97920FCF7DB00718608 /* Main.storyboard */; };
 		B099C97D20FCF7DC00718608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B099C97C20FCF7DC00718608 /* Assets.xcassets */; };
@@ -121,6 +121,11 @@
 		B0011B6F2100D88A00A3CBF1 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		B0011B722100F15E00A3CBF1 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
+		B0011B762101E10400A3CBF1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B0011B7E2102222B00A3CBF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		B0011B7F2102222F00A3CBF1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		B0011B80210236EF00A3CBF1 /* UIColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColors.swift; sourceTree = "<group>"; };
+		B0011B8221023F9000A3CBF1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		B01954D320FFA8DA00F3DDB0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		B01954D720FFA92000F3DDB0 /* Ethereum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
@@ -173,10 +178,6 @@
 		B019552A20FFAAD600F3DDB0 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
-		B019553020FFAB9300F3DDB0 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		B019553120FFAB9400F3DDB0 /* RegistrViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrViewController.swift; sourceTree = "<group>"; };
-		B019553420FFABDD00F3DDB0 /* AuthTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthTableViewController.swift; sourceTree = "<group>"; };
-		B019553520FFABDD00F3DDB0 /* RegistrTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrTableViewController.swift; sourceTree = "<group>"; };
 		B019553820FFAC0E00F3DDB0 /* ETH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETH.swift; sourceTree = "<group>"; };
 		B019553920FFAC0F00F3DDB0 /* ObservableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableImageView.swift; sourceTree = "<group>"; };
 		B019553A20FFAC0F00F3DDB0 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -203,6 +204,7 @@
 		B01CBAC020FF6C5B00A061FB /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = ../../../../../usr/local/Cellar/cryptopp/7.0.0/lib/libcryptopp.a; sourceTree = "<group>"; };
 		B01CBAC220FF7D1600A061FB /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libcrypto.a; sourceTree = "<group>"; };
 		B01CBAC420FF85EC00A061FB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B08CA88A21030F2100AAA805 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B099C97520FCF7DB00718608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B099C97A20FCF7DB00718608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -454,8 +456,8 @@
 		B099C9AE20FDD25100718608 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				B019553020FFAB9300F3DDB0 /* AuthViewController.swift */,
-				B019553120FFAB9400F3DDB0 /* RegistrViewController.swift */,
+				B0011B762101E10400A3CBF1 /* SignUpViewController.swift */,
+				B08CA88A21030F2100AAA805 /* SignInViewController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -501,8 +503,6 @@
 		B099C9B420FDD27E00718608 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
-				B019553420FFABDD00F3DDB0 /* AuthTableViewController.swift */,
-				B019553520FFABDD00F3DDB0 /* RegistrTableViewController.swift */,
 			);
 			path = Tables;
 			sourceTree = "<group>";
@@ -565,6 +565,7 @@
 				B019550320FFAA6500F3DDB0 /* SerializedStream.mm */,
 				B019550F20FFAA6600F3DDB0 /* SwiftKeychainWrapper.h */,
 				B019550720FFAA6500F3DDB0 /* Utils.swift */,
+				B0011B8221023F9000A3CBF1 /* UserManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -576,6 +577,7 @@
 				B01954FC20FFAA3E00F3DDB0 /* String+Helpers.swift */,
 				B01954FD20FFAA3E00F3DDB0 /* UIView+Loading.swift */,
 				B0011B722100F15E00A3CBF1 /* NotificationName.swift */,
+				B0011B80210236EF00A3CBF1 /* UIColors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -945,6 +947,7 @@
 				B01954F220FFA9B400F3DDB0 /* TransactionService.swift in Sources */,
 				B019552820FFAA9200F3DDB0 /* SerializedBuffer.cpp in Sources */,
 				B019556120FFADA500F3DDB0 /* NetworkManager_Wrapper.mm in Sources */,
+				B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */,
 				B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */,
 				B01954E520FFA92100F3DDB0 /* StickerPack.swift in Sources */,
 				B019554120FFAC0F00F3DDB0 /* TransactionFactory.swift in Sources */,
@@ -953,6 +956,7 @@
 				B01954E120FFA92100F3DDB0 /* ObservableMediaManager.swift in Sources */,
 				B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */,
 				B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */,
+				B0011B81210236EF00A3CBF1 /* UIColors.swift in Sources */,
 				B019550120FFAA3E00F3DDB0 /* DecimalExtension.swift in Sources */,
 				B01954ED20FFA98500F3DDB0 /* StoryBoard.swift in Sources */,
 				B019551920FFAA6600F3DDB0 /* ByteArray_Wrapper.mm in Sources */,
@@ -983,7 +987,7 @@
 				B019555A20FFAD7500F3DDB0 /* Queue.m in Sources */,
 				B019550020FFAA3E00F3DDB0 /* UIView+Loading.swift in Sources */,
 				B01954FF20FFAA3E00F3DDB0 /* String+Helpers.swift in Sources */,
-				B019553720FFABDD00F3DDB0 /* RegistrTableViewController.swift in Sources */,
+				B0011B8321023F9000A3CBF1 /* UserManager.swift in Sources */,
 				B0011B6C2100A1C400A3CBF1 /* Defaults.swift in Sources */,
 				B019554020FFAC0F00F3DDB0 /* KeystoreService.swift in Sources */,
 				B01954E420FFA92100F3DDB0 /* ClassStore.swift in Sources */,
@@ -992,19 +996,17 @@
 				B019556320FFADA500F3DDB0 /* NetworkManager.swift in Sources */,
 				B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */,
 				B019553E20FFAC0F00F3DDB0 /* ObservableImageView.swift in Sources */,
-				B019553220FFAB9400F3DDB0 /* AuthViewController.swift in Sources */,
 				B019551C20FFAA6600F3DDB0 /* EthereumManager.swift in Sources */,
 				B01954E220FFA92100F3DDB0 /* Photo.swift in Sources */,
 				B019553F20FFAC0F00F3DDB0 /* Transaction.swift in Sources */,
 				B01954F120FFA9B400F3DDB0 /* TransactionFactoryProtocol.swift in Sources */,
 				B01954F920FFA9F000F3DDB0 /* KeyGenerator_Wrapper.mm in Sources */,
-				B019553320FFAB9400F3DDB0 /* RegistrViewController.swift in Sources */,
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
 				B019551820FFAA6600F3DDB0 /* PMFileManager.swift in Sources */,
 				B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */,
 				B01954EE20FFA98500F3DDB0 /* Ether.swift in Sources */,
 				B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */,
-				B019553620FFABDD00F3DDB0 /* AuthTableViewController.swift in Sources */,
+				B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */,
 				B019554520FFAC5900F3DDB0 /* ConnectionManager.swift in Sources */,
 				B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */,
 			);
@@ -1046,6 +1048,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				B099C97A20FCF7DB00718608 /* Base */,
+				B0011B7E2102222B00A3CBF1 /* en */,
+				B0011B7F2102222F00A3CBF1 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

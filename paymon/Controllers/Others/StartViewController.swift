@@ -13,13 +13,13 @@ class StartViewController: UIViewController {
     @IBOutlet weak var hint: UILabel!
     
     @IBAction func signUpClick(_ sender: Any) {
-        let registrViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.registrViewController) as! RegistrViewController
-        present(registrViewController, animated: true)
+        let signUpViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.signUpViewController) as! SignUpViewController
+        present(signUpViewController, animated: true)
     }
     
     @IBAction func signInClick(_ sender: Any) {
-        let authViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.authViewController) as! AuthViewController
-        present(authViewController, animated: true)
+        let signInViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.signInViewController) as! SignInViewController
+        present(signInViewController, animated: true)
     }
 
     override func viewDidLoad() {

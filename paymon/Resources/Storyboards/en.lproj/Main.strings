@@ -1,0 +1,72 @@
+
+/* Class = "UIButton"; normalTitle = "REGISTR"; ObjectID = "48q-h3-D0c"; */
+"48q-h3-D0c.normalTitle" = "REGISTR";
+
+/* Class = "UIButton"; normalTitle = "I already have an account"; ObjectID = "DGx-Ln-mWH"; */
+"DGx-Ln-mWH.normalTitle" = "I already have an account";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "E8h-Zz-7oL"; */
+"E8h-Zz-7oL.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Login"; ObjectID = "HYp-Hv-Oxi"; */
+"HYp-Hv-Oxi.placeholder" = "Login";
+
+/* Class = "UILabel"; text = "You have an account?"; ObjectID = "HkI-Yf-MZM"; */
+"HkI-Yf-MZM.text" = "You have an account?";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "I1d-yK-i7P"; */
+"I1d-yK-i7P.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Enter your login and password"; ObjectID = "K9s-JX-Cqb"; */
+"K9s-JX-Cqb.headerTitle" = "Enter your login and password";
+
+/* Class = "UINavigationItem"; title = "Sign In"; ObjectID = "NIw-rG-2Oh"; */
+"NIw-rG-2Oh.title" = "Sign In";
+
+/* Class = "UILabel"; text = "Please enter your information"; ObjectID = "Pfv-n8-vBx"; */
+"Pfv-n8-vBx.text" = "Please enter your information";
+
+/* Class = "UIButton"; normalTitle = "sign in"; ObjectID = "Pgb-b7-MU7"; */
+"Pgb-b7-MU7.normalTitle" = "sign in";
+
+/* Class = "UILabel"; text = "Длина пароля не менее 8 символов. Допустимые символы: .-"; ObjectID = "WqF-sU-YPW"; */
+"WqF-sU-YPW.text" = "Длина пароля не менее 8 символов. Допустимые символы: .-";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "a7n-oX-t9K"; */
+"a7n-oX-t9K.title" = "Title";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "aPX-pE-yDl"; */
+"aPX-pE-yDl.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Go"; ObjectID = "ayy-jD-m9R"; */
+"ayy-jD-m9R.normalTitle" = "Go";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c6A-N7-VxP"; */
+"c6A-N7-VxP.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "sign up"; ObjectID = "fah-Mv-7aF"; */
+"fah-Mv-7aF.normalTitle" = "sign up";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "iJe-ig-u7u"; */
+"iJe-ig-u7u.placeholder" = "Password";
+
+/* Class = "UITableViewSection"; headerTitle = "fill out the information"; ObjectID = "j3m-mL-BmW"; */
+"j3m-mL-BmW.headerTitle" = "fill out the information";
+
+/* Class = "UITextField"; placeholder = "Repeat password"; ObjectID = "mmU-dE-yCU"; */
+"mmU-dE-yCU.placeholder" = "Repeat password";
+
+/* Class = "UILabel"; text = "Длина логина не менее 3 символов"; ObjectID = "mtd-Cd-XZx"; */
+"mtd-Cd-XZx.text" = "Длина логина не менее 3 символов";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nGH-jr-HtG"; */
+"nGH-jr-HtG.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "nlc-EY-tFo"; */
+"nlc-EY-tFo.title" = "Title";
+
+/* Class = "UITextField"; placeholder = "Login"; ObjectID = "t52-Rx-n32"; */
+"t52-Rx-n32.placeholder" = "Login";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "ycg-ze-8aY"; */
+"ycg-ze-8aY.placeholder" = "Email";

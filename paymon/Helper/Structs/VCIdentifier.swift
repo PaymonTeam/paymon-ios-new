@@ -11,6 +11,7 @@ import Foundation
 class VCIdentifier {
     static let startViewController = "StartViewController"
     static let tabsViewController = "TabsViewController"
-    static let authViewController = "AuthViewController"
+    static let signInViewController = "SignInViewController"
+    static let signUpViewController = "SignUpViewController"
     static let registrViewController = "RegistrViewController"
 }

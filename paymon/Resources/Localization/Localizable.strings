@@ -15,13 +15,18 @@
 "Chats" = "Чаты";
 
 /*Registration and Auth*/
+"Go"="Вперед";
 "sign in" = "войти";
-"Sign In" = "Войти";
+"Sign in" = "Авторизация";
 "sign up" = "зарегистрироваться";
-"Registration" = "Регистрация";
+"Sign up" = "Регистрация";
 "Login" = "Логин";
+"Login or email" = "Логин или электронная почта";
+
+"Please enter your information"="Введите ваши данные";
 "Password" = "Пароль";
-"Repeat" = "Повторите пароль";
+"Forgot your password?"="Забыли пароль?";
+"Repeat password" = "Повторите пароль";
 "Invite code"="Инвайт-код";
 "Register" = "Зарегистрироваться";
 "Registration Failed"="Ошибка регистрации";
@@ -33,15 +38,16 @@
 "Enter your login and password" = "Введите ваш логин и пароль";
 "Enter username or login" = "Введите имя пользователя или логин";
 "Invalid login or password"="Неправильный логин или пароль";
-"Такие логин или электронная почта уже используются"="Such login or email is already in use";
+"Such login or email is already in use"="Такой логин или электронная почта уже используются";
+
 "Login Failed"="Ошибка при входе";
 "Confirmation email"="Подтверждение электронной почты";
 "You did not verify your account by email \n %@ \n\n Send mail again?"="Вы не подтвердили аккаунт по электронной почте \n %@ \n\n Отправить письмо еще раз?";
 "The letter was sent"="Письмо было отправлено";
 "The email was not sent. Check your internet connection."="Письмо не было отправлено. Проверьте подключение к интернету.";
 
-"At least 3 symbols"="Не менее 3 символов";
-"At least 8 symbols"="Не менее 8 символов";
+"Login length is at least 3 characters"="Длина логина не менее 3 символов";
+"Password length is at least 8 characters"="Длина пароля не менее 8 символов";
 "Required"="Обязательное поле";
 "Optional"="Необязательное поле";
 
