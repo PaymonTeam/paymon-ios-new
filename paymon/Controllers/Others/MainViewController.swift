@@ -19,9 +19,12 @@ class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+//        let tabBar = storyboard?.instantiateViewController(withIdentifier: "KeyGuardViewController") as! KeyGuardViewController
+//        present(tabBar, animated: true)
+
+    
 //        if User.currentUser == nil {
-            let startViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as! StartViewController
-            present(startViewController, animated: true)
+        performSegue(withIdentifier: VCIdentifier.startViewController, sender: nil)
 //        } else if User.securitySwitchPasswordProtected && !User.securityPasswordProtectedString.isEmpty {
 //            let keyGuard = storyboard?.instantiateViewController(withIdentifier: "KeyGuardViewController") as! KeyGuardViewController
 //            present(keyGuard, animated: true)

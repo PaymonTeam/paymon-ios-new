@@ -56,7 +56,6 @@
 		B019552720FFAA9200F3DDB0 /* BuffersStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B019552320FFAA9200F3DDB0 /* BuffersStorage.cpp */; };
 		B019552820FFAA9200F3DDB0 /* SerializedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B019552420FFAA9200F3DDB0 /* SerializedBuffer.cpp */; };
 		B019552920FFAA9200F3DDB0 /* KeyGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B019552520FFAA9200F3DDB0 /* KeyGenerator.cpp */; };
-		B019552B20FFAAD600F3DDB0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B019552A20FFAAD600F3DDB0 /* Localizable.strings */; };
 		B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */; };
 		B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */; };
 		B019553D20FFAC0F00F3DDB0 /* ETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553820FFAC0E00F3DDB0 /* ETH.swift */; };
@@ -77,10 +76,13 @@
 		B019556120FFADA500F3DDB0 /* NetworkManager_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = B019555D20FFADA500F3DDB0 /* NetworkManager_Wrapper.mm */; };
 		B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */; };
 		B019556320FFADA500F3DDB0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019556020FFADA500F3DDB0 /* NetworkManager.swift */; };
-		B01CBAC120FF6C5B00A061FB /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC020FF6C5B00A061FB /* libcryptopp.a */; };
-		B01CBAC320FF7D1600A061FB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
 		B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01CBAC420FF85EC00A061FB /* MainViewController.swift */; };
+		B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */; };
 		B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA88A21030F2100AAA805 /* SignInViewController.swift */; };
+		B08CA8982105E8AF00AAA805 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
+		B08CA89A2106195600AAA805 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC020FF6C5B00A061FB /* libcryptopp.a */; };
+		B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */; };
+		B08CA89E2106365000AAA805 /* KeyGuardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89D2106365000AAA805 /* KeyGuardViewController.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
 		B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97920FCF7DB00718608 /* Main.storyboard */; };
 		B099C97D20FCF7DC00718608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B099C97C20FCF7DC00718608 /* Assets.xcassets */; };
@@ -122,8 +124,6 @@
 		B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		B0011B722100F15E00A3CBF1 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		B0011B762101E10400A3CBF1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		B0011B7E2102222B00A3CBF1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		B0011B7F2102222F00A3CBF1 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		B0011B80210236EF00A3CBF1 /* UIColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColors.swift; sourceTree = "<group>"; };
 		B0011B8221023F9000A3CBF1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		B01954D320FFA8DA00F3DDB0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
@@ -175,7 +175,6 @@
 		B019552320FFAA9200F3DDB0 /* BuffersStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuffersStorage.cpp; sourceTree = "<group>"; };
 		B019552420FFAA9200F3DDB0 /* SerializedBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerializedBuffer.cpp; sourceTree = "<group>"; };
 		B019552520FFAA9200F3DDB0 /* KeyGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyGenerator.cpp; sourceTree = "<group>"; };
-		B019552A20FFAAD600F3DDB0 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		B019553820FFAC0E00F3DDB0 /* ETH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETH.swift; sourceTree = "<group>"; };
@@ -204,7 +203,12 @@
 		B01CBAC020FF6C5B00A061FB /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = ../../../../../usr/local/Cellar/cryptopp/7.0.0/lib/libcryptopp.a; sourceTree = "<group>"; };
 		B01CBAC220FF7D1600A061FB /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libcrypto.a; sourceTree = "<group>"; };
 		B01CBAC420FF85EC00A061FB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGuardViewCell.swift; sourceTree = "<group>"; };
 		B08CA88A21030F2100AAA805 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		B08CA8922105D4FE00AAA805 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = ../../../../../usr/local/Cellar/cryptopp/7.0.0/libcryptopp.a; sourceTree = "<group>"; };
+		B08CA8962105E7AD00AAA805 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libssl.a; sourceTree = "<group>"; };
+		B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleShowSegue.swift; sourceTree = "<group>"; };
+		B08CA89D2106365000AAA805 /* KeyGuardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGuardViewController.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B099C97520FCF7DB00718608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B099C97A20FCF7DB00718608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -231,8 +235,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5A73610578A06C80819CACD /* Pods_paymon.framework in Frameworks */,
-				B01CBAC120FF6C5B00A061FB /* libcryptopp.a in Frameworks */,
-				B01CBAC320FF7D1600A061FB /* libcrypto.a in Frameworks */,
+				B08CA8982105E8AF00AAA805 /* libcrypto.a in Frameworks */,
+				B08CA89A2106195600AAA805 /* libcryptopp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +262,8 @@
 		2E6D321D2242C00919558443 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B08CA8962105E7AD00AAA805 /* libssl.a */,
+				B08CA8922105D4FE00AAA805 /* libcryptopp.a */,
 				B01CBAC220FF7D1600A061FB /* libcrypto.a */,
 				B01CBAC020FF6C5B00A061FB /* libcryptopp.a */,
 				C3764DFE35E2623F4092A261 /* Pods_paymon.framework */,
@@ -475,6 +481,7 @@
 				B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */,
 				B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */,
 				B01CBAC420FF85EC00A061FB /* MainViewController.swift */,
+				B08CA89D2106365000AAA805 /* KeyGuardViewController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -510,6 +517,7 @@
 		B099C9B520FDD28400718608 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -538,6 +546,7 @@
 		B099C9B820FDD31300718608 /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -674,7 +683,6 @@
 		B099C9C420FDD3ED00718608 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				B019552A20FFAAD600F3DDB0 /* Localizable.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -806,9 +814,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
-				ru,
 			);
 			mainGroup = B099C96920FCF7DB00718608;
 			productRefGroup = B099C97320FCF7DB00718608 /* Products */;
@@ -827,7 +833,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B019552B20FFAAD600F3DDB0 /* Localizable.strings in Resources */,
 				B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */,
 				B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */,
 				B099C97D20FCF7DC00718608 /* Assets.xcassets in Resources */,
@@ -965,12 +970,14 @@
 				B019554920FFAC7C00F3DDB0 /* EthernService.swift in Sources */,
 				B01954FB20FFAA1600F3DDB0 /* Constants.swift in Sources */,
 				B019551D20FFAA6600F3DDB0 /* NotificationManager.swift in Sources */,
+				B08CA89E2106365000AAA805 /* KeyGuardViewController.swift in Sources */,
 				B019555B20FFAD7500F3DDB0 /* Request.m in Sources */,
 				B01954F820FFA9F000F3DDB0 /* KeyGenerator.swift in Sources */,
 				B019555620FFAD7500F3DDB0 /* PMTimer.m in Sources */,
 				B019555820FFAD7500F3DDB0 /* Connection.m in Sources */,
 				B01954E620FFA92100F3DDB0 /* User.swift in Sources */,
 				B019551B20FFAA6600F3DDB0 /* MessageManager.swift in Sources */,
+				B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */,
 				B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */,
 				B019552620FFAA9200F3DDB0 /* ByteArray.cpp in Sources */,
 				B01954E320FFA92100F3DDB0 /* QRGenerater.swift in Sources */,
@@ -991,6 +998,7 @@
 				B0011B6C2100A1C400A3CBF1 /* Defaults.swift in Sources */,
 				B019554020FFAC0F00F3DDB0 /* KeystoreService.swift in Sources */,
 				B01954E420FFA92100F3DDB0 /* ClassStore.swift in Sources */,
+				B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */,
 				B019552020FFAA6600F3DDB0 /* SerializableData.mm in Sources */,
 				B01954E920FFA94600F3DDB0 /* EnumCollection.swift in Sources */,
 				B019556320FFADA500F3DDB0 /* NetworkManager.swift in Sources */,
@@ -1048,8 +1056,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				B099C97A20FCF7DB00718608 /* Base */,
-				B0011B7E2102222B00A3CBF1 /* en */,
-				B0011B7F2102222F00A3CBF1 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1101,6 +1107,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1132,6 +1139,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1171,6 +1179,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1196,6 +1205,7 @@
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};
@@ -1227,6 +1237,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -1257,6 +1268,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

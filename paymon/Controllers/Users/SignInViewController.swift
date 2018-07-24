@@ -9,7 +9,7 @@
 import Foundation
 import MBProgressHUD
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var signInItem: UIBarButtonItem!
@@ -38,7 +38,7 @@ class SignInViewController: UIViewController {
             return
         } else {
             self.view.endEditing(true)
-            UserManager.signIn(login: "", password: "", viewController: self)
+            UserManager.signIn(login: (login.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, password: (password.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, viewController: self)
         }
     }
     
@@ -51,6 +51,12 @@ class SignInViewController: UIViewController {
         
         self.view.addUIViewBackground(name: "MainBackground")
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        login.delegate = self
+        password.delegate = self
+        
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         navigationBar.topItem?.title = "Sign in".localized
@@ -60,6 +66,21 @@ class SignInViewController: UIViewController {
         signIn.setTitle("sign in".localized, for: .normal)
         passwordForgot.setTitle("Forgot your password?".localized, for: .normal)
 
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == login {
+            password.becomeFirstResponder()
+        } else if textField == password {
+            self.signInClick(self)
+        }
+        
+        return true
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func handleKeyboard(notification: NSNotification) {
