@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
 //        User.loadConfig()
         
         //TODO: Need to fix the Error Exception
-//        NetworkManager.instance.reconnect()
+        NetworkManager.instance.reconnect()
 //        print(NetworkManager.instance.isConnected)
         
         if vc == nil {

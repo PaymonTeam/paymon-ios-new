@@ -62,9 +62,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addUIViewBackground(name: "MainBackground")
         
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         signUpItem.isEnabled = false
         signUp.isEnabled = false
         
+        login.delegate = self
+        password.delegate = self
+        repeatPassword.delegate = self
+        email.delegate = self
+
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
         navigationBar.topItem?.title = "Sign up".localized
@@ -85,6 +93,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         repeatPassword.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
         email.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
         
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if textField == login {
+            password.becomeFirstResponder()
+        } else if textField == password {
+            repeatPassword.becomeFirstResponder()
+        } else if textField == repeatPassword {
+            email.becomeFirstResponder()
+        } else if textField == email {
+            self.signUpClick(self)
+        }
+        
+        return true
     }
     
     @objc func textFieldDidChanged(_ textField : UITextField) {

@@ -225,3 +225,9 @@ Pods/web3swift/Source/Crypto/Sign.swift
 Pods/web3swift/Source/Crypto/SignatureData.swift
 Pods/web3swift/Source/Extension/GethBigInt+Extension.swift
 Pods/web3swift/Source/Extension/String+Extension.swift
+libcrypto.a
+libcryptopp.a
+libssl.a
+paymon.xcodeproj/xcuserdata
+paymon.xcworkspace/xcuserdata/jogendarsingh.xcuserdatad
+Pods/Pods.xcodeproj/xcuserdata/jogendarsingh.xcuserdatad
