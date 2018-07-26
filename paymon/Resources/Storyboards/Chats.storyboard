@@ -15,10 +15,6 @@
         <scene sceneID="NcC-ts-18E">
             <objects>
                 <viewController storyboardIdentifier="ChatViewController" title="Chat View" id="9H9-Yd-fzg" customClass="ChatViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NrQ-K5-Zzz"/>
-                        <viewControllerLayoutGuide type="bottom" id="8qu-Fz-XK4"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="xNB-2x-a3D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +31,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привет" textAlignment="right" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VwC-Xv-MX4" customClass="SRCopyableLabel" customModule="paymon" customModuleProvider="target">
-                                                    <rect key="frame" x="238.5" y="15.5" width="58.5" height="14.5"/>
+                                                    <rect key="frame" x="293.5" y="15.5" width="58.5" height="14.5"/>
                                                     <color key="tintColor" red="0.90770783050000003" green="0.91417991060000003" blue="0.93359615080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="OBI-0G-KSY"/>
@@ -110,7 +106,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24o-BQ-FGo">
-                                                    <rect key="frame" x="80" y="12" width="235" height="21"/>
+                                                    <rect key="frame" x="80" y="12" width="290" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="y5n-hq-z0g"/>
                                                     </constraints>
@@ -146,7 +142,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fhO-r3-O5N" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
-                                                    <rect key="frame" x="191" y="11" width="114" height="108"/>
+                                                    <rect key="frame" x="246" y="11" width="114" height="108"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="114" id="HVT-10-6Wc"/>
                                                     </constraints>
@@ -249,7 +245,7 @@
                                             <constraint firstAttribute="height" constant="25" id="Sch-JY-gWs"/>
                                             <constraint firstAttribute="width" constant="25" id="jrP-FI-1C0"/>
                                         </constraints>
-                                        <state key="normal" image="nav_bar_item_arrow_left"/>
+                                        <state key="normal" image="ArrowBack"/>
                                         <connections>
                                             <action selector="btnBackTapped:" destination="9H9-Yd-fzg" eventType="touchUpInside" id="DQN-yh-viJ"/>
                                         </connections>
@@ -313,18 +309,18 @@
                         <constraints>
                             <constraint firstItem="6yX-Sc-QDf" firstAttribute="top" secondItem="Ks6-uk-8oF" secondAttribute="bottom" id="29b-KW-dbS"/>
                             <constraint firstAttribute="bottom" secondItem="WGg-rZ-qVu" secondAttribute="bottom" id="3uf-hR-4WA"/>
-                            <constraint firstAttribute="trailing" secondItem="WGg-rZ-qVu" secondAttribute="trailing" id="4j0-u8-TtK"/>
-                            <constraint firstItem="Ks6-uk-8oF" firstAttribute="top" secondItem="NrQ-K5-Zzz" secondAttribute="bottom" id="7E3-NZ-oqZ"/>
-                            <constraint firstAttribute="trailing" secondItem="6yX-Sc-QDf" secondAttribute="trailing" id="IO0-Wn-i4S"/>
-                            <constraint firstAttribute="trailing" secondItem="6yX-Sc-QDf" secondAttribute="trailing" id="JQx-a2-Pwn"/>
-                            <constraint firstItem="6yX-Sc-QDf" firstAttribute="leading" secondItem="xNB-2x-a3D" secondAttribute="leading" id="QZH-36-Sav"/>
+                            <constraint firstItem="jPt-0K-biK" firstAttribute="trailing" secondItem="WGg-rZ-qVu" secondAttribute="trailing" id="4j0-u8-TtK"/>
+                            <constraint firstItem="Ks6-uk-8oF" firstAttribute="top" secondItem="jPt-0K-biK" secondAttribute="top" id="7E3-NZ-oqZ"/>
+                            <constraint firstItem="jPt-0K-biK" firstAttribute="trailing" secondItem="6yX-Sc-QDf" secondAttribute="trailing" id="IO0-Wn-i4S"/>
+                            <constraint firstItem="jPt-0K-biK" firstAttribute="trailing" secondItem="6yX-Sc-QDf" secondAttribute="trailing" id="JQx-a2-Pwn"/>
+                            <constraint firstItem="6yX-Sc-QDf" firstAttribute="leading" secondItem="jPt-0K-biK" secondAttribute="leading" id="QZH-36-Sav"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ks6-uk-8oF" secondAttribute="trailing" constant="-16" id="WyB-Af-YgP"/>
-                            <constraint firstItem="WGg-rZ-qVu" firstAttribute="leading" secondItem="xNB-2x-a3D" secondAttribute="leading" id="apk-Dp-Xbo"/>
-                            <constraint firstItem="6yX-Sc-QDf" firstAttribute="leading" secondItem="xNB-2x-a3D" secondAttribute="leading" id="gpT-dq-QZY"/>
+                            <constraint firstItem="WGg-rZ-qVu" firstAttribute="leading" secondItem="jPt-0K-biK" secondAttribute="leading" id="apk-Dp-Xbo"/>
+                            <constraint firstItem="6yX-Sc-QDf" firstAttribute="leading" secondItem="jPt-0K-biK" secondAttribute="leading" id="gpT-dq-QZY"/>
                             <constraint firstItem="WGg-rZ-qVu" firstAttribute="top" secondItem="6yX-Sc-QDf" secondAttribute="bottom" id="j0b-FA-QR2"/>
                             <constraint firstItem="Ks6-uk-8oF" firstAttribute="leading" secondItem="xNB-2x-a3D" secondAttribute="leadingMargin" constant="-16" id="lEW-D9-k4t"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="WNV-0Y-g1C"/>
+                        <viewLayoutGuide key="safeArea" id="jPt-0K-biK"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -353,7 +349,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ChatsTable" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="74" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cyd-eX-Fm6">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ChatsTableViewCell" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ChatsTableViewCell" id="Kec-gi-zU3" customClass="ChatsTableViewCell" customModule="paymon" customModuleProvider="target">
@@ -502,24 +498,34 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Chats" id="JUV-B3-g5c">
-                                        <barButtonItem key="rightBarButtonItem" title="Add Group" id="Ad7-B8-AbK"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Add Group" id="Ad7-B8-AbK">
+                                            <connections>
+                                                <action selector="addGroupItemClick:" destination="oFv-3Z-QeM" id="hTx-GC-fPu"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="cyd-eX-Fm6" firstAttribute="trailing" secondItem="gyl-5t-aWb" secondAttribute="trailing" id="3TZ-pN-wn9"/>
-                            <constraint firstItem="xGQ-80-Vz2" firstAttribute="trailing" secondItem="gyl-5t-aWb" secondAttribute="trailing" id="4YA-xz-FnA"/>
+                            <constraint firstItem="cyd-eX-Fm6" firstAttribute="trailing" secondItem="9ot-0e-LGj" secondAttribute="trailing" id="3TZ-pN-wn9"/>
+                            <constraint firstItem="xGQ-80-Vz2" firstAttribute="trailing" secondItem="9ot-0e-LGj" secondAttribute="trailing" id="4YA-xz-FnA"/>
                             <constraint firstItem="cyd-eX-Fm6" firstAttribute="top" secondItem="xGQ-80-Vz2" secondAttribute="bottom" id="GDd-S9-BaI"/>
-                            <constraint firstItem="cyd-eX-Fm6" firstAttribute="leading" secondItem="gyl-5t-aWb" secondAttribute="leading" id="bFB-AC-igM"/>
-                            <constraint firstItem="cyd-eX-Fm6" firstAttribute="bottom" secondItem="gyl-5t-aWb" secondAttribute="bottom" id="c0N-Iq-YhE"/>
-                            <constraint firstItem="xGQ-80-Vz2" firstAttribute="top" secondItem="gyl-5t-aWb" secondAttribute="top" id="pGf-Ya-rQK"/>
-                            <constraint firstItem="xGQ-80-Vz2" firstAttribute="leading" secondItem="gyl-5t-aWb" secondAttribute="leading" id="uSI-v8-m9T"/>
+                            <constraint firstItem="cyd-eX-Fm6" firstAttribute="leading" secondItem="9ot-0e-LGj" secondAttribute="leading" id="bFB-AC-igM"/>
+                            <constraint firstItem="cyd-eX-Fm6" firstAttribute="bottom" secondItem="9ot-0e-LGj" secondAttribute="bottom" id="c0N-Iq-YhE"/>
+                            <constraint firstItem="xGQ-80-Vz2" firstAttribute="top" secondItem="9ot-0e-LGj" secondAttribute="top" id="pGf-Ya-rQK"/>
+                            <constraint firstItem="xGQ-80-Vz2" firstAttribute="leading" secondItem="9ot-0e-LGj" secondAttribute="leading" id="uSI-v8-m9T"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="gyl-5t-aWb"/>
+                        <viewLayoutGuide key="safeArea" id="9ot-0e-LGj"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chats" id="O2l-Gd-eQX"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="Chats" id="aJr-Yx-iQW"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="borderConstraint" destination="GDd-S9-BaI" id="MBC-ar-vme"/>
+                        <outlet property="chatsTable" destination="cyd-eX-Fm6" id="w5a-OA-FqY"/>
+                        <outlet property="navigationBar" destination="xGQ-80-Vz2" id="F3n-sT-1lT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhT-2c-n3Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="40P-kO-yVb"/>
@@ -530,10 +536,6 @@
         <scene sceneID="HXM-ZW-EV1">
             <objects>
                 <viewController storyboardIdentifier="CreateGroupViewController" id="g3b-7S-Ndw" customClass="CreateGroupViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="chn-fX-zMW"/>
-                        <viewControllerLayoutGuide type="bottom" id="kYG-AJ-ioS"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="toc-xs-Hcb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -546,12 +548,12 @@
                                 <color key="barTintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Create Group" id="6hA-1Z-ap0">
-                                        <barButtonItem key="leftBarButtonItem" image="nav_bar_item_arrow_left" id="NOp-T4-E2R">
+                                        <barButtonItem key="leftBarButtonItem" image="ArrowBack" id="NOp-T4-E2R">
                                             <connections>
                                                 <action selector="btnBackAction:" destination="g3b-7S-Ndw" id="cdb-8B-tOc"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="check" id="IW9-hX-KN1">
+                                        <barButtonItem key="rightBarButtonItem" image="ArrowCheck" id="IW9-hX-KN1">
                                             <connections>
                                                 <action selector="createGroupAction:" destination="g3b-7S-Ndw" id="fVy-xU-GFe"/>
                                             </connections>
@@ -678,14 +680,14 @@
                         <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="NVL-vO-VIF" secondAttribute="bottom" id="Iz5-g2-90i"/>
-                            <constraint firstAttribute="trailing" secondItem="qBz-AH-8xU" secondAttribute="trailing" id="Lrb-ep-SIK"/>
-                            <constraint firstItem="qBz-AH-8xU" firstAttribute="leading" secondItem="toc-xs-Hcb" secondAttribute="leading" id="Muh-Vx-UVv"/>
+                            <constraint firstItem="SjI-t6-U4m" firstAttribute="trailing" secondItem="qBz-AH-8xU" secondAttribute="trailing" id="Lrb-ep-SIK"/>
+                            <constraint firstItem="qBz-AH-8xU" firstAttribute="leading" secondItem="SjI-t6-U4m" secondAttribute="leading" id="Muh-Vx-UVv"/>
                             <constraint firstItem="NVL-vO-VIF" firstAttribute="top" secondItem="qBz-AH-8xU" secondAttribute="bottom" id="Ny3-kA-TPq"/>
-                            <constraint firstAttribute="trailing" secondItem="NVL-vO-VIF" secondAttribute="trailing" id="Qlj-hZ-tb6"/>
-                            <constraint firstItem="qBz-AH-8xU" firstAttribute="top" secondItem="chn-fX-zMW" secondAttribute="bottom" id="dqK-iH-Mjy"/>
-                            <constraint firstItem="NVL-vO-VIF" firstAttribute="leading" secondItem="toc-xs-Hcb" secondAttribute="leading" id="qBX-ri-YOg"/>
+                            <constraint firstItem="SjI-t6-U4m" firstAttribute="trailing" secondItem="NVL-vO-VIF" secondAttribute="trailing" id="Qlj-hZ-tb6"/>
+                            <constraint firstItem="qBz-AH-8xU" firstAttribute="top" secondItem="SjI-t6-U4m" secondAttribute="top" id="dqK-iH-Mjy"/>
+                            <constraint firstItem="NVL-vO-VIF" firstAttribute="leading" secondItem="SjI-t6-U4m" secondAttribute="leading" id="qBX-ri-YOg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="aux-B6-3H2"/>
+                        <viewLayoutGuide key="safeArea" id="SjI-t6-U4m"/>
                     </view>
                     <navigationItem key="navigationItem" id="Tcs-wj-UFx"/>
                     <connections>
@@ -702,10 +704,6 @@
         <scene sceneID="SHm-YB-oZ0">
             <objects>
                 <viewController storyboardIdentifier="GroupSettingViewController" id="YF1-hr-kBd" customClass="GroupSettingViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Czz-g4-6gy"/>
-                        <viewControllerLayoutGuide type="bottom" id="RUt-Da-HeI"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NUB-1x-9li">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -719,12 +717,12 @@
                                 <color key="barTintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Group Settings" id="aV7-1b-QHr">
-                                        <barButtonItem key="leftBarButtonItem" image="nav_bar_item_arrow_left" id="8cf-Rd-L5M">
+                                        <barButtonItem key="leftBarButtonItem" image="ArrowBack" id="8cf-Rd-L5M">
                                             <connections>
                                                 <action selector="btnBackTapped:" destination="YF1-hr-kBd" id="aMC-Lc-ko3"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="check" id="JIR-1b-hTR">
+                                        <barButtonItem key="rightBarButtonItem" image="ArrowCheck" id="JIR-1b-hTR">
                                             <connections>
                                                 <action selector="btnDoneTapped:" destination="YF1-hr-kBd" id="Q3c-Md-OKA"/>
                                             </connections>
@@ -890,16 +888,16 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="6wV-YV-A1r" secondAttribute="bottom" id="6Lq-Z8-9dW"/>
                             <constraint firstItem="l0Q-nU-Hme" firstAttribute="top" secondItem="Zgj-sg-eHw" secondAttribute="bottom" id="EVw-IO-DPg"/>
-                            <constraint firstAttribute="trailing" secondItem="l0Q-nU-Hme" secondAttribute="trailing" id="FSx-fB-H1J"/>
-                            <constraint firstAttribute="trailing" secondItem="Zgj-sg-eHw" secondAttribute="trailing" id="OC3-pw-a9N"/>
+                            <constraint firstItem="nHM-2l-mTD" firstAttribute="trailing" secondItem="l0Q-nU-Hme" secondAttribute="trailing" id="FSx-fB-H1J"/>
+                            <constraint firstItem="nHM-2l-mTD" firstAttribute="trailing" secondItem="Zgj-sg-eHw" secondAttribute="trailing" id="OC3-pw-a9N"/>
                             <constraint firstItem="6wV-YV-A1r" firstAttribute="top" secondItem="l0Q-nU-Hme" secondAttribute="bottom" constant="10" id="XeJ-c7-xDl"/>
-                            <constraint firstItem="Zgj-sg-eHw" firstAttribute="leading" secondItem="NUB-1x-9li" secondAttribute="leading" id="Ysz-D6-iQy"/>
-                            <constraint firstAttribute="trailing" secondItem="6wV-YV-A1r" secondAttribute="trailing" id="Zzs-qb-g3O"/>
-                            <constraint firstItem="l0Q-nU-Hme" firstAttribute="leading" secondItem="NUB-1x-9li" secondAttribute="leading" id="hqH-9T-Aia"/>
-                            <constraint firstItem="Zgj-sg-eHw" firstAttribute="top" secondItem="Czz-g4-6gy" secondAttribute="bottom" id="mQF-40-Nny"/>
-                            <constraint firstItem="6wV-YV-A1r" firstAttribute="leading" secondItem="NUB-1x-9li" secondAttribute="leading" id="rsc-b2-DIa"/>
+                            <constraint firstItem="Zgj-sg-eHw" firstAttribute="leading" secondItem="nHM-2l-mTD" secondAttribute="leading" id="Ysz-D6-iQy"/>
+                            <constraint firstItem="nHM-2l-mTD" firstAttribute="trailing" secondItem="6wV-YV-A1r" secondAttribute="trailing" id="Zzs-qb-g3O"/>
+                            <constraint firstItem="l0Q-nU-Hme" firstAttribute="leading" secondItem="nHM-2l-mTD" secondAttribute="leading" id="hqH-9T-Aia"/>
+                            <constraint firstItem="Zgj-sg-eHw" firstAttribute="top" secondItem="nHM-2l-mTD" secondAttribute="top" id="mQF-40-Nny"/>
+                            <constraint firstItem="6wV-YV-A1r" firstAttribute="leading" secondItem="nHM-2l-mTD" secondAttribute="leading" id="rsc-b2-DIa"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="n4n-XG-yOu"/>
+                        <viewLayoutGuide key="safeArea" id="nHM-2l-mTD"/>
                     </view>
                     <navigationItem key="navigationItem" id="0fM-yq-3CE"/>
                     <connections>
@@ -915,10 +913,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ArrowBack" width="33" height="33"/>
+        <image name="ArrowCheck" width="33" height="33"/>
+        <image name="Chats" width="32" height="32"/>
         <image name="add_user" width="16" height="16"/>
-        <image name="check" width="16" height="16"/>
         <image name="cross" width="16" height="16"/>
-        <image name="nav_bar_item_arrow_left" width="16" height="16"/>
         <image name="none_photo_user" width="16" height="16"/>
         <image name="paymon_logo" width="16" height="16"/>
         <image name="send_button" width="16" height="16"/>

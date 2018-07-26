@@ -514,7 +514,6 @@
 				D820C69F2101232E001D3B00 /* ETH */,
 				B099C9B020FDD25D00718608 /* Others */,
 				B099C9AF20FDD25700718608 /* Settings */,
-				B099C9AE20FDD25100718608 /* Users */,
 				B099C9AC20FDD24400718608 /* BTC */,
 				B099C9AB20FDD23C00718608 /* Tabs */,
 			);
@@ -524,6 +523,7 @@
 		B099C9AB20FDD23C00718608 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				B099C9AE20FDD25100718608 /* Users */,
 				0EA074C321065489002FF527 /* Chats */,
 			);
 			path = Tabs;
@@ -610,11 +610,8 @@
 				B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */,
 				B099C97920FCF7DB00718608 /* Main.storyboard */,
 				B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */,
-
 				B01F0DEC2108700F008FB6F0 /* User.storyboard */,
-
 				0EA075AB21065EE7002FF527 /* Chats.storyboard */,
-
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

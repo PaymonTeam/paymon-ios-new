@@ -15,6 +15,12 @@ class ProfileViewController: UIViewController {
         //        present(settingsView, animated: true)
     }
     
+    @IBAction func updateProfileClick(_ sender: Any) {
+        guard let updateProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.updateProfileViewController) as! UpdateProfileViewController? else {return}
+        
+        self.present(updateProfileViewController, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

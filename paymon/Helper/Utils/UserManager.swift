@@ -81,14 +81,17 @@ public class UserManager {
                     User.loadConfig()
 
 
-//                    let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
-//                    viewController.present(tabsViewController, animated: true)
-                    
-                    let profileViewController = StoryBoard.user.instantiateViewController(withIdentifier: VCIdentifier.profileViewController) as! ProfileViewController
+                    let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
                     
                     DispatchQueue.main.async {
-                        viewController.present(profileViewController, animated: true)
+                        viewController.present(tabsViewController, animated: true)
                     }
+                    
+//                    let profileViewController = StoryBoard.user.instantiateViewController(withIdentifier: VCIdentifier.profileViewController) as! ProfileViewController
+                    
+//                    DispatchQueue.main.async {
+//                        viewController.present(profileViewController, animated: true)
+//                    }
                     
                 } else {
 

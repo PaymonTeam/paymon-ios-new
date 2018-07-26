@@ -13,6 +13,9 @@ class UpdateProfileViewController: UIViewController, UIImagePickerControllerDele
     
     var needRemoveObservers = true
     
+    @IBAction func arrowBackClick(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     func addObservers() {
             observerUpdateTrue = NotificationCenter.default.addObserver(forName: .updateProfileInfoTrue, object: nil, queue: nil ){ notification in
                 print("change!")

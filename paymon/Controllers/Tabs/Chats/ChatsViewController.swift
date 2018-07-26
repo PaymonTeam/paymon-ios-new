@@ -76,10 +76,6 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
 
         self.navigationItem.title = "Chats".localized
         
-        let rightButton = UIBarButtonItem(image: UIImage(named: "user-group"), style: .plain, target: self, action: #selector(createGroup))
-        
-        self.navigationItem.rightBarButtonItem = rightButton;
-        navigationBar.items = [navigationItem]
         borderConstraint.constant = 0.5
 
         list.removeAll()
@@ -97,7 +93,7 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
 
     }
 
-   @objc func createGroup() {
+    @IBAction func addGroupItemClick(_ sender: Any) {
         let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
         present(groupView, animated: false, completion: nil)
     }

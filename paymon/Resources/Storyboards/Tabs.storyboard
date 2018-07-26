@@ -15,6 +15,7 @@
         <scene sceneID="fJ7-I5-TNs">
             <objects>
                 <tabBarController restorationIdentifier="TabsView" storyboardIdentifier="TabsViewController" id="P84-dD-mCt" customClass="TabsViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Lpg-eL-Mje"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="centered" itemSpacing="20" id="mYx-eP-Orw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -25,7 +26,7 @@
                         <segue destination="m6f-fG-vGP" kind="relationship" relationship="viewControllers" id="Ap1-H7-ajl"/>
                         <segue destination="qZG-Zj-YVC" kind="relationship" relationship="viewControllers" id="fge-mJ-PNl"/>
                         <segue destination="TW9-C2-wP1" kind="relationship" relationship="viewControllers" id="9Bb-6a-A62"/>
-                        <segue destination="jjT-pc-gdD" kind="relationship" relationship="viewControllers" id="cwt-Yz-veH"/>
+                        <segue destination="Kg1-g7-NRh" kind="relationship" relationship="viewControllers" id="NhI-NK-ZiW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91j-d1-pCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -62,18 +63,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="5Lr-1K-K1P" firstAttribute="leading" secondItem="sBz-g7-S94" secondAttribute="leading" constant="16" id="Bez-cO-9tY"/>
-                            <constraint firstItem="sBz-g7-S94" firstAttribute="trailing" secondItem="PkX-os-6N4" secondAttribute="trailing" constant="16" id="O7h-fB-WT5"/>
+                            <constraint firstItem="5Lr-1K-K1P" firstAttribute="leading" secondItem="lvS-y6-mPL" secondAttribute="leading" constant="16" id="Bez-cO-9tY"/>
+                            <constraint firstItem="lvS-y6-mPL" firstAttribute="trailing" secondItem="PkX-os-6N4" secondAttribute="trailing" constant="16" id="O7h-fB-WT5"/>
                             <constraint firstItem="PkX-os-6N4" firstAttribute="top" secondItem="DHA-nb-LpQ" secondAttribute="bottom" constant="8" id="P1J-Yc-B1P"/>
                             <constraint firstItem="5Lr-1K-K1P" firstAttribute="top" secondItem="PkX-os-6N4" secondAttribute="bottom" constant="8" id="Prz-tI-xH9"/>
-                            <constraint firstItem="sBz-g7-S94" firstAttribute="trailing" secondItem="5Lr-1K-K1P" secondAttribute="trailing" constant="16" id="Qs8-NB-acJ"/>
+                            <constraint firstItem="lvS-y6-mPL" firstAttribute="trailing" secondItem="5Lr-1K-K1P" secondAttribute="trailing" constant="16" id="Qs8-NB-acJ"/>
                             <constraint firstItem="DHA-nb-LpQ" firstAttribute="centerY" secondItem="y8A-Pm-EDT" secondAttribute="centerY" id="gZq-LP-bHr"/>
-                            <constraint firstItem="PkX-os-6N4" firstAttribute="leading" secondItem="sBz-g7-S94" secondAttribute="leading" constant="16" id="mfF-Fo-2YC"/>
-                            <constraint firstItem="DHA-nb-LpQ" firstAttribute="centerX" secondItem="y8A-Pm-EDT" secondAttribute="centerX" id="qEN-yq-56w"/>
+                            <constraint firstItem="PkX-os-6N4" firstAttribute="leading" secondItem="lvS-y6-mPL" secondAttribute="leading" constant="16" id="mfF-Fo-2YC"/>
+                            <constraint firstItem="DHA-nb-LpQ" firstAttribute="centerX" secondItem="lvS-y6-mPL" secondAttribute="centerX" id="qEN-yq-56w"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="sBz-g7-S94"/>
+                        <viewLayoutGuide key="safeArea" id="lvS-y6-mPL"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Games" id="UmU-Mr-PR2"/>
+                    <tabBarItem key="tabBarItem" title="Games" image="Games" id="UmU-Mr-PR2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V42-cr-CNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,10 +84,6 @@
         <scene sceneID="wGR-iv-v4U">
             <objects>
                 <viewController storyboardIdentifier="MoneyViewController" id="qZG-Zj-YVC" customClass="MoneyViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="rsI-pl-V5L"/>
-                        <viewControllerLayoutGuide type="bottom" id="Wd9-eb-Ot7"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CPm-KK-IEw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,20 +227,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="5q0-V9-Uu3" secondAttribute="trailing" id="2Qn-Fh-fZb"/>
+                            <constraint firstItem="rbp-f7-fbF" firstAttribute="trailing" secondItem="5q0-V9-Uu3" secondAttribute="trailing" id="2Qn-Fh-fZb"/>
                             <constraint firstItem="aU9-DK-Oyr" firstAttribute="top" secondItem="5q0-V9-Uu3" secondAttribute="bottom" id="PFK-LW-pTA"/>
-                            <constraint firstItem="aU9-DK-Oyr" firstAttribute="leading" secondItem="CPm-KK-IEw" secondAttribute="leading" id="QRF-GL-gmd"/>
+                            <constraint firstItem="aU9-DK-Oyr" firstAttribute="leading" secondItem="rbp-f7-fbF" secondAttribute="leading" id="QRF-GL-gmd"/>
                             <constraint firstItem="5q0-V9-Uu3" firstAttribute="top" secondItem="CPm-KK-IEw" secondAttribute="top" constant="20" id="WfL-Lh-fqy"/>
-                            <constraint firstItem="5q0-V9-Uu3" firstAttribute="leading" secondItem="CPm-KK-IEw" secondAttribute="leading" id="ZFv-tT-N79"/>
-                            <constraint firstAttribute="trailing" secondItem="aU9-DK-Oyr" secondAttribute="trailing" id="b7u-A3-rxo"/>
-                            <constraint firstItem="146-Fo-nNP" firstAttribute="leading" secondItem="CPm-KK-IEw" secondAttribute="leading" id="hYy-MG-Yv7"/>
-                            <constraint firstAttribute="trailing" secondItem="146-Fo-nNP" secondAttribute="trailing" id="kY6-Qh-THm"/>
+                            <constraint firstItem="5q0-V9-Uu3" firstAttribute="leading" secondItem="rbp-f7-fbF" secondAttribute="leading" id="ZFv-tT-N79"/>
+                            <constraint firstItem="rbp-f7-fbF" firstAttribute="trailing" secondItem="aU9-DK-Oyr" secondAttribute="trailing" id="b7u-A3-rxo"/>
+                            <constraint firstItem="146-Fo-nNP" firstAttribute="leading" secondItem="rbp-f7-fbF" secondAttribute="leading" id="hYy-MG-Yv7"/>
+                            <constraint firstItem="rbp-f7-fbF" firstAttribute="trailing" secondItem="146-Fo-nNP" secondAttribute="trailing" id="kY6-Qh-THm"/>
                             <constraint firstItem="146-Fo-nNP" firstAttribute="top" secondItem="aU9-DK-Oyr" secondAttribute="bottom" id="wj6-S5-fEY"/>
                             <constraint firstAttribute="bottom" secondItem="146-Fo-nNP" secondAttribute="bottom" constant="48" id="wnS-9S-nho"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Qlb-TN-1fU"/>
+                        <viewLayoutGuide key="safeArea" id="rbp-f7-fbF"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Money" image="money" id="QLa-JG-XfX"/>
+                    <tabBarItem key="tabBarItem" title="Money" image="Wallet" id="QLa-JG-XfX"/>
                     <connections>
                         <outlet property="infoBarItem" destination="OSW-CA-Eb7" id="na1-Si-DC8"/>
                         <outlet property="navigationBar" destination="5q0-V9-Uu3" id="Ffs-h3-L1q"/>
@@ -312,68 +309,11 @@
             </objects>
             <point key="canvasLocation" x="1588" y="2094"/>
         </scene>
-        <!--Profile View-->
-        <scene sceneID="doQ-Ru-KLf">
-            <objects>
-                <viewController storyboardIdentifier="ProfileView" title="Profile View" id="jjT-pc-gdD" customClass="ProfileViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="pQe-lQ-K0H"/>
-                        <viewControllerLayoutGuide type="bottom" id="k4H-mc-FYO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1Jz-ct-g3y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGn-rl-46A">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Tun-6q-dXh"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem id="Lew-xB-f7v"/>
-                                </items>
-                            </navigationBar>
-                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3G8-16-EVk" userLabel="Profile Header Conteiner">
-                                <rect key="frame" x="0.0" y="64" width="375" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="7ai-tP-vB3"/>
-                                </constraints>
-                            </containerView>
-                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoH-oB-bwU" userLabel="Profile Info Container">
-                                <rect key="frame" x="0.0" y="164" width="375" height="454"/>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="MoH-oB-bwU" firstAttribute="leading" secondItem="1Jz-ct-g3y" secondAttribute="leading" id="0Qo-6c-2QP"/>
-                            <constraint firstItem="k4H-mc-FYO" firstAttribute="top" secondItem="MoH-oB-bwU" secondAttribute="bottom" id="7Bh-f5-8No"/>
-                            <constraint firstItem="3G8-16-EVk" firstAttribute="top" secondItem="jGn-rl-46A" secondAttribute="bottom" id="DbO-c3-ob0"/>
-                            <constraint firstItem="jGn-rl-46A" firstAttribute="leading" secondItem="1Jz-ct-g3y" secondAttribute="leading" id="FAe-kZ-fjo"/>
-                            <constraint firstItem="3G8-16-EVk" firstAttribute="leading" secondItem="1Jz-ct-g3y" secondAttribute="leading" id="MNc-TG-nex"/>
-                            <constraint firstItem="jGn-rl-46A" firstAttribute="top" secondItem="1Jz-ct-g3y" secondAttribute="top" constant="20" id="TPx-1s-QVY"/>
-                            <constraint firstAttribute="trailing" secondItem="3G8-16-EVk" secondAttribute="trailing" id="Wov-zu-Qp8"/>
-                            <constraint firstAttribute="trailing" secondItem="jGn-rl-46A" secondAttribute="trailing" id="b43-Bs-gS8"/>
-                            <constraint firstAttribute="trailing" secondItem="MoH-oB-bwU" secondAttribute="trailing" id="gJM-zb-f7O"/>
-                            <constraint firstItem="MoH-oB-bwU" firstAttribute="top" secondItem="3G8-16-EVk" secondAttribute="bottom" id="rWk-KA-eQg"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="5Zb-di-Cu0"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="home" id="j3T-l2-BCt"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <outlet property="borderConstraint" destination="DbO-c3-ob0" id="2Xk-M0-8td"/>
-                        <outlet property="navigationBar" destination="jGn-rl-46A" id="m5x-t8-0NN"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PW5-z0-QDs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4490" y="1404"/>
-        </scene>
         <!--ChatsView-->
         <scene sceneID="tqD-Cs-j8v">
             <objects>
                 <viewControllerPlaceholder storyboardName="Chats" referencedIdentifier="ChatsView" id="7Dm-Ff-e4i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="fR2-nu-mS7"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="Chats" id="fR2-nu-mS7"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2C-QC-fQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -383,7 +323,7 @@
         <scene sceneID="VcR-Vd-Yz9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m6f-fG-vGP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" id="B7X-Np-2Ui"/>
+                    <tabBarItem key="tabBarItem" title="Contacts" image="Contacts" id="B7X-Np-2Ui"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mZT-Bb-OXO">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -398,14 +338,27 @@
             </objects>
             <point key="canvasLocation" x="1588" y="1404"/>
         </scene>
+        <!--ProfileViewController-->
+        <scene sceneID="oXf-Bd-zWx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" referencedIdentifier="ProfileViewController" id="Kg1-g7-NRh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="Home" id="smB-Er-oqR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jjc-hL-25U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4205" y="1090"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Chats" width="32" height="32"/>
         <image name="ChouseCurrency" width="16" height="16"/>
+        <image name="Contacts" width="32" height="32"/>
+        <image name="Games" width="32" height="32"/>
+        <image name="Home" width="32" height="32"/>
+        <image name="Wallet" width="32" height="32"/>
         <image name="game_develop" width="16" height="16"/>
-        <image name="home" width="16" height="16"/>
         <image name="ic_bitcoin" width="16" height="16"/>
         <image name="info_circle" width="16" height="16"/>
-        <image name="money" width="16" height="16"/>
         <image name="none_photo_user" width="16" height="16"/>
         <image name="plus" width="16" height="16"/>
     </resources>
