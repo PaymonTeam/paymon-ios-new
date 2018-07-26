@@ -57,6 +57,22 @@ extension String {
     var localized: String {
         return NSLocalizedString(self, tableName: nil, bundle: Bundle.main, value: "", comment: "")
     }
+    
+    func ltrim(_ chars: Set<Character>) -> String {
+        if let index = self.characters.index(where: {!chars.contains($0)}) {
+            return String(self[index..<self.endIndex])
+        } else {
+            return ""
+        }
+    }
+    
+    func rtrim(_ chars: Set<Character>) -> String {
+        if let index = self.characters.reversed().index(where: {!chars.contains($0)}) {
+            return String(self[self.startIndex...self.characters.index(before: index.base)])
+        } else {
+            return ""
+        }
+    }
 
 }
 

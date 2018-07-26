@@ -610,11 +610,11 @@
 				B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */,
 				B099C97920FCF7DB00718608 /* Main.storyboard */,
 				B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */,
-<<<<<<< .merge_file_ilCI8C
+<<<<<<< HEAD
 				B01F0DEC2108700F008FB6F0 /* User.storyboard */,
 =======
 				0EA075AB21065EE7002FF527 /* Chats.storyboard */,
->>>>>>> .merge_file_1iuBl8
+>>>>>>> 49cb14c7716d4d841e753d16a60e3818cffdf886
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
