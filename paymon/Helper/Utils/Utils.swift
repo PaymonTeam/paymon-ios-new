@@ -5,6 +5,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 open class Utils {
     open static let stageQueue = Queue(name: "stageQueue")!
@@ -43,6 +44,16 @@ open class Utils {
         } else {
             return user.login
         }
+    }
+    
+    static func showSuccesHud(vc: UIViewController) {
+        let hud = MBProgressHUD.showAdded(to: vc.view, animated: true)
+        hud.mode = .customView
+        hud.label.text = "Success".localized
+
+        hud.customView = UIImageView(image: #imageLiteral(resourceName: "Checkmark"))
+        hud.hide(animated: true, afterDelay: 2)
+        
     }
 
     public static func formatDateTime(timestamp:Int64, format24h:Bool) -> String {
@@ -126,7 +137,7 @@ open class Utils {
 class SharedDictionary<K: Hashable, V> {
     public typealias Element = (key: K, value: V)
 
-    public var dict: Dictionary<K, V> = Dictionary()
+    public var dict: [K: V] = [:]
 
     subscript(key: K) -> V? {
         get {
@@ -141,14 +152,14 @@ class SharedDictionary<K: Hashable, V> {
             return dict.count
         }
     }
-    public var keys: LazyMapCollection<[K : V], K> {
+    public var keys: Dictionary<K, V>.Keys {
         get {
-            return self.keys
+            return dict.keys
         }
     }
-    public var values: LazyMapCollection<[K : V], V> {
+    public var values: Dictionary<K, V>.Values {
         get {
-            return self.values
+            return dict.values
         }
     }
     public var isEmpty: Bool {

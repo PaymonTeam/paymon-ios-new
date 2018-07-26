@@ -22,4 +22,9 @@ extension Notification.Name {
     static let canRegisterTrue = Notification.Name(rawValue: "canRegisterTrue")
     static let canRegisterFalse = Notification.Name(rawValue: "canRegisterFalse")
     static let clickRegisterButton = Notification.Name(rawValue: "clickRegisterButton")
+    static let updateProfile = Notification.Name(rawValue: "updateProfile")
+    static let updateView = Notification.Name(rawValue: "updateView")
+    static let updateString = Notification.Name(rawValue: "updateString")
+    static let updateProfileInfoTrue = Notification.Name(rawValue: "updateProfileInfoTrue")
+    static let updateProfileInfoFalse = Notification.Name(rawValue: "updateProfileInfoFalse")
 }

@@ -62,7 +62,7 @@ public class UserManager {
     
     static func signIn(login : String, password : String, viewController : UIViewController) {
         
-        _ = MBProgressHUD.showAdded(to: viewController.view, animated: true)
+        let _ = MBProgressHUD.showAdded(to: viewController.view, animated: true)
         
         NetworkManager.instance.auth(login: login, password: password, callback: { p, e in
         
@@ -75,14 +75,21 @@ public class UserManager {
                 if user.confirmed {
                     print("User has logged in")
                     User.currentUser = user
+                    print("\(String(describing: User.currentUser?.photoID))")
                     User.isAuthenticated = true
                     User.saveConfig()
                     User.loadConfig()
 
-                    print("true login")
 
-                    let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
-                    viewController.present(tabsViewController, animated: true)
+//                    let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
+//                    viewController.present(tabsViewController, animated: true)
+                    
+                    let profileViewController = StoryBoard.user.instantiateViewController(withIdentifier: VCIdentifier.profileViewController) as! ProfileViewController
+                    
+                    DispatchQueue.main.async {
+                        viewController.present(profileViewController, animated: true)
+                    }
+                    
                 } else {
 
                     let alert = UIAlertController(title: "Confirmation email".localized,
@@ -154,6 +161,121 @@ public class UserManager {
             }
         })
         
+    }
+    
+    static func updateAvatar(info: [String : Any], avatarView : ObservableImageView, vc : UIViewController){
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage, let currentUser = User.currentUser {
+            
+            guard let photo = MediaManager.instance.savePhoto(image: image, user: currentUser) else {
+                return
+            }
+
+            let packet = RPC.PM_setProfilePhoto()
+            packet.photo = photo
+            let oldPhotoID = currentUser.photoID!
+            let photoID = photo.id!
+            
+            DispatchQueue.main.async {
+                avatarView.setPhoto(photo: photo)
+            }
+            
+            ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
+            
+            let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
+
+            NetworkManager.instance.sendPacket(packet) { packet, error in
+                
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: vc.view, animated: true)
+                }
+                
+                if (packet is RPC.PM_boolTrue) {
+                    Utils.stageQueue.run {
+                        PMFileManager.instance.startUploading(photo: photo, onFinished: {
+                            
+                            DispatchQueue.main.async {
+                                Utils.showSuccesHud(vc: vc)
+                            }
+                            print("File has uploaded")
+
+                        }, onError: { code in
+                            print("file upload failed \(code)")
+
+                        }, onProgress: { p in
+                            
+                        })
+                    }
+                } else {
+                    let alert = UIAlertController(title: "Update failed".localized, message: "An error occurred during the update".localized, preferredStyle: UIAlertControllerStyle.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                        (UIAlertAction) -> Void in
+                    }
+                    alert.addAction(alertAction)
+                    DispatchQueue.main.async {
+                        vc.present(alert, animated: true) {
+                            () -> Void in
+                        }
+                    }
+                    //TODO переписать в Кастомный алерт
+                    PMFileManager.instance.cancelFileUpload(fileID: photoID);
+                }
+            }
+        }
+    }
+    
+    static func updateProfileInfo(name: String, surname : String, email: String, phone: String, city: String, bday: String, country: String, sex : Int, vc : UIViewController) {
+        User.currentUser!.city = city
+        if (!phone.isEmpty) {
+            User.currentUser!.phoneNumber = Int64(phone)
+        } else {
+            User.currentUser!.phoneNumber = 0
+        }
+        User.currentUser!.email = email
+        User.currentUser!.birthdate = bday
+        User.currentUser!.country = country
+
+        User.currentUser!.first_name = name
+        User.currentUser!.last_name = surname
+
+        if (sex == 0) {
+            User.currentUser!.gender! = 1
+        } else if (sex == 1) {
+            User.currentUser!.gender! = 2
+        }
+        
+        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
+
+        NetworkManager.instance.sendPacket(User.currentUser!) { response, error in
+            
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: vc.view, animated: true)
+            }
+            
+            if (response != nil) {
+                User.saveConfig() //TODO: разобраться в работе
+                DispatchQueue.main.async {
+                    Utils.showSuccesHud(vc: vc)
+                    NotificationCenter.default.post(name: .updateView, object: nil)
+                    NotificationCenter.default.post(name: .updateString, object: nil)
+                }
+
+                print("profile update success")
+            } else {
+                
+                let alert = UIAlertController(title: "Update failed".localized, message: "An error occurred during the update".localized, preferredStyle: UIAlertControllerStyle.alert)
+                let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                    (UIAlertAction) -> Void in
+                }
+                alert.addAction(alertAction)
+                DispatchQueue.main.async {
+                    vc.present(alert, animated: true) {
+                        () -> Void in
+                    }
+                }
+                //TODO: переписать в кастомный алерт
+                print("profile update error")
+            }
+        }
     }
     
 }

@@ -44,7 +44,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         self.dismiss(animated: true, completion: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        
         disableSignUpButtons = NotificationCenter.default.addObserver(forName: .disableSignUpButtons, object: nil, queue: nil) {
             notification in
             
@@ -56,9 +57,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             self.updateButtons(canSignUp: true)
         }
-    }
-    
-    override func viewDidLoad() {
         
         self.view.addUIViewBackground(name: "MainBackground")
         

@@ -14,4 +14,6 @@ class VCIdentifier {
     static let signInViewController = "SignInViewController"
     static let signUpViewController = "SignUpViewController"
     static let registrViewController = "RegistrViewController"
+    static let profileViewController = "ProfileViewController"
+    static let updateProfileViewController = "UpdateProfileViewController"
 }

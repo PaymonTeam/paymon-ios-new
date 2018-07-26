@@ -56,7 +56,6 @@ class User {
         notificationSettings.set(notificationSwitchTransactions, forKey: Config.SETTINGS_NOTIFICATION_TRANSACTIONS)
         notificationSettings.set(notificationSound, forKey: Config.SETTINGS_NOTIFICATION_SOUND)
 
-        print(notificationSettings)
     }
 
     public static func saveSecuritySettings() {

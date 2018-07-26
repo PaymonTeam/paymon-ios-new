@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
                         User.saveConfig()
                         User.loadConfig()
                         
-                        let tabsViewController = vc.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
+                        let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
                         vc.present(tabsViewController, animated: true)
                         
                         NotificationManager.instance.postNotificationName(id: NotificationManager.userAuthorized)

@@ -42,12 +42,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLoad() {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    override func viewDidLoad() {
         
         self.view.addUIViewBackground(name: "MainBackground")
         

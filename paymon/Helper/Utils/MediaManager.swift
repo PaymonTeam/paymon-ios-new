@@ -51,6 +51,7 @@ class MediaManager : NotificationManagerListener {
     public func savePhoto(image:UIImage, user:RPC.UserObject, chatID:Int32) -> RPC.PM_photo? {
 //        if let path = Bundle.main.resourcePath {
             let photoID = generatePhotoID()
+        
 //            let photosPath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0])
 //                    .appendingPathComponent("photos", isDirectory: true)!
 //            let file = "\(photosPath)\(user.id!)_\(photoID).jpg"

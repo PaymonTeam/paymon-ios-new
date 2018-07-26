@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  paymon
-
-  Created by maks on 02.11.17.
-  Copyright © 2017 Paymon. All rights reserved.
-*/
+/*
+ Localizable.strings
+ paymon
+ 
+ Created by maks on 02.11.17.
+ Copyright © 2017 Paymon. All rights reserved.
+ */
 
 /*Tab bar*/
 "Money" = "Деньги";
@@ -40,7 +40,7 @@
 "Invalid login or password"="Неправильный логин или пароль";
 "Such login or email is already in use"="Такой логин или электронная почта уже используются";
 
-"Login Failed"="Ошибка при входе";
+"Login failed"="Ошибка при входе";
 "Confirmation email"="Подтверждение электронной почты";
 "You did not verify your account by email \n %@ \n\n Send mail again?"="Вы не подтвердили аккаунт по электронной почте \n %@ \n\n Отправить письмо еще раз?";
 "The letter was sent"="Письмо было отправлено";
@@ -81,6 +81,10 @@
 "Country" = "Страна";
 "Phone number" = "Номер телефона";
 "E-mail" = "E-mail";
+"Success"="Успешно";
+"An error occurred during the update"="Произошла ошибка во время обновления";
+"Update failed"="Ошибка обновления";
+
 
 /*Settings*/
 "Settings" = "Настройки";
@@ -138,7 +142,6 @@
 "Can't read this QR-code"="Невозможно считать QR-код";
 "Make sure that the purse of the recipient is correct. To do this, click on the icon on the right."="Убедитесь, что кошелек получаетеля введен верно. Для этого нажмите на иконку справа";
 "Bitcoin address"="Bitcoin адрес";
-"SEND"="ОТПРАВИТЬ";
 "Send"="Отправить";
 
 

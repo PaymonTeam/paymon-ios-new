@@ -28,81 +28,6 @@
             </objects>
             <point key="canvasLocation" x="297" y="141"/>
         </scene>
-        <!--Key Guard View Controller-->
-        <scene sceneID="zxX-Bh-ZOb">
-            <objects>
-                <viewController storyboardIdentifier="KeyGuardViewController" id="4TZ-CS-4jY" customClass="KeyGuardViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="KaT-zq-0Fy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WWq-93-AYK">
-                                <rect key="frame" x="47" y="153" width="280" height="360"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="360" id="YeO-3E-3vM"/>
-                                    <constraint firstAttribute="width" constant="280" id="j8d-r0-5NP"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="3" id="LY9-3l-C3f">
-                                    <size key="itemSize" width="70" height="70"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="keyCell" id="8Ad-ck-QRH" customClass="KeyGuardViewCell" customModule="paymon" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="20" width="70" height="70"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TS3-Ls-8Wv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="TS3-Ls-8Wv" secondAttribute="trailing" id="5Ou-R4-67e"/>
-                                            <constraint firstAttribute="bottom" secondItem="TS3-Ls-8Wv" secondAttribute="bottom" id="Kaf-04-Gfl"/>
-                                            <constraint firstItem="TS3-Ls-8Wv" firstAttribute="top" secondItem="8Ad-ck-QRH" secondAttribute="top" id="c2D-Ha-d4l"/>
-                                            <constraint firstItem="TS3-Ls-8Wv" firstAttribute="leading" secondItem="8Ad-ck-QRH" secondAttribute="leading" id="lin-FB-lV4"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="view" destination="TS3-Ls-8Wv" id="wzd-Ce-6DF"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="lXq-X6-THY">
-                                <rect key="frame" x="16" y="125" width="343" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="43y-SX-OjQ"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="wFs-lu-uWU" firstAttribute="trailing" secondItem="lXq-X6-THY" secondAttribute="trailing" constant="16" id="Dlg-sA-vbh"/>
-                            <constraint firstItem="WWq-93-AYK" firstAttribute="centerY" secondItem="KaT-zq-0Fy" secondAttribute="centerY" id="KqK-lM-Rxv"/>
-                            <constraint firstItem="lXq-X6-THY" firstAttribute="leading" secondItem="wFs-lu-uWU" secondAttribute="leading" constant="16" id="orq-hw-yL8"/>
-                            <constraint firstItem="WWq-93-AYK" firstAttribute="top" secondItem="lXq-X6-THY" secondAttribute="bottom" constant="8" id="sgg-wl-CtG"/>
-                            <constraint firstItem="WWq-93-AYK" firstAttribute="centerX" secondItem="KaT-zq-0Fy" secondAttribute="centerX" id="xIX-mU-Dzx"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="wFs-lu-uWU"/>
-                    </view>
-                    <connections>
-                        <outlet property="keysCollection" destination="WWq-93-AYK" id="iak-B5-JCY"/>
-                        <outlet property="stackDots" destination="lXq-X6-THY" id="qNh-qj-SDJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zpo-Mu-W4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1076" y="-663.41829085457277"/>
-        </scene>
         <!--Start View Controller-->
         <scene sceneID="yIY-Me-ziZ">
             <objects>
@@ -217,20 +142,20 @@
                                             </items>
                                         </navigationBar>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Login or email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y5W-bO-IfO" userLabel="Login Text Field">
-                                            <rect key="frame" x="0.0" y="60" width="375" height="30"/>
+                                            <rect key="frame" x="0.0" y="60" width="375" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="4rO-cO-0hy"/>
+                                                <constraint firstAttribute="height" constant="40" id="4rO-cO-0hy"/>
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next" smartDashesType="no" textContentType="username"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H2k-Kc-Blt" userLabel="Password Text Field">
-                                            <rect key="frame" x="0.0" y="106" width="375" height="30"/>
+                                            <rect key="frame" x="0.0" y="116" width="375" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="N7N-Vy-dYh"/>
+                                                <constraint firstAttribute="height" constant="40" id="N7N-Vy-dYh"/>
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -250,7 +175,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnv-L6-h5s">
-                                            <rect key="frame" x="8" y="136" width="359" height="27"/>
+                                            <rect key="frame" x="8" y="156" width="359" height="27"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <state key="normal" title="Забыли пароль?">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -320,62 +245,62 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Login" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t52-Rx-n32" userLabel="Login Text Field">
-                                            <rect key="frame" x="0.0" y="72" width="375" height="30"/>
+                                            <rect key="frame" x="0.0" y="72" width="375" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="VTm-Zd-NiT"/>
+                                                <constraint firstAttribute="height" constant="40" id="VTm-Zd-NiT"/>
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mmU-dE-yCU" userLabel="Repeat Password Text Field">
-                                            <rect key="frame" x="0.0" y="180" width="375" height="30"/>
+                                            <rect key="frame" x="0.0" y="200" width="375" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="xjn-DU-Ox5"/>
+                                                <constraint firstAttribute="height" constant="40" id="xjn-DU-Ox5"/>
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Длина логина не менее 3 символов" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtd-Cd-XZx" userLabel="Login Hint">
-                                            <rect key="frame" x="8" y="103" width="359" height="12"/>
+                                            <rect key="frame" x="8" y="113" width="359" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iJe-ig-u7u" userLabel="Password Text Field">
-                                            <rect key="frame" x="0.0" y="126" width="375" height="30"/>
+                                            <rect key="frame" x="0.0" y="136" width="375" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="gYX-a1-b61"/>
+                                                <constraint firstAttribute="height" constant="40" id="gYX-a1-b61"/>
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Длина пароля не менее 8 символов." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqF-sU-YPW" userLabel="Password Hint">
-                                            <rect key="frame" x="8" y="157" width="359" height="12"/>
+                                            <rect key="frame" x="8" y="177" width="359" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ycg-ze-8aY" userLabel="Email Text Field">
-                                            <rect key="frame" x="0.0" y="234" width="375" height="30"/>
+                                            <rect key="frame" x="0.0" y="264" width="375" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="PVd-or-J4q"/>
+                                                <constraint firstAttribute="height" constant="40" id="PVd-or-J4q"/>
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" textContentType="email"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayy-jD-m9R">
-                                            <rect key="frame" x="0.0" y="288" width="375" height="30"/>
+                                            <rect key="frame" x="0.0" y="328" width="375" height="40"/>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="qaF-9n-TbW"/>
+                                                <constraint firstAttribute="height" constant="40" id="Snr-vY-jdR"/>
                                             </constraints>
                                             <state key="normal">
                                                 <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -421,17 +346,16 @@
                                         <constraint firstItem="iJe-ig-u7u" firstAttribute="top" secondItem="t52-Rx-n32" secondAttribute="bottom" constant="24" id="C26-cm-hki"/>
                                         <constraint firstItem="ycg-ze-8aY" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="GOE-dh-9BC"/>
                                         <constraint firstAttribute="trailing" secondItem="iJe-ig-u7u" secondAttribute="trailing" id="IZu-3h-HGa"/>
-                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="top" secondItem="ycg-ze-8aY" secondAttribute="bottom" constant="24" id="NsV-fl-tOJ"/>
                                         <constraint firstAttribute="trailing" secondItem="mtd-Cd-XZx" secondAttribute="trailing" constant="8" id="OUJ-2c-Ilo"/>
+                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="trailing" secondItem="ycg-ze-8aY" secondAttribute="trailing" id="VuH-mW-gZB"/>
                                         <constraint firstAttribute="trailing" secondItem="Pfv-n8-vBx" secondAttribute="trailing" constant="8" id="VuO-sE-TBC"/>
+                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="top" secondItem="ycg-ze-8aY" secondAttribute="bottom" constant="24" id="WAw-Tk-7Do"/>
                                         <constraint firstAttribute="trailing" secondItem="t52-Rx-n32" secondAttribute="trailing" id="Xfh-om-fAH"/>
                                         <constraint firstItem="WqF-sU-YPW" firstAttribute="top" secondItem="iJe-ig-u7u" secondAttribute="bottom" constant="1" id="Xsd-Ah-0CF"/>
-                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="aCr-fg-Hiz"/>
                                         <constraint firstItem="mmU-dE-yCU" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="byn-uE-FQS"/>
                                         <constraint firstItem="mtd-Cd-XZx" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" constant="8" id="eGv-Ib-iBw"/>
                                         <constraint firstItem="t52-Rx-n32" firstAttribute="top" secondItem="Pfv-n8-vBx" secondAttribute="bottom" constant="16" id="jx6-kv-9TO"/>
                                         <constraint firstItem="iJe-ig-u7u" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="lqp-yh-pys"/>
-                                        <constraint firstAttribute="trailing" secondItem="ayy-jD-m9R" secondAttribute="trailing" id="mC4-Z0-Dhu"/>
                                         <constraint firstAttribute="trailing" secondItem="WqF-sU-YPW" secondAttribute="trailing" constant="8" id="nLq-kP-TVg"/>
                                         <constraint firstAttribute="trailing" secondItem="ycg-ze-8aY" secondAttribute="trailing" id="o9P-wA-PEs"/>
                                         <constraint firstItem="mtd-Cd-XZx" firstAttribute="top" secondItem="t52-Rx-n32" secondAttribute="bottom" constant="1" id="ov1-n6-y2u"/>
@@ -439,6 +363,7 @@
                                         <constraint firstAttribute="trailing" secondItem="scv-N9-yln" secondAttribute="trailing" id="qDY-kA-LOR"/>
                                         <constraint firstAttribute="trailing" secondItem="mmU-dE-yCU" secondAttribute="trailing" id="rm8-AJ-YVq"/>
                                         <constraint firstItem="t52-Rx-n32" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="t5p-dm-HCs"/>
+                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="leading" secondItem="ycg-ze-8aY" secondAttribute="leading" id="vai-MB-30z"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
@@ -473,9 +398,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ArrowBack" width="25" height="25"/>
-        <image name="ArrowCheck" width="25" height="25"/>
-        <image name="Login" width="25" height="25"/>
+        <image name="ArrowBack" width="33" height="33"/>
+        <image name="ArrowCheck" width="33" height="33"/>
+        <image name="Login" width="32" height="32"/>
         <image name="LogoWhite" width="256" height="256"/>
     </resources>
 </document>

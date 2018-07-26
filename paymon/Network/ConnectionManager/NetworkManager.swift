@@ -161,6 +161,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 MessageManager.instance.updateMessageID(oldID: update.oldID, newID: update.newID)
             } else if packet is RPC.PM_updatePhotoID {
                 let update = packet as! RPC.PM_updatePhotoID
+                print("OLD PHOTO ID \(update.oldID) - NEW PHOTO ID \(update.newID)")
                 MediaManager.instance.updatePhotoID(oldID: update.oldID, newID: update.newID)
                 DispatchQueue.main.async {
                     ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: update.oldID, newPhotoID: update.newID)
@@ -248,6 +249,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
             }
             var err = false
             let object = ClassStore.deserialize(stream: buffer, svuid: buffer.readInt32(&err), error: &err)
+            
             if !err && object != nil {
                 print("connection received object " + String(describing: type(of: object!)) + ", len=\(messageLength), ID=\(messageID)")
                 processServerResponse(object: object!, messageID: messageID)
