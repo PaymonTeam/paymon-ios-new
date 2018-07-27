@@ -106,6 +106,13 @@
 		B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */; };
 		B099C98B20FCF7DC00718608 /* paymonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C98A20FCF7DC00718608 /* paymonTests.swift */; };
 		B099C99620FCF7DC00718608 /* paymonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C99520FCF7DC00718608 /* paymonUITests.swift */; };
+		B0C396A7210A3B2600E0C344 /* GamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396A6210A3B2600E0C344 /* GamesViewController.swift */; };
+		B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0C396A8210A3EFA00E0C344 /* ForgotPassword.storyboard */; };
+		B0C396AC210A49C300E0C344 /* ForgotPasswordEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396AB210A49C300E0C344 /* ForgotPasswordEmailViewController.swift */; };
+		B0C396AE210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396AD210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift */; };
+		B0C396B0210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396AF210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift */; };
+		B0C396B2210A50C700E0C344 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396B1210A50C700E0C344 /* UINavigationBar.swift */; };
+		B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396B4210A7CF200E0C344 /* SimpleOkAlertController.swift */; };
 		B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
 		D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D820C69D210122B5001D3B00 /* Ethur.storyboard */; };
@@ -268,6 +275,13 @@
 		B099C99520FCF7DC00718608 /* paymonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paymonUITests.swift; sourceTree = "<group>"; };
 		B099C99720FCF7DC00718608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B099C9C920FDD46200718608 /* paymon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "paymon-Bridging-Header.h"; sourceTree = "<group>"; };
+		B0C396A6210A3B2600E0C344 /* GamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesViewController.swift; sourceTree = "<group>"; };
+		B0C396A8210A3EFA00E0C344 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
+		B0C396AB210A49C300E0C344 /* ForgotPasswordEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEmailViewController.swift; sourceTree = "<group>"; };
+		B0C396AD210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordCodeViewController.swift; sourceTree = "<group>"; };
+		B0C396AF210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordChangeViewController.swift; sourceTree = "<group>"; };
+		B0C396B1210A50C700E0C344 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
+		B0C396B4210A7CF200E0C344 /* SimpleOkAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleOkAlertController.swift; sourceTree = "<group>"; };
 		B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIdentifier.swift; sourceTree = "<group>"; };
 		B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,6 +537,7 @@
 		B099C9AB20FDD23C00718608 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				B0C396A5210A3B0F00E0C344 /* Games */,
 				B099C9AE20FDD25100718608 /* Users */,
 				0EA074C321065489002FF527 /* Chats */,
 			);
@@ -543,8 +558,6 @@
 				B01F0DF121087263008FB6F0 /* ProfileViewController.swift */,
 				B01F0DF221087263008FB6F0 /* UpdateProfileInfoTableViewController.swift */,
 				B01F0DF321087263008FB6F0 /* UpdateProfileViewController.swift */,
-				B0011B762101E10400A3CBF1 /* SignUpViewController.swift */,
-				B08CA88A21030F2100AAA805 /* SignInViewController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -560,9 +573,9 @@
 		B099C9B020FDD25D00718608 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */,
+				B0C396B3210A5C1300E0C344 /* Main */,
+				B0C396AA210A497A00E0C344 /* ForgotPassword */,
 				B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */,
-				B01CBAC420FF85EC00A061FB /* MainViewController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -570,6 +583,7 @@
 		B099C9B120FDD26B00718608 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				B0C396B4210A7CF200E0C344 /* SimpleOkAlertController.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -612,6 +626,7 @@
 				B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */,
 				B01F0DEC2108700F008FB6F0 /* User.storyboard */,
 				0EA075AB21065EE7002FF527 /* Chats.storyboard */,
+				B0C396A8210A3EFA00E0C344 /* ForgotPassword.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -672,6 +687,7 @@
 				B01954FD20FFAA3E00F3DDB0 /* UIView+Loading.swift */,
 				B0011B722100F15E00A3CBF1 /* NotificationName.swift */,
 				B0011B80210236EF00A3CBF1 /* UIColors.swift */,
+				B0C396B1210A50C700E0C344 /* UINavigationBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -811,6 +827,35 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		B0C396A5210A3B0F00E0C344 /* Games */ = {
+			isa = PBXGroup;
+			children = (
+				B0C396A6210A3B2600E0C344 /* GamesViewController.swift */,
+			);
+			path = Games;
+			sourceTree = "<group>";
+		};
+		B0C396AA210A497A00E0C344 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				B0C396AB210A49C300E0C344 /* ForgotPasswordEmailViewController.swift */,
+				B0C396AD210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift */,
+				B0C396AF210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		B0C396B3210A5C1300E0C344 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */,
+				B01CBAC420FF85EC00A061FB /* MainViewController.swift */,
+				B0011B762101E10400A3CBF1 /* SignUpViewController.swift */,
+				B08CA88A21030F2100AAA805 /* SignInViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		D820C69F2101232E001D3B00 /* ETH */ = {
 			isa = PBXGroup;
 			children = (
@@ -944,6 +989,7 @@
 				D820C70C21037EDA001D3B00 /* libcryptopp.a in Resources */,
 				B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */,
 				D820C6BA21036E09001D3B00 /* libssl.a in Resources */,
+				B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */,
 				D820C6BB21036E09001D3B00 /* libcrypto.a in Resources */,
 				B01F0DFF2109E2BB008FB6F0 /* Assets.xcassets in Resources */,
 				B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */,
@@ -1059,6 +1105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B01954EA20FFA94600F3DDB0 /* Chain.swift in Sources */,
+				B0C396B2210A50C700E0C344 /* UINavigationBar.swift in Sources */,
 				B019551720FFAA6600F3DDB0 /* SerializedStream.mm in Sources */,
 				B019552920FFAA9200F3DDB0 /* KeyGenerator.cpp in Sources */,
 				B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */,
@@ -1070,6 +1117,7 @@
 				B019552820FFAA9200F3DDB0 /* SerializedBuffer.cpp in Sources */,
 				B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */,
 				B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */,
+				B0C396B0210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift in Sources */,
 				B01954E520FFA92100F3DDB0 /* StickerPack.swift in Sources */,
 				B019554120FFAC0F00F3DDB0 /* TransactionFactory.swift in Sources */,
 				B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */,
@@ -1077,6 +1125,7 @@
 				B01F0DFD2108847C008FB6F0 /* FromRightSegue.swift in Sources */,
 				B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */,
 				B01954E120FFA92100F3DDB0 /* ObservableMediaManager.swift in Sources */,
+				B0C396AC210A49C300E0C344 /* ForgotPasswordEmailViewController.swift in Sources */,
 				B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */,
 				B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */,
 				B0011B81210236EF00A3CBF1 /* UIColors.swift in Sources */,
@@ -1092,6 +1141,7 @@
 				B019555B20FFAD7500F3DDB0 /* Request.m in Sources */,
 				B01954F820FFA9F000F3DDB0 /* KeyGenerator.swift in Sources */,
 				D820C6A72101232E001D3B00 /* SendViewController.swift in Sources */,
+				B0C396A7210A3B2600E0C344 /* GamesViewController.swift in Sources */,
 				B019555620FFAD7500F3DDB0 /* PMTimer.m in Sources */,
 				B01F0DF921087264008FB6F0 /* UpdateProfileViewController.swift in Sources */,
 				B019555820FFAD7500F3DDB0 /* Connection.m in Sources */,
@@ -1140,6 +1190,7 @@
 				B01954F120FFA9B400F3DDB0 /* TransactionFactoryProtocol.swift in Sources */,
 				D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */,
 				B01954F920FFA9F000F3DDB0 /* KeyGenerator_Wrapper.mm in Sources */,
+				B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */,
 				0EA074D4210656FC002FF527 /* ChatMessageItemRcvViewCell.swift in Sources */,
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
@@ -1150,6 +1201,7 @@
 				B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */,
 				B019554520FFAC5900F3DDB0 /* ConnectionManager.swift in Sources */,
 				B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */,
+				B0C396AE210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,7 +1423,7 @@
 					/usr/local/Cellar/openssl/1.0.2o_2/include,
 				);
 				INFOPLIST_FILE = paymon/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1419,7 +1471,7 @@
 					/usr/local/Cellar/openssl/1.0.2o_2/include,
 				);
 				INFOPLIST_FILE = paymon/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

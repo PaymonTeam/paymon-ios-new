@@ -21,25 +21,26 @@ class ProfileViewController: UIViewController {
         self.present(updateProfileViewController, animated: true, completion: nil)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        guard let user = User.currentUser as RPC.UserObject? else {
+            return
+        }
+        DispatchQueue.main.async {
+            
+            self.profileAvatar.setPhoto(ownerID: user.id, photoID: user.photoID)
+            self.profileName.text! = Utils.formatUserName(user)
+            self.profileLogin.text = "@\(user.login!)"
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Utils.getAllCountries()
 
         navigationBar.topItem?.title = "Profile".localized
         
-        if (User.currentUser != nil) {
-            DispatchQueue.main.async {
-                
-//                print("owner id - \(User.currentUser!.id) \n photo id - \(User.currentUser!.photoID)")
-                self.profileAvatar.setPhoto(ownerID: User.currentUser!.id, photoID: User.currentUser!.photoID)
-                self.profileName.text! = Utils.formatUserName(User.currentUser!)
-                self.profileLogin.text = "@\(User.currentUser!.login!)"
-            }
-        }
-
     }
     
-    @IBAction func unWind(_ segue: UIStoryboardSegue) {
-        
-    }
 }
 

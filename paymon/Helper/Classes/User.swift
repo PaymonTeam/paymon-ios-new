@@ -100,8 +100,6 @@ class User {
         notificationSwitchTransactions = notificationSettings.object(forKey: Config.SETTINGS_NOTIFICATION_TRANSACTIONS) as? Bool ?? false
         notificationSound = notificationSettings.object(forKey: Config.SETTINGS_NOTIFICATION_SOUND) as? String ?? "Note.mp3"
 
-        print("\(notificationSound)")
-
         securitySwitchPasswordProtected = securitySettings.object(forKey: Config.SETTINGS_SECURITY_PASSWORD_PROTECTED) as? Bool ?? false
         securityPasswordProtectedString = securitySettings.string(forKey: Config.SETTINGS_SECURITY_PASSWORD_PROTECTED_STRING) ?? ""
 

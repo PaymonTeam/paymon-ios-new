@@ -22,7 +22,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func passwordForgotClick(_ sender: Any) {
-        //TODO: Create new view
+        let forgotPasswordEmailViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordEmailViewController) as! ForgotPasswordEmailViewController
+        
+        DispatchQueue.main.async {
+            self.present(forgotPasswordEmailViewController, animated: true)
+        }
     }
     
     @IBAction func arrowBackClick(_ sender: Any) {
@@ -38,7 +42,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
             return
         } else {
             self.view.endEditing(true)
-            UserManager.signIn(login: (login.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, password: (password.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, viewController: self)
+            UserManager.signIn(login: (login.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, password: (password.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, vc: self)
         }
     }
     
@@ -55,8 +59,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         login.delegate = self
         password.delegate = self
         
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
+        navigationBar.setTransparent()
         navigationBar.topItem?.title = "Sign in".localized
         
         login.placeholder = "Login or email".localized
@@ -67,11 +70,26 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        
         if textField == login {
             password.becomeFirstResponder()
         } else if textField == password {
             self.signInClick(self)
+        }
+        
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        switch (textField) {
+        case login:
+            return newLength <= 20
+        case password:
+            return newLength <= 96
+        default: print("")
         }
         
         return true
@@ -86,9 +104,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         if let userInfo = notification.userInfo {
             let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
             
-            let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
-            
-            signInBottomConstraint.constant = isKeyboardShowing ? keyboardFrame!.height : 0
+            signInBottomConstraint.constant = notification.name == NSNotification.Name.UIKeyboardWillShow ? keyboardFrame!.height : 0
             
             UIView.animate(withDuration: 0,
                            delay: 0,

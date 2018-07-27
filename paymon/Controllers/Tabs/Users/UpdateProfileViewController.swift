@@ -69,8 +69,7 @@ class UpdateProfileViewController: UIViewController, UIImagePickerControllerDele
         super.viewWillDisappear(animated)
        
         if needRemoveObservers {
-            NotificationCenter.default.removeObserver(self.observerUpdateTrue)
-            NotificationCenter.default.removeObserver(self.observerUpdateFalse)
+            NotificationCenter.default.removeObserver(self)
         }
     }
     

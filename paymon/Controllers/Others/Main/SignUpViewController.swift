@@ -13,8 +13,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var hintTitle: UILabel!
     @IBOutlet weak var login: UITextField!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var signUp: UIButton!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var hintPassword: UILabel!
@@ -64,15 +64,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
         
         signUpItem.isEnabled = false
-        signUp.isEnabled = false
         
         login.delegate = self
         password.delegate = self
         repeatPassword.delegate = self
         email.delegate = self
 
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
+        navigationBar.setTransparent()
         navigationBar.topItem?.title = "Sign up".localized
         
         hintTitle.text = "Please enter your information".localized
@@ -83,8 +81,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         password.placeholder = "Password".localized
         repeatPassword.placeholder = "Repeat password".localized
         email.placeholder = "E-mail".localized
-    
-        signUp.setTitle("Go".localized, for: .normal)
         
         login.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
         password.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
@@ -142,20 +138,32 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        switch (textField) {
+        case login:
+            return newLength <= 20
+        case password:
+            return newLength <= 96
+        case repeatPassword:
+            return newLength <= 96
+        case email:
+            return newLength <= 128
+        default: print("")
+        }
+        
+        return true
+    }
+    
     func updateButtons(canSignUp : Bool) {
         signUpItem.isEnabled = canSignUp
-        signUp.isEnabled = canSignUp
-        signUp.backgroundColor = canSignUp ? blueLight : whiteLight
     }
     
     @IBAction func signUpClick(_ sender: Any) {
         if (canSignUp) {
             UserManager.signUpNewUser(login: loginValue, password: passwordValue, email: emailValue, viewController: self)
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(disableSignUpButtons)
-        NotificationCenter.default.removeObserver(enableSignUpButtons)
     }
 }

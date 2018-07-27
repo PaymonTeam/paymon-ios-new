@@ -17,7 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -159,7 +159,7 @@
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES" textContentType="password"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="join" secureTextEntry="YES" textContentType="password"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3H-gq-frg">
                                             <rect key="frame" x="0.0" y="607" width="375" height="40"/>
@@ -252,7 +252,7 @@
                                             </constraints>
                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="username"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" textContentType="username"/>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mmU-dE-yCU" userLabel="Repeat Password Text Field">
                                             <rect key="frame" x="0.0" y="200" width="375" height="40"/>
@@ -296,19 +296,6 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" textContentType="email"/>
                                         </textField>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayy-jD-m9R">
-                                            <rect key="frame" x="0.0" y="328" width="375" height="40"/>
-                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="Snr-vY-jdR"/>
-                                            </constraints>
-                                            <state key="normal">
-                                                <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="signUpClick:" destination="5Qk-PO-K0T" eventType="touchUpInside" id="NuY-26-JKf"/>
-                                            </connections>
-                                        </button>
                                         <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="scv-N9-yln">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -347,9 +334,7 @@
                                         <constraint firstItem="ycg-ze-8aY" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="GOE-dh-9BC"/>
                                         <constraint firstAttribute="trailing" secondItem="iJe-ig-u7u" secondAttribute="trailing" id="IZu-3h-HGa"/>
                                         <constraint firstAttribute="trailing" secondItem="mtd-Cd-XZx" secondAttribute="trailing" constant="8" id="OUJ-2c-Ilo"/>
-                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="trailing" secondItem="ycg-ze-8aY" secondAttribute="trailing" id="VuH-mW-gZB"/>
                                         <constraint firstAttribute="trailing" secondItem="Pfv-n8-vBx" secondAttribute="trailing" constant="8" id="VuO-sE-TBC"/>
-                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="top" secondItem="ycg-ze-8aY" secondAttribute="bottom" constant="24" id="WAw-Tk-7Do"/>
                                         <constraint firstAttribute="trailing" secondItem="t52-Rx-n32" secondAttribute="trailing" id="Xfh-om-fAH"/>
                                         <constraint firstItem="WqF-sU-YPW" firstAttribute="top" secondItem="iJe-ig-u7u" secondAttribute="bottom" constant="1" id="Xsd-Ah-0CF"/>
                                         <constraint firstItem="mmU-dE-yCU" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="byn-uE-FQS"/>
@@ -363,7 +348,6 @@
                                         <constraint firstAttribute="trailing" secondItem="scv-N9-yln" secondAttribute="trailing" id="qDY-kA-LOR"/>
                                         <constraint firstAttribute="trailing" secondItem="mmU-dE-yCU" secondAttribute="trailing" id="rm8-AJ-YVq"/>
                                         <constraint firstItem="t52-Rx-n32" firstAttribute="leading" secondItem="UQC-z8-ovx" secondAttribute="leading" id="t5p-dm-HCs"/>
-                                        <constraint firstItem="ayy-jD-m9R" firstAttribute="leading" secondItem="ycg-ze-8aY" secondAttribute="leading" id="vai-MB-30z"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
@@ -388,7 +372,6 @@
                         <outlet property="navigationBar" destination="scv-N9-yln" id="ebj-4u-Bgh"/>
                         <outlet property="password" destination="iJe-ig-u7u" id="nDn-k8-GKx"/>
                         <outlet property="repeatPassword" destination="mmU-dE-yCU" id="gGT-gH-xRk"/>
-                        <outlet property="signUp" destination="ayy-jD-m9R" id="Und-pU-WKU"/>
                         <outlet property="signUpItem" destination="ASE-EY-KdW" id="WfE-uS-XDU"/>
                     </connections>
                 </viewController>

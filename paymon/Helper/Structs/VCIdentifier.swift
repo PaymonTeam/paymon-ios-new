@@ -16,4 +16,9 @@ class VCIdentifier {
     static let registrViewController = "RegistrViewController"
     static let profileViewController = "ProfileViewController"
     static let updateProfileViewController = "UpdateProfileViewController"
+    
+    static let forgotPasswordEmailViewController = "ForgotPasswordEmailViewController"
+    static let forgotPasswordCodeViewController = "ForgotPasswordCodeViewController"
+    static let forgotPasswordChangeViewController = "ForgotPasswordChangeViewController"
+
 }

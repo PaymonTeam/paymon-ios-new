@@ -9,8 +9,9 @@ class ProfileInfoTableViewController : UITableViewController {
     @IBOutlet weak var cityInfo: UILabel!
     @IBOutlet weak var bdayInfo: UILabel!
     
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
         self.updateView()
+
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -23,33 +24,19 @@ class ProfileInfoTableViewController : UITableViewController {
     }
 
     func updateView() {
+        
+        guard let user = User.currentUser as RPC.UserObject? else {
+            return
+        }
+        
         DispatchQueue.main.async {
-            if (User.currentUser!.city != nil && !User.currentUser!.city.isEmpty) {
-                self.cityInfo.text = User.currentUser!.city
-            } else {
-                self.cityInfo.text = "Not choosen".localized
-            }
+                        
+            self.cityInfo.text = user.city ?? "Not choosen".localized
+            self.phoneInfo.text = String(user.phoneNumber)
+            self.emailInfo.text = user.email ?? "Not choosen".localized
+            self.bdayInfo.text = user.birthdate ?? "Not choosen".localized
+            self.countryInfo.text = user.country ?? "Not choosen".localized
             
-            if (User.currentUser!.phoneNumber != nil && User.currentUser!.phoneNumber != 0) {
-                self.phoneInfo.text = String(User.currentUser!.phoneNumber)
-            } else {
-                self.phoneInfo.text = "Not choosen".localized
-            }
-            if (User.currentUser!.email != nil && !User.currentUser!.email.isEmpty) {
-                self.emailInfo.text = User.currentUser!.email
-            } else {
-                self.emailInfo.text = "Not choosen".localized
-            }
-            if (User.currentUser!.birthdate != nil && !User.currentUser!.birthdate.isEmpty) {
-                self.bdayInfo.text = User.currentUser!.birthdate
-            } else {
-                self.bdayInfo.text = "Not choosen".localized
-            }
-            if (User.currentUser!.country != nil && !User.currentUser!.country.isEmpty) {
-                self.countryInfo.text = User.currentUser!.country
-            } else {
-                self.countryInfo.text = "Not choosen".localized
-            }
         }
     }
 }

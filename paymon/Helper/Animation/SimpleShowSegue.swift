@@ -12,17 +12,17 @@ class SimpleShowSegue: UIStoryboardSegue {
     override func perform() {
         
         let sourceViewControllerView = self.source.view
-        
+
         let destinationViewControllerView = self.destination.view
-        
+
         let screenWidth = UIScreen.main.bounds.size.width
         let screenHeight = UIScreen.main.bounds.size.height
-        
+
         destinationViewControllerView?.frame = CGRect(x: 0, y: 0, width: screenWidth, height: screenHeight)
-        
+
         destinationViewControllerView?.alpha = 0;
         sourceViewControllerView?.addSubview(destinationViewControllerView!);
-        
+
         UIView.animate(withDuration: 0, animations: {
             destinationViewControllerView?.alpha = 1;
         }, completion: { (finished) in

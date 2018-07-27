@@ -36,12 +36,12 @@
         <!--Games-->
         <scene sceneID="moZ-gm-xrX">
             <objects>
-                <viewController id="TW9-C2-wP1" sceneMemberID="viewController">
+                <viewController id="TW9-C2-wP1" customClass="GamesViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y8A-Pm-EDT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="game_develop" translatesAutoresizingMaskIntoConstraints="NO" id="DHA-nb-LpQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GamePad" translatesAutoresizingMaskIntoConstraints="NO" id="DHA-nb-LpQ">
                                 <rect key="frame" x="79" y="183" width="217" height="301"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="217" id="UmT-HU-Njl"/>
@@ -51,17 +51,17 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkX-os-6N4">
                                 <rect key="frame" x="16" y="492" width="343" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Lr-1K-K1P">
                                 <rect key="frame" x="16" y="520" width="343" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5Lr-1K-K1P" firstAttribute="leading" secondItem="lvS-y6-mPL" secondAttribute="leading" constant="16" id="Bez-cO-9tY"/>
                             <constraint firstItem="lvS-y6-mPL" firstAttribute="trailing" secondItem="PkX-os-6N4" secondAttribute="trailing" constant="16" id="O7h-fB-WT5"/>
@@ -75,6 +75,10 @@
                         <viewLayoutGuide key="safeArea" id="lvS-y6-mPL"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Games" image="Games" id="UmU-Mr-PR2"/>
+                    <connections>
+                        <outlet property="bottomLabel" destination="5Lr-1K-K1P" id="xEA-nd-vzI"/>
+                        <outlet property="topLabel" destination="PkX-os-6N4" id="9wr-b6-Kjp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V42-cr-CNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -353,10 +357,10 @@
         <image name="Chats" width="32" height="32"/>
         <image name="ChouseCurrency" width="16" height="16"/>
         <image name="Contacts" width="32" height="32"/>
+        <image name="GamePad" width="256" height="256"/>
         <image name="Games" width="32" height="32"/>
         <image name="Home" width="32" height="32"/>
         <image name="Wallet" width="32" height="32"/>
-        <image name="game_develop" width="16" height="16"/>
         <image name="ic_bitcoin" width="16" height="16"/>
         <image name="info_circle" width="16" height="16"/>
         <image name="none_photo_user" width="16" height="16"/>

@@ -55,6 +55,30 @@ open class Utils {
         hud.hide(animated: true, afterDelay: 2)
         
     }
+    
+    static func getAllCountries() -> [String] {
+        var countries: [String] = []
+        var localeIdentifier : String!
+        
+        if Locale.current.languageCode! == "ru" {
+            localeIdentifier = "ru_RU"
+        } else {
+            localeIdentifier = "en_UK"
+        }
+        
+        for code in NSLocale.isoCountryCodes as [String] {
+            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
+            print(id)
+            print(code)
+            let name = NSLocale(localeIdentifier: localeIdentifier).displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
+            countries.append(name)
+        }
+        
+        print(countries)
+        
+        return countries
+        
+    }
 
     public static func formatDateTime(timestamp:Int64, format24h:Bool) -> String {
         let dateFormatter = DateFormatter()

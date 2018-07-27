@@ -116,27 +116,36 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
     }
     
     func updateString() {
-        nameString = User.currentUser?.first_name ?? ""
-        surnameString = User.currentUser?.last_name ?? ""
-        cityString = User.currentUser?.city ?? ""
-        phoneString = String(User.currentUser!.phoneNumber)
-        emailString = User.currentUser!.email ?? ""
-        bdayString = User.currentUser!.birthdate ?? ""
-        countryString = User.currentUser!.country ?? ""
-        sex = User.currentUser!.gender! == 2 ? 1 : 0
+        
+        guard let user = User.currentUser as RPC.UserObject? else {
+            return
+        }
+        
+        nameString = user.first_name ?? ""
+        surnameString = user.last_name ?? ""
+        cityString = user.city ?? ""
+        phoneString = String(user.phoneNumber)
+        emailString = user.email ?? ""
+        bdayString = user.birthdate ?? ""
+        countryString = user.country ?? ""
+        sex = user.gender! == 2 ? 1 : 0
 
     }
 
     func updateView () {
         
-        sexPicker.selectedSegmentIndex = User.currentUser!.gender! == 2 ? 1 : 0
-        nameInfo.text = User.currentUser?.first_name ?? ""
-        surnameInfo.text = User.currentUser?.last_name ?? ""
-        cityInfo.text = User.currentUser?.city ?? ""
-        phoneInfo.text = String(User.currentUser!.phoneNumber)
-        emailInfo.text = User.currentUser?.email ?? ""
-        bdayInfo.text = User.currentUser?.birthdate ?? ""
-        countryInfo.text = User.currentUser?.country ?? ""
+        guard let user = User.currentUser as RPC.UserObject? else {
+            return
+        }
+        
+        sexPicker.selectedSegmentIndex = user.gender! == 2 ? 1 : 0
+        nameInfo.text = user.first_name ?? ""
+        surnameInfo.text = user.last_name ?? ""
+        cityInfo.text = user.city ?? ""
+        phoneInfo.text = String(user.phoneNumber)
+        emailInfo.text = user.email ?? ""
+        bdayInfo.text = user.birthdate ?? ""
+        countryInfo.text = user.country ?? ""
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat="yyyy-MM-dd"
@@ -153,11 +162,21 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
             default: return "Information about you".localized
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        updateView()
+        updateString()
+    }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         observerUpdateProfile = NotificationCenter.default.addObserver(forName: .updateProfile, object: nil, queue: nil ){ notification in
+
             UserManager.updateProfileInfo(name: self.nameInfo.text!, surname: self.surnameInfo.text!, email: self.emailInfo.text!, phone: self.phoneInfo.text!, city: self.cityInfo.text!, bday: self.bdayInfo.text!, country: self.countryInfo.text!, sex: self.sexPicker.selectedSegmentIndex, vc: self)
         }
         
@@ -173,8 +192,6 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
         tapper.cancelsTouchesInView = false
         view.addGestureRecognizer(tapper)
 
-        updateView()
-        updateString()
         self.cityInfo.delegate = self
         self.countryInfo.delegate = self
         self.bdayInfo.delegate = self
@@ -210,11 +227,38 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
     override func viewWillDisappear(_ animated: Bool) {
         
         if UpdateProfileInfoTableViewController.needRemoveObservers {
-            NotificationCenter.default.removeObserver(observerUpdateProfile)
-            NotificationCenter.default.removeObserver(observerUpdateView)
-            NotificationCenter.default.removeObserver(observerUpdateString)
+            NotificationCenter.default.removeObserver(self)
         }
         
     }
+    
+//    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+//        let pointInTable:CGPoint = textField.superview!.convert(textField.frame.origin, to: self.tableView)
+//        var contentOffset:CGPoint = self.tableView.contentOffset
+//        contentOffset.y  = pointInTable.y
+//        if let accessoryView = textField.inputAccessoryView {
+//            contentOffset.y -= accessoryView.frame.size.height
+//        }
+//        self.tableView.contentOffset = contentOffset
+//        return true;
+//    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        switch (textField) {
+        case nameInfo:
+            return newLength <= 128
+        case surnameInfo:
+            return newLength <= 128
+        case emailInfo:
+            return newLength <= 128
+        default: print("")
+        }
+        
+        return true
+    }
+
 
 }
