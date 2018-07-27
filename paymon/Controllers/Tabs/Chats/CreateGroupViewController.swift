@@ -64,9 +64,9 @@ class CreateGroupViewController: UIViewController , UITableViewDataSource, UITab
             
             addParticipant.id = chatID;
             NetworkManager.instance.sendPacket(addParticipant) { response, e in
-                let manager = MessageManager.instance
+                _ = MessageManager.instance
                 if (response != nil) {
-                    let group:RPC.Group! = response as! RPC.Group!
+                    let _:RPC.Group! = response as! RPC.Group?
                     self.dismiss(animated: true, completion: nil)
                 }
             }
@@ -89,7 +89,7 @@ class CreateGroupViewController: UIViewController , UITableViewDataSource, UITab
                         NetworkManager.instance.sendPacket(createGroup) { response, e in
                             let manager = MessageManager.instance
                             if (response != nil) {
-                                let group:RPC.Group! = response as! RPC.Group!
+                                let group:RPC.Group! = response as! RPC.Group?
                                 manager.putGroup(group)
                                 self.dismiss(animated: true, completion: nil)
                             }

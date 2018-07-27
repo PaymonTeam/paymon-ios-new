@@ -15,7 +15,7 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
     private var itemType = PMFileManager.FileType.NONE
 
     private var bitmap:UIImage?
-    public static var profilePhotoNoneUIImage:UIImage? = UIImage(named: "none_photo_user")
+    public static var profilePhotoNoneUIImage:UIImage? = UIImage(named: "NonPhoto")
 
     var added = false
 
@@ -73,10 +73,12 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
     }
 
     public func setPhoto(ownerID:Int32, photoID:Int64) {
+        
         if self.photoID == photoID && self.photoOwnerID == ownerID {
             return
         } else {
             if photoID == 0 || ownerID == 0 {
+                
                 image = ObservableImageView.profilePhotoNoneUIImage
                 return
             }

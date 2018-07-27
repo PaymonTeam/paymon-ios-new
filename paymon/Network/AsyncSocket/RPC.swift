@@ -441,6 +441,60 @@ class RPC {
             stream.write(PM_resendEmail.svuid)
         }
     }
+    
+    class PM_restorePasswordRequestCode : Packet {
+        static let svuid:Int32 = 564783058
+        
+        var loginOrEmail : String!
+        
+        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            loginOrEmail = stream.readString(exception)
+        }
+        
+        override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_restorePasswordRequestCode.svuid)
+            stream.write(loginOrEmail)
+        }
+    }
+    
+    class PM_verifyPasswordRecoveryCode : Packet {
+        static let svuid:Int32 = 569433023
+        
+        var loginOrEmail : String!
+        var code : Int32!
+        
+        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            loginOrEmail = stream.readString(exception)
+            code = stream.readInt32(exception)
+        }
+        
+        override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_restorePasswordRequestCode.svuid)
+            stream.write(loginOrEmail)
+            stream.write(code)
+        }
+    }
+    
+    class PM_restorePassword: Packet {
+        static let svuid:Int32 = 23582811
+        
+        var loginOrEmail : String!
+        var password : String!
+        var code : Int32!
+        
+        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            loginOrEmail = stream.readString(exception)
+            password = stream.readString(exception)
+            code = stream.readInt32(exception)
+        }
+        
+        override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_restorePasswordRequestCode.svuid)
+            stream.write(loginOrEmail)
+            stream.write(code)
+            stream.write(password)
+        }
+    }
 
     class PM_BTC_getWalletKey: Packet {
         static let svuid:Int32 = 1553345733

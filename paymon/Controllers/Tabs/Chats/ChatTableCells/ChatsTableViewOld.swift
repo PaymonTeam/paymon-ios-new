@@ -5,7 +5,7 @@
 
 import Foundation
 import UIKit
-import PureLayout
+//import PureLayout
 
 class ChatsTableViewOld: UITableView, UITableViewDataSource, UITableViewDelegate {
     class CellData {
@@ -39,12 +39,12 @@ class ChatsTableViewOld: UITableView, UITableViewDataSource, UITableViewDelegate
             super.init(style: .default, reuseIdentifier: reuseIdentifier)
 
             titleView = UILabel(frame: CGRect.zero)
-            titleView.autoSetDimension(.height, toSize: 20)
+//            titleView.autoSetDimension(.height, toSize: 20)
 //            titleView.autoSetDimension(.width, toSize: 40)
             titleView.text = title
 
             textView = UILabel(frame: CGRect.zero)
-            textView.autoSetDimension(.height, toSize: 20)
+//            textView.autoSetDimension(.height, toSize: 20)
 //            textView.autoSetDimension(.width, toSize: 40)
             textView.text = lastMsg
 
@@ -54,10 +54,10 @@ class ChatsTableViewOld: UITableView, UITableViewDataSource, UITableViewDelegate
 
         override func updateConstraints() {
             if(shouldSetupConstraints) {
-                titleView.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-                titleView.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
-                textView.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
-                textView.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
+//                titleView.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+//                titleView.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
+//                textView.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
+//                textView.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
 //                textView.autoPinEdge(.top, to: .bottom, of: titleView, withOffset: 0)
 
                 shouldSetupConstraints = false

@@ -12,7 +12,6 @@ class ChatMessageViewCell : UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         let blue = UIColor(red: 90/255, green: 200/255, blue: 250/255, alpha: 1)
-        let red = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         let bubbleSpace = CGRectMake(self.messageLabel.frame.minX - 7, self.messageLabel.frame.minY - 5,
                 self.messageLabel.frame.width + 15, self.messageLabel.frame.height + 13)
         let bubblePath = UIBezierPath(roundedRect: bubbleSpace, cornerRadius: 10.0)

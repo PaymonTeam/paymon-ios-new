@@ -1,10 +1,10 @@
-/* 
-  Localizable.strings
-  paymon
-
-  Created by maks on 02.11.17.
-  Copyright © 2017 Paymon. All rights reserved.
-*/
+/*
+ Localizable.strings
+ paymon
+ 
+ Created by maks on 02.11.17.
+ Copyright © 2017 Paymon. All rights reserved.
+ */
 
 /*Tab bar*/
 "Money" = "Деньги";
@@ -23,6 +23,7 @@
 "Login" = "Логин";
 "Login or email" = "Логин или электронная почта";
 
+"An error occurred during authorization"="Во время авторизации произошла ошибка";
 "Please enter your information"="Введите ваши данные";
 "Password" = "Пароль";
 "Forgot your password?"="Забыли пароль?";
@@ -35,12 +36,13 @@
 "I already have an account" = "У меня уже есть аккаунт";
 "Fill out the information"="Заполните информацию";
 "Already have an account?" = "У вас есть аккаунт?";
+"Please enter your login or email"="Введите ваш логин или адрес электронной почты";
 "Enter your login and password" = "Введите ваш логин и пароль";
 "Enter username or login" = "Введите имя пользователя или логин";
 "Invalid login or password"="Неправильный логин или пароль";
 "Such login or email is already in use"="Такой логин или электронная почта уже используются";
 
-"Login Failed"="Ошибка при входе";
+"Login failed"="Ошибка при входе";
 "Confirmation email"="Подтверждение электронной почты";
 "You did not verify your account by email \n %@ \n\n Send mail again?"="Вы не подтвердили аккаунт по электронной почте \n %@ \n\n Отправить письмо еще раз?";
 "The letter was sent"="Письмо было отправлено";
@@ -53,6 +55,22 @@
 
 "I still learning how to play" = "Я только учусь играть";
 "We'll play later" = "Сыграем позднее";
+
+/*Recovery password*/
+
+"Recovery password"="Восстановление пароля";
+"Recovery code"="Код восстановления";
+"Please enter the recovery code that was sent to you to e-mail"="Введите код, который был отправлен на вашу электронную почту";
+"New password"="Новый пароль";
+"Create a new password"="Придумайте новый пароль";
+"Next"="Далее";
+"Change password"="Изменить пароль";
+"This login or e-mail address is not exist"="Такой логин или адрес электронной почты не существует";
+"An error occurred while sending the recovery code"="Произошла ошибка при отправке кода восстановления";
+"You entered an invalid recovery code"="Вы ввели не верный код восстановления";
+"An error occurred while changing the password"="Во время изменения пароля произошла ошибка";
+"Password changed successfully"="Пароль был успешно изменен";
+
 
 /*Chat View*/
 
@@ -81,6 +99,10 @@
 "Country" = "Страна";
 "Phone number" = "Номер телефона";
 "E-mail" = "E-mail";
+"Success"="Успешно";
+"An error occurred during the update"="Произошла ошибка во время обновления";
+"Update failed"="Ошибка обновления";
+
 
 /*Settings*/
 "Settings" = "Настройки";
@@ -138,7 +160,6 @@
 "Can't read this QR-code"="Невозможно считать QR-код";
 "Make sure that the purse of the recipient is correct. To do this, click on the icon on the right."="Убедитесь, что кошелек получаетеля введен верно. Для этого нажмите на иконку справа";
 "Bitcoin address"="Bitcoin адрес";
-"SEND"="ОТПРАВИТЬ";
 "Send"="Отправить";
 
 
