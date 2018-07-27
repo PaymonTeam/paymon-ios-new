@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0E0402C9210644A500D6F703 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0402C4210644A400D6F703 /* ChatsViewController.swift */; };
+		0E0F4775210B85BA004B4A3C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9F0210A3AFC00E8169B /* libcrypto.a */; };
+		0E0F4776210B85BE004B4A3C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6B621036954001D3B00 /* libssl.a */; };
+		0E0F4778210B85E1004B4A3C /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AE21012D4E001D3B00 /* libcryptopp.a */; };
+		0E85B9ED210A39C800E8169B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
+		0E85B9EF210A3AE800E8169B /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9EE210A3AE800E8169B /* libcryptopp.a */; };
+		0E85B9F3210A3B0700E8169B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9F2210A3B0700E8169B /* libssl.a */; };
 		0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
@@ -86,13 +92,9 @@
 		B019555B20FFAD7500F3DDB0 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B019555420FFAD7400F3DDB0 /* Request.m */; };
 		B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555520FFAD7500F3DDB0 /* RPC.swift */; };
 		B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */; };
-		B01CBAC320FF7D1600A061FB /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
-		B019556320FFADA500F3DDB0 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019556020FFADA500F3DDB0 /* NetworkManager.swift */; };
 		B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01CBAC420FF85EC00A061FB /* MainViewController.swift */; };
 		B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */; };
 		B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA88A21030F2100AAA805 /* SignInViewController.swift */; };
-		B08CA8982105E8AF00AAA805 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
-		B08CA89A2106195600AAA805 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC020FF6C5B00A061FB /* libcryptopp.a */; };
 		B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */; };
 		B08CA89E2106365000AAA805 /* KeyGuardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89D2106365000AAA805 /* KeyGuardViewController.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
@@ -111,11 +113,6 @@
 		D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AC210125D8001D3B00 /* AVFoundation.framework */; };
 		D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B121012FD7001D3B00 /* NetworkManager.swift */; };
 		D820C6B521012FD8001D3B00 /* NetworkManager_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B221012FD7001D3B00 /* NetworkManager_Wrapper.mm */; };
-		D820C6B721036954001D3B00 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6B621036954001D3B00 /* libssl.a */; };
-		D820C6BA21036E09001D3B00 /* libssl.a in Resources */ = {isa = PBXBuildFile; fileRef = D820C6B821036E08001D3B00 /* libssl.a */; };
-		D820C6BB21036E09001D3B00 /* libcrypto.a in Resources */ = {isa = PBXBuildFile; fileRef = D820C6B921036E08001D3B00 /* libcrypto.a */; };
-		D820C70C21037EDA001D3B00 /* libcryptopp.a in Resources */ = {isa = PBXBuildFile; fileRef = D820C70B21037EDA001D3B00 /* libcryptopp.a */; };
-		D820C70D21038068001D3B00 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AE21012D4E001D3B00 /* libcryptopp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +134,9 @@
 
 /* Begin PBXFileReference section */
 		0E0402C4210644A400D6F703 /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		0E85B9EE210A3AE800E8169B /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcryptopp.a; sourceTree = "<group>"; };
+		0E85B9F0210A3AFC00E8169B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		0E85B9F2210A3B0700E8169B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewOld.swift; sourceTree = "<group>"; };
 		0EA074C421065515002FF527 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
@@ -239,8 +239,6 @@
 		B01CBAC420FF85EC00A061FB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGuardViewCell.swift; sourceTree = "<group>"; };
 		B08CA88A21030F2100AAA805 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		B08CA8922105D4FE00AAA805 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = ../../../../../usr/local/Cellar/cryptopp/7.0.0/libcryptopp.a; sourceTree = "<group>"; };
-		B08CA8962105E7AD00AAA805 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libssl.a; sourceTree = "<group>"; };
 		B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleShowSegue.swift; sourceTree = "<group>"; };
 		B08CA89D2106365000AAA805 /* KeyGuardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGuardViewController.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,9 +269,6 @@
 		D820C6B221012FD7001D3B00 /* NetworkManager_Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkManager_Wrapper.mm; sourceTree = "<group>"; };
 		D820C6B321012FD7001D3B00 /* NetworkManager_Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager_Wrapper.h; sourceTree = "<group>"; };
 		D820C6B621036954001D3B00 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libssl.a; sourceTree = "<group>"; };
-		D820C6B821036E08001D3B00 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		D820C6B921036E08001D3B00 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		D820C70B21037EDA001D3B00 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcryptopp.a; sourceTree = "<group>"; };
 		E69ED212A044FAFBD11E0EAE /* Pods-paymonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-paymonUITests/Pods-paymonUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,11 +277,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D820C70D21038068001D3B00 /* libcryptopp.a in Frameworks */,
-				D820C6B721036954001D3B00 /* libssl.a in Frameworks */,
+				0E85B9F3210A3B0700E8169B /* libssl.a in Frameworks */,
+				0E85B9ED210A39C800E8169B /* libcrypto.a in Frameworks */,
+				0E0F4776210B85BE004B4A3C /* libssl.a in Frameworks */,
+				0E0F4775210B85BA004B4A3C /* libcrypto.a in Frameworks */,
+				0E0F4778210B85E1004B4A3C /* libcryptopp.a in Frameworks */,
 				D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */,
+				0E85B9EF210A3AE800E8169B /* libcryptopp.a in Frameworks */,
 				A5A73610578A06C80819CACD /* Pods_paymon.framework in Frameworks */,
-				B01CBAC320FF7D1600A061FB /* libcrypto.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,11 +335,11 @@
 		2E6D321D2242C00919558443 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D820C70B21037EDA001D3B00 /* libcryptopp.a */,
+				0E85B9F2210A3B0700E8169B /* libssl.a */,
+				0E85B9F0210A3AFC00E8169B /* libcrypto.a */,
 				D820C6B621036954001D3B00 /* libssl.a */,
-				D820C6B821036E08001D3B00 /* libssl.a */,
-				D820C6B921036E08001D3B00 /* libcrypto.a */,
 				D820C6AE21012D4E001D3B00 /* libcryptopp.a */,
+				0E85B9EE210A3AE800E8169B /* libcryptopp.a */,
 				D820C6AC210125D8001D3B00 /* AVFoundation.framework */,
 				B01CBAC220FF7D1600A061FB /* libcrypto.a */,
 				B01CBAC020FF6C5B00A061FB /* libcryptopp.a */,
@@ -921,10 +919,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */,
-				D820C70C21037EDA001D3B00 /* libcryptopp.a in Resources */,
-				D820C6BA21036E09001D3B00 /* libssl.a in Resources */,
-				D820C6BB21036E09001D3B00 /* libcrypto.a in Resources */,
-				B019552B20FFAAD600F3DDB0 /* Localizable.strings in Resources */,
 				B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */,
 				B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */,
 				B099C97D20FCF7DC00718608 /* Assets.xcassets in Resources */,
@@ -962,6 +956,7 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -970,6 +965,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1046,7 +1042,6 @@
 				0EA074CA210655F3002FF527 /* ChatsTableGroupViewCell.swift in Sources */,
 				B01954F220FFA9B400F3DDB0 /* TransactionService.swift in Sources */,
 				B019552820FFAA9200F3DDB0 /* SerializedBuffer.cpp in Sources */,
-				B019556120FFADA500F3DDB0 /* NetworkManager_Wrapper.mm in Sources */,
 				B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */,
 				B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */,
 				B01954E520FFA92100F3DDB0 /* StickerPack.swift in Sources */,
@@ -1344,6 +1339,8 @@
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
 					/usr/local/Cellar/openssl/1.0.2o_2/include,
 					"/usr/local/cryptopp-ios/lib",
+					"$(PROJECT_DIR)",
+					/usr/local/Cellar/cryptopp/7.0.0/lib,
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.paymon;
@@ -1394,6 +1391,8 @@
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
 					/usr/local/Cellar/openssl/1.0.2o_2/include,
 					"/usr/local/cryptopp-ios/lib",
+					"$(PROJECT_DIR)",
+					/usr/local/Cellar/cryptopp/7.0.0/lib,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.paymon;
 				PRODUCT_NAME = "$(TARGET_NAME)";

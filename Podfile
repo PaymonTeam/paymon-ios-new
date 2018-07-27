@@ -9,6 +9,7 @@ target 'paymon' do
     pod 'web3swift', :git => 'https://github.com/MercuryProtocol/web3.swift.git', :branch => 'master'
     pod 'MBProgressHUD', '~> 1.0.0'
     pod 'AlamofireObjectMapper'
+    pod 'PureLayout'
 
   # Pods for paymon
 
