@@ -27,4 +27,7 @@ extension Notification.Name {
     static let updateString = Notification.Name(rawValue: "updateString")
     static let updateProfileInfoTrue = Notification.Name(rawValue: "updateProfileInfoTrue")
     static let updateProfileInfoFalse = Notification.Name(rawValue: "updateProfileInfoFalse")
+    static let showCountryPicker = Notification.Name(rawValue: "showCountryPicker")
+    static let setCountry = Notification.Name(rawValue: "setCountry")
+
 }

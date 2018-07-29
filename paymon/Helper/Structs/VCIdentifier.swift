@@ -20,5 +20,8 @@ class VCIdentifier {
     static let forgotPasswordEmailViewController = "ForgotPasswordEmailViewController"
     static let forgotPasswordCodeViewController = "ForgotPasswordCodeViewController"
     static let forgotPasswordChangeViewController = "ForgotPasswordChangeViewController"
+    
+    static let countryPickerViewController = "CountryPickerViewController"
+
 
 }

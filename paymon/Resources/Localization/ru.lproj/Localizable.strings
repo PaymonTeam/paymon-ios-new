@@ -102,6 +102,8 @@
 "Success"="Успешно";
 "An error occurred during the update"="Произошла ошибка во время обновления";
 "Update failed"="Ошибка обновления";
+"Countries"="Страны";
+"Enter your country"="Введите вашу страну";
 
 
 /*Settings*/
