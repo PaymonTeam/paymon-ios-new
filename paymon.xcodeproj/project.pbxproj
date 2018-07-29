@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0E0402C9210644A500D6F703 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0402C4210644A400D6F703 /* ChatsViewController.swift */; };
+		0E0F4775210B85BA004B4A3C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9F0210A3AFC00E8169B /* libcrypto.a */; };
+		0E0F4776210B85BE004B4A3C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6B621036954001D3B00 /* libssl.a */; };
+		0E0F4778210B85E1004B4A3C /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AE21012D4E001D3B00 /* libcryptopp.a */; };
+		0E85B9ED210A39C800E8169B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
+		0E85B9EF210A3AE800E8169B /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9EE210A3AE800E8169B /* libcryptopp.a */; };
+		0E85B9F3210A3B0700E8169B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9F2210A3B0700E8169B /* libssl.a */; };
 		0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
@@ -148,6 +154,9 @@
 
 /* Begin PBXFileReference section */
 		0E0402C4210644A400D6F703 /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		0E85B9EE210A3AE800E8169B /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcryptopp.a; sourceTree = "<group>"; };
+		0E85B9F0210A3AFC00E8169B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		0E85B9F2210A3B0700E8169B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewOld.swift; sourceTree = "<group>"; };
 		0EA074C421065515002FF527 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
@@ -299,9 +308,6 @@
 		D820C6B221012FD7001D3B00 /* NetworkManager_Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkManager_Wrapper.mm; sourceTree = "<group>"; };
 		D820C6B321012FD7001D3B00 /* NetworkManager_Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager_Wrapper.h; sourceTree = "<group>"; };
 		D820C6B621036954001D3B00 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libssl.a; sourceTree = "<group>"; };
-		D820C6B821036E08001D3B00 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
-		D820C6B921036E08001D3B00 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		D820C70B21037EDA001D3B00 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcryptopp.a; sourceTree = "<group>"; };
 		E69ED212A044FAFBD11E0EAE /* Pods-paymonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-paymonUITests/Pods-paymonUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -311,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */,
+				0E85B9EF210A3AE800E8169B /* libcryptopp.a in Frameworks */,
 				A5A73610578A06C80819CACD /* Pods_paymon.framework in Frameworks */,
 				B01F0DD221085CB7008FB6F0 /* libcrypto.a in Frameworks */,
 				B01F0DD321085CBA008FB6F0 /* libssl.a in Frameworks */,
@@ -365,11 +372,11 @@
 		2E6D321D2242C00919558443 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D820C70B21037EDA001D3B00 /* libcryptopp.a */,
+				0E85B9F2210A3B0700E8169B /* libssl.a */,
+				0E85B9F0210A3AFC00E8169B /* libcrypto.a */,
 				D820C6B621036954001D3B00 /* libssl.a */,
-				D820C6B821036E08001D3B00 /* libssl.a */,
-				D820C6B921036E08001D3B00 /* libcrypto.a */,
 				D820C6AE21012D4E001D3B00 /* libcryptopp.a */,
+				0E85B9EE210A3AE800E8169B /* libcryptopp.a */,
 				D820C6AC210125D8001D3B00 /* AVFoundation.framework */,
 				B01CBAC220FF7D1600A061FB /* libcrypto.a */,
 				B01CBAC020FF6C5B00A061FB /* libcryptopp.a */,
@@ -1032,6 +1039,7 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1040,6 +1048,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
