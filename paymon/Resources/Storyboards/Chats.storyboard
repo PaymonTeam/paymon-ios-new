@@ -916,12 +916,12 @@
         <image name="ArrowBack" width="33" height="33"/>
         <image name="ArrowCheck" width="33" height="33"/>
         <image name="Chats" width="32" height="32"/>
-        <image name="add_user" width="16" height="16"/>
-        <image name="cross" width="16" height="16"/>
-        <image name="none_photo_user" width="16" height="16"/>
-        <image name="paymon_logo" width="16" height="16"/>
+        <image name="add_user" width="25" height="25"/>
+        <image name="cross" width="25" height="25"/>
+        <image name="none_photo_user" width="50" height="50"/>
+        <image name="paymon_logo" width="512" height="512"/>
         <image name="send_button" width="16" height="16"/>
-        <image name="unchecked-checkbox" width="16" height="16"/>
+        <image name="unchecked-checkbox" width="25" height="25"/>
         <image name="user-group" width="16" height="16"/>
     </resources>
 </document>
