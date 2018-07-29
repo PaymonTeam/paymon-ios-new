@@ -68,13 +68,11 @@ open class Utils {
         
         for code in NSLocale.isoCountryCodes as [String] {
             let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            print(id)
-            print(code)
+            
+//            print(code)
             let name = NSLocale(localeIdentifier: localeIdentifier).displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
             countries.append(name)
         }
-        
-        print(countries)
         
         return countries
         

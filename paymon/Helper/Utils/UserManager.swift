@@ -102,8 +102,15 @@ public class UserManager {
                     alert.addAction(UIAlertAction(title: "Send".localized, style: .default, handler: { (action) in
 
                         let resendEmail = RPC.PM_resendEmail()
+                        
+                        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
 
                         NetworkManager.instance.sendPacket(resendEmail) { response, error in
+                            
+                            DispatchQueue.main.async {
+                                MBProgressHUD.hide(for: vc.view, animated: true)
+                            }
+                            
                             if response is RPC.PM_boolTrue {
                                 print("email was resent")
                                 
@@ -133,7 +140,7 @@ public class UserManager {
 
                 let msg = (error.code == RPC.ERROR_AUTH ? "Invalid login or password".localized : "An error occurred during authorization".localized)
                 
-                _ = SimpleOkAlertController.init(title: "Login Failed".localized, message: msg, vc: vc)
+                _ = SimpleOkAlertController.init(title: "Login failed".localized, message: msg, vc: vc)
             }
         })
         

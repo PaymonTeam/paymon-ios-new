@@ -24,7 +24,7 @@ class MainViewController: UIViewController {
 
     
 //        if User.currentUser == nil {
-//        performSegue(withIdentifier: VCIdentifier.startViewController, sender: nil)
+        performSegue(withIdentifier: VCIdentifier.startViewController, sender: nil)
 //        } else if User.securitySwitchPasswordProtected && !User.securityPasswordProtectedString.isEmpty {
 //            let keyGuard = storyboard?.instantiateViewController(withIdentifier: "KeyGuardViewController") as! KeyGuardViewController
 //            present(keyGuard, animated: true)

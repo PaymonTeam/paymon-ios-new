@@ -30,12 +30,12 @@ class ProfileInfoTableViewController : UITableViewController {
         }
         
         DispatchQueue.main.async {
-                        
-            self.cityInfo.text = user.city ?? "Not choosen".localized
-            self.phoneInfo.text = String(user.phoneNumber)
-            self.emailInfo.text = user.email ?? "Not choosen".localized
-            self.bdayInfo.text = user.birthdate ?? "Not choosen".localized
-            self.countryInfo.text = user.country ?? "Not choosen".localized
+            
+            self.cityInfo.text = !user.city.isEmpty ? user.city  : "Not choosen".localized
+            self.phoneInfo.text = user.phoneNumber != 0 ? String(user.phoneNumber) : "Not choosen".localized
+            self.emailInfo.text = !user.email.isEmpty ? user.email : "Not choosen".localized
+            self.bdayInfo.text = !user.birthdate.isEmpty ? user.birthdate : "Not choosen".localized
+            self.countryInfo.text = !user.country.isEmpty ? user.country : "Not choosen".localized
             
         }
     }

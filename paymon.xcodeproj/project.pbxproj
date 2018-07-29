@@ -115,6 +115,7 @@
 		B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396B4210A7CF200E0C344 /* SimpleOkAlertController.swift */; };
 		B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
+		B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */; };
 		D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D820C69D210122B5001D3B00 /* Ethur.storyboard */; };
 		D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A02101232E001D3B00 /* CoinDetailsViewController.swift */; };
 		D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A12101232E001D3B00 /* ReceiveViewController.swift */; };
@@ -284,6 +285,7 @@
 		B0C396B4210A7CF200E0C344 /* SimpleOkAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleOkAlertController.swift; sourceTree = "<group>"; };
 		B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIdentifier.swift; sourceTree = "<group>"; };
 		B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
+		B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerViewController.swift; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05E199DF40685C191ADE6F1 /* Pods-paymonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-paymonTests/Pods-paymonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D820C69D210122B5001D3B00 /* Ethur.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Ethur.storyboard; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 				B01F0DF121087263008FB6F0 /* ProfileViewController.swift */,
 				B01F0DF221087263008FB6F0 /* UpdateProfileInfoTableViewController.swift */,
 				B01F0DF321087263008FB6F0 /* UpdateProfileViewController.swift */,
+				B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1193,6 +1196,7 @@
 				B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */,
 				0EA074D4210656FC002FF527 /* ChatMessageItemRcvViewCell.swift in Sources */,
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
+				B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
 				B019551820FFAA6600F3DDB0 /* PMFileManager.swift in Sources */,
 				B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */,

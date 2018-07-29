@@ -2,6 +2,7 @@ import UIKit
 import Foundation
 
 class UpdateProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
 
     @IBOutlet weak var updateItem: UIBarButtonItem!
@@ -10,7 +11,8 @@ class UpdateProfileViewController: UIViewController, UIImagePickerControllerDele
 
     private var observerUpdateTrue : NSObjectProtocol!
     private var observerUpdateFalse : NSObjectProtocol!
-    
+    private var showCountryPicker : NSObjectProtocol!
+
     var needRemoveObservers = true
     
     @IBAction func arrowBackClick(_ sender: Any) {
@@ -27,6 +29,16 @@ class UpdateProfileViewController: UIViewController, UIImagePickerControllerDele
             observerUpdateFalse = NotificationCenter.default.addObserver(forName: .updateProfileInfoFalse, object: nil, queue: nil ){ notification in
                 DispatchQueue.main.async {
                     self.updateItem.isEnabled = false
+            }
+        }
+        
+            showCountryPicker = NotificationCenter.default.addObserver(forName: .showCountryPicker, object: nil, queue: nil ){ notification in
+            DispatchQueue.main.async {
+
+                UpdateProfileInfoTableViewController.needRemoveObservers = false
+                self.needRemoveObservers = false
+                self.performSegue(withIdentifier: VCIdentifier.countryPickerViewController, sender: nil)
+
             }
         }
     }
@@ -67,9 +79,14 @@ class UpdateProfileViewController: UIViewController, UIImagePickerControllerDele
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        
+//        print(needRemoveObservers)
        
         if needRemoveObservers {
-            NotificationCenter.default.removeObserver(self)
+            NotificationCenter.default.removeObserver(observerUpdateTrue)
+            NotificationCenter.default.removeObserver(observerUpdateFalse)
+            NotificationCenter.default.removeObserver(showCountryPicker)
+
         }
     }
     
@@ -79,6 +96,14 @@ class UpdateProfileViewController: UIViewController, UIImagePickerControllerDele
         needRemoveObservers = true
         
         UserManager.updateAvatar(info: info, avatarView: avatar, vc: self)
+    }
+    
+    @IBAction func unWindUpdateProfile(_ segue: UIStoryboardSegue) {
+        self.needRemoveObservers = true
+        
+        guard let countryPickerVC = segue.source as? CountryPickerViewController else {return}
+        NotificationCenter.default.post(name: .setCountry, object: countryPickerVC.selectCountry)
+        
     }
     
     

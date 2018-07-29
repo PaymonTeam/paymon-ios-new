@@ -35,8 +35,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Utils.getAllCountries()
 
         navigationBar.topItem?.title = "Profile".localized
         
