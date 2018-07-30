@@ -8,12 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E0402C9210644A500D6F703 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0402C4210644A400D6F703 /* ChatsViewController.swift */; };
-		0E0F4775210B85BA004B4A3C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9F0210A3AFC00E8169B /* libcrypto.a */; };
-		0E0F4776210B85BE004B4A3C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6B621036954001D3B00 /* libssl.a */; };
-		0E0F4778210B85E1004B4A3C /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AE21012D4E001D3B00 /* libcryptopp.a */; };
-		0E85B9ED210A39C800E8169B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
 		0E85B9EF210A3AE800E8169B /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9EE210A3AE800E8169B /* libcryptopp.a */; };
-		0E85B9F3210A3B0700E8169B /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9F2210A3B0700E8169B /* libssl.a */; };
 		0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
@@ -130,9 +125,9 @@
 		D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AC210125D8001D3B00 /* AVFoundation.framework */; };
 		D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B121012FD7001D3B00 /* NetworkManager.swift */; };
 		D820C6B521012FD8001D3B00 /* NetworkManager_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B221012FD7001D3B00 /* NetworkManager_Wrapper.mm */; };
-		D820C6BA21036E09001D3B00 /* libssl.a in Resources */ = {isa = PBXBuildFile; fileRef = D820C6B821036E08001D3B00 /* libssl.a */; };
-		D820C6BB21036E09001D3B00 /* libcrypto.a in Resources */ = {isa = PBXBuildFile; fileRef = D820C6B921036E08001D3B00 /* libcrypto.a */; };
-		D820C70C21037EDA001D3B00 /* libcryptopp.a in Resources */ = {isa = PBXBuildFile; fileRef = D820C70B21037EDA001D3B00 /* libcryptopp.a */; };
+		D820C6BA21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D820C6BB21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D820C70C21037EDA001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -996,11 +991,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */,
-				D820C70C21037EDA001D3B00 /* libcryptopp.a in Resources */,
+				D820C70C21037EDA001D3B00 /* (null) in Resources */,
 				B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */,
-				D820C6BA21036E09001D3B00 /* libssl.a in Resources */,
+				D820C6BA21036E09001D3B00 /* (null) in Resources */,
 				B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */,
-				D820C6BB21036E09001D3B00 /* libcrypto.a in Resources */,
+				D820C6BB21036E09001D3B00 /* (null) in Resources */,
 				B01F0DFF2109E2BB008FB6F0 /* Assets.xcassets in Resources */,
 				B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */,
 				B01F0DE821086E5A008FB6F0 /* Localizable.strings in Resources */,

@@ -46,6 +46,8 @@ class User {
         } else {
             KeychainWrapper.standard.removeObject(forKey: "user")
         }
+        
+        print("User save config")
     }
 
     public static func saveNotificationSettings() {
@@ -80,6 +82,7 @@ class User {
                     if (deserialize is RPC.PM_userFull) {
                         currentUser = deserialize as! RPC.PM_userFull;
                         print("User loaded: \(currentUser!.login!)")
+                        
                     } else {
                         return
                     }

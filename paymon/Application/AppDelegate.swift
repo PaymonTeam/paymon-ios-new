@@ -15,61 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
     
     var keystore = KeystoreService()
     var window: UIWindow?
-    var vc : UIViewController? = UIViewController()
-    
-    private func authByToken() {
-        if User.isAuthenticated {
-            return
-        }
-        if let vc = vc {
-            let auth = RPC.PM_authToken()
-            print(auth.token)
-            auth.token = User.currentUser!.token
-            let _ = NetworkManager.instance.sendPacket(auth) { p, e in
-//                self.willAuth = false
-                
-                DispatchQueue.main.async {
-                    if e != nil || !(p is RPC.PM_userFull) {
-                        User.clearConfig()
-                        let startViewController = vc.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as! StartViewController
-                        vc.present(startViewController, animated: true)
-                    } else {
-                        User.isAuthenticated = true
-                        User.currentUser = (p as! RPC.PM_userFull)
-                        print(User.currentUser ?? "user nil")
-                        User.saveConfig()
-                        User.loadConfig()
-                        
-                        let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
-                        vc.present(tabsViewController, animated: true)
-                        
-                        NotificationManager.instance.postNotificationName(id: NotificationManager.userAuthorized)
-                        NetworkManager.instance.sendFutureRequests()
-                    }
-                }
-            }
-        }
-    }
-
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-//        User.loadConfig()
-        
-        //TODO: Need to fix the Error Exception
-        NetworkManager.instance.reconnect()
-//        print(NetworkManager.instance.isConnected)
-        
-        if vc == nil {
-            vc = window?.rootViewController ?? nil
-        }
-        
         NotificationManager.instance.addObserver(self, id: NotificationManager.didConnectedToServer)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didDisconnectedFromServer)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didEstablishedSecuredConnection)
         NotificationManager.instance.addObserver(self, id: NotificationManager.authByTokenFailed)
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+        User.loadConfig()
+
+        NetworkManager.instance.reconnect()
+
         //setup ether
         loadEthenWallet()
         
@@ -115,18 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         
-        if vc == nil {
-            vc = window?.rootViewController ?? nil
-        }
-        
-        if User.currentUser != nil && !User.isAuthenticated {
-//            if willAuth {
-                authByToken()
-//            } else {
-//                willAuth = true
-//            }
-        }
-        
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
@@ -136,28 +83,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
 
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if id == NotificationManager.didEstablishedSecuredConnection {
-            if  User.currentUser != nil && !User.isAuthenticated {
-//                if willAuth {
-                    authByToken()
-//                } else {
-//                    willAuth = true
-//                }
+            if User.currentUser != nil {
+                UserManager.authByToken(window: self.window!)
+            } else {
+                guard let startViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as? StartViewController else {return}
+                
+                DispatchQueue.main.async {
+                    self.window!.rootViewController = startViewController
+                    self.window!.makeKeyAndVisible()
+                }
+                
             }
         } else if id == NotificationManager.didDisconnectedFromServer {
             if !User.isAuthenticated {
-//                willAuth = false
+
             }
         } else if id == NotificationManager.authByTokenFailed {
             User.clearConfig()
-            if let vc = vc {
-                vc.dismiss(animated: true, completion: nil)
-                let startViewController = vc.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as! StartViewController
-                vc.present(startViewController, animated: true)
-                print("Auth by token failed")
-            }
         }
     }
-    
-
 }
 

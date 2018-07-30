@@ -278,6 +278,8 @@ public class UserManager {
     
     static func verifyRecoveryCode(loginOrEmail : String, code: Int32, vc: UIViewController) {
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
+        
+        print("\(code)")
 
         let verifyRecoveryCode = RPC.PM_verifyPasswordRecoveryCode()
         verifyRecoveryCode.code = code
@@ -335,5 +337,42 @@ public class UserManager {
             }
         }
         
+    }
+    
+    static func authByToken(window : UIWindow) {
+
+        guard let startViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as? StartViewController else {return}
+        guard let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as? TabsViewController else {return}
+
+            let auth = RPC.PM_authToken()
+            
+            guard let user = User.currentUser else {
+                return
+            }
+            
+            auth.token = user.token
+            let _ = NetworkManager.instance.sendPacket(auth) { p, e in
+                
+                if e != nil || !(p is RPC.PM_userFull) {
+                    DispatchQueue.main.async {
+                        window.rootViewController = startViewController
+                        window.makeKeyAndVisible()
+                    }
+                } else {
+                    User.isAuthenticated = true
+                    User.currentUser = (p as! RPC.PM_userFull)
+                    User.saveConfig()
+                    User.loadConfig()
+                    
+                    DispatchQueue.main.sync {
+                        window.rootViewController = tabsViewController
+                        window.makeKeyAndVisible()
+                    }
+
+                    NotificationManager.instance.postNotificationName(id: NotificationManager.userAuthorized)
+                    NetworkManager.instance.sendFutureRequests()
+                }
+                
+            }
     }
 }
