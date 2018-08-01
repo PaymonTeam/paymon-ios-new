@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
         //        present(settingsView, animated: true)
         
         User.clearConfig()
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     

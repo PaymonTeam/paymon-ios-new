@@ -89,7 +89,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="none_photo_user" translatesAutoresizingMaskIntoConstraints="NO" id="WTz-ji-JtE" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="WTz-ji-JtE" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="10" y="10" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="BA7-q6-G0P"/>
@@ -141,7 +141,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="fhO-r3-O5N" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="fhO-r3-O5N" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="246" y="11" width="114" height="108"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="114" id="HVT-10-6Wc"/>
@@ -165,7 +165,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="FLE-rJ-y1Q" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="FLE-rJ-y1Q" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="11" width="114" height="108"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="114" id="aNa-2M-Lak"/>
@@ -359,8 +359,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-w2-Too" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-w2-Too" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="10" width="55" height="55"/>
+                                                    <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="55" id="Ava-nf-5P9"/>
                                                         <constraint firstAttribute="height" constant="55" id="le2-1s-ryA"/>
@@ -419,40 +420,36 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-O0-unJ" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="10" width="55" height="55"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-O0-unJ" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="10" width="55" height="55"/>
+                                                    <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="55" id="oHk-Ts-3sX"/>
-                                                        <constraint firstAttribute="height" constant="55" id="yyH-z0-SUn"/>
+                                                        <constraint firstAttribute="width" constant="55" id="UBe-Sy-uf4"/>
+                                                        <constraint firstAttribute="height" constant="55" id="uN8-1o-MFf"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Labels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeB-ez-gLH">
-                                                    <rect key="frame" x="78" y="19" width="242" height="19.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="187" id="JGT-s3-qbq"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="79" y="19" width="239" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymon_logo" translatesAutoresizingMaskIntoConstraints="NO" id="add-u8-Vu2" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
-                                                    <rect key="frame" x="45" y="37" width="25" height="24"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="add-u8-Vu2" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                    <rect key="frame" x="79" y="41" width="24" height="24"/>
+                                                    <color key="backgroundColor" white="0.70620263396919547" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="Bzj-nG-EVg"/>
-                                                        <constraint firstAttribute="width" constant="25" id="SXg-Ge-qOU"/>
+                                                        <constraint firstAttribute="width" constant="24" id="2mx-Q0-tjP"/>
+                                                        <constraint firstAttribute="height" constant="24" id="xOT-1q-GsJ"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="clX-Qg-Syd">
-                                                    <rect key="frame" x="78" y="42.5" width="282" height="17"/>
+                                                    <rect key="frame" x="111" y="43" width="249" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5Z-sL-2gW">
-                                                    <rect key="frame" x="328" y="22" width="36" height="15"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="qDO-oh-iqj"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="326" y="19" width="34" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -464,18 +461,19 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="sLM-O0-unJ" firstAttribute="leading" secondItem="X3V-o1-Mnb" secondAttribute="leadingMargin" id="5Vs-1u-qmq"/>
-                                                <constraint firstItem="sLM-O0-unJ" firstAttribute="centerY" secondItem="X3V-o1-Mnb" secondAttribute="centerY" id="8Py-Yj-gs0"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="add-u8-Vu2" secondAttribute="bottom" constant="2" id="9Yw-4y-5f2"/>
-                                                <constraint firstItem="c5Z-sL-2gW" firstAttribute="trailing" secondItem="X3V-o1-Mnb" secondAttribute="trailingMargin" constant="4" id="QM2-7S-3K8"/>
-                                                <constraint firstItem="PeB-ez-gLH" firstAttribute="top" secondItem="X3V-o1-Mnb" secondAttribute="topMargin" constant="8" id="SyW-Cq-UOC"/>
-                                                <constraint firstItem="clX-Qg-Syd" firstAttribute="trailing" secondItem="X3V-o1-Mnb" secondAttribute="trailingMargin" id="Te5-Ka-tZU"/>
-                                                <constraint firstItem="c5Z-sL-2gW" firstAttribute="leading" secondItem="PeB-ez-gLH" secondAttribute="trailing" constant="8" id="Tnw-5g-UwV"/>
-                                                <constraint firstItem="clX-Qg-Syd" firstAttribute="leading" secondItem="add-u8-Vu2" secondAttribute="trailing" constant="8" symbolic="YES" id="eJ4-BH-kau"/>
-                                                <constraint firstItem="clX-Qg-Syd" firstAttribute="leading" secondItem="sLM-O0-unJ" secondAttribute="trailing" constant="8" id="flX-rd-vhE"/>
-                                                <constraint firstItem="c5Z-sL-2gW" firstAttribute="top" secondItem="X3V-o1-Mnb" secondAttribute="topMargin" constant="11" id="g9r-3l-Ley"/>
-                                                <constraint firstItem="clX-Qg-Syd" firstAttribute="top" secondItem="PeB-ez-gLH" secondAttribute="bottom" constant="4" id="qyX-aQ-fTj"/>
-                                                <constraint firstItem="PeB-ez-gLH" firstAttribute="leading" secondItem="sLM-O0-unJ" secondAttribute="trailing" constant="8" id="rxk-gi-0JF"/>
+                                                <constraint firstItem="clX-Qg-Syd" firstAttribute="top" secondItem="PeB-ez-gLH" secondAttribute="bottom" constant="4" id="D1h-ai-EJL"/>
+                                                <constraint firstItem="c5Z-sL-2gW" firstAttribute="trailing" secondItem="X3V-o1-Mnb" secondAttribute="trailingMargin" id="HAk-LO-7FL"/>
+                                                <constraint firstItem="add-u8-Vu2" firstAttribute="leading" secondItem="sLM-O0-unJ" secondAttribute="trailing" constant="8" id="IyK-bu-0Z2"/>
+                                                <constraint firstItem="sLM-O0-unJ" firstAttribute="leading" secondItem="X3V-o1-Mnb" secondAttribute="leading" constant="16" id="LUc-A2-SDp"/>
+                                                <constraint firstItem="sLM-O0-unJ" firstAttribute="centerY" secondItem="X3V-o1-Mnb" secondAttribute="centerY" id="LZi-Ve-NRg"/>
+                                                <constraint firstItem="PeB-ez-gLH" firstAttribute="top" secondItem="X3V-o1-Mnb" secondAttribute="topMargin" constant="8" id="OWT-Cv-1Tr"/>
+                                                <constraint firstItem="add-u8-Vu2" firstAttribute="top" secondItem="PeB-ez-gLH" secondAttribute="bottom" constant="2" id="PAJ-86-Hkd"/>
+                                                <constraint firstItem="clX-Qg-Syd" firstAttribute="leading" secondItem="add-u8-Vu2" secondAttribute="trailing" constant="8" id="QwS-DK-33G"/>
+                                                <constraint firstItem="c5Z-sL-2gW" firstAttribute="top" secondItem="X3V-o1-Mnb" secondAttribute="topMargin" constant="8" id="Rmg-cm-drx"/>
+                                                <constraint firstItem="clX-Qg-Syd" firstAttribute="trailing" secondItem="X3V-o1-Mnb" secondAttribute="trailingMargin" id="Rtq-iw-1R0"/>
+                                                <constraint firstItem="sLM-O0-unJ" firstAttribute="leading" secondItem="X3V-o1-Mnb" secondAttribute="leading" constant="16" id="ioD-Jb-8GT"/>
+                                                <constraint firstItem="c5Z-sL-2gW" firstAttribute="leading" secondItem="PeB-ez-gLH" secondAttribute="trailing" constant="8" id="rKP-bb-VOb"/>
+                                                <constraint firstItem="PeB-ez-gLH" firstAttribute="leading" secondItem="sLM-O0-unJ" secondAttribute="trailing" constant="8" id="xlj-WT-DEL"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -530,7 +528,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OhT-2c-n3Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="40P-kO-yVb"/>
             </objects>
-            <point key="canvasLocation" x="2662" y="31"/>
+            <point key="canvasLocation" x="2661.5999999999999" y="30.134932533733135"/>
         </scene>
         <!--Create Group View Controller-->
         <scene sceneID="HXM-ZW-EV1">
@@ -626,7 +624,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="none_photo_user" translatesAutoresizingMaskIntoConstraints="NO" id="R2r-3A-D8p" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="R2r-3A-D8p" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="45" y="3" width="40" height="40"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
@@ -759,7 +757,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="none_photo_user" translatesAutoresizingMaskIntoConstraints="NO" id="IMS-19-dlW" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="IMS-19-dlW" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                                             <rect key="frame" x="8" y="6" width="60" height="60"/>
                                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                             <constraints>
@@ -864,7 +862,7 @@
                                             <constraint firstAttribute="height" constant="70" id="eEn-Ad-U5K"/>
                                             <constraint firstAttribute="width" constant="70" id="jOE-4s-J2I"/>
                                         </constraints>
-                                        <state key="normal" image="none_photo_user"/>
+                                        <state key="normal" image="NonPhoto"/>
                                         <connections>
                                             <action selector="btnGroupImageTapped:" destination="YF1-hr-kBd" eventType="touchUpInside" id="fHM-ib-TBa"/>
                                         </connections>
@@ -916,10 +914,9 @@
         <image name="ArrowBack" width="33" height="33"/>
         <image name="ArrowCheck" width="33" height="33"/>
         <image name="Chats" width="32" height="32"/>
+        <image name="NonPhoto" width="256" height="256"/>
         <image name="add_user" width="25" height="25"/>
         <image name="cross" width="25" height="25"/>
-        <image name="none_photo_user" width="50" height="50"/>
-        <image name="paymon_logo" width="512" height="512"/>
         <image name="send_button" width="16" height="16"/>
         <image name="unchecked-checkbox" width="25" height="25"/>
         <image name="user-group" width="16" height="16"/>

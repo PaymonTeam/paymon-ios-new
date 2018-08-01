@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V42-cr-CNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3516" y="1404"/>
+            <point key="canvasLocation" x="3422" y="1404"/>
         </scene>
         <!--Money-->
         <scene sceneID="wGR-iv-v4U">
@@ -289,7 +289,7 @@
     </scenes>
     <resources>
         <image name="Chats" width="32" height="32"/>
-        <image name="ChouseCurrency" width="16" height="16"/>
+        <image name="ChouseCurrency" width="128" height="128"/>
         <image name="Contacts" width="32" height="32"/>
         <image name="GamePad" width="256" height="256"/>
         <image name="Games" width="32" height="32"/>

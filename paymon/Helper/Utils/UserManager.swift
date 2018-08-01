@@ -278,12 +278,15 @@ public class UserManager {
     
     static func verifyRecoveryCode(loginOrEmail : String, code: Int32, vc: UIViewController) {
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
-        
-        print("\(code)")
 
+        print("\(code)")
+        print("\(loginOrEmail)")
+        
         let verifyRecoveryCode = RPC.PM_verifyPasswordRecoveryCode()
-        verifyRecoveryCode.code = code
         verifyRecoveryCode.loginOrEmail = loginOrEmail
+        verifyRecoveryCode.code = code
+        
+        
         
         NetworkManager.instance.sendPacket(verifyRecoveryCode) { response, error in
             
@@ -300,6 +303,8 @@ public class UserManager {
                 print("code is false \(String(describing: error?.code))")
                 _ = SimpleOkAlertController.init(title: "Recovery code".localized, message: "You entered an invalid recovery code".localized, vc: vc)
             }
+            
+            
         }
     }
     

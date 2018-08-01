@@ -79,7 +79,6 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
         borderConstraint.constant = 0.5
 
         list.removeAll()
-//        navigationBar.autoSetDimension(.height, toSize: 64)
 
         activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityView.center = self.view.center
@@ -100,12 +99,11 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
     
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if (id == NotificationManager.dialogsNeedReload) {
-        //            if (progressBar != nil) {
-        //                progressBar.setVisibility(View.GONE)
-        //            }
 
             var array:[CellChatData] = []
             for user in MessageManager.instance.userContacts.values {
+                let data = CellDialogData()
+
                 let username = Utils.formatUserName(user)
                 var lastMessageText = ""
                 var lastMessageTime = ""
@@ -117,10 +115,10 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
                         } else if (msg is RPC.PM_messageItem) {
                             lastMessageText = String(describing: msg.itemType!)
                         }
+                        data.time = Int64(msg.date)
                         lastMessageTime = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
                     }
                 }
-                let data = CellDialogData()
                 data.chatID = user.id
                 data.photoID = user.photoID
                 data.name = username
@@ -130,6 +128,9 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
             }
 
             for group in MessageManager.instance.groups.values {
+                
+                let data = CellGroupData()
+                
                 let title = group.title
                 var lastMessageText = ""
                 var lastMessageTimeString = ""
@@ -142,6 +143,7 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
                         } else if (msg is RPC.PM_messageItem) {
                             lastMessageText = String(describing: msg.itemType!)
                         }
+                        data.time = Int64(msg.date)
                         lastMessageTimeString = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
 
                         let user = MessageManager.instance.users[msg.from_id]
@@ -159,7 +161,6 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
                 if (photo!.user_id == 0) {
                     photo!.user_id = -group.id
                 }
-                let data = CellGroupData()
                 data.chatID = group.id
                 data.photoID = photo!.id
                 data.name = title!
@@ -173,9 +174,9 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
             activityView.stopAnimating()
 
             if !array.isEmpty {
-                array.sort(by: {o1, o2 in
-                    return o1.time < o2.time
-                })
+                array.sort {
+                    $0.time > $1.time
+                }
                 list.removeAll()
                 list.append(contentsOf: array)
                 chatsTable.reloadData()
