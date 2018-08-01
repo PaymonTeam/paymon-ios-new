@@ -136,7 +136,7 @@ extension Decimal {
     init(_ string: String, base: Int) {
         var decimal: Decimal = 0
 
-        let digits = string.characters
+        let digits = string
             .map { String($0) }
             .map { Int($0, radix: base)! }
 

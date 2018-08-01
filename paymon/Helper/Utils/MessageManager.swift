@@ -87,8 +87,7 @@ class MessageManager : NotificationManagerListener {
     }
 
     public func sortMessages() {
-        messages.dict.sorted(by: { v0, v1 in
-            return v0.value.date > v1.value.date
+        _ = messages.dict.sorted(by: { $1.value.date > $0.value.date
         })
     }
 

@@ -469,7 +469,7 @@ class RPC {
         }
         
         override func serializeToStream(stream: SerializableData) {
-            stream.write(PM_restorePasswordRequestCode.svuid)
+            stream.write(PM_verifyPasswordRecoveryCode.svuid)
             stream.write(loginOrEmail)
             stream.write(code)
         }

@@ -13,6 +13,10 @@ class ProfileViewController: UIViewController {
         //        let settingsView = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
         //        settingsView.modalPresentationStyle = .overCurrentContext
         //        present(settingsView, animated: true)
+        
+        User.clearConfig()
+        self.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func updateProfileClick(_ sender: Any) {
@@ -35,7 +39,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationBar.topItem?.title = "Profile".localized
         
     }

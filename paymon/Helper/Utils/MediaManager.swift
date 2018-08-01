@@ -264,6 +264,7 @@ class MediaManager : NotificationManagerListener {
 
     public func requestPhoto(forUserID userID:Int32, photoID:Int64) -> Bool {
         if waitingPhotosList[photoID] != nil {
+            print("Waiting photo list != nil")
             return false
         }
 
@@ -273,13 +274,17 @@ class MediaManager : NotificationManagerListener {
         waitingPhotosList[photoID] = photo
 
         if User.isAuthenticated {
+            print("User is auth true")
             let request = RPC.PM_requestPhoto()
             request.id = photoID
             request.userID = userID
 
             NetworkManager.instance.sendPacket(request) { response, error in
                 if (response != nil) {
+                    print("Response request photo != nil")
                     if (response is RPC.PM_boolFalse) {
+                        print("Response request photo: Bool false")
+
                         self.waitingPhotosList.removeValue(forKey: photoID)
                     }
                 }

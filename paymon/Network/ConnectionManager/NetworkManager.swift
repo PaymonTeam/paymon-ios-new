@@ -293,11 +293,11 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 keepAliveThread = Thread(block: NetworkManager.keepAliveProc)
                 keepAliveThread.start()
             }
-//            if User.currentUser == nil {
+
             KeyGenerator.instance.reset()
             reset()
             handshake()
-//            }
+
         } else {
             keepAliveThread.cancel()
             NotificationManager.instance.postNotificationName(id: NotificationManager.didDisconnectedFromServer)
