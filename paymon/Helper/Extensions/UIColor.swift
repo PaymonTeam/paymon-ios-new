@@ -24,9 +24,28 @@ extension UIColor {
 extension UIColor {
     struct AppColor {
         
+        struct Gray {
+            static let ethereum = UIColor(netHex: 0x9b9b9b).withAlphaComponent(0.7)
+        }
+        
         struct Blue {
             static let primaryBlue = UIColor(netHex: 0x0099cc)
-            
+            static let paymon = UIColor(netHex: 0x0099cc).withAlphaComponent(0.7)
+        }
+        
+        struct Orange {
+            static let bitcoin = UIColor(netHex: 0xf5a623).withAlphaComponent(0.7)
+        }
+        
+        struct Black {
+            static let primaryBlack = UIColor(netHex: 0x323232)
+            static let primaryBlackLight = UIColor(netHex: 0x626262)
+            static let primaryBlackUltraLight = UIColor(netHex: 0xe2e2e2)
+        }
+        
+        struct Green {
+            static let rub = UIColor(netHex: 0x417505).withAlphaComponent(0.6)
         }
     }
 }
+

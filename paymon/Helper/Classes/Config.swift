@@ -21,22 +21,4 @@ class Config {
     public static let SETTINGS_SECURITY_PASSWORD_PROTECTED = "settings_security_password_protected"
     public static let SETTINGS_SECURITY_PASSWORD_PROTECTED_STRING = "settings_security_password_protected_string"
 
-    public static let YM_ACCESS_TOKEN = "ym_access_token"
-
-    public static var QR_CODE_VALUE = ""
-    public static var QR_CODE_ADDRESS = ""
-
-    public static let WEB_CONTENT = "http://"
-    public static let WEB_CONTENT_2 = "https://"
-
-    public static let BITCOIN_WALLET = "bitcoin:1"
-    public static let BITCOIN_WALLET_2 = "BITCOIN:-"
-    public static let BITCOIN_WALLET_3 = "1"
-    public static let BITCOIN_WALLET_4 = "3"
-    public static let BITCOIN_WALLET_5 = "bitcoin:3"
-
-    public static let ETHEREUM_WALLET = "ethereum:0x"
-    public static let ETHEREUM_WALLET_2 = " 0x"
-    public static let ETHEREUM_WALLET_3 = "0x"
-
 }
