@@ -1,10 +1,10 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireObjectMapper (5.1.0):
+  - Alamofire (4.7.2)
+  - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.3)
+    - ObjectMapper (~> 3.0)
   - CryptoSwift (0.10.0)
-  - Geth (1.8.12)
+  - Geth (1.8.11)
   - MBProgressHUD (1.0.0)
   - ObjectMapper (3.3.0)
   - PureLayout (3.0.2)
@@ -40,10 +40,10 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MercuryProtocol/web3.swift.git
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
-  Geth: db7c45e2930ff53366660645937de126ac02366e
+  Geth: ae1b2b966edd0482eda293dcee9b7f906e161589
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
