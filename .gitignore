@@ -225,6 +225,7 @@ Pods/web3swift/Source/Crypto/Sign.swift
 Pods/web3swift/Source/Crypto/SignatureData.swift
 Pods/web3swift/Source/Extension/GethBigInt+Extension.swift
 Pods/web3swift/Source/Extension/String+Extension.swift
+Pods
 libcrypto.a
 libcryptopp.a
 libssl.a

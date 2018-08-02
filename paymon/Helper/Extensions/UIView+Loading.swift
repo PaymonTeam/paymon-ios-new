@@ -58,5 +58,16 @@ extension UIView {
         animation.toValue = [self.center.x + 10, self.center.y]
         self.layer.add(animation, forKey: "position")
     }
+    
+    func setGradientLayer(frame : CGRect, topColor : CGColor, bottomColor: CGColor) {
+        let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.frame = frame
+        
+        gradientLayer.colors = [topColor, bottomColor]
+        
+        self.layer.insertSublayer(gradientLayer, at: 0)
+        self.clipsToBounds = true
+    }
 }
 

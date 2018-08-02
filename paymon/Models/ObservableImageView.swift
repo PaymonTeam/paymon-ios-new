@@ -155,9 +155,10 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
         } else {
             image = ObservableImageView.profilePhotoNoneUIImage
 
-//            NetworkManager.instance.queue?.async {
-//                MediaManager.instance.requestPhoto(forUserID: self.photoOwnerID, photoID: self.photoID)
-//            }
+            //TODO: раскоментировал
+            NetworkManager.instance.queue?.async {
+                MediaManager.instance.requestPhoto(forUserID: self.photoOwnerID, photoID: self.photoID)
+            }
         }
 
         DispatchQueue.main.async {

@@ -15,7 +15,7 @@ extension UISearchBar {
     }
 
     public var activityIndicator: UIActivityIndicatorView? {
-        return textField?.leftView?.subviews.flatMap{ $0 as? UIActivityIndicatorView }.first
+        return textField?.leftView?.subviews.compactMap{ $0 as? UIActivityIndicatorView }.first
     }
 
     var isLoading: Bool {
@@ -155,16 +155,16 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
         searchContact.query = query
         NetworkManager.instance.sendPacket(searchContact) { packet, error in
             if let usersPacket = packet as? RPC.PM_users {
-                for u:RPC.UserObject! in usersPacket.users {
-                    MessageManager.instance.putSearchUser(u)
-                    let pid = MediaManager.instance.userProfilePhotoIDs[u.id] ?? 0
-                    u.photoID = pid
+                for u:RPC.UserObject? in usersPacket.users {
+                    MessageManager.instance.putSearchUser(u!)
+                    let pid = MediaManager.instance.userProfilePhotoIDs[(u?.id)!] ?? 0
+                    u?.photoID = pid
                 }
                 self.searchData = usersPacket.users
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            } else if let e = error as? RPC.PM_error {
+            } else if let e = error {
                 print(e.message)
             }
             DispatchQueue.main.async {

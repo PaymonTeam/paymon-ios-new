@@ -34,6 +34,7 @@
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yfs-FA-X2D" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                 <rect key="frame" x="16" y="80" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Ytr-Y6-gPw"/>
                                     <constraint firstAttribute="height" constant="60" id="t3R-zp-OQ6"/>
@@ -117,6 +118,7 @@
                             </containerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1jY-vt-sV9" userLabel="Update Profile Photo" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                 <rect key="frame" x="157" y="80" width="60" height="60"/>
+                                <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="hXK-2N-IMN"/>
                                     <constraint firstAttribute="height" constant="60" id="iCg-kg-EM5"/>
@@ -210,6 +212,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yWw-Op-46j">
+                                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>

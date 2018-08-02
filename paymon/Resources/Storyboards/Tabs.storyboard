@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,7 +23,7 @@
                     <connections>
                         <segue destination="7Dm-Ff-e4i" kind="relationship" relationship="viewControllers" id="9iz-qn-DhR"/>
                         <segue destination="3L4-RE-kH0" kind="relationship" relationship="viewControllers" id="kOS-Z0-Nub"/>
-                        <segue destination="qZG-Zj-YVC" kind="relationship" relationship="viewControllers" id="fge-mJ-PNl"/>
+                        <segue destination="BTP-X1-XlM" kind="relationship" relationship="viewControllers" id="FmP-jH-avQ"/>
                         <segue destination="TW9-C2-wP1" kind="relationship" relationship="viewControllers" id="9Bb-6a-A62"/>
                         <segue destination="Kg1-g7-NRh" kind="relationship" relationship="viewControllers" id="NhI-NK-ZiW"/>
                     </connections>
@@ -82,179 +81,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V42-cr-CNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3516" y="1404"/>
+            <point key="canvasLocation" x="3422" y="1404"/>
         </scene>
-        <!--Money-->
-        <scene sceneID="wGR-iv-v4U">
+        <!--MoneyViewController-->
+        <scene sceneID="0zu-S9-GtQ">
             <objects>
-                <viewController storyboardIdentifier="MoneyViewController" id="qZG-Zj-YVC" customClass="MoneyViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CPm-KK-IEw">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5q0-V9-Uu3">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="iFD-Hz-Rcp"/>
-                                    <constraint firstAttribute="height" constant="44" id="is4-nk-EeN"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Money" id="XWg-5K-qAP">
-                                        <barButtonItem key="rightBarButtonItem" image="info_circle" id="OSW-CA-Eb7"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="70" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="146-Fo-nNP">
-                                <rect key="frame" x="0.0" y="66" width="375" height="553"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoneyWalletTableCell" id="8Jp-r0-OAY" userLabel="Wallet View Cell" customClass="MoneyWalletTableCell">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Jp-r0-OAY" id="3PW-Sc-2cS">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_bitcoin" translatesAutoresizingMaskIntoConstraints="NO" id="LhQ-KE-Hlj">
-                                                    <rect key="frame" x="8" y="5" width="60" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="60" id="aBN-BF-HXS"/>
-                                                        <constraint firstAttribute="height" constant="60" id="kNc-yc-46T"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="133.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rj-44-aA7">
-                                                    <rect key="frame" x="76" y="13" width="258" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.75812762980000004" blue="0.02935183421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="455.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLd-Y1-pOE">
-                                                    <rect key="frame" x="76" y="37" width="258" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="LhQ-KE-Hlj" firstAttribute="leading" secondItem="3PW-Sc-2cS" secondAttribute="leading" constant="8" id="2aE-wH-7Cw"/>
-                                                <constraint firstItem="FLd-Y1-pOE" firstAttribute="trailing" secondItem="3PW-Sc-2cS" secondAttribute="trailingMargin" id="6fi-wV-7U0"/>
-                                                <constraint firstItem="8Rj-44-aA7" firstAttribute="top" secondItem="3PW-Sc-2cS" secondAttribute="topMargin" constant="2" id="BYs-4i-PDV"/>
-                                                <constraint firstItem="8Rj-44-aA7" firstAttribute="trailing" secondItem="3PW-Sc-2cS" secondAttribute="trailingMargin" id="KTG-xg-OUN"/>
-                                                <constraint firstItem="8Rj-44-aA7" firstAttribute="leading" secondItem="LhQ-KE-Hlj" secondAttribute="trailing" constant="8" id="LJe-b8-Bu7"/>
-                                                <constraint firstItem="FLd-Y1-pOE" firstAttribute="leading" secondItem="LhQ-KE-Hlj" secondAttribute="trailing" constant="8" id="MOa-Tr-NaK"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="FLd-Y1-pOE" secondAttribute="bottom" constant="2" id="cI2-pN-s8Z"/>
-                                                <constraint firstItem="LhQ-KE-Hlj" firstAttribute="centerY" secondItem="3PW-Sc-2cS" secondAttribute="centerY" id="wd0-nN-2Rk"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="balanceLabel" destination="8Rj-44-aA7" id="FlN-Qd-FLp"/>
-                                            <outlet property="image" destination="LhQ-KE-Hlj" id="ghw-VN-mWM"/>
-                                            <outlet property="localBalanceLabel" destination="FLd-Y1-pOE" id="rCW-Tk-e4m"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="EtherWalletTableCell" id="bNG-FJ-R92" userLabel="Wallet View Cell">
-                                        <rect key="frame" x="0.0" y="125.5" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bNG-FJ-R92" id="U8K-hd-sJ3">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChouseCurrency" translatesAutoresizingMaskIntoConstraints="NO" id="b9x-OA-L5I">
-                                                    <rect key="frame" x="8" y="5" width="60" height="60"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="WU9-n6-hNC"/>
-                                                        <constraint firstAttribute="width" constant="60" id="dYh-2s-3yR"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opC-x1-jD7">
-                                                    <rect key="frame" x="76" y="13" width="258" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.75812762980000004" blue="0.02935183421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9h-Dm-133">
-                                                    <rect key="frame" x="76" y="37" width="258" height="20"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                    <color key="textColor" red="0.25098040700000002" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="b9x-OA-L5I" firstAttribute="centerY" secondItem="U8K-hd-sJ3" secondAttribute="centerY" id="830-k9-M2Y"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="y9h-Dm-133" secondAttribute="bottom" constant="2" id="9GE-i8-vNx"/>
-                                                <constraint firstItem="b9x-OA-L5I" firstAttribute="leading" secondItem="U8K-hd-sJ3" secondAttribute="leading" constant="8" id="D9R-5r-b0e"/>
-                                                <constraint firstItem="opC-x1-jD7" firstAttribute="leading" secondItem="b9x-OA-L5I" secondAttribute="trailing" constant="8" id="F38-2L-1Qz"/>
-                                                <constraint firstItem="opC-x1-jD7" firstAttribute="trailing" secondItem="U8K-hd-sJ3" secondAttribute="trailingMargin" id="NUE-gT-oLZ"/>
-                                                <constraint firstItem="y9h-Dm-133" firstAttribute="trailing" secondItem="U8K-hd-sJ3" secondAttribute="trailingMargin" id="T4q-6e-11F"/>
-                                                <constraint firstItem="y9h-Dm-133" firstAttribute="leading" secondItem="b9x-OA-L5I" secondAttribute="trailing" constant="8" id="f6J-mg-y30"/>
-                                                <constraint firstItem="opC-x1-jD7" firstAttribute="top" secondItem="U8K-hd-sJ3" secondAttribute="topMargin" constant="2" id="hJ5-UQ-G7F"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoneyAddWalletTableCell" id="axu-gg-IVs" userLabel="Add Wallet View Cell">
-                                        <rect key="frame" x="0.0" y="195.5" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="axu-gg-IVs" id="VDA-bp-NJy">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeZ-ei-gFa">
-                                                    <rect key="frame" x="73" y="24" width="287" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="UYz-Ok-Q2V">
-                                                    <rect key="frame" x="15" y="10" width="50" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="ily-k1-lpR"/>
-                                                        <constraint firstAttribute="height" constant="50" id="zGJ-3A-Ups"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="CeZ-ei-gFa" firstAttribute="centerY" secondItem="VDA-bp-NJy" secondAttribute="centerY" id="AbQ-7I-4Cf"/>
-                                                <constraint firstItem="CeZ-ei-gFa" firstAttribute="trailing" secondItem="VDA-bp-NJy" secondAttribute="trailingMargin" id="Qaw-Vd-sLY"/>
-                                                <constraint firstItem="UYz-Ok-Q2V" firstAttribute="centerY" secondItem="VDA-bp-NJy" secondAttribute="centerY" id="SrJ-sE-F4x"/>
-                                                <constraint firstItem="UYz-Ok-Q2V" firstAttribute="leading" secondItem="VDA-bp-NJy" secondAttribute="leadingMargin" id="TwC-aZ-bF7"/>
-                                                <constraint firstItem="CeZ-ei-gFa" firstAttribute="leading" secondItem="UYz-Ok-Q2V" secondAttribute="trailing" constant="8" id="U5V-my-R8y"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="aU9-DK-Oyr">
-                                <rect key="frame" x="0.0" y="64" width="375" height="2.5"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.67000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="trackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </progressView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="rbp-f7-fbF" firstAttribute="trailing" secondItem="5q0-V9-Uu3" secondAttribute="trailing" id="2Qn-Fh-fZb"/>
-                            <constraint firstItem="aU9-DK-Oyr" firstAttribute="top" secondItem="5q0-V9-Uu3" secondAttribute="bottom" id="PFK-LW-pTA"/>
-                            <constraint firstItem="aU9-DK-Oyr" firstAttribute="leading" secondItem="rbp-f7-fbF" secondAttribute="leading" id="QRF-GL-gmd"/>
-                            <constraint firstItem="5q0-V9-Uu3" firstAttribute="top" secondItem="CPm-KK-IEw" secondAttribute="top" constant="20" id="WfL-Lh-fqy"/>
-                            <constraint firstItem="5q0-V9-Uu3" firstAttribute="leading" secondItem="rbp-f7-fbF" secondAttribute="leading" id="ZFv-tT-N79"/>
-                            <constraint firstItem="rbp-f7-fbF" firstAttribute="trailing" secondItem="aU9-DK-Oyr" secondAttribute="trailing" id="b7u-A3-rxo"/>
-                            <constraint firstItem="146-Fo-nNP" firstAttribute="leading" secondItem="rbp-f7-fbF" secondAttribute="leading" id="hYy-MG-Yv7"/>
-                            <constraint firstItem="rbp-f7-fbF" firstAttribute="trailing" secondItem="146-Fo-nNP" secondAttribute="trailing" id="kY6-Qh-THm"/>
-                            <constraint firstItem="146-Fo-nNP" firstAttribute="top" secondItem="aU9-DK-Oyr" secondAttribute="bottom" id="wj6-S5-fEY"/>
-                            <constraint firstAttribute="bottom" secondItem="146-Fo-nNP" secondAttribute="bottom" constant="48" id="wnS-9S-nho"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="rbp-f7-fbF"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Money" image="Wallet" id="QLa-JG-XfX"/>
-                    <connections>
-                        <outlet property="infoBarItem" destination="OSW-CA-Eb7" id="na1-Si-DC8"/>
-                        <outlet property="navigationBar" destination="5q0-V9-Uu3" id="Ffs-h3-L1q"/>
-                        <outlet property="progress" destination="aU9-DK-Oyr" id="I33-xX-bAQ"/>
-                        <outlet property="tableView" destination="146-Fo-nNP" id="leI-ua-J8H"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="B1E-px-rfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Money" referencedIdentifier="MoneyViewController" id="BTP-X1-XlM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Qtn-YO-hh6"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V2Y-57-kP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540" y="1404"/>
+            <point key="canvasLocation" x="2274" y="1009"/>
         </scene>
         <!--ContactsViewController-->
         <scene sceneID="jHw-Np-OJe">
@@ -289,14 +126,9 @@
     </scenes>
     <resources>
         <image name="Chats" width="32" height="32"/>
-        <image name="ChouseCurrency" width="16" height="16"/>
         <image name="Contacts" width="32" height="32"/>
         <image name="GamePad" width="256" height="256"/>
         <image name="Games" width="32" height="32"/>
         <image name="Home" width="32" height="32"/>
-        <image name="Wallet" width="32" height="32"/>
-        <image name="ic_bitcoin" width="16" height="16"/>
-        <image name="info_circle" width="16" height="16"/>
-        <image name="plus" width="16" height="16"/>
     </resources>
 </document>
