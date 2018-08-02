@@ -40,7 +40,7 @@ class NotificationSoundTableViewController: UITableViewController{
 //        let label = UILabel()
 //        label.text = "Sound notifications"
 
-        for var i in 0...ringtone.count - 1 {
+        for i in 0...ringtone.count - 1 {
             let ringtoneUrl = Bundle.main.url(forResource: ringtone[i], withExtension: mp3)
 //            let ringtoneURL = URL(fileURLWithPath: ringtonePath!)
             do {
@@ -51,7 +51,7 @@ class NotificationSoundTableViewController: UITableViewController{
 
         }
 
-        sounds = sounds.sorted(by: { $0.0.name < $0.1.name })
+//        sounds = sounds.sorted(by: { $0.0.name < $0.1.name })
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 

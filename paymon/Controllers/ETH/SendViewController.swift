@@ -227,7 +227,7 @@ class SendViewController: UIViewController, SelectedCurrencyDelegate {
             let ethAmount = Ether(weiValue: rawLocalAmount + fee)
             let fiatAmount = ethAmount.amount(in: iso, rate: rateValue)
             didReceiveCheckout(amount: ethAmount.amount, fiatAmount: fiatAmount, fee: feeAmount.amount, fiatFee: fiatFee)
-        } catch let error {
+        } catch _ {
             print("")
         }
     }
