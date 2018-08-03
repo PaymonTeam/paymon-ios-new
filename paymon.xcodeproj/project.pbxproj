@@ -21,7 +21,6 @@
 		0E074C2A210E435B00CB3853 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C29210E435B00CB3853 /* SettingsTableView.swift */; };
 		0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0F477C210BA137004B4A3C /* Contacts.storyboard */; };
 		0E0F4780210BA34A004B4A3C /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */; };
-		0E85B9EF210A3AE800E8169B /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E85B9EE210A3AE800E8169B /* libcryptopp.a */; };
 		0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
@@ -39,7 +38,6 @@
 		0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */; };
 		3E437C3864077E699C425530 /* Pods_paymonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4653E7B9D5552DD6D7E6F70 /* Pods_paymonTests.framework */; };
 		6AECEA178FD6F827A3D6A15B /* Pods_paymonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2BFF67FCD3EF3CEBD321C3 /* Pods_paymonUITests.framework */; };
-		A5A73610578A06C80819CACD /* Pods_paymon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3764DFE35E2623F4092A261 /* Pods_paymon.framework */; };
 		B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B692100A1C400A3CBF1 /* SyncMode.swift */; };
 		B0011B6C2100A1C400A3CBF1 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B6A2100A1C400A3CBF1 /* Defaults.swift */; };
 		B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B6D2100A1F000A3CBF1 /* UserDefaults.swift */; };
@@ -81,10 +79,6 @@
 		B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019551220FFAA6600F3DDB0 /* KeychainWrapper.swift */; };
 		B019552020FFAA6600F3DDB0 /* SerializableData.mm in Sources */ = {isa = PBXBuildFile; fileRef = B019551320FFAA6600F3DDB0 /* SerializableData.mm */; };
 		B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019551520FFAA6600F3DDB0 /* MediaManager.swift */; };
-		B019552620FFAA9200F3DDB0 /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B019552220FFAA9200F3DDB0 /* ByteArray.cpp */; };
-		B019552720FFAA9200F3DDB0 /* BuffersStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B019552320FFAA9200F3DDB0 /* BuffersStorage.cpp */; };
-		B019552820FFAA9200F3DDB0 /* SerializedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B019552420FFAA9200F3DDB0 /* SerializedBuffer.cpp */; };
-		B019552920FFAA9200F3DDB0 /* KeyGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B019552520FFAA9200F3DDB0 /* KeyGenerator.cpp */; };
 		B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */; };
 		B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */; };
 		B019553D20FFAC0F00F3DDB0 /* ETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553820FFAC0E00F3DDB0 /* ETH.swift */; };
@@ -105,9 +99,6 @@
 		B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */; };
 		B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01CBAC420FF85EC00A061FB /* MainViewController.swift */; };
 		B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */; };
-		B01F0DD121085CB2008FB6F0 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC020FF6C5B00A061FB /* libcryptopp.a */; };
-		B01F0DD221085CB7008FB6F0 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B01CBAC220FF7D1600A061FB /* libcrypto.a */; };
-		B01F0DD321085CBA008FB6F0 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6B621036954001D3B00 /* libssl.a */; };
 		B01F0DE821086E5A008FB6F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B01F0DEA21086E5A008FB6F0 /* Localizable.strings */; };
 		B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B01F0DEC2108700F008FB6F0 /* User.storyboard */; };
 		B01F0DF621087264008FB6F0 /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DF021087263008FB6F0 /* ProfileInfoTableViewController.swift */; };
@@ -141,6 +132,7 @@
 		B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
 		B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */; };
+		D66275EDD87D20306F62E7E8 /* Pods_paymon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3764DFE35E2623F4092A261 /* Pods_paymon.framework */; };
 		D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D820C69D210122B5001D3B00 /* Ethur.storyboard */; };
 		D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A02101232E001D3B00 /* CoinDetailsViewController.swift */; };
 		D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A12101232E001D3B00 /* ReceiveViewController.swift */; };
@@ -148,10 +140,17 @@
 		D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A42101232E001D3B00 /* ChooseCurrencyViewController.swift */; };
 		D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AC210125D8001D3B00 /* AVFoundation.framework */; };
 		D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B121012FD7001D3B00 /* NetworkManager.swift */; };
-		D820C6B521012FD8001D3B00 /* NetworkManager_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B221012FD7001D3B00 /* NetworkManager_Wrapper.mm */; };
 		D820C6BA21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D820C6BB21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D820C70C21037EDA001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D849F8342113938B009B425E /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D849F8332113938B009B425E /* libcryptopp.a */; };
+		D849F837211393C5009B425E /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D849F835211393C5009B425E /* libssl.a */; };
+		D849F838211393C5009B425E /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D849F836211393C5009B425E /* libcrypto.a */; };
+		D849F83B21139ADB009B425E /* NetworkManager_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D849F83A21139ADA009B425E /* NetworkManager_Wrapper.mm */; };
+		D849F8402113A07C009B425E /* BuffersStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83C2113A07B009B425E /* BuffersStorage.cpp */; };
+		D849F8412113A07C009B425E /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83D2113A07B009B425E /* ByteArray.cpp */; };
+		D849F8422113A07C009B425E /* SerializedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83E2113A07B009B425E /* SerializedBuffer.cpp */; };
+		D849F8432113A07C009B425E /* KeyGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83F2113A07B009B425E /* KeyGenerator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,9 +185,6 @@
 		0E074C29210E435B00CB3853 /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		0E0F477C210BA137004B4A3C /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
-		0E85B9EE210A3AE800E8169B /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcryptopp.a; sourceTree = "<group>"; };
-		0E85B9F0210A3AFC00E8169B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
-		0E85B9F2210A3B0700E8169B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewOld.swift; sourceTree = "<group>"; };
 		0EA074C421065515002FF527 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
@@ -263,10 +259,6 @@
 		B019551320FFAA6600F3DDB0 /* SerializableData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SerializableData.mm; sourceTree = "<group>"; };
 		B019551420FFAA6600F3DDB0 /* ByteArray_Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByteArray_Wrapper.h; sourceTree = "<group>"; };
 		B019551520FFAA6600F3DDB0 /* MediaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
-		B019552220FFAA9200F3DDB0 /* ByteArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ByteArray.cpp; sourceTree = "<group>"; };
-		B019552320FFAA9200F3DDB0 /* BuffersStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuffersStorage.cpp; sourceTree = "<group>"; };
-		B019552420FFAA9200F3DDB0 /* SerializedBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerializedBuffer.cpp; sourceTree = "<group>"; };
-		B019552520FFAA9200F3DDB0 /* KeyGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyGenerator.cpp; sourceTree = "<group>"; };
 		B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		B019553820FFAC0E00F3DDB0 /* ETH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETH.swift; sourceTree = "<group>"; };
@@ -289,8 +281,6 @@
 		B019555420FFAD7400F3DDB0 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		B019555520FFAD7500F3DDB0 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
-		B01CBAC020FF6C5B00A061FB /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = ../../../../../usr/local/Cellar/cryptopp/7.0.0/lib/libcryptopp.a; sourceTree = "<group>"; };
-		B01CBAC220FF7D1600A061FB /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libcrypto.a; sourceTree = "<group>"; };
 		B01CBAC420FF85EC00A061FB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGuardViewCell.swift; sourceTree = "<group>"; };
 		B01F0DD42108661A008FB6F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -346,11 +336,16 @@
 		D820C6A22101232E001D3B00 /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
 		D820C6A42101232E001D3B00 /* ChooseCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseCurrencyViewController.swift; sourceTree = "<group>"; };
 		D820C6AC210125D8001D3B00 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		D820C6AE21012D4E001D3B00 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = "../../../../../../../../usr/local/cryptopp-ios/lib/libcryptopp.a"; sourceTree = "<group>"; };
 		D820C6B121012FD7001D3B00 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		D820C6B221012FD7001D3B00 /* NetworkManager_Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkManager_Wrapper.mm; sourceTree = "<group>"; };
-		D820C6B321012FD7001D3B00 /* NetworkManager_Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager_Wrapper.h; sourceTree = "<group>"; };
-		D820C6B621036954001D3B00 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libssl.a; sourceTree = "<group>"; };
+		D849F8332113938B009B425E /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = "../../../../../../../../usr/local/cryptopp-ios/lib/libcryptopp.a"; sourceTree = "<group>"; };
+		D849F835211393C5009B425E /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../../../../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libssl.a; sourceTree = "<group>"; };
+		D849F836211393C5009B425E /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libcrypto.a; sourceTree = "<group>"; };
+		D849F83921139ADA009B425E /* NetworkManager_Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager_Wrapper.h; sourceTree = "<group>"; };
+		D849F83A21139ADA009B425E /* NetworkManager_Wrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NetworkManager_Wrapper.mm; sourceTree = "<group>"; };
+		D849F83C2113A07B009B425E /* BuffersStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BuffersStorage.cpp; sourceTree = "<group>"; };
+		D849F83D2113A07B009B425E /* ByteArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ByteArray.cpp; sourceTree = "<group>"; };
+		D849F83E2113A07B009B425E /* SerializedBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerializedBuffer.cpp; sourceTree = "<group>"; };
+		D849F83F2113A07B009B425E /* KeyGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyGenerator.cpp; sourceTree = "<group>"; };
 		E69ED212A044FAFBD11E0EAE /* Pods-paymonUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-paymonUITests/Pods-paymonUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -359,12 +354,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D849F837211393C5009B425E /* libssl.a in Frameworks */,
+				D849F838211393C5009B425E /* libcrypto.a in Frameworks */,
+				D849F8342113938B009B425E /* libcryptopp.a in Frameworks */,
 				D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */,
-				0E85B9EF210A3AE800E8169B /* libcryptopp.a in Frameworks */,
-				A5A73610578A06C80819CACD /* Pods_paymon.framework in Frameworks */,
-				B01F0DD221085CB7008FB6F0 /* libcrypto.a in Frameworks */,
-				B01F0DD321085CBA008FB6F0 /* libssl.a in Frameworks */,
-				B01F0DD121085CB2008FB6F0 /* libcryptopp.a in Frameworks */,
+				D66275EDD87D20306F62E7E8 /* Pods_paymon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,13 +415,6 @@
 			path = ChatTableCells;
 			sourceTree = "<group>";
 		};
-		0EA66B9A210F7F2500CC1162 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		0EA66B9F210F7FAC00CC1162 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -460,14 +447,10 @@
 		2E6D321D2242C00919558443 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0E85B9F2210A3B0700E8169B /* libssl.a */,
-				0E85B9F0210A3AFC00E8169B /* libcrypto.a */,
-				D820C6B621036954001D3B00 /* libssl.a */,
-				D820C6AE21012D4E001D3B00 /* libcryptopp.a */,
-				0E85B9EE210A3AE800E8169B /* libcryptopp.a */,
+				D849F836211393C5009B425E /* libcrypto.a */,
+				D849F835211393C5009B425E /* libssl.a */,
+				D849F8332113938B009B425E /* libcryptopp.a */,
 				D820C6AC210125D8001D3B00 /* AVFoundation.framework */,
-				B01CBAC220FF7D1600A061FB /* libcrypto.a */,
-				B01CBAC020FF6C5B00A061FB /* libcryptopp.a */,
 				C3764DFE35E2623F4092A261 /* Pods_paymon.framework */,
 				A4653E7B9D5552DD6D7E6F70 /* Pods_paymonTests.framework */,
 				1B2BFF67FCD3EF3CEBD321C3 /* Pods_paymonUITests.framework */,
@@ -669,7 +652,6 @@
 				0EA66BA5210F816E00CC1162 /* AboutTheProgram */,
 				0EA66BA2210F80BB00CC1162 /* Security */,
 				0EA66B9F210F7FAC00CC1162 /* Notifications */,
-				0EA66B9A210F7F2500CC1162 /* Profile */,
 				0E074C29210E435B00CB3853 /* SettingsTableView.swift */,
 				0E074C15210E3B0400CB3853 /* SettingsViewController.swift */,
 				0E074C16210E3B0400CB3853 /* SettingsBasicTableViewController.swift */,
@@ -748,10 +730,10 @@
 		B099C9B720FDD30A00718608 /* Cpp */ = {
 			isa = PBXGroup;
 			children = (
-				B019552320FFAA9200F3DDB0 /* BuffersStorage.cpp */,
-				B019552220FFAA9200F3DDB0 /* ByteArray.cpp */,
-				B019552520FFAA9200F3DDB0 /* KeyGenerator.cpp */,
-				B019552420FFAA9200F3DDB0 /* SerializedBuffer.cpp */,
+				D849F83C2113A07B009B425E /* BuffersStorage.cpp */,
+				D849F83D2113A07B009B425E /* ByteArray.cpp */,
+				D849F83F2113A07B009B425E /* KeyGenerator.cpp */,
+				D849F83E2113A07B009B425E /* SerializedBuffer.cpp */,
 			);
 			path = Cpp;
 			sourceTree = "<group>";
@@ -907,8 +889,8 @@
 		B099C9C820FDD44400718608 /* ConnectionManager */ = {
 			isa = PBXGroup;
 			children = (
-				D820C6B321012FD7001D3B00 /* NetworkManager_Wrapper.h */,
-				D820C6B221012FD7001D3B00 /* NetworkManager_Wrapper.mm */,
+				D849F83921139ADA009B425E /* NetworkManager_Wrapper.h */,
+				D849F83A21139ADA009B425E /* NetworkManager_Wrapper.mm */,
 				D820C6B121012FD7001D3B00 /* NetworkManager.swift */,
 				B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */,
 			);
@@ -1023,11 +1005,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B099C99A20FCF7DC00718608 /* Build configuration list for PBXNativeTarget "paymon" */;
 			buildPhases = (
-				DE2C176F4BEAF78CB9AB7D66 /* [CP] Check Pods Manifest.lock */,
+				A2930EC650AAEB89588D1B09 /* [CP] Check Pods Manifest.lock */,
 				B099C96E20FCF7DB00718608 /* Sources */,
 				B099C96F20FCF7DB00718608 /* Frameworks */,
 				B099C97020FCF7DB00718608 /* Resources */,
-				36E8DCF2C81382E79127275C /* [CP] Embed Pods Frameworks */,
+				7BB5F6D451974D035A03A0CE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1161,7 +1143,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		36E8DCF2C81382E79127275C /* [CP] Embed Pods Frameworks */ = {
+		7BB5F6D451974D035A03A0CE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1189,6 +1171,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-paymon/Pods-paymon-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A2930EC650AAEB89588D1B09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-paymon-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D97CC3584AE0CE4E881FC413 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1201,24 +1201,6 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-paymonTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE2C176F4BEAF78CB9AB7D66 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-paymon-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1253,7 +1235,6 @@
 				B01954EA20FFA94600F3DDB0 /* Chain.swift in Sources */,
 				B0C396B2210A50C700E0C344 /* UINavigationBar.swift in Sources */,
 				B019551720FFAA6600F3DDB0 /* SerializedStream.mm in Sources */,
-				B019552920FFAA9200F3DDB0 /* KeyGenerator.cpp in Sources */,
 				0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */,
 				B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */,
 				B019551E20FFAA6600F3DDB0 /* KeychainItemAccessibility.swift in Sources */,
@@ -1261,7 +1242,6 @@
 				0EA074CA210655F3002FF527 /* ChatsTableGroupViewCell.swift in Sources */,
 				B01954F220FFA9B400F3DDB0 /* TransactionService.swift in Sources */,
 				B01F0DF721087264008FB6F0 /* ProfileViewController.swift in Sources */,
-				B019552820FFAA9200F3DDB0 /* SerializedBuffer.cpp in Sources */,
 				B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */,
 				B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */,
 				B0C396B0210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift in Sources */,
@@ -1269,6 +1249,7 @@
 				B0ACFFF621123580007BE95C /* MoneyViewController.swift in Sources */,
 				B019554120FFAC0F00F3DDB0 /* TransactionFactory.swift in Sources */,
 				B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */,
+				D849F8432113A07C009B425E /* KeyGenerator.cpp in Sources */,
 				D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */,
 				B01F0DFD2108847C008FB6F0 /* FromRightSegue.swift in Sources */,
 				B0AC000121126EAA007BE95C /* Money.swift in Sources */,
@@ -1302,11 +1283,11 @@
 				B019551B20FFAA6600F3DDB0 /* MessageManager.swift in Sources */,
 				B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */,
 				B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */,
-				B019552620FFAA9200F3DDB0 /* ByteArray.cpp in Sources */,
 				0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */,
 				B01954E320FFA92100F3DDB0 /* QRGenerater.swift in Sources */,
 				B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */,
 				B019551620FFAA6600F3DDB0 /* SerializedBuffer-Wrapper.mm in Sources */,
+				D849F8402113A07C009B425E /* BuffersStorage.cpp in Sources */,
 				B019551A20FFAA6600F3DDB0 /* Utils.swift in Sources */,
 				B019555720FFAD7500F3DDB0 /* Packet.swift in Sources */,
 				B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */,
@@ -1315,7 +1296,6 @@
 				0EA074CC2106561B002FF527 /* ChatViewController.swift in Sources */,
 				B019554720FFAC5900F3DDB0 /* BaseService.swift in Sources */,
 				B019554620FFAC5900F3DDB0 /* API.swift in Sources */,
-				B019552720FFAA9200F3DDB0 /* BuffersStorage.cpp in Sources */,
 				B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */,
 				B01954DF20FFA92100F3DDB0 /* Ethereum.swift in Sources */,
 				0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */,
@@ -1330,7 +1310,6 @@
 				0E074C1F210E3B0700CB3853 /* SettingsViewController.swift in Sources */,
 				0E074C25210E3B0700CB3853 /* SettingsNotificationViewController.swift in Sources */,
 				0EA074D6210658D2002FF527 /* GroupSettingViewController.swift in Sources */,
-				D820C6B521012FD8001D3B00 /* NetworkManager_Wrapper.mm in Sources */,
 				0E074C27210E3B0700CB3853 /* SettingsSecurityTableViewController.swift in Sources */,
 				B019554020FFAC0F00F3DDB0 /* KeystoreService.swift in Sources */,
 				0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */,
@@ -1361,9 +1340,12 @@
 				B01954EE20FFA98500F3DDB0 /* Ether.swift in Sources */,
 				B0493E622112AAE800B7AA94 /* UIColor.swift in Sources */,
 				B0AC000B211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift in Sources */,
+				D849F83B21139ADB009B425E /* NetworkManager_Wrapper.mm in Sources */,
 				B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */,
 				B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */,
 				0E074C24210E3B0700CB3853 /* SettingsBasicViewController.swift in Sources */,
+				D849F8412113A07C009B425E /* ByteArray.cpp in Sources */,
+				D849F8422113A07C009B425E /* SerializedBuffer.cpp in Sources */,
 				B019554520FFAC5900F3DDB0 /* ConnectionManager.swift in Sources */,
 				B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */,
 				B0C396AE210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift in Sources */,
@@ -1495,7 +1477,7 @@
 					/usr/local/Cellar/cryptopp/7.0.0/include,
 				);
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/cryptopp/7.0.0/lib,
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
@@ -1561,7 +1543,7 @@
 					/usr/local/Cellar/cryptopp/7.0.0/include,
 				);
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/cryptopp/7.0.0/lib,
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
@@ -1579,32 +1561,36 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9F19248E7DF96502E85DB597 /* Pods-paymon.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CX6AZ34SLQ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/cryptopp/7.0.0/include,
 					/usr/local/Cellar/openssl/1.0.2o_2/include,
+					/usr/local/Cellar/openssl/1.0.2o_2/lib,
+					"/usr/local/cryptopp-ios/include",
 				);
 				INFOPLIST_FILE = paymon/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
-					/usr/local/Cellar/cryptopp/7.0.0/lib,
+					/usr/local/Cellar/openssl/1.0.2o_2/include,
+					"/usr/local/cryptopp-ios/lib",
+					"/usr/local/cryptopp-ios/include",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.xcm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0714eef9-478d-463b-9477-7c1bd08c850e";
+				PROVISIONING_PROFILE_SPECIFIER = RanosysWildcardDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1617,40 +1603,35 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 29895C30C7A907C60535323B /* Pods-paymon.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CX6AZ34SLQ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = M8A7BYS443;
 				ENABLE_BITCODE = NO;
-				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/AlamofireObjectMapper\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CryptoSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ObjectMapper\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/web3swift\"",
-					"\"${PODS_ROOT}/Geth/Frameworks\"",
-				);
 				HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/cryptopp/7.0.0/include,
 					/usr/local/Cellar/openssl/1.0.2o_2/include,
+					/usr/local/Cellar/openssl/1.0.2o_2/lib,
+					"/usr/local/cryptopp-ios/include",
 				);
 				INFOPLIST_FILE = paymon/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
-					/usr/local/Cellar/cryptopp/7.0.0/lib,
+					/usr/local/Cellar/openssl/1.0.2o_2/include,
+					"/usr/local/cryptopp-ios/lib",
+					"/usr/local/cryptopp-ios/include",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymon;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.xcm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0714eef9-478d-463b-9477-7c1bd08c850e";
+				PROVISIONING_PROFILE_SPECIFIER = RanosysWildcardDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
