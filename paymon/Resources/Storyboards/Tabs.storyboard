@@ -19,11 +19,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="centered" itemSpacing="20" id="mYx-eP-Orw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="7Dm-Ff-e4i" kind="relationship" relationship="viewControllers" id="9iz-qn-DhR"/>
                         <segue destination="3L4-RE-kH0" kind="relationship" relationship="viewControllers" id="kOS-Z0-Nub"/>
-                        <segue destination="BTP-X1-XlM" kind="relationship" relationship="viewControllers" id="FmP-jH-avQ"/>
+                        <segue destination="BTP-X1-XlM" kind="relationship" relationship="viewControllers" id="ege-Mk-bky"/>
                         <segue destination="TW9-C2-wP1" kind="relationship" relationship="viewControllers" id="9Bb-6a-A62"/>
                         <segue destination="Kg1-g7-NRh" kind="relationship" relationship="viewControllers" id="NhI-NK-ZiW"/>
                     </connections>
@@ -87,7 +89,7 @@
         <scene sceneID="0zu-S9-GtQ">
             <objects>
                 <viewControllerPlaceholder storyboardName="Money" referencedIdentifier="MoneyViewController" id="BTP-X1-XlM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Qtn-YO-hh6"/>
+                    <tabBarItem key="tabBarItem" title="Wallet" image="Wallet" id="Qtn-YO-hh6"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2Y-57-kP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,5 +132,6 @@
         <image name="GamePad" width="256" height="256"/>
         <image name="Games" width="32" height="32"/>
         <image name="Home" width="32" height="32"/>
+        <image name="Wallet" width="32" height="32"/>
     </resources>
 </document>

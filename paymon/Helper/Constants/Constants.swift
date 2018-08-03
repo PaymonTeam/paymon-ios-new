@@ -43,3 +43,13 @@ struct Send {
     static let defaultGasLimitToken: Decimal = 53000
     static let defaultGasPrice: Decimal = 2000000000
 }
+
+struct ExchangeRatesConst {
+    static let urlChartsHour = "https://min-api.cryptocompare.com/data/histominute?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=60&tryConversion=false&tsym=%@"
+    static let urlChartsDay = "https://min-api.cryptocompare.com/data/histominute?aggregate=10&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=144&tryConversion=false&tsym=%@"
+    static let urlChartsWeek = "https://min-api.cryptocompare.com/data/histohour?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=168&tryConversion=false&tsym=%@"
+    static let urlChartsOneMonth = "https://min-api.cryptocompare.com/data/histohour?aggregate=6&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=120&tryConversion=false&tsym=%@"
+    static let urlChartsThreeMonths = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=90&tryConversion=false&tsym=%@"
+    static let urlChartsSixMonths = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=180&tryConversion=false&tsym=%@"
+    static let urlChartsYear = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=365&tryConversion=false&tsym=%@"
+}

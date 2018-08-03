@@ -10,6 +10,8 @@ target 'paymon' do
     pod 'MBProgressHUD', '~> 1.0.0'
     pod 'AlamofireObjectMapper'
     pod 'PureLayout'
+    pod 'Charts'
+
 
   # Pods for paymon
 
