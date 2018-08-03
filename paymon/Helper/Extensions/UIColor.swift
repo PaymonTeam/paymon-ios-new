@@ -29,6 +29,12 @@ extension UIColor {
         }
         
         struct Blue {
+            static let primaryBlueDark = UIColor(netHex: 0x198bb9)
+            static let primaryBlueLight = UIColor(netHex: 0x55b0d2)
+            static let primaryBlueWhite = UIColor(netHex: 0x55b5ff)
+            static let primaryBlueUltraLight = UIColor(netHex: 0xeffbff)
+            
+
             static let primaryBlue = UIColor(netHex: 0x0099cc)
             static let paymon = UIColor(netHex: 0x0099cc).withAlphaComponent(0.7)
         }

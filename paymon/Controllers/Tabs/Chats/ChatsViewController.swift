@@ -66,11 +66,10 @@ class ChatsViewController: UIViewController, NotificationManagerListener {
         super.viewDidLoad()
         
 //        let configA = EthAccountConfiguration(namespace: "walletA", password: "qwerty")
-        
 
         self.tabBarController?.tabBar.items?[0].title = "Chats".localized
         self.tabBarController?.tabBar.items?[1].title = "Contacts".localized
-        self.tabBarController?.tabBar.items?[2].title = "Money".localized
+        self.tabBarController?.tabBar.items?[2].title = "Wallet".localized
         self.tabBarController?.tabBar.items?[3].title = "Games".localized
         self.tabBarController?.tabBar.items?[4].title = "Profile".localized
 

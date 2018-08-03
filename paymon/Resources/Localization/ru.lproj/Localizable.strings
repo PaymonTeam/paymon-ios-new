@@ -146,6 +146,9 @@
 
 /*MoneyViewController*/
 
+"Wallet" = "Кошелек";
+"Exchange rates" = "Курсы валют";
+"Add"="Добавить";
 "Enter old passcode"="Введите старый пароль";
 "Set a password for your wallet"="Установите пароль для вашего кошелька";
 "Enter the password of the wallet"="Введите пароль от кошелька";

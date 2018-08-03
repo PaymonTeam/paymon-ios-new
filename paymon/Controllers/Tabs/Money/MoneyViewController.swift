@@ -11,9 +11,15 @@ import UIKit
 class MoneyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var navigationBar: UINavigationBar!
     
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     var moneyArray : [CellMoneyData]!
     
     @IBOutlet weak var moneyTableView: UITableView!
+    
+    override func viewDidLayoutSubviews() {
+        
+        tableViewHeight.constant = self.moneyTableView.contentSize.height;
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,64 +27,18 @@ class MoneyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         moneyTableView.delegate = self
         moneyTableView.dataSource = self
         navigationBar.setTransparent()
+        navigationBar.topItem?.title = "Wallet".localized
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
         moneyArray = [CellMoneyData]()
         
         if moneyArray != nil {
-            getBitcoinWalletInfo()
-            getEthereumWalletInfo()
-            getPaymonWalletInfo()
+            /* We get the data using the class CryptoManager*/
+            moneyArray.append(CryptoManager.getBitcoinWalletInfo())
+            moneyArray.append(CryptoManager.getEthereumWalletInfo())
+            moneyArray.append(CryptoManager.getPaymonWalletInfo())
         }
-    }
-    
-    func getPaymonWalletInfo() {
-        let paymonData = CellCreatedMoneyData()
-        /*Block for test*/
-        paymonData.currancyAmount = 12.572
-        paymonData.fiatAmount = 6723.13
-        paymonData.cryptoHint = Money.pmnc
-        paymonData.icon = Money.pmncIcon
-        paymonData.fiatHint = Money.rub
-        paymonData.fiatColor = UIColor.AppColor.Green.rub
-        paymonData.cryptoColor = UIColor.AppColor.Blue.paymon
-        /*******************/
-        moneyArray.append(paymonData)
-    }
-    
-    func getEthereumWalletInfo() {
-        let ethereumData = CellCreatedMoneyData()
-        /*Block for test*/
-        ethereumData.currancyAmount = 4.523
-        ethereumData.fiatAmount = 23552.98
-        ethereumData.cryptoHint = Money.eth
-        ethereumData.icon = Money.ethIcon
-        ethereumData.fiatHint = Money.rub
-        ethereumData.fiatColor = UIColor.AppColor.Green.rub
-        ethereumData.cryptoColor = UIColor.AppColor.Gray.ethereum
-        /*******************/
-        
-        moneyArray.append(ethereumData)
-    }
-    
-    func getBitcoinWalletInfo() {
-        let bitcoinData = CellCreatedMoneyData()
-        /*Block for test*/
-        bitcoinData.currancyAmount = 1.023
-        bitcoinData.fiatAmount = 87403.04
-        bitcoinData.cryptoHint = Money.btc
-        bitcoinData.icon = Money.btcIcon
-        bitcoinData.fiatHint = Money.rub
-        bitcoinData.fiatColor = UIColor.AppColor.Green.rub
-        bitcoinData.cryptoColor = UIColor.AppColor.Orange.bitcoin
-        /*******************/
-        moneyArray.append(bitcoinData)
-        
-        let notCreated = CellMoneyData()
-        notCreated.cryptoColor = UIColor.AppColor.Gray.ethereum
-        notCreated.icon = Money.ethIcon
-        moneyArray.append(notCreated)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,6 +54,7 @@ class MoneyViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.fiatAmount.text = String(data.fiatAmount)
             cell.cryptoHint.text = data.cryptoHint
             cell.fiatHint.text = data.fiatHint
+            cell.cryptoType = data.cryptoType
             
             cell.cryptoHint.textColor = data.cryptoColor
             cell.cryptoAmount.textColor = data.cryptoColor
@@ -105,8 +66,11 @@ class MoneyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             let data = moneyArray[indexPath.row]
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellNotCreated") as? MoneyNotCreatedTableViewCell else {return UITableViewCell()}
-            print("create not ")
             cell.icon.image = UIImage(named: data.icon)
+            cell.cryptoType = data.cryptoType
+            cell.add.backgroundColor = data.cryptoColor
+            cell.add.setTitleColor(UIColor.white.withAlphaComponent(0.7), for: .normal)
+            
             return cell
             
         }
@@ -118,8 +82,5 @@ class MoneyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyNotCreatedTableViewCell{
             print(cell.icon.frame.width)
         }
-        
-        //TODO: Вроде не нужна
-        
     }
 }

@@ -12,4 +12,6 @@ class CellMoneyData {
     
     var icon : String!
     var cryptoColor : UIColor!
+    var cryptoType : CryptoType!
+
 }
