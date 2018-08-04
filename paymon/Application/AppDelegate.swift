@@ -15,6 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
     
     var keystore = KeystoreService()
     var window: UIWindow?
+    var restrictRotation:TypeInterfaceOrientationMask = .portrait
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        switch self.restrictRotation {
+        case .all:
+            return UIInterfaceOrientationMask.all
+        case .portrait:
+            return UIInterfaceOrientationMask.portrait
+        case .landscape:
+            return UIInterfaceOrientationMask.landscape
+        }
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

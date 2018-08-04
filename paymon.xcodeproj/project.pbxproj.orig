@@ -34,6 +34,9 @@
 		0EA074D6210658D2002FF527 /* GroupSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074D5210658D2002FF527 /* GroupSettingViewController.swift */; };
 		0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EA075AB21065EE7002FF527 /* Chats.storyboard */; };
 		0EA66B97210F7E7900CC1162 /* NotificationSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66B96210F7E7800CC1162 /* NotificationSoundViewController.swift */; };
+		0EA66B99210F7F0300CC1162 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66B98210F7F0300CC1162 /* UpdateProfileViewController.swift */; };
+		0EA66B9C210F7F4800CC1162 /* UpdateProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66B9B210F7F4800CC1162 /* UpdateProfileHeaderView.swift */; };
+		0EA66B9E210F7F8A00CC1162 /* UpdateProfileTableInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66B9D210F7F8A00CC1162 /* UpdateProfileTableInfoView.swift */; };
 		0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */; };
 		0EA66BA4210F810C00CC1162 /* SecurityPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */; };
 		0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */; };
@@ -46,6 +49,7 @@
 		B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */; };
 		B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B722100F15E00A3CBF1 /* NotificationName.swift */; };
 		B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B762101E10400A3CBF1 /* SignUpViewController.swift */; };
+		B0011B81210236EF00A3CBF1 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B80210236EF00A3CBF1 /* UIColor.swift */; };
 		B0011B8321023F9000A3CBF1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B8221023F9000A3CBF1 /* UserManager.swift */; };
 		B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D320FFA8DA00F3DDB0 /* Keychain.swift */; };
 		B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */; };
@@ -115,8 +119,7 @@
 		B01F0DF821087264008FB6F0 /* UpdateProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DF221087263008FB6F0 /* UpdateProfileInfoTableViewController.swift */; };
 		B01F0DF921087264008FB6F0 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DF321087263008FB6F0 /* UpdateProfileViewController.swift */; };
 		B01F0DFD2108847C008FB6F0 /* FromRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DFC2108847C008FB6F0 /* FromRightSegue.swift */; };
-		B0493E602112A75100B7AA94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0493E5F2112A75100B7AA94 /* Assets.xcassets */; };
-		B0493E622112AAE800B7AA94 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0493E612112AAE700B7AA94 /* UIColor.swift */; };
+		B01F0DFF2109E2BB008FB6F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B01F0DFE2109E2BB008FB6F0 /* Assets.xcassets */; };
 		B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA88A21030F2100AAA805 /* SignInViewController.swift */; };
 		B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
@@ -127,11 +130,6 @@
 		B0AC000121126EAA007BE95C /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC000021126EAA007BE95C /* Money.swift */; };
 		B0AC000521128BD2007BE95C /* CellCreatedMoneyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC000421128BD2007BE95C /* CellCreatedMoneyData.swift */; };
 		B0AC000B211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC000A211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift */; };
-		B0AC1D23211452BB004D8577 /* CryptoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC1D22211452BB004D8577 /* CryptoType.swift */; };
-		B0AC1D26211456E8004D8577 /* CryptoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC1D25211456E8004D8577 /* CryptoManager.swift */; };
-		B0AC1D2821146AA4004D8577 /* ExchangeRatesUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC1D2721146AA4004D8577 /* ExchangeRatesUIView.swift */; };
-		B0AC1D2A211472DA004D8577 /* ExchangeRetesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC1D29211472DA004D8577 /* ExchangeRetesViewController.swift */; };
-		B0AC1D2C211476A1004D8577 /* ExchangeRatesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC1D2B211476A1004D8577 /* ExchangeRatesTableViewCell.swift */; };
 		B0ACFFF021122EB6007BE95C /* Money.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0ACFFEF21122EB6007BE95C /* Money.storyboard */; };
 		B0ACFFF4211233F0007BE95C /* MoneyCreatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACFFF3211233F0007BE95C /* MoneyCreatedTableViewCell.swift */; };
 		B0ACFFF621123580007BE95C /* MoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACFFF521123580007BE95C /* MoneyViewController.swift */; };
@@ -143,10 +141,6 @@
 		B0C396B0210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396AF210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift */; };
 		B0C396B2210A50C700E0C344 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396B1210A50C700E0C344 /* UINavigationBar.swift */; };
 		B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C396B4210A7CF200E0C344 /* SimpleOkAlertController.swift */; };
-		B0C7447721147C7F008885C1 /* ExchangeRatesForChartsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447521147C7F008885C1 /* ExchangeRatesForChartsParser.swift */; };
-		B0C7447821147C7F008885C1 /* ExchangeRatesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447621147C7F008885C1 /* ExchangeRatesParser.swift */; };
-		B0C7447A21149BBF008885C1 /* ChartsRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */; };
-		B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */; };
 		B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
 		B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */; };
@@ -210,6 +204,9 @@
 		0EA074D5210658D2002FF527 /* GroupSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupSettingViewController.swift; sourceTree = "<group>"; };
 		0EA075AB21065EE7002FF527 /* Chats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
 		0EA66B96210F7E7800CC1162 /* NotificationSoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSoundViewController.swift; sourceTree = "<group>"; };
+		0EA66B98210F7F0300CC1162 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
+		0EA66B9B210F7F4800CC1162 /* UpdateProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileHeaderView.swift; sourceTree = "<group>"; };
+		0EA66B9D210F7F8A00CC1162 /* UpdateProfileTableInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileTableInfoView.swift; sourceTree = "<group>"; };
 		0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSoundTableViewController.swift; sourceTree = "<group>"; };
 		0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityPasswordViewController.swift; sourceTree = "<group>"; };
 		0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +223,7 @@
 		B0011B702100D88A00A3CBF1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		B0011B722100F15E00A3CBF1 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		B0011B762101E10400A3CBF1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B0011B80210236EF00A3CBF1 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B0011B8221023F9000A3CBF1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		B01954D320FFA8DA00F3DDB0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
@@ -314,8 +312,7 @@
 		B01F0DF221087263008FB6F0 /* UpdateProfileInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileInfoTableViewController.swift; sourceTree = "<group>"; };
 		B01F0DF321087263008FB6F0 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		B01F0DFC2108847C008FB6F0 /* FromRightSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromRightSegue.swift; sourceTree = "<group>"; };
-		B0493E5F2112A75100B7AA94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B0493E612112AAE700B7AA94 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B01F0DFE2109E2BB008FB6F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B08CA88A21030F2100AAA805 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleShowSegue.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,11 +330,6 @@
 		B0AC000021126EAA007BE95C /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		B0AC000421128BD2007BE95C /* CellCreatedMoneyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCreatedMoneyData.swift; sourceTree = "<group>"; };
 		B0AC000A211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyNotCreatedTableViewCell.swift; sourceTree = "<group>"; };
-		B0AC1D22211452BB004D8577 /* CryptoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoType.swift; sourceTree = "<group>"; };
-		B0AC1D25211456E8004D8577 /* CryptoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoManager.swift; sourceTree = "<group>"; };
-		B0AC1D2721146AA4004D8577 /* ExchangeRatesUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesUIView.swift; sourceTree = "<group>"; };
-		B0AC1D29211472DA004D8577 /* ExchangeRetesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRetesViewController.swift; sourceTree = "<group>"; };
-		B0AC1D2B211476A1004D8577 /* ExchangeRatesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesTableViewCell.swift; sourceTree = "<group>"; };
 		B0ACFFEF21122EB6007BE95C /* Money.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Money.storyboard; sourceTree = "<group>"; };
 		B0ACFFF3211233F0007BE95C /* MoneyCreatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyCreatedTableViewCell.swift; sourceTree = "<group>"; };
 		B0ACFFF521123580007BE95C /* MoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyViewController.swift; sourceTree = "<group>"; };
@@ -349,10 +341,6 @@
 		B0C396AF210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordChangeViewController.swift; sourceTree = "<group>"; };
 		B0C396B1210A50C700E0C344 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
 		B0C396B4210A7CF200E0C344 /* SimpleOkAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleOkAlertController.swift; sourceTree = "<group>"; };
-		B0C7447521147C7F008885C1 /* ExchangeRatesForChartsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRatesForChartsParser.swift; sourceTree = "<group>"; };
-		B0C7447621147C7F008885C1 /* ExchangeRatesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRatesParser.swift; sourceTree = "<group>"; };
-		B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsRatesViewController.swift; sourceTree = "<group>"; };
-		B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeInterfaceOrientationMask.swift; sourceTree = "<group>"; };
 		B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIdentifier.swift; sourceTree = "<group>"; };
 		B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerViewController.swift; sourceTree = "<group>"; };
@@ -442,6 +430,9 @@
 		0EA66B9A210F7F2500CC1162 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0EA66B9D210F7F8A00CC1162 /* UpdateProfileTableInfoView.swift */,
+				0EA66B98210F7F0300CC1162 /* UpdateProfileViewController.swift */,
+				0EA66B9B210F7F4800CC1162 /* UpdateProfileHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -563,7 +554,6 @@
 		B099C9A320FDD1D700718608 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				B0C7447421147C49008885C1 /* Parser */,
 				B019554320FFAC5900F3DDB0 /* API.swift */,
 				B019554420FFAC5900F3DDB0 /* BaseService.swift */,
 				B019554220FFAC5900F3DDB0 /* ConnectionManager.swift */,
@@ -597,7 +587,7 @@
 		B099C9A520FDD1F800718608 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B0493E5F2112A75100B7AA94 /* Assets.xcassets */,
+				B01F0DFE2109E2BB008FB6F0 /* Assets.xcassets */,
 				B099C9C420FDD3ED00718608 /* Localization */,
 				B099C9B620FDD2A900718608 /* Storyboards */,
 			);
@@ -727,7 +717,6 @@
 		B099C9B320FDD27700718608 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				B0AC1D2721146AA4004D8577 /* ExchangeRatesUIView.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -759,8 +748,8 @@
 				0EA075AB21065EE7002FF527 /* Chats.storyboard */,
 				B0C396A8210A3EFA00E0C344 /* ForgotPassword.storyboard */,
 				0E0F477C210BA137004B4A3C /* Contacts.storyboard */,
-				B0ACFFEF21122EB6007BE95C /* Money.storyboard */,
 				0E074C13210E357200CB3853 /* Setting.storyboard */,
+				B0ACFFEF21122EB6007BE95C /* Money.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -788,7 +777,10 @@
 		B099C9B920FDD31C00718608 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B0AC1D242114569A004D8577 /* Serializable */,
+				B019550520FFAA6500F3DDB0 /* BuffersStorage.h */,
+				B019551420FFAA6600F3DDB0 /* ByteArray_Wrapper.h */,
+				B019550620FFAA6500F3DDB0 /* ByteArray_Wrapper.mm */,
+				B019550C20FFAA6600F3DDB0 /* ByteArray.h */,
 				B019550A20FFAA6500F3DDB0 /* EthereumManager.swift */,
 				B019551120FFAA6600F3DDB0 /* KeychainItemAccessibility.swift */,
 				B019551220FFAA6600F3DDB0 /* KeychainWrapper.swift */,
@@ -796,10 +788,16 @@
 				B019550820FFAA6500F3DDB0 /* MessageManager.swift */,
 				B019550D20FFAA6600F3DDB0 /* NotificationManager.swift */,
 				B019550420FFAA6500F3DDB0 /* PMFileManager.swift */,
+				B019550920FFAA6500F3DDB0 /* SerializableData.h */,
+				B019551320FFAA6600F3DDB0 /* SerializableData.mm */,
+				B019551020FFAA6600F3DDB0 /* SerializedBuffer-Wrapper.h */,
+				B019550220FFAA6500F3DDB0 /* SerializedBuffer-Wrapper.mm */,
+				B019550B20FFAA6600F3DDB0 /* SerializedBuffer.h */,
+				B019550E20FFAA6600F3DDB0 /* SerializedStream.h */,
+				B019550320FFAA6500F3DDB0 /* SerializedStream.mm */,
 				B019550F20FFAA6600F3DDB0 /* SwiftKeychainWrapper.h */,
 				B019550720FFAA6500F3DDB0 /* Utils.swift */,
 				B0011B8221023F9000A3CBF1 /* UserManager.swift */,
-				B0AC1D25211456E8004D8577 /* CryptoManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -807,11 +805,11 @@
 		B099C9BA20FDD32200718608 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				B0493E612112AAE700B7AA94 /* UIColor.swift */,
 				B01954FE20FFAA3E00F3DDB0 /* DecimalExtension.swift */,
 				B01954FC20FFAA3E00F3DDB0 /* String+Helpers.swift */,
 				B01954FD20FFAA3E00F3DDB0 /* UIView+Loading.swift */,
 				B0011B722100F15E00A3CBF1 /* NotificationName.swift */,
+				B0011B80210236EF00A3CBF1 /* UIColor.swift */,
 				B0C396B1210A50C700E0C344 /* UINavigationBar.swift */,
 			);
 			path = Extensions;
@@ -862,8 +860,6 @@
 			children = (
 				B01954E820FFA94600F3DDB0 /* Chain.swift */,
 				B01954E720FFA94600F3DDB0 /* EnumCollection.swift */,
-				B0AC1D22211452BB004D8577 /* CryptoType.swift */,
-				B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -955,30 +951,10 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		B0AC1D242114569A004D8577 /* Serializable */ = {
-			isa = PBXGroup;
-			children = (
-				B019550520FFAA6500F3DDB0 /* BuffersStorage.h */,
-				B019551420FFAA6600F3DDB0 /* ByteArray_Wrapper.h */,
-				B019550620FFAA6500F3DDB0 /* ByteArray_Wrapper.mm */,
-				B019550C20FFAA6600F3DDB0 /* ByteArray.h */,
-				B019550920FFAA6500F3DDB0 /* SerializableData.h */,
-				B019551320FFAA6600F3DDB0 /* SerializableData.mm */,
-				B019551020FFAA6600F3DDB0 /* SerializedBuffer-Wrapper.h */,
-				B019550220FFAA6500F3DDB0 /* SerializedBuffer-Wrapper.mm */,
-				B019550B20FFAA6600F3DDB0 /* SerializedBuffer.h */,
-				B019550E20FFAA6600F3DDB0 /* SerializedStream.h */,
-				B019550320FFAA6500F3DDB0 /* SerializedStream.mm */,
-			);
-			path = Serializable;
-			sourceTree = "<group>";
-		};
 		B0ACFFF1211233B1007BE95C /* Money */ = {
 			isa = PBXGroup;
 			children = (
-				B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */,
 				B0ACFFF521123580007BE95C /* MoneyViewController.swift */,
-				B0AC1D29211472DA004D8577 /* ExchangeRetesViewController.swift */,
 			);
 			path = Money;
 			sourceTree = "<group>";
@@ -988,7 +964,6 @@
 			children = (
 				B0ACFFF3211233F0007BE95C /* MoneyCreatedTableViewCell.swift */,
 				B0AC000A211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift */,
-				B0AC1D2B211476A1004D8577 /* ExchangeRatesTableViewCell.swift */,
 			);
 			path = Money;
 			sourceTree = "<group>";
@@ -1029,15 +1004,6 @@
 				B08CA88A21030F2100AAA805 /* SignInViewController.swift */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		B0C7447421147C49008885C1 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				B0C7447521147C7F008885C1 /* ExchangeRatesForChartsParser.swift */,
-				B0C7447621147C7F008885C1 /* ExchangeRatesParser.swift */,
-			);
-			path = Parser;
 			sourceTree = "<group>";
 		};
 		D820C69F2101232E001D3B00 /* ETH */ = {
@@ -1173,10 +1139,10 @@
 				D820C70C21037EDA001D3B00 /* (null) in Resources */,
 				B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */,
 				B0ACFFF021122EB6007BE95C /* Money.storyboard in Resources */,
-				B0493E602112A75100B7AA94 /* Assets.xcassets in Resources */,
 				D820C6BA21036E09001D3B00 /* (null) in Resources */,
 				B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */,
 				D820C6BB21036E09001D3B00 /* (null) in Resources */,
+				B01F0DFF2109E2BB008FB6F0 /* Assets.xcassets in Resources */,
 				0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */,
 				B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */,
 				0E074C14210E357200CB3853 /* Setting.storyboard in Resources */,
@@ -1213,7 +1179,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-paymon/Pods-paymon-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -1223,7 +1188,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -1299,6 +1263,7 @@
 				B0C396B2210A50C700E0C344 /* UINavigationBar.swift in Sources */,
 				B019551720FFAA6600F3DDB0 /* SerializedStream.mm in Sources */,
 				B019552920FFAA9200F3DDB0 /* KeyGenerator.cpp in Sources */,
+				0EA66B9E210F7F8A00CC1162 /* UpdateProfileTableInfoView.swift in Sources */,
 				0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */,
 				B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */,
 				B019551E20FFAA6600F3DDB0 /* KeychainItemAccessibility.swift in Sources */,
@@ -1316,25 +1281,23 @@
 				B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */,
 				D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */,
 				B01F0DFD2108847C008FB6F0 /* FromRightSegue.swift in Sources */,
-				B0AC000121126EAA007BE95C /* Money.swift in Sources */,
 				0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */,
+				B0AC000121126EAA007BE95C /* Money.swift in Sources */,
 				B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */,
 				B01954E120FFA92100F3DDB0 /* ObservableMediaManager.swift in Sources */,
 				B0C396AC210A49C300E0C344 /* ForgotPasswordEmailViewController.swift in Sources */,
 				B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */,
 				0E0F4780210BA34A004B4A3C /* ContactsViewController.swift in Sources */,
 				B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */,
-				B0C7447A21149BBF008885C1 /* ChartsRatesViewController.swift in Sources */,
 				0E074C22210E3B0700CB3853 /* SettingsMoneyTableViewController.swift in Sources */,
+				B0011B81210236EF00A3CBF1 /* UIColors.swift in Sources */,
 				0EA66B97210F7E7900CC1162 /* NotificationSoundViewController.swift in Sources */,
-				B0AC1D2A211472DA004D8577 /* ExchangeRetesViewController.swift in Sources */,
+				B0011B81210236EF00A3CBF1 /* UIColor.swift in Sources */,
 				B019550120FFAA3E00F3DDB0 /* DecimalExtension.swift in Sources */,
 				B01954ED20FFA98500F3DDB0 /* StoryBoard.swift in Sources */,
 				B019551920FFAA6600F3DDB0 /* ByteArray_Wrapper.mm in Sources */,
-				B0AC1D26211456E8004D8577 /* CryptoManager.swift in Sources */,
 				B0ACFFF921126688007BE95C /* CellMoneyData.swift in Sources */,
 				0EA074D2210656C7002FF527 /* ChatMessageItemViewCell.swift in Sources */,
-				B0C7447821147C7F008885C1 /* ExchangeRatesParser.swift in Sources */,
 				B019553D20FFAC0F00F3DDB0 /* ETH.swift in Sources */,
 				B01954E020FFA92100F3DDB0 /* Config.swift in Sources */,
 				B019554920FFAC7C00F3DDB0 /* EthernService.swift in Sources */,
@@ -1344,7 +1307,6 @@
 				B01954F820FFA9F000F3DDB0 /* KeyGenerator.swift in Sources */,
 				D820C6A72101232E001D3B00 /* SendViewController.swift in Sources */,
 				B0C396A7210A3B2600E0C344 /* GamesViewController.swift in Sources */,
-				B0AC1D2821146AA4004D8577 /* ExchangeRatesUIView.swift in Sources */,
 				B019555620FFAD7500F3DDB0 /* PMTimer.m in Sources */,
 				B01F0DF921087264008FB6F0 /* UpdateProfileViewController.swift in Sources */,
 				B019555820FFAD7500F3DDB0 /* Connection.m in Sources */,
@@ -1383,7 +1345,6 @@
 				D820C6B521012FD8001D3B00 /* NetworkManager_Wrapper.mm in Sources */,
 				0E074C27210E3B0700CB3853 /* SettingsSecurityTableViewController.swift in Sources */,
 				B019554020FFAC0F00F3DDB0 /* KeystoreService.swift in Sources */,
-				B0AC1D23211452BB004D8577 /* CryptoType.swift in Sources */,
 				0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */,
 				B01954E420FFA92100F3DDB0 /* ClassStore.swift in Sources */,
 				B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */,
@@ -1395,7 +1356,6 @@
 				B01954E220FFA92100F3DDB0 /* Photo.swift in Sources */,
 				B019553F20FFAC0F00F3DDB0 /* Transaction.swift in Sources */,
 				0E074C2A210E435B00CB3853 /* SettingsTableView.swift in Sources */,
-				B0AC1D2C211476A1004D8577 /* ExchangeRatesTableViewCell.swift in Sources */,
 				B01F0DF621087264008FB6F0 /* ProfileInfoTableViewController.swift in Sources */,
 				B01954F120FFA9B400F3DDB0 /* TransactionFactoryProtocol.swift in Sources */,
 				B0AC000521128BD2007BE95C /* CellCreatedMoneyData.swift in Sources */,
@@ -1407,13 +1367,11 @@
 				0EA074D4210656FC002FF527 /* ChatMessageItemRcvViewCell.swift in Sources */,
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
 				B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */,
-				B0C7447721147C7F008885C1 /* ExchangeRatesForChartsParser.swift in Sources */,
-				B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
+				0EA66B9C210F7F4800CC1162 /* UpdateProfileHeaderView.swift in Sources */,
 				B019551820FFAA6600F3DDB0 /* PMFileManager.swift in Sources */,
 				B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */,
 				B01954EE20FFA98500F3DDB0 /* Ether.swift in Sources */,
-				B0493E622112AAE800B7AA94 /* UIColor.swift in Sources */,
 				B0AC000B211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift in Sources */,
 				B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */,
 				B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */,
@@ -1422,6 +1380,7 @@
 				B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */,
 				B0C396AE210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift in Sources */,
 				0E074C23210E3B0700CB3853 /* SettingsMoneyViewController.swift in Sources */,
+				0EA66B99210F7F0300CC1162 /* UpdateProfileViewController.swift in Sources */,
 				0E074C20210E3B0700CB3853 /* SettingsBasicTableViewController.swift in Sources */,
 				0E074C26210E3B0700CB3853 /* SettingsNotificationTableViewController.swift in Sources */,
 			);

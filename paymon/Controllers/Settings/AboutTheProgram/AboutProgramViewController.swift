@@ -21,7 +21,7 @@ class AboutProgramViewController : UIViewController {
 
         titleLabel.text = "Paymon for iOS".localized
 
-        self.view.addBackground()
+        self.view.addUIViewBackground(name: "MainBackground")
 
         let navigationItem = UINavigationItem()
 

@@ -20,22 +20,6 @@ class User {
     public static var moneyDefaults: UserDefaults = UserDefaults(suiteName: "pm_money")!
     let basicSettings = UserDefaults.standard
     let moneySettings = UserDefaults.standard
-    private static var _ymAccessToken: String?
-
-    public static var ymAccessToken: String? {
-        get {
-            if _ymAccessToken == nil {
-                _ymAccessToken = moneyDefaults.string(forKey: Config.YM_ACCESS_TOKEN)
-            }
-            return _ymAccessToken
-        }
-        set {
-            _ymAccessToken = newValue
-            if _ymAccessToken != nil {
-                moneyDefaults.set(_ymAccessToken!, forKey: Config.YM_ACCESS_TOKEN)
-            }
-        }
-    }
 
     public static func saveConfig() {
         if currentUser != nil {
@@ -144,7 +128,5 @@ class User {
         notificationSound = "Note.mp3"
         securitySwitchPasswordProtected = false
         securityPasswordProtectedString = ""
-        ymAccessToken = nil
-        moneyDefaults.removeObject(forKey: Config.YM_ACCESS_TOKEN)
     }
 }

@@ -18,7 +18,7 @@ class SecurityPasswordViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true)
     }
 
-    func onNavBarItemRightClicked () {
+    @objc func onNavBarItemRightClicked () {
         User.securityPasswordProtectedString = passwordTextField.text!
         User.saveSecuritySettings()
 
