@@ -9,65 +9,67 @@
 import UIKit
 
 class SettingsSecurityTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var passwordProtectedCell: UITableViewCell!
     @IBOutlet weak var enterPasswordCell: UITableViewCell!
     @IBOutlet weak var subTitlePasswordProtectedCell: UILabel!
     
     let switchPasswordProtected = UISwitch()
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         passwordProtectedCell.textLabel!.text! = "Password protect".localized
         subTitlePasswordProtectedCell.text = "Set the password for the application".localized
         enterPasswordCell.textLabel!.text! = "Enter password".localized
-
+        
         passwordProtectedCell.accessoryView = switchPasswordProtected
-
+        
         switchPasswordProtected.addTarget(self, action: #selector(segmentControlChangeValue(_:)), for: .valueChanged)
-
+        
         loadSettings()
-
+        
     }
-
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
+        
         switch (section) {
         case 0: return "Protect".localized
         default: return "Other".localized
         }
     }
-
+    
     @objc func segmentControlChangeValue(_ segmentControl : UISegmentedControl) {
         if switchPasswordProtected.isOn == false {
             User.securityPasswordProtectedString = ""
-
+            
             User.saveSecuritySettings()
         }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        
         saveSettings()
-
+        
     }
-
+    
+    // Load the password protection setting from userDefaults.
     func loadSettings() {
-
+        
         switchPasswordProtected.setOn(User.securitySwitchPasswordProtected, animated: true)
-
+        
     }
-
+    
+    // Save the changes made by user in the password protection setting.
     func saveSettings () {
         User.securitySwitchPasswordProtected = switchPasswordProtected.isOn
-
+        
         if (switchPasswordProtected.isOn == false) {
             User.securityPasswordProtectedString = ""
         }
-
+        
         User.saveSecuritySettings()
     }
 }
