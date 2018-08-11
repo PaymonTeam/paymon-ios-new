@@ -8,6 +8,7 @@
 #ifndef __NETWORK_MANAGER_WRAPPER__
 #define __NETWORK_MANAGER_WRAPPER__
 #import <Foundation/Foundation.h>
+
 #import <openssl/aes.h>
 #import "Connection.h"
 

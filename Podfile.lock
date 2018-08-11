@@ -10,6 +10,7 @@ PODS:
   - Geth (1.8.12)
   - MBProgressHUD (1.0.0)
   - ObjectMapper (3.3.0)
+  - OpenSSL-Universal (1.0.2.13)
   - PureLayout (3.0.2)
   - web3swift (0.0.9):
     - CryptoSwift
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - Charts
   - MBProgressHUD (~> 1.0.0)
+  - OpenSSL-Universal
   - PureLayout
   - web3swift (from `https://github.com/MercuryProtocol/web3.swift.git`, branch `master`)
 
@@ -32,6 +34,7 @@ SPEC REPOS:
     - Geth
     - MBProgressHUD
     - ObjectMapper
+    - OpenSSL-Universal
     - PureLayout
 
 EXTERNAL SOURCES:
@@ -52,9 +55,10 @@ SPEC CHECKSUMS:
   Geth: db7c45e2930ff53366660645937de126ac02366e
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
+  OpenSSL-Universal: 401888162f11c33ebbd46f782d9229da35c61327
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   web3swift: 9cf4ccef0c7f7e9f9abb3bc5867789b928800af6
 
-PODFILE CHECKSUM: 176c90f31f181e5b0fd1426edc054b701df77400
+PODFILE CHECKSUM: f4d94920fe9558d4868438aaee148c09e6670429
 
 COCOAPODS: 1.5.3

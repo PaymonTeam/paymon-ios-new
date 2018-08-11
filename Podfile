@@ -3,6 +3,10 @@
 
 target 'paymon' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+
+    pod 'OpenSSL-Universal'
+
+
   use_frameworks!
 
     pod 'Alamofire', '~> 4.0'
