@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GamesViewController: UIViewController {
+class GamesViewController: PaymonViewController {
     
     @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var topLabel: UILabel!

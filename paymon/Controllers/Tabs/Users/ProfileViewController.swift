@@ -2,7 +2,7 @@ import UIKit
 import Foundation
 import UserNotifications
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: PaymonViewController {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var profileAvatar: ObservableImageView!

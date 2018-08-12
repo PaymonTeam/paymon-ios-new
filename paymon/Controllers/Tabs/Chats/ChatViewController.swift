@@ -27,7 +27,7 @@ extension String {
     }
 }
 
-class ChatViewController: UIViewController, NotificationManagerListener {
+class ChatViewController: PaymonViewController, NotificationManagerListener {
 
 
     @IBOutlet weak var messageTextView: UITextView!

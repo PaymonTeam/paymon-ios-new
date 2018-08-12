@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ForgotPasswordEmailViewController: UIViewController, UITextFieldDelegate {
+class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBOutlet weak var hint: UILabel!
     @IBOutlet weak var loginOrEmail: UITextField!

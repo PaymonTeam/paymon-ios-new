@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Charts
 
-class ChartsRatesViewController: UIViewController, UITabBarDelegate {
+class ChartsRatesViewController: PaymonViewController, UITabBarDelegate {
     
     @IBOutlet weak var lineChart: LineChartView!
     @IBOutlet weak var tabBar: UITabBar!

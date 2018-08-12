@@ -15,7 +15,7 @@ class GroupSettingContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var btnCross: UIButton!
 }
 
-class GroupSettingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class GroupSettingViewController: PaymonViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var btnGroupImage: UIButton!
     @IBOutlet weak var tblParticipants: UITableView!
     @IBOutlet weak var btnAddParticipants: UIButton!

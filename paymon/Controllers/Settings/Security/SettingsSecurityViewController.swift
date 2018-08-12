@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingsSecurityViewController : UIViewController {
+class SettingsSecurityViewController : PaymonViewController {
     
     
     @IBOutlet weak var navigationBar: UINavigationBar!

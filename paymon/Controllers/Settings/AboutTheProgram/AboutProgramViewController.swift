@@ -2,7 +2,7 @@
 import UIKit
 import Foundation
 
-class AboutProgramViewController : UIViewController {
+class AboutProgramViewController : PaymonViewController {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
     

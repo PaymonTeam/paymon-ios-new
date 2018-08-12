@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingsNotificationViewController : UIViewController {
+class SettingsNotificationViewController : PaymonViewController {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     

@@ -18,7 +18,7 @@ class GroupContactsHeaderView : UIView {
     @IBOutlet weak var txtVContacts: UITextView!
 }
 
-class CreateGroupViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
+class CreateGroupViewController: PaymonViewController , UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var btnCreateGroup: UIBarButtonItem!
     @IBOutlet weak var tblVContacts: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!

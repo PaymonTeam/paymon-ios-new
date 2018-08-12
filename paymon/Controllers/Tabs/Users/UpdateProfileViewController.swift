@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-class UpdateProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UpdateProfileViewController: PaymonViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
 

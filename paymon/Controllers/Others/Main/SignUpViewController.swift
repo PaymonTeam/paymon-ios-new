@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var hintTitle: UILabel!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecurityPasswordViewController: UIViewController, UITextFieldDelegate {
+class SecurityPasswordViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var navigationBar: UINavigationBar!

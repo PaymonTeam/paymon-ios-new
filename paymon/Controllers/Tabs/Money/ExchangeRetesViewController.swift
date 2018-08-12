@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExchangeRetesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBOutlet weak var navigationBar: UINavigationBar!

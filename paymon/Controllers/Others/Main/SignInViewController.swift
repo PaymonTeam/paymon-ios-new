@@ -9,7 +9,7 @@
 import Foundation
 import MBProgressHUD
 
-class SignInViewController: UIViewController, UITextFieldDelegate {
+class SignInViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var signInItem: UIBarButtonItem!
