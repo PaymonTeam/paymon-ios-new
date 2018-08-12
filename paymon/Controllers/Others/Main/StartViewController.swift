@@ -7,28 +7,35 @@ import UIKit
 
 class StartViewController: UIViewController {
 
-    @IBOutlet weak var logo: UIImageView!
-    @IBOutlet weak var signUp: UIButton!
-    @IBOutlet weak var signIn: UIButton!
-    @IBOutlet weak var hint: UILabel!
-    
-    @IBAction func signUpClick(_ sender: Any) {
-        let signUpViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.signUpViewController) as! SignUpViewController
-        present(signUpViewController, animated: true)
-    }
-    
-    @IBAction func signInClick(_ sender: Any) {
+//    @IBOutlet weak var logo: UIImageView!
+//    @IBOutlet weak var signUp: UIButton!
+//    @IBOutlet weak var signIn: UIButton!
+//    @IBOutlet weak var hint: UILabel!
+//
+
+    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var hintLbl: UILabel!
+    @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var signInBtn: UIButton!
+
+    @IBAction func signInAction(_ sender: Any) {
         let signInViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.signInViewController) as! SignInViewController
         present(signInViewController, animated: true)
-    }
 
+    }
+    @IBAction func signUpAction(_ sender: Any) {
+        let signUpViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.signUpViewController) as! SignUpViewController
+        present(signUpViewController, animated: true)
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        hint.text = "Already have an account?".localized
+        hintLbl.text = "Already have an account?".localized
 
-        signIn.setTitle("sign in".localized, for: .normal)
-        signUp.setTitle("sign up".localized, for: .normal)
+        signInBtn.setTitle("sign in".localized, for: .normal)
+        signUpBtn.setTitle("sign up".localized, for: .normal)
 
     }
 

@@ -36,7 +36,6 @@
 		0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */; };
 		0EA66BA4210F810C00CC1162 /* SecurityPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */; };
 		0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */; };
-		0ED222FF21162C2A0025F471 /* libcrypto.1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ED222FE21162C2A0025F471 /* libcrypto.1.0.0.dylib */; };
 		3E437C3864077E699C425530 /* Pods_paymonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4653E7B9D5552DD6D7E6F70 /* Pods_paymonTests.framework */; };
 		6AECEA178FD6F827A3D6A15B /* Pods_paymonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2BFF67FCD3EF3CEBD321C3 /* Pods_paymonUITests.framework */; };
 		B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B692100A1C400A3CBF1 /* SyncMode.swift */; };
@@ -180,19 +179,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		0ED222FD211626610025F471 /* Embed Libraries */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Libraries";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0E0402C4210644A400D6F703 /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		0E074C13210E357200CB3853 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -223,7 +209,6 @@
 		0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSoundTableViewController.swift; sourceTree = "<group>"; };
 		0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityPasswordViewController.swift; sourceTree = "<group>"; };
 		0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramViewController.swift; sourceTree = "<group>"; };
-		0ED222FE21162C2A0025F471 /* libcrypto.1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.1.0.0.dylib; path = ../../../../../usr/local/Cellar/openssl/1.0.2o_2/lib/libcrypto.1.0.0.dylib; sourceTree = "<group>"; };
 		1B2BFF67FCD3EF3CEBD321C3 /* Pods_paymonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29895C30C7A907C60535323B /* Pods-paymon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymon.release.xcconfig"; path = "Pods/Target Support Files/Pods-paymon/Pods-paymon.release.xcconfig"; sourceTree = "<group>"; };
 		2B7D036B53CDC2B168A55D03 /* Pods-paymonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-paymonTests/Pods-paymonTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1632,7 +1617,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -1686,7 +1670,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;

@@ -29,7 +29,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="signInClick:" destination="l0I-cH-C0G" eventType="touchUpInside" id="dFT-Dz-Qts"/>
+                                    <action selector="signInAction:" destination="l0I-cH-C0G" eventType="touchUpInside" id="Zxc-S0-QgW"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HkI-Yf-MZM">
@@ -49,7 +49,7 @@
                                     <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </state>
                                 <connections>
-                                    <action selector="signUpClick:" destination="l0I-cH-C0G" eventType="touchUpInside" id="16l-wV-u6f"/>
+                                    <action selector="signUpAction:" destination="l0I-cH-C0G" eventType="touchUpInside" id="lsb-YO-phE"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoWhite" translatesAutoresizingMaskIntoConstraints="NO" id="nuD-7z-F9M">
@@ -79,15 +79,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="grp-5p-T8Q"/>
                     <connections>
-                        <outlet property="hint" destination="HkI-Yf-MZM" id="g6A-A0-DsO"/>
-                        <outlet property="logo" destination="nuD-7z-F9M" id="0Ki-cF-vOG"/>
-                        <outlet property="signIn" destination="Pgb-b7-MU7" id="oJs-JQ-2Vn"/>
-                        <outlet property="signUp" destination="fah-Mv-7aF" id="WO9-QN-vNT"/>
+                        <outlet property="hintLbl" destination="HkI-Yf-MZM" id="apA-PW-AEm"/>
+                        <outlet property="logoImageView" destination="nuD-7z-F9M" id="ZaT-Wl-IwA"/>
+                        <outlet property="signInBtn" destination="Pgb-b7-MU7" id="rwb-nb-5Jg"/>
+                        <outlet property="signUpBtn" destination="fah-Mv-7aF" id="wLQ-BG-6Z2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DhU-px-2Wb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1040" y="141"/>
+            <point key="canvasLocation" x="1978.4000000000001" y="140.77961019490255"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="1bL-Zn-ttb">
@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKx-su-blz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="141"/>
+            <point key="canvasLocation" x="2624.8000000000002" y="140.77961019490255"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="rYa-HP-d78">
@@ -359,7 +359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yrq-ss-CeO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2334" y="141"/>
+            <point key="canvasLocation" x="3272.8000000000002" y="140.77961019490255"/>
         </scene>
     </scenes>
     <resources>
