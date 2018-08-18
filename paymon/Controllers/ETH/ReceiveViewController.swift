@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class ReceiveViewController: UIViewController {
+class ReceiveViewController: PaymonViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var qrImageView: UIImageView!
     @IBOutlet weak var copyAddressButton: UIButton!

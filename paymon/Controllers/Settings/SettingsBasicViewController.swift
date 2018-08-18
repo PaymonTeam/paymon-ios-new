@@ -1,6 +1,6 @@
 import UIKit
 
-class SettingsBasicViewController : UIViewController {
+class SettingsBasicViewController : PaymonViewController {
 
     @IBOutlet weak var navigationBar: UINavigationBar!
 

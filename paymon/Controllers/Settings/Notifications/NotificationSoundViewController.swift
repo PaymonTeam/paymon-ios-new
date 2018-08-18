@@ -1,6 +1,6 @@
 import UIKit
 
-class NotificationSoundViewController: UIViewController {
+class NotificationSoundViewController: PaymonViewController {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoneyViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CountryPickerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class CountryPickerViewController: PaymonViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var selectCountry : String!
     

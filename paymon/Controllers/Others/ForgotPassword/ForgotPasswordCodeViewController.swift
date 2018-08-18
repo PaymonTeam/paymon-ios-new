@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ForgotPasswordCodeViewController: UIViewController, UITextFieldDelegate {
+class ForgotPasswordCodeViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var nextItem: UIBarButtonItem!

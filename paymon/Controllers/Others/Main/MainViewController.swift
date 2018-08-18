@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MainViewController: UIViewController {
+class MainViewController: PaymonViewController {
     var willAuth = false;
     
     override func viewDidLoad() {

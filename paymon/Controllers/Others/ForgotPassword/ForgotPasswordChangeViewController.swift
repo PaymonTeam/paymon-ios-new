@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ForgotPasswordChangeViewController: UIViewController, UITextFieldDelegate {
+class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var newPassword: UITextField!

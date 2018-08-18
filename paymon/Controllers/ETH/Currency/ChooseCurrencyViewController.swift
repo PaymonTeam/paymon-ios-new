@@ -12,7 +12,7 @@ protocol SelectedCurrencyDelegate: class {
     func selectedCurrency(value: String)
 }
 
-class ChooseCurrencyViewController: UIViewController {
+class ChooseCurrencyViewController: PaymonViewController {
     @IBOutlet weak var tableView: UITableView!
     var delegate: SelectedCurrencyDelegate?
     // MARK: Life cycle

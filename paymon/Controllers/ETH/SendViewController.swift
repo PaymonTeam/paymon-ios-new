@@ -11,7 +11,7 @@ import Geth
 import web3swift
 import AVFoundation
 
-class SendViewController: UIViewController, SelectedCurrencyDelegate {
+class SendViewController: PaymonViewController, SelectedCurrencyDelegate {
 
     private var amount: Decimal = 0
     private var address: String!

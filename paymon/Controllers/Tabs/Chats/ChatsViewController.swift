@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 import web3swift
 
-class ChatsViewController: UIViewController, NotificationManagerListener {
+class ChatsViewController: PaymonViewController, NotificationManagerListener {
     public class CellChatData {
         var photoID:Int64!
         var name = ""

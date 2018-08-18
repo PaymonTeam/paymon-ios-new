@@ -142,6 +142,7 @@
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
 		B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */; };
 		D66275EDD87D20306F62E7E8 /* Pods_paymon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3764DFE35E2623F4092A261 /* Pods_paymon.framework */; };
+		D816BA352120C3CE001B6FE8 /* PaymonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */; };
 		D81A6039211ED57700333F39 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81A6037211ED57700333F39 /* libssl.a */; };
 		D81A603A211ED57700333F39 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81A6038211ED57700333F39 /* libcrypto.a */; };
 		D81C9CC32118F780009130C0 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C9CC22118F77F009130C0 /* libcryptopp.a */; };
@@ -348,6 +349,7 @@
 		B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerViewController.swift; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05E199DF40685C191ADE6F1 /* Pods-paymonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-paymonTests/Pods-paymonTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymonViewController.swift; sourceTree = "<group>"; };
 		D81A6037211ED57700333F39 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "Pods/OpenSSL-Universal/lib-ios/libssl.a"; sourceTree = "<group>"; };
 		D81A6038211ED57700333F39 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "Pods/OpenSSL-Universal/lib-ios/libcrypto.a"; sourceTree = "<group>"; };
 		D81C9CC22118F77F009130C0 /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = "../../../../../../../../usr/local/cryptopp-ios/lib/libcryptopp.a"; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 		B099C9A920FDD21A00718608 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D816BA332120C395001B6FE8 /* SuperViewController */,
 				D820C69F2101232E001D3B00 /* ETH */,
 				B099C9B020FDD25D00718608 /* Others */,
 				B099C9AF20FDD25700718608 /* Settings */,
@@ -1022,6 +1025,14 @@
 			path = Parser;
 			sourceTree = "<group>";
 		};
+		D816BA332120C395001B6FE8 /* SuperViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */,
+			);
+			path = SuperViewController;
+			sourceTree = "<group>";
+		};
 		D820C69F2101232E001D3B00 /* ETH */ = {
 			isa = PBXGroup;
 			children = (
@@ -1381,6 +1392,7 @@
 				D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */,
 				B0ACFFF4211233F0007BE95C /* MoneyCreatedTableViewCell.swift in Sources */,
 				B01954F920FFA9F000F3DDB0 /* KeyGenerator_Wrapper.mm in Sources */,
+				D816BA352120C3CE001B6FE8 /* PaymonViewController.swift in Sources */,
 				B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */,
 				0EA66BA4210F810C00CC1162 /* SecurityPasswordViewController.swift in Sources */,
 				0EA074D4210656FC002FF527 /* ChatMessageItemRcvViewCell.swift in Sources */,

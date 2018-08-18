@@ -5,7 +5,7 @@
 
 import UIKit
 
-class StartViewController: UIViewController {
+class StartViewController: PaymonViewController {
 
 //    @IBOutlet weak var logo: UIImageView!
 //    @IBOutlet weak var signUp: UIButton!

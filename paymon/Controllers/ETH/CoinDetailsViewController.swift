@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CoinDetailsViewController: UIViewController {
+class CoinDetailsViewController: PaymonViewController {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
