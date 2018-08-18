@@ -24,11 +24,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
     }
     public class CellGroupData : CellChatData {
         public var lastMsgPhoto:RPC.PM_photo?
-//
-//        public init(int chatID, RPC.PM_photo photo, RPC.PM_photo lastMsgPhoto, String name, String lastMessage, long time) {
-//            super.init(chatID, photo, name, lastMessage, time);
-//            this.lastMsgPhoto = lastMsgPhoto;
-//        }
     }
     @IBOutlet weak var chatsTable: UITableView!
     
@@ -45,6 +40,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
         NotificationManager.instance.addObserver(self, id: NotificationManager.dialogsNeedReload)
         NotificationManager.instance.addObserver(self, id: NotificationManager.userAuthorized)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didDisconnectedFromServer)
+        NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
 
         isLoading = false
         if (User.isAuthenticated) {
@@ -58,6 +54,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
         NotificationManager.instance.removeObserver(self, id: NotificationManager.dialogsNeedReload)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.userAuthorized)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didDisconnectedFromServer)
+        NotificationManager.instance.removeObserver(self, id: NotificationManager.didReceivedNewMessages)
 
         super.viewWillDisappear(animated)
     }
@@ -86,9 +83,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
         chatsTable.dataSource = self
         chatsTable.delegate = self
 
-//        for tab:UITabBarItem in tabViews {
-//        }
-
     }
 
     @IBAction func addGroupItemClick(_ sender: Any) {
@@ -97,7 +91,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
     }
     
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
-        if (id == NotificationManager.dialogsNeedReload) {
+        if (id == NotificationManager.dialogsNeedReload || id == NotificationManager.didReceivedNewMessages) {
 
             var array:[CellChatData] = []
             for user in MessageManager.instance.userContacts.values {
@@ -167,7 +161,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
                 data.timeString = lastMessageTimeString
                 data.lastMsgPhoto = lastMsgPhoto
                 array.append(data)
-//                array.add(new CellGroupData(group.id, photo, lastMsgPhoto, title, lastMessageText, lastMessageTime))
             }
 
             activityView.stopAnimating()
@@ -189,9 +182,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
             DispatchQueue.main.async {
                 self.activityView.stopAnimating()
             }
-//            if (swipeRefreshLayout != nil) {
-//                swipeRefreshLayout.setRefreshing(false)
-//            }
         } else if id == NotificationManager.userAuthorized {
             if !isLoading {
                 isLoading = true
@@ -251,8 +241,5 @@ extension ChatsViewController: UITableViewDelegate {
 
 
         present(chatView, animated: false, completion: nil)
-//        if let seedView = storyboard?.instantiateViewController(withIdentifier: "SeedViewController") {
-//            present(seedView, animated: true)
-//        }
     }
 }

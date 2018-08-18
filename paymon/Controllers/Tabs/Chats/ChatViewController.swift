@@ -275,25 +275,6 @@ extension ChatViewController: UITableViewDataSource {
     }
     
 
-//    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let row = indexPath.row
-//        let mid = messages[row]
-//        if let message = MessageManager.instance.messages[mid] {
-//            if let itemType = message.itemType {
-//                switch itemType {
-//                case .NONE, .ACTION, .AUDIO, .DOCUMENT, .PHOTO:
-//                    return 45.0
-//                case .STICKER:
-//                    return 120.0
-//                }
-//            } else {
-//                return 45.0
-//            }
-//        } else {
-//            return 0.0
-//        }
-//    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let mid = messages[row]
@@ -370,26 +351,12 @@ extension ChatViewController: UITextViewDelegate {
 
     func resizeTextView(_ textView: UITextView){
 
-//        let textViewFixedWidth: CGFloat = textView.frame.size.width
-//        let newSize: CGSize = textView.sizeThatFits(CGSize(width: textViewFixedWidth, height: CGFloat(MAXFLOAT)))
-//        var newFrame: CGRect = textView.frame
-//
-//        var textViewYPosition = textView.frame.origin.y
-//        var heightDifference = textView.frame.height - newSize.height
-//
-//        if (abs(heightDifference) > 20) {
-//            newFrame.size = CGSize(width: fmax(newSize.width, textViewFixedWidth), height: newSize.height)
-//            newFrame.offsetBy(dx: 0.0, dy: 0)
-//        }
-//        textView.frame = newFrame
-
         let fixedWidth = textView.frame.size.width
 //        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         var newFrame = textView.frame
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height - 2)
         textView.frame = newFrame
-//        textView.isScrollEnabled
 
         UIView.animate(withDuration: 0,
                 delay: 0,
@@ -404,7 +371,6 @@ extension ChatViewController: UITextViewDelegate {
         if newFrame.height > oldFrame.height {
             let resizeFrame = newFrame.height - oldFrame.height
             oldFrame = newFrame
-//            print(resizeFrame)
             messageViewHeight.constant += resizeFrame
 
         } else if oldFrame.height > newFrame.height {
@@ -423,7 +389,6 @@ extension ChatViewController: UITextViewDelegate {
             })
         }
 
-//        print(textView.frame.height)
     }
     func textViewDidChange(_ textView: UITextView) {
         resizeTextView(textView)
@@ -433,9 +398,6 @@ extension ChatViewController: UITextViewDelegate {
             messageViewHeight.constant = 44
         }
 
-//        if messageViewHeight.constant < messageTextViewHeight.constant {
-//            messageViewHeight.constant += messageTextViewHeight.constant
-//        }
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {

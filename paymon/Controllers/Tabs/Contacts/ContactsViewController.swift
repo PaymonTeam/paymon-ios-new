@@ -191,7 +191,6 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
                         let pid = MediaManager.instance.userProfilePhotoIDs[(u.id)!] ?? 0
                         u.photoID = pid
                     }
-                    
                 }
                 self.searchData = usersPacket.users
                 DispatchQueue.main.async {

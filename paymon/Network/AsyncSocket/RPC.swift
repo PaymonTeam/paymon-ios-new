@@ -961,7 +961,7 @@ class RPC {
 
     class PM_message : Message {
         static let svuid:Int32 = 1683670506
-
+        // this method is trigger when new mwssage arrive
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             flags = stream.readInt32(exception)
             unread = (flags & Message.MESSAGE_FLAG_UNREAD) != 0
@@ -990,6 +990,7 @@ class RPC {
             if ((flags & Message.MESSAGE_FLAG_EDITED) != 0) {
                 edit_date = stream.readInt32(exception)
             }
+
         }
 
         override func serializeToStream(stream: SerializableData) {
