@@ -1,4 +1,6 @@
 import UIKit
+import Contacts
+import ContactsUI
 
 class ContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
@@ -39,18 +41,44 @@ extension UISearchBar {
     }
 }
 
-class ContactsViewController : UITableViewController, UISearchBarDelegate {
+class ContactsViewController : UITableViewController, UISearchBarDelegate, CNContactPickerDelegate {
     let timerQueue = Queue()
     var searchTimer:PMTimer!
     var searchBar:UISearchBar!
     var searchData:[RPC.UserObject] = []
 //    var activityView:UIActivityIndicatorView!
 
+//    lazy var button: UIButton = {
+//        let addButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 70, y: UIScreen.main.bounds.height - 200, width: 50, height: 50))
+//        addButton.setImage(UIImage(named: "AddButton"), for: .normal)
+//        addButton.addTarget(self, action: #selector(onClickAddButton), for: .touchUpInside)
+//        return addButton
+//    }()
+    
+    
+//    @objc func onClickAddButton() {
+//        let cnPicker = CNContactPickerViewController()
+//        cnPicker.delegate = self
+//        navigationController?.present(cnPicker, animated: true, completion: nil)
+//    }
+    
+   @objc func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+        print("Contact Selected")
+    }
+    
+   @objc func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
+        print("Canceld")
+    }
+    
     @IBOutlet weak var navigationBar: UINavigationBar!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
+        
+      //  self.view.addSubview(button)
+      //  self.view.bringSubview(toFront: button)
+        
         searchTimer = PMTimer(timeout: 0, repeat: false, completionFunction: {
             self.onSearch(self.searchBar.text ?? "")
         }, queue:timerQueue.nativeQueue())
@@ -155,10 +183,15 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
         searchContact.query = query
         NetworkManager.instance.sendPacket(searchContact) { packet, error in
             if let usersPacket = packet as? RPC.PM_users {
-                for u:RPC.UserObject? in usersPacket.users {
-                    MessageManager.instance.putSearchUser(u!)
-                    let pid = MediaManager.instance.userProfilePhotoIDs[(u?.id)!] ?? 0
-                    u?.photoID = pid
+                // Append the searched user into the modal.
+                for i in 0..<usersPacket.users.count - 1 {
+                    
+                    if let u =  usersPacket.users[i] as? RPC.UserObject {
+                        MessageManager.instance.putSearchUser(u)
+                      //  let pid = MediaManager.instance.userProfilePhotoIDs[(u.id)!] ?? 0
+                      //  u.photoID = pid
+                    }
+                    
                 }
                 self.searchData = usersPacket.users
                 DispatchQueue.main.async {
@@ -185,3 +218,6 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
         print("Scope button")
     }
 }
+
+
+

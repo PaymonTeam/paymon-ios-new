@@ -95,10 +95,10 @@
             </objects>
             <point key="canvasLocation" x="2274" y="1009"/>
         </scene>
-        <!--ContactsViewController-->
+        <!--NavigationControllerContact-->
         <scene sceneID="jHw-Np-OJe">
             <objects>
-                <viewControllerPlaceholder storyboardName="Contacts" referencedIdentifier="ContactsViewController" id="3L4-RE-kH0" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Contacts" referencedIdentifier="NavigationControllerContact" id="3L4-RE-kH0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Contacts" image="Contacts" id="iOY-Lj-ISG"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Raq-KN-IGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
