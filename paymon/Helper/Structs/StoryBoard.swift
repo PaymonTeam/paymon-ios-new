@@ -16,6 +16,7 @@ struct StoryBoard {
     static let user = UIStoryboard(name: "User", bundle: Bundle.main)
     static let forgotPassword = UIStoryboard(name: "ForgotPassword", bundle: Bundle.main)
     static let money = UIStoryboard(name: "Money", bundle: Bundle.main)
+    static let chat = UIStoryboard(name: "Chats", bundle: Bundle.main)
 
 }
 

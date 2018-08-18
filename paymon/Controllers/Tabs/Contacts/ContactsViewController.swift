@@ -41,7 +41,7 @@ extension UISearchBar {
     }
 }
 
-class ContactsViewController : UITableViewController, UISearchBarDelegate, CNContactPickerDelegate {
+class ContactsViewController : UITableViewController, UISearchBarDelegate {
     let timerQueue = Queue()
     var searchTimer:PMTimer!
     var searchBar:UISearchBar!
@@ -130,7 +130,7 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate, CNCon
                 manager.dialogMessages = SharedDictionary<Int32, SharedArray<RPC.Message>>()
             }
 
-            let chatView = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
+            let chatView = StoryBoard.chat.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
             chatView.setValue(Utils.formatUserName(data), forKey: "title")
             chatView.isGroup = false
             chatView.chatID = userID
@@ -188,8 +188,8 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate, CNCon
                     
                     if let u =  usersPacket.users[i] as? RPC.UserObject {
                         MessageManager.instance.putSearchUser(u)
-                      //  let pid = MediaManager.instance.userProfilePhotoIDs[(u.id)!] ?? 0
-                      //  u.photoID = pid
+                        let pid = MediaManager.instance.userProfilePhotoIDs[(u.id)!] ?? 0
+                        u.photoID = pid
                     }
                     
                 }
