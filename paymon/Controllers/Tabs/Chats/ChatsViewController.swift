@@ -16,11 +16,11 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
         var time:Int64 = 0
         var chatID:Int32!
     }
-
+    
     @IBOutlet weak var borderConstraint: NSLayoutConstraint!
-
+    
     public class CellDialogData : CellChatData {
-
+        
     }
     public class CellGroupData : CellChatData {
         public var lastMsgPhoto:RPC.PM_photo?
@@ -33,15 +33,15 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
     let editNavigationItem = UINavigationItem()
     
     @IBOutlet weak var navigationBar: UINavigationBar!
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         NotificationManager.instance.addObserver(self, id: NotificationManager.dialogsNeedReload)
         NotificationManager.instance.addObserver(self, id: NotificationManager.userAuthorized)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didDisconnectedFromServer)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
-
+        
         isLoading = false
         if (User.isAuthenticated) {
             isLoading = true
@@ -49,42 +49,40 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
             MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
         }
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         NotificationManager.instance.removeObserver(self, id: NotificationManager.dialogsNeedReload)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.userAuthorized)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didDisconnectedFromServer)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didReceivedNewMessages)
-
+        
         super.viewWillDisappear(animated)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let configA = EthAccountConfiguration(namespace: "walletA", password: "qwerty")
-
         self.tabBarController?.tabBar.items?[0].title = "Chats".localized
         self.tabBarController?.tabBar.items?[1].title = "Contacts".localized
         self.tabBarController?.tabBar.items?[2].title = "Wallet".localized
         self.tabBarController?.tabBar.items?[3].title = "Games".localized
         self.tabBarController?.tabBar.items?[4].title = "Profile".localized
-
+        
         self.navigationItem.title = "Chats".localized
         
         borderConstraint.constant = 0.5
-
+        
         list.removeAll()
-
+        
         activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityView.center = self.view.center
         self.view.addSubview(activityView)
-
+        
         chatsTable.dataSource = self
         chatsTable.delegate = self
-
+        
     }
-
+    
     @IBAction func addGroupItemClick(_ sender: Any) {
         let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
         present(groupView, animated: false, completion: nil)
@@ -92,11 +90,11 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
     
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if (id == NotificationManager.dialogsNeedReload || id == NotificationManager.didReceivedNewMessages) {
-
+            
             var array:[CellChatData] = []
             for user in MessageManager.instance.userContacts.values {
                 let data = CellDialogData()
-
+                
                 let username = Utils.formatUserName(user)
                 var lastMessageText = ""
                 var lastMessageTime = ""
@@ -119,7 +117,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
                 data.timeString = lastMessageTime
                 array.append(data)
             }
-
+            
             for group in MessageManager.instance.groups.values {
                 
                 let data = CellGroupData()
@@ -127,7 +125,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
                 let title = group.title
                 var lastMessageText = ""
                 var lastMessageTimeString = ""
-
+                
                 var lastMsgPhoto:RPC.PM_photo? = nil
                 if let lastMessageID = MessageManager.instance.lastGroupMessages[group.id] {
                     if let msg = MessageManager.instance.messages[lastMessageID] {
@@ -138,7 +136,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
                         }
                         data.time = Int64(msg.date)
                         lastMessageTimeString = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
-
+                        
                         let user = MessageManager.instance.users[msg.from_id]
                         if (user != nil) {
                             lastMsgPhoto = RPC.PM_photo()
@@ -162,9 +160,9 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
                 data.lastMsgPhoto = lastMsgPhoto
                 array.append(data)
             }
-
+            
             activityView.stopAnimating()
-
+            
             if !array.isEmpty {
                 array.sort {
                     $0.time > $1.time
@@ -173,9 +171,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
                 list.append(contentsOf: array)
                 chatsTable.reloadData()
             } else {
-//                hintView.setVisibility(View.VISIBLE)
             }
-
+            
             isLoading = false
         } else if (id == NotificationManager.didDisconnectedFromServer) {
             isLoading = false
@@ -198,7 +195,7 @@ extension ChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let data = list[row]
@@ -238,8 +235,8 @@ extension ChatsViewController: UITableViewDelegate {
             chatView.isGroup = false
         }
         chatView.chatID = data.chatID
-
-
+        
+        
         present(chatView, animated: false, completion: nil)
     }
 }

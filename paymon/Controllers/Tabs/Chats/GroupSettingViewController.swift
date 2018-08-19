@@ -40,15 +40,12 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         txtfTitle.text = group.title
         creatorID = group.creatorID;
         isCreator = (creatorID == User.currentUser?.id);
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     //MARK: - IBActions
     
     @IBAction func btnAddParticipantsTapped(_ sender: Any) {
@@ -83,8 +80,8 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
             let oldPhotoID = group.photo.id!
             let photoID = photo.id!
             btnGroupImage.setImage(image, for: .normal)
-        ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
-
+            ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
+            
             DispatchQueue.main.async {
                 self.activityView.startAnimating()
             }
@@ -176,5 +173,5 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         }
         self.present(alert, animated: true, completion: nil)
     }
-
+    
 }

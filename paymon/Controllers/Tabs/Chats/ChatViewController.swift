@@ -13,13 +13,13 @@ class GroupChatMessageRcvViewCell : ChatMessageRcvViewCell {
 //import PureLayout
 
 extension String {
-
+    
     func widthOfString(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [kCTFontAttributeName: font]
         let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
         return size.width
     }
-
+    
     func heightOfString(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [kCTFontAttributeName: font]
         let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
@@ -28,17 +28,16 @@ extension String {
 }
 
 class ChatViewController: PaymonViewController, NotificationManagerListener {
-
-
+    
+    
     @IBOutlet weak var messageTextView: UITextView!
-
+    
     @IBOutlet weak var messageViewHeight: NSLayoutConstraint!
     @IBOutlet weak var messageTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contraintViewBottom: NSLayoutConstraint!
-    //    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var groupIconImageView: ObservableImageView!
     @IBOutlet weak var lblParticipants: UILabel!
     
@@ -48,15 +47,15 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     var isGroup: Bool!
     var users = SharedArray<RPC.UserObject>()
     var oldFrame : CGRect!
-
+    
     @IBAction private func onNavBarItemRightClicked() {
         dismiss(animated: true)
     }
-
+    
     @IBAction private func onNavBarItemLeftClicked() {
         dismiss(animated: true)
     }
-
+    
     @IBAction func onSendClicked() {
         if let text = messageTextView.text {
             if text.ltrim([" "]).rtrim([" "]).isEmpty {
@@ -77,7 +76,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             message.id = mid
             message.text = text
             message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
-
+            
             NetworkManager.instance.sendPacket(message) { p, e in
                 if let update = p as? RPC.PM_updateMessageID {
                     for i in 0..<self.messages.count {
@@ -95,32 +94,30 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                     }
                 }
             }
-
+            
             DispatchQueue.global().sync {
                 messages.append(mid)
             }
             
             MessageManager.instance.putMessage(message, serverTime: false)
-//        tableView.reloadData()
             let index = IndexPath(row: messages.count > 0 ? messages.count - 1 : 0, section: 0)
             tableView.insertRows(at: [index], with: .bottom)
             tableView.scrollToRow(at: index, at: .bottom, animated: false)
-
+            
             messageTextView.text = ""
             messageTextView.frame = oldFrame
             messageViewHeight.constant = 44
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // кура
+        
         NotificationManager.instance.addObserver(self, id: NotificationManager.chatAddMessages)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
+        
         if isGroup {
             users = MessageManager.instance.groupsUsers.value(forKey: chatID)!
         }
@@ -129,7 +126,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         messageTextView.layer.borderColor = UIColor(r: 235, g: 235, b: 241).cgColor
         messageTextView.text = "To write a message".localized
         messageTextView.textColor = UIColor.lightGray
-
+        
         let fixedWidth = messageTextView.frame.size.width
         messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         let newSize = messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
@@ -144,7 +141,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
-
+        
         messageTextView.delegate = self
         let getChatMessages = RPC.PM_getChatMessages()
         getChatMessages.count = 20
@@ -163,28 +160,27 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         }
         getChatMessages.offset = 0
         MessageManager.instance.loadMessages(chatID: chatID, count: 20, offset: 0, isGroup: isGroup)
-
+        
     }
-
-
+    
+    
     @objc func handleKeyboardNotification(notification: NSNotification) {
-
+        
         if let userInfo = notification.userInfo {
             let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
-//            print(keyboardFrame)
-
+            
             let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
-
+            
             contraintViewBottom.constant = isKeyboardShowing ? keyboardFrame!.height : 0
-
+            
             UIView.animate(withDuration: 0,
-                    delay: 0,
-                    options: UIViewAnimationOptions.curveEaseOut,
-                    animations: {
-                        self.view.layoutIfNeeded()
-                    }, completion: {
+                           delay: 0,
+                           options: UIViewAnimationOptions.curveEaseOut,
+                           animations: {
+                            self.view.layoutIfNeeded()
+            }, completion: {
                 (completed) in
-
+                
                 if isKeyboardShowing {
                     if self.messages.count >= 1 {
                         self.tableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: false)
@@ -193,7 +189,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             })
         }
     }
-
+    
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if id == NotificationManager.chatAddMessages {
             if args.count == 2 {
@@ -206,7 +202,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                     }
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
-
+                        
                         if self.messages.count > 0 {
                             let index = IndexPath(row: self.messages.count - 1, section: 0)
                             self.tableView.scrollToRow(at: index, at: .bottom, animated: false)
@@ -222,12 +218,12 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                         DispatchQueue.global().sync {
                             self.messages.append(msg.id)
                         }
-
+                        
                     })
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-
+                    
                     if self.messages.count > 0 {
                         let index = IndexPath(row: self.messages.count - 1, section: 0)
                         self.tableView.scrollToRow(at: index, at: .bottom, animated: false)
@@ -236,19 +232,19 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             }
         }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        
         let fixedWidth = messageTextView.frame.size.width
         messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         let newSize = messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         var newFrame = messageTextView.frame
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
         messageTextView.frame = newFrame
-
+        
     }
-
+    
     @IBAction func btnSettingAction(_ sender: Any) {
         self.goToSetting()
     }
@@ -274,7 +270,7 @@ extension ChatViewController: UITableViewDataSource {
         return messages.count
     }
     
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let mid = messages[row]
@@ -282,7 +278,6 @@ extension ChatViewController: UITableViewDataSource {
             if message.from_id == User.currentUser!.id {
                 if message.itemType == nil || message.itemType == .NONE {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageViewCell") as! ChatMessageViewCell
-//                    cell.timeLabel.text = String(message.date)
                     cell.messageLabel.text = message.text
                     cell.messageLabel.sizeToFit()
                     return cell
@@ -309,7 +304,6 @@ extension ChatViewController: UITableViewDataSource {
                 } else {
                     if message.itemType == nil || message.itemType == .NONE {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageRcvViewCell") as! ChatMessageRcvViewCell
-                        //                    cell.timeLabel.text = String(message.date)
                         cell.messageLabel.text = message.text
                         cell.messageLabel.sizeToFit()
                         return cell
@@ -322,18 +316,18 @@ extension ChatViewController: UITableViewDataSource {
                 
             }
         }
-
+        
         return UITableViewCell(style: .default, reuseIdentifier: nil)
     }
-
+    
 }
 
 extension ChatViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
         messageTextView.endEditing(true)
-
+        
     }
 }
 
@@ -342,84 +336,82 @@ extension ChatViewController: UITextViewDelegate {
         if text == "\n" {
             DispatchQueue.main.async {
                 self.onSendClicked()
-//                textField.resignFirstResponder()
             }
             return false
         }
         return true
     }
-
+    
     func resizeTextView(_ textView: UITextView){
-
+        
         let fixedWidth = textView.frame.size.width
-//        textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
         var newFrame = textView.frame
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height - 2)
         textView.frame = newFrame
-
+        
         UIView.animate(withDuration: 0,
-                delay: 0,
-                options: UIViewAnimationOptions.curveEaseOut,
-                animations: {
-                    self.view.layoutIfNeeded()
-                }, completion: {
+                       delay: 0,
+                       options: UIViewAnimationOptions.curveEaseOut,
+                       animations: {
+                        self.view.layoutIfNeeded()
+        }, completion: {
             (completed) in
-
+            
         })
-
+        
         if newFrame.height > oldFrame.height {
             let resizeFrame = newFrame.height - oldFrame.height
             oldFrame = newFrame
             messageViewHeight.constant += resizeFrame
-
+            
         } else if oldFrame.height > newFrame.height {
-
+            
             let resizeFrame = oldFrame.height - newFrame.height
             oldFrame = newFrame
             messageViewHeight.constant -= resizeFrame
             UIView.animate(withDuration: 0,
-                    delay: 0,
-                    options: UIViewAnimationOptions.curveEaseOut,
-                    animations: {
-                        self.view.layoutIfNeeded()
-                    }, completion: {
+                           delay: 0,
+                           options: UIViewAnimationOptions.curveEaseOut,
+                           animations: {
+                            self.view.layoutIfNeeded()
+            }, completion: {
                 (completed) in
-
+                
             })
         }
-
+        
     }
     func textViewDidChange(_ textView: UITextView) {
         resizeTextView(textView)
-
+        
         if textView.text == "" {
             textView.frame = oldFrame
             messageViewHeight.constant = 44
         }
-
+        
     }
-
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         resizeTextView(textView)
-
+        
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor(r: 32, g: 32, b: 32)
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "To write a message".localized
             textView.textColor = UIColor.lightGray
-
+            
             if textView.text == "" {
                 textView.frame = oldFrame
                 messageViewHeight.constant = 44
             }
         }
-
+        
         resizeTextView(textView)
     }
 }

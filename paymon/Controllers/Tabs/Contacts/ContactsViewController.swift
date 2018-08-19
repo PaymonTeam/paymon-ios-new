@@ -15,11 +15,11 @@ extension UISearchBar {
         }
         return textField
     }
-
+    
     public var activityIndicator: UIActivityIndicatorView? {
         return textField?.leftView?.subviews.compactMap{ $0 as? UIActivityIndicatorView }.first
     }
-
+    
     var isLoading: Bool {
         get {
             return activityIndicator != nil
@@ -46,71 +46,46 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
     var searchTimer:PMTimer!
     var searchBar:UISearchBar!
     var searchData:[RPC.UserObject] = []
-//    var activityView:UIActivityIndicatorView!
-
-//    lazy var button: UIButton = {
-//        let addButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 70, y: UIScreen.main.bounds.height - 200, width: 50, height: 50))
-//        addButton.setImage(UIImage(named: "AddButton"), for: .normal)
-//        addButton.addTarget(self, action: #selector(onClickAddButton), for: .touchUpInside)
-//        return addButton
-//    }()
-    
-    
-//    @objc func onClickAddButton() {
-//        let cnPicker = CNContactPickerViewController()
-//        cnPicker.delegate = self
-//        navigationController?.present(cnPicker, animated: true, completion: nil)
-//    }
-    
-   @objc func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        print("Contact Selected")
-    }
-    
-   @objc func contactPickerDidCancel(_ picker: CNContactPickerViewController) {
-        print("Canceld")
-    }
     
     @IBOutlet weak var navigationBar: UINavigationBar!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
         
-      //  self.view.addSubview(button)
-      //  self.view.bringSubview(toFront: button)
-        
         searchTimer = PMTimer(timeout: 0, repeat: false, completionFunction: {
             self.onSearch(self.searchBar.text ?? "")
         }, queue:timerQueue.nativeQueue())
-//        navigationBar.autoSetDimension(.height, toSize: 64)
     }
-
+    
     func createSearchBar() {
         tableView.dataSource = self
         searchBar = UISearchBar()
-//        searchBar.showsCancelButton = false
         searchBar.placeholder = "Enter username or login".localized
         searchBar.delegate = self
         searchBar.isLoading = false
-//        activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-//        activityView.center = self.view.center
-//        let view1 = searchBar.
-//        activityView.center = CGPoint(x: view1.bounds.origin.x + view1.bounds.size.width/2,
-//                y: view1.bounds.origin.y + view1.bounds.size.height/2)
-//        view1.addSubview(activityView) //. addSubview:self.activityIndicatorView
-
-//        self.view.addSubview(activityView)
-
+        
         self.navigationItem.titleView = searchBar
     }
-
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 100
-//    }
-
+    
+    //MARK: - TableView Delegate Methods.
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchData.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        let data = searchData[row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell") as! ContactsTableViewCell
+        cell.name.text = Utils.formatUserName(data)
+        cell.photo.setPhoto(ownerID: data.id, photoID: data.photoID)
+        return cell
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchBar.endEditing(true)
-
+        
         let row = indexPath.row
         let data = searchData[row]
         tableView.deselectRow(at: indexPath, animated: true)
@@ -125,11 +100,11 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
                     manager.userContacts[userID] = searchUser
                 }
             }
-
+            
             if manager.dialogMessages[userID] == nil {
                 manager.dialogMessages = SharedDictionary<Int32, SharedArray<RPC.Message>>()
             }
-
+            
             let chatView = StoryBoard.chat.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
             chatView.setValue(Utils.formatUserName(data), forKey: "title")
             chatView.isGroup = false
@@ -139,33 +114,19 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
             }
         }
     }
-
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        super.scrollViewWillBeginDragging(scrollView)
-        searchBar.endEditing(true)
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchData.count
-    }
-
+    
+    //MARK: - Search bar Delegate Methods.
+    
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-
+        
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        let data = searchData[row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell") as! ContactsTableViewCell
-        cell.name.text = Utils.formatUserName(data)
-        cell.photo.setPhoto(ownerID: data.id, photoID: data.photoID)
-        return cell
-    }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchTimer.reset(withTimeout: 0.3)
     }
-
+    
+    
+    // API calling for Searching Contacts.
     func onSearch(_ text: String) {
         print("SEARCH \(text)")
         let query = text.ltrim([" ", "@"]).rtrim([" "])
@@ -174,15 +135,16 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
             tableView.reloadData()
             return
         }
-
+        
         DispatchQueue.main.async {
             self.searchBar.isLoading = true
         }
-
+        
         let searchContact = RPC.PM_searchContact()
         searchContact.query = query
         NetworkManager.instance.sendPacket(searchContact) { packet, error in
             if let usersPacket = packet as? RPC.PM_users {
+                
                 // Append the searched user into the modal.
                 for i in 0..<usersPacket.users.count - 1 {
                     
@@ -204,17 +166,23 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
             }
         }
     }
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         onSearch(searchBar.text ?? "")
     }
-
+    
     func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
         print("Results")
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         print("Scope button")
+    }
+    
+    //MARK: - Scroll View Delegate Method.
+    
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.endEditing(true)
     }
 }
 
