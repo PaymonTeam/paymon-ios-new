@@ -61,19 +61,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tabBarController?.tabBar.items?[0].title = "Chats".localized
-        self.tabBarController?.tabBar.items?[1].title = "Contacts".localized
-        self.tabBarController?.tabBar.items?[2].title = "Wallet".localized
-        self.tabBarController?.tabBar.items?[3].title = "Games".localized
-        self.tabBarController?.tabBar.items?[4].title = "Profile".localized
-        
-        self.navigationItem.title = "Chats".localized
-        
-        borderConstraint.constant = 0.5
-        
+        setup()
         list.removeAll()
-        
         activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityView.center = self.view.center
         self.view.addSubview(activityView)
@@ -82,7 +71,17 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
         chatsTable.delegate = self
         
     }
-    
+    func setup() {
+        self.tabBarController?.tabBar.items?[0].title = "Chats".localized
+        self.tabBarController?.tabBar.items?[1].title = "Contacts".localized
+        self.tabBarController?.tabBar.items?[2].title = "Wallet".localized
+        self.tabBarController?.tabBar.items?[3].title = "Games".localized
+        self.tabBarController?.tabBar.items?[4].title = "Profile".localized
+
+        self.navigationItem.title = "Chats".localized
+
+        borderConstraint.constant = 0.5
+    }
     @IBAction func addGroupItemClick(_ sender: Any) {
         let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
         present(groupView, animated: false, completion: nil)
