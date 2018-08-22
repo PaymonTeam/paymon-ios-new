@@ -6,6 +6,8 @@
 import Foundation
 import UIKit
 import web3swift
+import Contacts
+import ContactsUI
 
 class ChatsViewController: PaymonViewController, NotificationManagerListener {
     public class CellChatData {
@@ -83,6 +85,12 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
         
     }
     
+    @IBAction func onClickAddContact(_ sender: Any) {
+        let cnPicker = CNContactPickerViewController()
+        cnPicker.delegate = self
+        self.present(cnPicker, animated: true, completion: nil)
+        
+    }
     @IBAction func addGroupItemClick(_ sender: Any) {
         let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
         present(groupView, animated: false, completion: nil)
@@ -238,5 +246,11 @@ extension ChatsViewController: UITableViewDelegate {
         
         
         present(chatView, animated: false, completion: nil)
+    }
+}
+
+extension ChatsViewController: CNContactPickerDelegate {
+    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
+        print("\(contactProperty.contact)")
     }
 }

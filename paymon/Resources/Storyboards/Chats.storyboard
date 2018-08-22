@@ -496,6 +496,11 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Chats" id="JUV-B3-g5c">
+                                        <barButtonItem key="leftBarButtonItem" title="Add" id="SkP-yJ-18T">
+                                            <connections>
+                                                <action selector="onClickAddContact:" destination="oFv-3Z-QeM" id="Jx6-cm-PA1"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Add Group" id="Ad7-B8-AbK">
                                             <connections>
                                                 <action selector="addGroupItemClick:" destination="oFv-3Z-QeM" id="hTx-GC-fPu"/>
