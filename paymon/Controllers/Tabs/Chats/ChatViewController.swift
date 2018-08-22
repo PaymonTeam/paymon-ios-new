@@ -163,7 +163,6 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         
     }
     
-    
     @objc func handleKeyboardNotification(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
@@ -341,47 +340,7 @@ extension ChatViewController: UITextViewDelegate {
         }
         return true
     }
-    
-    func resizeTextView(_ textView: UITextView){
-        
-        let fixedWidth = textView.frame.size.width
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        var newFrame = textView.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height - 2)
-        textView.frame = newFrame
-        
-        UIView.animate(withDuration: 0,
-                       delay: 0,
-                       options: UIViewAnimationOptions.curveEaseOut,
-                       animations: {
-                        self.view.layoutIfNeeded()
-        }, completion: {
-            (completed) in
-            
-        })
-        
-        if newFrame.height > oldFrame.height {
-            let resizeFrame = newFrame.height - oldFrame.height
-            oldFrame = newFrame
-            messageViewHeight.constant += resizeFrame
-            
-        } else if oldFrame.height > newFrame.height {
-            
-            let resizeFrame = oldFrame.height - newFrame.height
-            oldFrame = newFrame
-            messageViewHeight.constant -= resizeFrame
-            UIView.animate(withDuration: 0,
-                           delay: 0,
-                           options: UIViewAnimationOptions.curveEaseOut,
-                           animations: {
-                            self.view.layoutIfNeeded()
-            }, completion: {
-                (completed) in
-                
-            })
-        }
-        
-    }
+
     func textViewDidChange(_ textView: UITextView) {
         resizeTextView(textView)
         
@@ -413,5 +372,44 @@ extension ChatViewController: UITextViewDelegate {
         }
         
         resizeTextView(textView)
+    }
+    func resizeTextView(_ textView: UITextView){
+
+        let fixedWidth = textView.frame.size.width
+        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        var newFrame = textView.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height - 2)
+        textView.frame = newFrame
+
+        UIView.animate(withDuration: 0,
+                       delay: 0,
+                       options: UIViewAnimationOptions.curveEaseOut,
+                       animations: {
+                        self.view.layoutIfNeeded()
+        }, completion: {
+            (completed) in
+
+        })
+
+        if newFrame.height > oldFrame.height {
+            let resizeFrame = newFrame.height - oldFrame.height
+            oldFrame = newFrame
+            messageViewHeight.constant += resizeFrame
+
+        } else if oldFrame.height > newFrame.height {
+
+            let resizeFrame = oldFrame.height - newFrame.height
+            oldFrame = newFrame
+            messageViewHeight.constant -= resizeFrame
+            UIView.animate(withDuration: 0,
+                           delay: 0,
+                           options: UIViewAnimationOptions.curveEaseOut,
+                           animations: {
+                            self.view.layoutIfNeeded()
+            }, completion: {
+                (completed) in
+
+            })
+        }
     }
 }
