@@ -13,7 +13,7 @@ class CryptoManager {
     static func getPaymonWalletInfo() -> CellMoneyData {
         
         let paymonData = CellCreatedMoneyData()
-        let userHavePaymonWallet = true
+        let userHavePaymonWallet = false
         if (userHavePaymonWallet) {
 
             /*Block for test. Here we get Paymon wallet info*/
@@ -36,7 +36,7 @@ class CryptoManager {
     static func getEthereumWalletInfo() -> CellMoneyData {
         
         let ethereumData : CellCreatedMoneyData
-        let userHaveEtherWallet = false
+        let userHaveEtherWallet = true
         
         if (userHaveEtherWallet) {
         

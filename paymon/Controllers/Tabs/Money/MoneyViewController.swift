@@ -79,8 +79,6 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? MoneyCreatedTableViewCell {
             print(cell.fiatHint)
-        } else if let cell = tableView.cellForRow(at: indexPath) as? MoneyNotCreatedTableViewCell{
-            print(cell.icon.frame.width)
         }
     }
 }
