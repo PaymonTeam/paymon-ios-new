@@ -75,9 +75,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
     }
     
     @IBAction func onClickAddContact(_ sender: Any) {
-        let cnPicker = CNContactPickerViewController()
-        cnPicker.delegate = self
-        self.present(cnPicker, animated: true, completion: nil)
+        guard let vc = StoryBoard.chat.instantiateViewController(withIdentifier: "AddContactViewController") as? AddContactViewController else {return}
+        navigationController?.pushViewController(vc, animated: true)
     }
         
     func setup() {

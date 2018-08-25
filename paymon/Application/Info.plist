@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Using for scan QR-codes</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App want to access contact of your phone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Using for uploading photos</string>
 	<key>UILaunchStoryboardName</key>
