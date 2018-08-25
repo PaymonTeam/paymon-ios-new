@@ -54,7 +54,9 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
         createSearchBar()
         
         searchTimer = PMTimer(timeout: 0, repeat: false, completionFunction: {
-            self.onSearch(self.searchBar.text ?? "")
+            DispatchQueue.main.async {
+                self.onSearch(self.searchBar.text ?? "")
+            }
         }, queue:timerQueue.nativeQueue())
     }
     
