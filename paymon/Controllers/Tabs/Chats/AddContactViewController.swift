@@ -19,6 +19,7 @@ class AddContactViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var contactTableView: UITableView!
+    @IBOutlet weak var newGroupOrInviteMeButton: UIButton!
     
     var cnContacts  = [CNContact]()
     
@@ -64,8 +65,7 @@ class AddContactViewController: UIViewController {
         
     }
     
-    func retrieveContactsWithStore(store: CNContactStore)
-    {
+    func retrieveContactsWithStore(store: CNContactStore) {
         let keysToFetch = [
             CNContactFormatter.descriptorForRequiredKeys(for: CNContactFormatterStyle.fullName),
             CNContactEmailAddressesKey,
@@ -108,6 +108,10 @@ class AddContactViewController: UIViewController {
         }
     }
     
+    @IBAction func onClickNewGroup(_ sender: Any) {
+        let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
+        present(groupView, animated: false, completion: nil)
+    }
 }
 
 extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
