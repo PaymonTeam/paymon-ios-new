@@ -26,13 +26,13 @@ class CoinDetailsViewController: PaymonViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func sendPressed(_ sender: UIButton) {
-        let recieveEthernVC = StoryBoard.ethur.instantiateViewController(withIdentifier: StoryBoardIdentifier.sendVCStoryID)
+        let recieveEthernVC = StoryBoard.ethur.instantiateViewController(withIdentifier: VCIdentifier.sendVCStoryID)
         self.navigationController?.pushViewController(recieveEthernVC, animated: true)
 
     }
 
     @IBAction func receivePressed(_ sender: UIButton) {
-        let recieveEthernVC = StoryBoard.ethur.instantiateViewController(withIdentifier: StoryBoardIdentifier.receiveEthernVC)
+        let recieveEthernVC = StoryBoard.ethur.instantiateViewController(withIdentifier: VCIdentifier.receiveEthernVC)
         self.navigationController?.pushViewController(recieveEthernVC, animated: true)
     }
 

@@ -30,6 +30,10 @@ extension Notification.Name {
     static let showCountryPicker = Notification.Name(rawValue: "showCountryPicker")
     static let setCountry = Notification.Name(rawValue: "setCountry")
     static let updateRates = Notification.Name(rawValue: "updateRates")
+    static let updateTransaction = Notification.Name(rawValue: "updateTransaction")
+    static let getCourse = Notification.Name(rawValue: "getCourse")
+
+
 
 
 }

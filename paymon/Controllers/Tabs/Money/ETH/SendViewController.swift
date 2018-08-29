@@ -145,7 +145,7 @@ class SendViewController: PaymonViewController, SelectedCurrencyDelegate {
     }
 
     @IBAction func currencyPressed(_ sender: UIButton) {
-        if let currencyVC = StoryBoard.ethur.instantiateViewController(withIdentifier: StoryBoardIdentifier.chooseCurrencyVCStoryID) as? ChooseCurrencyViewController {
+        if let currencyVC = StoryBoard.ethur.instantiateViewController(withIdentifier: VCIdentifier.chooseCurrencyVCStoryID) as? ChooseCurrencyViewController {
             currencyVC.delegate = self
             self.navigationController?.pushViewController(currencyVC, animated: true)
         }

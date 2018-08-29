@@ -103,6 +103,27 @@ class CryptoManager {
         return notCreated
     }
     
+    static func checkBitcoinWallet(wallet : String) -> Bool {
+        return wallet.matches(Money.BITCOIN_WALLET_QR_REGEX)
+    }
     
+    static func cutBitcoinWallet(scan : String) -> String{
+        
+        print("scan is: " + scan)
+        
+        var cutString = ""
+        let parts = scan.components(separatedBy: ":")
+        
+        if checkBitcoinWallet(wallet: scan) {
+            if parts.count == 2 {
+                cutString = parts[1].replacingOccurrences(of: "-", with: "")
+            } else {
+                cutString = scan
+            }
+            print("cut string is: " + cutString)
+        }
+        
+        return cutString
+    }
     
 }

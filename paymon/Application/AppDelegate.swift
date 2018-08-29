@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
 
         //setup ether
         loadEthenWallet()
-        let vc = StoryBoard.main.instantiateViewController(withIdentifier: StoryBoardIdentifier.startViewController)
+        let vc = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.startViewController)
         self.window?.rootViewController = vc
         self.window?.makeKeyAndVisible()
         return true

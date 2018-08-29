@@ -8,14 +8,31 @@
 
 import Foundation
 
-struct StoryBoardIdentifier {
+struct VCIdentifier {
+    static let startViewController = "StartViewController"
+    static let tabsViewController = "TabsViewController"
+    static let signInViewController = "SignInViewController"
+    static let signUpViewController = "SignUpViewController"
+    static let registrViewController = "RegistrViewController"
+    static let profileViewController = "ProfileViewController"
+    static let updateProfileViewController = "UpdateProfileViewController"
+    
+    static let forgotPasswordEmailViewController = "ForgotPasswordEmailViewController"
+    static let forgotPasswordCodeViewController = "ForgotPasswordCodeViewController"
+    static let forgotPasswordChangeViewController = "ForgotPasswordChangeViewController"
+    
+    static let countryPickerViewController = "CountryPickerViewController"
+    
+    static let bitcoinTransferViewController = "BitcoinTransferViewController"
     static let receiveEthernVC = "ReceiveViewController"
     static let sendVCStoryID = "SendViewController"
     static let scanVCStoryID = "ScanViewControllerID"
     static let chooseCurrencyVCStoryID = "ChooseCurrencyViewController"
     static let CoinDetailsVCStoryID = "CoinDetailsViewController"
-    static let startViewController = "StartViewController"
+    
+    static let qrScanViewController = "QRScannerViewController"
 
+    
 }
 
 struct UserDefaultKey {
@@ -55,3 +72,47 @@ struct ExchangeRatesConst {
     static let urlChartsSixMonths = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=180&tryConversion=false&tsym=%@"
     static let urlChartsYear = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=365&tryConversion=false&tsym=%@"
 }
+
+struct QRScan {
+    
+    static let WEB_CONTENT = "http://"
+    static let WEB_CONTENT_2 = "https://"
+    
+//    static let BITCOIN_WALLET_2 = "BITCOIN:-"
+//    static let BITCOIN_WALLET_3 = "1"
+//    static let BITCOIN_WALLET_4 = "3"
+//    static let BITCOIN_WALLET_5 = "bitcoin:3"
+    
+    static let ETHEREUM_WALLET = "ethereum:0x"
+    static let ETHEREUM_WALLET_2 = " 0x"
+    static let ETHEREUM_WALLET_3 = "0x"
+}
+
+struct Money {
+    static let btc = "BTC"
+    static let eth = "ETH"
+    static let pmnc = "PMNC"
+    static let rub = "RUB"
+    static let usd = "USD"
+    static let eur = "EUR"
+    
+    static let btcIcon = "Bitcoin"
+    static let ethIcon = "Ethereum"
+    static let pmncIcon = "PmncIcon"
+    
+    static let BITCOIN_WALLET_QR_REGEX = "(^(bitcoin:)?(BITCOIN:-)?[13][a-zA-Z0-9]{25,34}$)$"
+    static let BITCOIN_WALLET_REGEX = "(^[13][a-zA-Z0-9]{25,34}$)$"
+    
+}
+
+struct StoryBoard {
+    static let main = UIStoryboard(name: "Main", bundle: Bundle.main)
+    static let ethur = UIStoryboard(name: "Ethur", bundle: Bundle.main)
+    static let tabs = UIStoryboard(name: "Tabs", bundle: Bundle.main)
+    static let user = UIStoryboard(name: "User", bundle: Bundle.main)
+    static let forgotPassword = UIStoryboard(name: "ForgotPassword", bundle: Bundle.main)
+    static let money = UIStoryboard(name: "Money", bundle: Bundle.main)
+    static let chat = UIStoryboard(name: "Chats", bundle: Bundle.main)
+    static let bitcoin = UIStoryboard(name: "Bitcoin", bundle: Bundle.main)
+}
+

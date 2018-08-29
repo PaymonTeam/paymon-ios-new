@@ -274,7 +274,6 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
 
             NotificationCenter.default.removeObserver(observerUpdateString)
             NotificationCenter.default.removeObserver(observerSetCountry)
-
         }
         
     }

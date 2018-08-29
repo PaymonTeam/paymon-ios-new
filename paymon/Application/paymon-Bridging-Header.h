@@ -12,6 +12,8 @@
 #include "SerializedStream.h"
 #include "KeyGenerator_Wrapper.h"
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import <Contacts/CNContact.h>
 //#import "BRWalletManager.h"
 //#import "BRWallet.h"
 //#import "BRPeerManager.h"
