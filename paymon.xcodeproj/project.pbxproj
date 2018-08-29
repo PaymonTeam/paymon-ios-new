@@ -21,6 +21,7 @@
 		0E074C2A210E435B00CB3853 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C29210E435B00CB3853 /* SettingsTableView.swift */; };
 		0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0F477C210BA137004B4A3C /* Contacts.storyboard */; };
 		0E0F4780210BA34A004B4A3C /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */; };
+		0E117962213465840097B017 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E117961213465840097B017 /* AddContactViewController.swift */; };
 		0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
@@ -204,6 +205,7 @@
 		0E074C29210E435B00CB3853 /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		0E0F477C210BA137004B4A3C /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		0E117961213465840097B017 /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewOld.swift; sourceTree = "<group>"; };
 		0EA074C421065515002FF527 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				0EA074C421065515002FF527 /* CreateGroupViewController.swift */,
 				0EA074CB2106561B002FF527 /* ChatViewController.swift */,
 				0EA074D5210658D2002FF527 /* GroupSettingViewController.swift */,
+				0E117961213465840097B017 /* AddContactViewController.swift */,
 				0EA074C62106552B002FF527 /* ChatTableCells */,
 			);
 			path = Chats;
@@ -1365,6 +1368,7 @@
 				B03D1367212F5DEE00F442AF /* BitcoinWalletViewController.swift in Sources */,
 				0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */,
 				B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */,
+				0E117962213465840097B017 /* AddContactViewController.swift in Sources */,
 				B01954E120FFA92100F3DDB0 /* ObservableMediaManager.swift in Sources */,
 				B0C396AC210A49C300E0C344 /* ForgotPasswordEmailViewController.swift in Sources */,
 				B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */,

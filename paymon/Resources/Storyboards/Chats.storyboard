@@ -348,7 +348,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Thv-ti-K4q">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thv-ti-K4q">
                                 <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="qaS-jx-c88"/>
@@ -394,9 +394,13 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="wPT-IG-81G"/>
                                                     </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                     <state key="normal" title="New Group">
                                                         <color key="titleColor" red="0.13725490196078433" green="0.46274509803921571" blue="0.77254901960784317" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="onClickNewGroup:" destination="uPV-OI-pZN" eventType="touchUpInside" id="PIk-ig-BtM"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -472,6 +476,7 @@
                     </view>
                     <connections>
                         <outlet property="contactTableView" destination="yuQ-Un-iWv" id="vHz-Qb-EAk"/>
+                        <outlet property="newGroupOrInviteMeButton" destination="RYS-wm-21i" id="B5y-Qe-XuS"/>
                         <outlet property="searchBar" destination="LD5-To-9Kf" id="vxn-sY-diH"/>
                     </connections>
                 </viewController>
@@ -639,11 +644,6 @@
                                             <connections>
                                                 <action selector="onClickAddContact:" destination="oFv-3Z-QeM" id="Jx6-cm-PA1"/>
                                                 <segue destination="uPV-OI-pZN" kind="show" id="8Ew-8t-gwO"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Add Group" id="Ad7-B8-AbK">
-                                            <connections>
-                                                <action selector="addGroupItemClick:" destination="oFv-3Z-QeM" id="hTx-GC-fPu"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

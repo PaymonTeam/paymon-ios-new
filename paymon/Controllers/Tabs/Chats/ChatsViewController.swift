@@ -90,10 +90,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
 
         borderConstraint.constant = 0.5
     }
-    @IBAction func addGroupItemClick(_ sender: Any) {
-        let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
-        present(groupView, animated: false, completion: nil)
-    }
     
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if (id == NotificationManager.dialogsNeedReload || id == NotificationManager.didReceivedNewMessages) {
