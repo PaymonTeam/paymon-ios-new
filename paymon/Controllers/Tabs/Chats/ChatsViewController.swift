@@ -243,9 +243,3 @@ extension ChatsViewController: UITableViewDelegate {
         present(chatView, animated: false, completion: nil)
     }
 }
-
-extension ChatsViewController: CNContactPickerDelegate {
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
-        print("\(contactProperty.contact)")
-    }
-}

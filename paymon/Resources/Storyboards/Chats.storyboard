@@ -422,14 +422,14 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AddContactCell" rowHeight="70" id="Kop-2N-uEl">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContactTableViewCell" rowHeight="70" id="Kop-2N-uEl" customClass="ContactTableViewCell" customModule="paymon" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="81" width="359" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kop-2N-uEl" id="PRr-d1-YQX">
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="G30-VC-Uk1">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="G30-VC-Uk1" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="4" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="hcg-Gt-Rji"/>
@@ -451,6 +451,10 @@
                                                 <constraint firstItem="P5A-uF-Vqw" firstAttribute="leading" secondItem="G30-VC-Uk1" secondAttribute="trailing" constant="8" id="oTy-Dm-gMx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="name" destination="P5A-uF-Vqw" id="orn-nx-Vda"/>
+                                            <outlet property="userImage" destination="G30-VC-Uk1" id="Tv2-lS-zzB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -484,7 +488,7 @@
             </objects>
             <point key="canvasLocation" x="4540" y="752"/>
         </scene>
-        <!--Chats View Controller-->
+        <!--Chats-->
         <scene sceneID="I71-uF-sPk">
             <objects>
                 <viewController storyboardIdentifier="ChatsView" id="oFv-3Z-QeM" customClass="ChatsViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
@@ -662,6 +666,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9ot-0e-LGj"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Chats" image="Chats" id="URV-0w-KOe"/>
                     <navigationItem key="navigationItem" id="Xrq-z9-WwJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -1076,6 +1081,7 @@
     <resources>
         <image name="ArrowBack" width="33" height="33"/>
         <image name="ArrowCheck" width="33" height="33"/>
+        <image name="Chats" width="32" height="32"/>
         <image name="NewGroup" width="35" height="35"/>
         <image name="NonPhoto" width="256" height="256"/>
         <image name="add_user" width="25" height="25"/>

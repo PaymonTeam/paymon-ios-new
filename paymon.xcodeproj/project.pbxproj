@@ -37,6 +37,8 @@
 		0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */; };
 		0EA66BA4210F810C00CC1162 /* SecurityPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */; };
 		0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */; };
+		0EB732432136FD2A0069B383 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB732422136FD2A0069B383 /* NewContactViewController.swift */; };
+		0EC1A6AF213A904F0089CE1E /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */; };
 		3E437C3864077E699C425530 /* Pods_paymonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4653E7B9D5552DD6D7E6F70 /* Pods_paymonTests.framework */; };
 		6AECEA178FD6F827A3D6A15B /* Pods_paymonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2BFF67FCD3EF3CEBD321C3 /* Pods_paymonUITests.framework */; };
 		B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B692100A1C400A3CBF1 /* SyncMode.swift */; };
@@ -212,6 +214,8 @@
 		0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSoundTableViewController.swift; sourceTree = "<group>"; };
 		0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityPasswordViewController.swift; sourceTree = "<group>"; };
 		0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramViewController.swift; sourceTree = "<group>"; };
+		0EB732422136FD2A0069B383 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
+		0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		1B2BFF67FCD3EF3CEBD321C3 /* Pods_paymonUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymonUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29895C30C7A907C60535323B /* Pods-paymon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymon.release.xcconfig"; path = "Pods/Target Support Files/Pods-paymon/Pods-paymon.release.xcconfig"; sourceTree = "<group>"; };
 		2B7D036B53CDC2B168A55D03 /* Pods-paymonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-paymonTests/Pods-paymonTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -407,6 +411,8 @@
 			isa = PBXGroup;
 			children = (
 				0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */,
+				0EB732422136FD2A0069B383 /* NewContactViewController.swift */,
+				0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -1325,6 +1331,7 @@
 				0EA66B97210F7E7900CC1162 /* NotificationSoundViewController.swift in Sources */,
 				B0AC1D2A211472DA004D8577 /* ExchangeRetesViewController.swift in Sources */,
 				B019550120FFAA3E00F3DDB0 /* DecimalExtension.swift in Sources */,
+				0EB732432136FD2A0069B383 /* NewContactViewController.swift in Sources */,
 				B01954ED20FFA98500F3DDB0 /* StoryBoard.swift in Sources */,
 				B019551920FFAA6600F3DDB0 /* ByteArray_Wrapper.mm in Sources */,
 				B0AC1D26211456E8004D8577 /* CryptoManager.swift in Sources */,
@@ -1371,6 +1378,7 @@
 				B01954FF20FFAA3E00F3DDB0 /* String+Helpers.swift in Sources */,
 				B0011B8321023F9000A3CBF1 /* UserManager.swift in Sources */,
 				0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */,
+				0EC1A6AF213A904F0089CE1E /* ContactTableViewCell.swift in Sources */,
 				B0011B6C2100A1C400A3CBF1 /* Defaults.swift in Sources */,
 				0E074C1F210E3B0700CB3853 /* SettingsViewController.swift in Sources */,
 				0E074C25210E3B0700CB3853 /* SettingsNotificationViewController.swift in Sources */,

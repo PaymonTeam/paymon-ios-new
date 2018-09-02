@@ -44,8 +44,8 @@ extension UISearchBar {
 class ContactsViewController : UITableViewController, UISearchBarDelegate {
     let timerQueue = Queue()
     var searchTimer:PMTimer!
-    var searchBar:UISearchBar!
     var searchData:[RPC.UserObject] = []
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var navigationBar: UINavigationBar!
     
@@ -62,12 +62,14 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
     
     func createSearchBar() {
         tableView.dataSource = self
-        searchBar = UISearchBar()
         searchBar.placeholder = "Enter username or login".localized
         searchBar.delegate = self
         searchBar.isLoading = false
+        searchBar.backgroundImage = UIImage()
+        searchBar.textField?.textColor = UIColor.black
+        searchBar.textField?.backgroundColor = UIColor(red: 215/225.0, green: 215/225.0, blue: 215/225.0, alpha: 1.0)
         
-        self.navigationItem.titleView = searchBar
+      //  self.navigationItem.titleView = searchBar
     }
     
     //MARK: - TableView Delegate Methods.

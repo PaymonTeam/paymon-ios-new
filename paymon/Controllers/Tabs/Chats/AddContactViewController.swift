@@ -5,7 +5,7 @@ import Contacts
 import ContactsUI
 
 class Contact {
-    @objc var name: String?
+    var name: String?
     var email: String?
     var phone: String?
     init(name: String?, email: String?, phone: String?) {
@@ -24,21 +24,22 @@ class AddContactViewController: UIViewController {
     var cnContacts  = [CNContact]()
     
     var contacts = [Contact]()
-    let collation = UILocalizedIndexedCollation.current()
-    var contactsWithSections = [[Contact]]()
-    var sectionTitles = [String]()
-    
+
+    var outputDict=[String:[String]]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getContacts()
         searchBar.backgroundImage = UIImage()
+        searchBar.textField?.textColor = UIColor.black
         searchBar.textField?.backgroundColor = UIColor(red: 215/225.0, green: 215/225.0, blue: 215/225.0, alpha: 1.0)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
     @IBAction func onClickback(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -57,12 +58,10 @@ class AddContactViewController: UIViewController {
                     return
                 }
                 self.retrieveContactsWithStore(store: store)
-                
             }
         default:
             print("Not handled")
         }
-        
     }
     
     func retrieveContactsWithStore(store: CNContactStore) {
@@ -98,10 +97,16 @@ class AddContactViewController: UIViewController {
             contacts.append(con)
         }
         
-        //Create sections of contacts using collation object
-        let (arrayContacts, arrayTitles) = collation.partitionObjects(array: self.contacts, collationStringSelector: #selector(getter: Contact.name))
-        self.contactsWithSections = arrayContacts as! [[Contact]]
-        self.sectionTitles = arrayTitles
+        for word in contacts {
+            if let value = word.name?.isEmpty, !value {
+                let initialLetter = word.name?.substring(toIndex: 1) .uppercased()
+                if initialLetter != "" {
+                    var letterArray = outputDict[initialLetter!] ?? [String]()
+                    letterArray.append(word.name!)
+                    outputDict[initialLetter!]=letterArray
+                }
+            }
+        }
         
         DispatchQueue.main.async {
             self.contactTableView.reloadData()
@@ -117,51 +122,32 @@ class AddContactViewController: UIViewController {
 extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionTitles.count
+        return outputDict.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contactsWithSections[section].count
+        let a = Array(outputDict.keys).sorted()
+        return (outputDict[a[section]]?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AddContactCell", for: indexPath)
-        if let lbl = cell.viewWithTag(111) as? UILabel {
-            lbl.text = contactsWithSections[indexPath.section][indexPath.row].name! as String
+        let a = Array(outputDict.keys).sorted()
+        let data = outputDict[a[indexPath.section]]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as? ContactTableViewCell else {
+            fatalError("Unable to deque tableview cell")
+            
         }
+        cell.name.text = data?[indexPath.row]
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
+        let a = Array(outputDict.keys).sorted()
+        return a[section]
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
 }
 
-extension UILocalizedIndexedCollation {
-    
-    //func for partition array in sections
-    func partitionObjects(array:[AnyObject], collationStringSelector:Selector) -> ([AnyObject], [String]) {
-        var unsortedSections = [[AnyObject]]()
-        //1. Create a array to hold the data for each section
-        for _ in self.sectionTitles {
-            unsortedSections.append([]) //appending an empty array
-        }
-        //2. Put each objects into a section
-        for item in array {
-            let index:Int = self.section(for: item, collationStringSelector:collationStringSelector)
-            unsortedSections[index].append(item)
-        }
-        //3. sorting the array of each sections
-        var sectionTitles = [String]()
-        var sections = [AnyObject]()
-        for index in 0 ..< unsortedSections.count { if unsortedSections[index].count > 0 {
-            sectionTitles.append(self.sectionTitles[index])
-            sections.append(self.sortedArray(from: unsortedSections[index], collationStringSelector: collationStringSelector) as AnyObject)
-            }
-        }
-        return (sections, sectionTitles)
-    }
-}
