@@ -60,7 +60,6 @@
 		B01954E620FFA92100F3DDB0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954DE20FFA92100F3DDB0 /* User.swift */; };
 		B01954E920FFA94600F3DDB0 /* EnumCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954E720FFA94600F3DDB0 /* EnumCollection.swift */; };
 		B01954EA20FFA94600F3DDB0 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954E820FFA94600F3DDB0 /* Chain.swift */; };
-		B01954ED20FFA98500F3DDB0 /* StoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954EB20FFA98500F3DDB0 /* StoryBoard.swift */; };
 		B01954EE20FFA98500F3DDB0 /* Ether.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954EC20FFA98500F3DDB0 /* Ether.swift */; };
 		B01954F120FFA9B400F3DDB0 /* TransactionFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954EF20FFA9B400F3DDB0 /* TransactionFactoryProtocol.swift */; };
 		B01954F220FFA9B400F3DDB0 /* TransactionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954F020FFA9B400F3DDB0 /* TransactionService.swift */; };
@@ -109,8 +108,20 @@
 		B01F0DF821087264008FB6F0 /* UpdateProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DF221087263008FB6F0 /* UpdateProfileInfoTableViewController.swift */; };
 		B01F0DF921087264008FB6F0 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DF321087263008FB6F0 /* UpdateProfileViewController.swift */; };
 		B01F0DFD2108847C008FB6F0 /* FromRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DFC2108847C008FB6F0 /* FromRightSegue.swift */; };
-		B0493E602112A75100B7AA94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0493E5F2112A75100B7AA94 /* Assets.xcassets */; };
+		B03D1364212F548600F442AF /* Bitcoin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B03D1363212F548600F442AF /* Bitcoin.storyboard */; };
+		B03D1367212F5DEE00F442AF /* BitcoinWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D1366212F5DEE00F442AF /* BitcoinWalletViewController.swift */; };
+		B03D1369212F771600F442AF /* WalletTableInfoUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D1368212F771600F442AF /* WalletTableInfoUIView.swift */; };
+		B03D136B212F7ADD00F442AF /* TransactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D136A212F7ADD00F442AF /* TransactionsViewController.swift */; };
+		B03D136E213185A100F442AF /* BitcoinTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D136D213185A100F442AF /* BitcoinTransactions.swift */; };
+		B03D13712131878F00F442AF /* TransEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D13702131878F00F442AF /* TransEmptyTableViewCell.swift */; };
+		B03D137521318F3300F442AF /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D137421318F3300F442AF /* TransactionType.swift */; };
+		B03D13772131AE0500F442AF /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D13762131AE0500F442AF /* TransactionTableViewCell.swift */; };
+		B03D13792132C5F700F442AF /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D13782132C5F700F442AF /* AddContactViewController.swift */; };
+		B03D137B2132D3BA00F442AF /* BitcoinTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D137A2132D3BA00F442AF /* BitcoinTransferViewController.swift */; };
+		B043973921357956004DAAAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B043973821357955004DAAAA /* Assets.xcassets */; };
+		B043973B2135D7A5004DAAAA /* MoneyAmountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */; };
 		B0493E622112AAE800B7AA94 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0493E612112AAE700B7AA94 /* UIColor.swift */; };
+		B0817C622133F9FD003A1604 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0817C612133F9FC003A1604 /* QRScannerViewController.swift */; };
 		B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA88A21030F2100AAA805 /* SignInViewController.swift */; };
 		B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
@@ -118,7 +129,6 @@
 		B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */; };
 		B099C98B20FCF7DC00718608 /* paymonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C98A20FCF7DC00718608 /* paymonTests.swift */; };
 		B099C99620FCF7DC00718608 /* paymonUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C99520FCF7DC00718608 /* paymonUITests.swift */; };
-		B0AC000121126EAA007BE95C /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC000021126EAA007BE95C /* Money.swift */; };
 		B0AC000521128BD2007BE95C /* CellCreatedMoneyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC000421128BD2007BE95C /* CellCreatedMoneyData.swift */; };
 		B0AC000B211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC000A211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift */; };
 		B0AC1D23211452BB004D8577 /* CryptoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC1D22211452BB004D8577 /* CryptoType.swift */; };
@@ -141,7 +151,6 @@
 		B0C7447821147C7F008885C1 /* ExchangeRatesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447621147C7F008885C1 /* ExchangeRatesParser.swift */; };
 		B0C7447A21149BBF008885C1 /* ChartsRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */; };
 		B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */; };
-		B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
 		B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */; };
 		D66275EDD87D20306F62E7E8 /* Pods_paymon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3764DFE35E2623F4092A261 /* Pods_paymon.framework */; };
@@ -242,7 +251,6 @@
 		B01954DE20FFA92100F3DDB0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B01954E720FFA94600F3DDB0 /* EnumCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumCollection.swift; sourceTree = "<group>"; };
 		B01954E820FFA94600F3DDB0 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
-		B01954EB20FFA98500F3DDB0 /* StoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoard.swift; sourceTree = "<group>"; };
 		B01954EC20FFA98500F3DDB0 /* Ether.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ether.swift; sourceTree = "<group>"; };
 		B01954EF20FFA9B400F3DDB0 /* TransactionFactoryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFactoryProtocol.swift; sourceTree = "<group>"; };
 		B01954F020FFA9B400F3DDB0 /* TransactionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionService.swift; sourceTree = "<group>"; };
@@ -311,8 +319,20 @@
 		B01F0DF221087263008FB6F0 /* UpdateProfileInfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileInfoTableViewController.swift; sourceTree = "<group>"; };
 		B01F0DF321087263008FB6F0 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		B01F0DFC2108847C008FB6F0 /* FromRightSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromRightSegue.swift; sourceTree = "<group>"; };
-		B0493E5F2112A75100B7AA94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B03D1363212F548600F442AF /* Bitcoin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Bitcoin.storyboard; sourceTree = "<group>"; };
+		B03D1366212F5DEE00F442AF /* BitcoinWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinWalletViewController.swift; sourceTree = "<group>"; };
+		B03D1368212F771600F442AF /* WalletTableInfoUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableInfoUIView.swift; sourceTree = "<group>"; };
+		B03D136A212F7ADD00F442AF /* TransactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewController.swift; sourceTree = "<group>"; };
+		B03D136D213185A100F442AF /* BitcoinTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinTransactions.swift; sourceTree = "<group>"; };
+		B03D13702131878F00F442AF /* TransEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		B03D137421318F3300F442AF /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
+		B03D13762131AE0500F442AF /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
+		B03D13782132C5F700F442AF /* AddContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		B03D137A2132D3BA00F442AF /* BitcoinTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinTransferViewController.swift; sourceTree = "<group>"; };
+		B043973821357955004DAAAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyAmountTextField.swift; sourceTree = "<group>"; };
 		B0493E612112AAE700B7AA94 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B0817C612133F9FC003A1604 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		B08CA88A21030F2100AAA805 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleShowSegue.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,7 +347,6 @@
 		B099C99520FCF7DC00718608 /* paymonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = paymonUITests.swift; sourceTree = "<group>"; };
 		B099C99720FCF7DC00718608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B099C9C920FDD46200718608 /* paymon-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "paymon-Bridging-Header.h"; sourceTree = "<group>"; };
-		B0AC000021126EAA007BE95C /* Money.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 		B0AC000421128BD2007BE95C /* CellCreatedMoneyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellCreatedMoneyData.swift; sourceTree = "<group>"; };
 		B0AC000A211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyNotCreatedTableViewCell.swift; sourceTree = "<group>"; };
 		B0AC1D22211452BB004D8577 /* CryptoType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoType.swift; sourceTree = "<group>"; };
@@ -350,7 +369,6 @@
 		B0C7447621147C7F008885C1 /* ExchangeRatesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRatesParser.swift; sourceTree = "<group>"; };
 		B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsRatesViewController.swift; sourceTree = "<group>"; };
 		B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeInterfaceOrientationMask.swift; sourceTree = "<group>"; };
-		B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIdentifier.swift; sourceTree = "<group>"; };
 		B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerViewController.swift; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -420,6 +438,7 @@
 		0EA074C321065489002FF527 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				B03D13782132C5F700F442AF /* AddContactViewController.swift */,
 				0E0402C4210644A400D6F703 /* ChatsViewController.swift */,
 				0EA074C421065515002FF527 /* CreateGroupViewController.swift */,
 				0EA074CB2106561B002FF527 /* ChatViewController.swift */,
@@ -500,6 +519,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B03D136C2131857E00F442AF /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				B03D136D213185A100F442AF /* BitcoinTransactions.swift */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		B03D137221318B0500F442AF /* Wallets */ = {
+			isa = PBXGroup;
+			children = (
+				B0ACFFF3211233F0007BE95C /* MoneyCreatedTableViewCell.swift */,
+				B0AC000A211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift */,
+				B0AC1D2B211476A1004D8577 /* ExchangeRatesTableViewCell.swift */,
+			);
+			path = Wallets;
+			sourceTree = "<group>";
+		};
+		B03D137321318B3A00F442AF /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				B03D13702131878F00F442AF /* TransEmptyTableViewCell.swift */,
+				B03D13762131AE0500F442AF /* TransactionTableViewCell.swift */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
 		B099C96920FCF7DB00718608 = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +603,7 @@
 		B099C9A320FDD1D700718608 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B03D136C2131857E00F442AF /* Crypto */,
 				B0C7447421147C49008885C1 /* Parser */,
 				B019554320FFAC5900F3DDB0 /* API.swift */,
 				B019554420FFAC5900F3DDB0 /* BaseService.swift */,
@@ -591,7 +638,7 @@
 		B099C9A520FDD1F800718608 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B0493E5F2112A75100B7AA94 /* Assets.xcassets */,
+				B043973821357955004DAAAA /* Assets.xcassets */,
 				B099C9C420FDD3ED00718608 /* Localization */,
 				B099C9B620FDD2A900718608 /* Storyboards */,
 			);
@@ -637,10 +684,8 @@
 			isa = PBXGroup;
 			children = (
 				D816BA332120C395001B6FE8 /* SuperViewController */,
-				D820C69F2101232E001D3B00 /* ETH */,
 				B099C9B020FDD25D00718608 /* Others */,
 				B099C9AF20FDD25700718608 /* Settings */,
-				B099C9AC20FDD24400718608 /* BTC */,
 				B099C9AB20FDD23C00718608 /* Tabs */,
 			);
 			path = Controllers;
@@ -661,6 +706,9 @@
 		B099C9AC20FDD24400718608 /* BTC */ = {
 			isa = PBXGroup;
 			children = (
+				B03D1366212F5DEE00F442AF /* BitcoinWalletViewController.swift */,
+				B03D136A212F7ADD00F442AF /* TransactionsViewController.swift */,
+				B03D137A2132D3BA00F442AF /* BitcoinTransferViewController.swift */,
 			);
 			path = BTC;
 			sourceTree = "<group>";
@@ -722,6 +770,8 @@
 			isa = PBXGroup;
 			children = (
 				B0AC1D2721146AA4004D8577 /* ExchangeRatesUIView.swift */,
+				B03D1368212F771600F442AF /* WalletTableInfoUIView.swift */,
+				B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -755,6 +805,7 @@
 				0E0F477C210BA137004B4A3C /* Contacts.storyboard */,
 				B0ACFFEF21122EB6007BE95C /* Money.storyboard */,
 				0E074C13210E357200CB3853 /* Setting.storyboard */,
+				B03D1363212F548600F442AF /* Bitcoin.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -844,9 +895,6 @@
 			isa = PBXGroup;
 			children = (
 				B01954EC20FFA98500F3DDB0 /* Ether.swift */,
-				B01954EB20FFA98500F3DDB0 /* StoryBoard.swift */,
-				B0E78F5A20FF8B26008A39D4 /* VCIdentifier.swift */,
-				B0AC000021126EAA007BE95C /* Money.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -858,6 +906,7 @@
 				B01954E720FFA94600F3DDB0 /* EnumCollection.swift */,
 				B0AC1D22211452BB004D8577 /* CryptoType.swift */,
 				B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */,
+				B03D137421318F3300F442AF /* TransactionType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -970,6 +1019,9 @@
 		B0ACFFF1211233B1007BE95C /* Money */ = {
 			isa = PBXGroup;
 			children = (
+				B0817C612133F9FC003A1604 /* QRScannerViewController.swift */,
+				B099C9AC20FDD24400718608 /* BTC */,
+				D820C69F2101232E001D3B00 /* ETH */,
 				B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */,
 				B0ACFFF521123580007BE95C /* MoneyViewController.swift */,
 				B0AC1D29211472DA004D8577 /* ExchangeRetesViewController.swift */,
@@ -980,9 +1032,8 @@
 		B0ACFFF2211233CB007BE95C /* Money */ = {
 			isa = PBXGroup;
 			children = (
-				B0ACFFF3211233F0007BE95C /* MoneyCreatedTableViewCell.swift */,
-				B0AC000A211299A3007BE95C /* MoneyNotCreatedTableViewCell.swift */,
-				B0AC1D2B211476A1004D8577 /* ExchangeRatesTableViewCell.swift */,
+				B03D137321318B3A00F442AF /* Transactions */,
+				B03D137221318B0500F442AF /* Wallets */,
 			);
 			path = Money;
 			sourceTree = "<group>";
@@ -1172,10 +1223,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */,
+				B03D1364212F548600F442AF /* Bitcoin.storyboard in Resources */,
 				D820C70C21037EDA001D3B00 /* (null) in Resources */,
 				B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */,
 				B0ACFFF021122EB6007BE95C /* Money.storyboard in Resources */,
-				B0493E602112A75100B7AA94 /* Assets.xcassets in Resources */,
 				D820C6BA21036E09001D3B00 /* (null) in Resources */,
 				B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */,
 				D820C6BB21036E09001D3B00 /* (null) in Resources */,
@@ -1185,6 +1236,7 @@
 				B01F0DE821086E5A008FB6F0 /* Localizable.strings in Resources */,
 				B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */,
 				B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */,
+				B043973921357956004DAAAA /* Assets.xcassets in Resources */,
 				D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1311,13 +1363,15 @@
 				B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */,
 				B0C396B0210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift in Sources */,
 				B01954E520FFA92100F3DDB0 /* StickerPack.swift in Sources */,
+				B043973B2135D7A5004DAAAA /* MoneyAmountTextField.swift in Sources */,
 				B0ACFFF621123580007BE95C /* MoneyViewController.swift in Sources */,
 				B019554120FFAC0F00F3DDB0 /* TransactionFactory.swift in Sources */,
 				B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */,
 				D849F8432113A07C009B425E /* KeyGenerator.cpp in Sources */,
 				D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */,
 				B01F0DFD2108847C008FB6F0 /* FromRightSegue.swift in Sources */,
-				B0AC000121126EAA007BE95C /* Money.swift in Sources */,
+				B0817C622133F9FD003A1604 /* QRScannerViewController.swift in Sources */,
+				B03D1367212F5DEE00F442AF /* BitcoinWalletViewController.swift in Sources */,
 				0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */,
 				B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */,
 				0E117962213465840097B017 /* AddContactViewController.swift in Sources */,
@@ -1346,6 +1400,7 @@
 				B019555B20FFAD7500F3DDB0 /* Request.m in Sources */,
 				B01954F820FFA9F000F3DDB0 /* KeyGenerator.swift in Sources */,
 				D820C6A72101232E001D3B00 /* SendViewController.swift in Sources */,
+				B03D13712131878F00F442AF /* TransEmptyTableViewCell.swift in Sources */,
 				B0C396A7210A3B2600E0C344 /* GamesViewController.swift in Sources */,
 				B0AC1D2821146AA4004D8577 /* ExchangeRatesUIView.swift in Sources */,
 				B019555620FFAD7500F3DDB0 /* PMTimer.m in Sources */,
@@ -1354,13 +1409,13 @@
 				B01954E620FFA92100F3DDB0 /* User.swift in Sources */,
 				B019551B20FFAA6600F3DDB0 /* MessageManager.swift in Sources */,
 				B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */,
-				B0E78F5B20FF8B26008A39D4 /* VCIdentifier.swift in Sources */,
 				0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */,
 				B01954E320FFA92100F3DDB0 /* QRGenerater.swift in Sources */,
 				B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */,
 				B019551620FFAA6600F3DDB0 /* SerializedBuffer-Wrapper.mm in Sources */,
 				D849F8402113A07C009B425E /* BuffersStorage.cpp in Sources */,
 				B019551A20FFAA6600F3DDB0 /* Utils.swift in Sources */,
+				B03D136B212F7ADD00F442AF /* TransactionsViewController.swift in Sources */,
 				B019555720FFAD7500F3DDB0 /* Packet.swift in Sources */,
 				B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */,
 				0EA074CE21065686002FF527 /* ChatMessageRcvViewCell.swift in Sources */,
@@ -1374,6 +1429,7 @@
 				B019555A20FFAD7500F3DDB0 /* Queue.m in Sources */,
 				B01F0DF821087264008FB6F0 /* UpdateProfileInfoTableViewController.swift in Sources */,
 				D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */,
+				B03D136E213185A100F442AF /* BitcoinTransactions.swift in Sources */,
 				B019550020FFAA3E00F3DDB0 /* UIView+Loading.swift in Sources */,
 				B01954FF20FFAA3E00F3DDB0 /* String+Helpers.swift in Sources */,
 				B0011B8321023F9000A3CBF1 /* UserManager.swift in Sources */,
@@ -1391,7 +1447,10 @@
 				B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */,
 				B019552020FFAA6600F3DDB0 /* SerializableData.mm in Sources */,
 				B01954E920FFA94600F3DDB0 /* EnumCollection.swift in Sources */,
+				B03D1369212F771600F442AF /* WalletTableInfoUIView.swift in Sources */,
+				B03D137521318F3300F442AF /* TransactionType.swift in Sources */,
 				B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */,
+				B03D137B2132D3BA00F442AF /* BitcoinTransferViewController.swift in Sources */,
 				B019553E20FFAC0F00F3DDB0 /* ObservableImageView.swift in Sources */,
 				B019551C20FFAA6600F3DDB0 /* EthereumManager.swift in Sources */,
 				B01954E220FFA92100F3DDB0 /* Photo.swift in Sources */,
@@ -1424,10 +1483,12 @@
 				0E074C24210E3B0700CB3853 /* SettingsBasicViewController.swift in Sources */,
 				D849F8412113A07C009B425E /* ByteArray.cpp in Sources */,
 				D849F8422113A07C009B425E /* SerializedBuffer.cpp in Sources */,
+				B03D13772131AE0500F442AF /* TransactionTableViewCell.swift in Sources */,
 				B019554520FFAC5900F3DDB0 /* ConnectionManager.swift in Sources */,
 				B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */,
 				B0C396AE210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift in Sources */,
 				0E074C23210E3B0700CB3853 /* SettingsMoneyViewController.swift in Sources */,
+				B03D13792132C5F700F442AF /* AddContactViewController.swift in Sources */,
 				0E074C20210E3B0700CB3853 /* SettingsBasicTableViewController.swift in Sources */,
 				0E074C26210E3B0700CB3853 /* SettingsNotificationTableViewController.swift in Sources */,
 			);
@@ -1643,8 +1704,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = M8A7BYS443;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CX6AZ34SLQ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1676,10 +1737,10 @@
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/lib-ios",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.xcm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.max;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0714eef9-478d-463b-9477-7c1bd08c850e";
-				PROVISIONING_PROFILE_SPECIFIER = RanosysWildcardDev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1696,8 +1757,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = M8A7BYS443;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CX6AZ34SLQ;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/cryptopp-ios/include",
@@ -1716,10 +1777,10 @@
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/lib-ios",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ranosys.xcm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.max;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0714eef9-478d-463b-9477-7c1bd08c850e";
-				PROVISIONING_PROFILE_SPECIFIER = RanosysWildcardDev;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

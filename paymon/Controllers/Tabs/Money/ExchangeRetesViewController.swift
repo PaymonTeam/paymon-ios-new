@@ -10,7 +10,6 @@ import UIKit
 
 class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var titleLabel: UITableView!
@@ -19,7 +18,6 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
     
     var exchangeRates : [ExchangeRate] = []
     
-    @IBOutlet weak var update: UIImageView!
     private var updateRates : NSObjectProtocol!
     
     @IBAction func updateClick(_ sender: Any) {
@@ -28,7 +26,7 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
             self.ratesTableView.reloadData()
             self.loading.startAnimating()
         }
-        ExchangeRateParser.parse()
+        ExchangeRateParser.parseAllExchangeRates()
     }
     
     override func viewDidLoad() {
@@ -59,7 +57,7 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        ExchangeRateParser.parse()
+        ExchangeRateParser.parseAllExchangeRates()
         
     }
     

@@ -18,8 +18,12 @@ class SimpleOkAlertController: UIAlertController {
         self.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
             
         }))
+        
         DispatchQueue.main.async {
-            vc.present(self, animated: true)
+            
+            if !self.isBeingPresented {
+                vc.present(self, animated: true)
+            }
         }
     }
     

@@ -20,7 +20,6 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var signInBottomConstraint: NSLayoutConstraint!
     
-    
     @IBAction func passwordForgotClick(_ sender: Any) {
         let forgotPasswordEmailViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordEmailViewController) as! ForgotPasswordEmailViewController
         

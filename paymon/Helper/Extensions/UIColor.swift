@@ -41,16 +41,27 @@ extension UIColor {
         
         struct Orange {
             static let bitcoin = UIColor(netHex: 0xf5a623).withAlphaComponent(0.7)
+            static let bitcoinBalanceLight = UIColor(netHex: 0xffd7a0)
+            static let bitcoinBalanceDark = UIColor(netHex: 0xffc633)
+
         }
         
         struct Black {
             static let primaryBlack = UIColor(netHex: 0x323232)
             static let primaryBlackLight = UIColor(netHex: 0x626262)
             static let primaryBlackUltraLight = UIColor(netHex: 0xe2e2e2)
+            static let walletTableInfoDark = UIColor(netHex: 0x515151)
+            static let walletTableInfoLight = UIColor(netHex: 0x8e8e8e)
         }
         
         struct Green {
             static let rub = UIColor(netHex: 0x417505).withAlphaComponent(0.6)
+            static let recivedTrans = UIColor(netHex: 0x7ed321).withAlphaComponent(0.6)
+            
+        }
+        
+        struct Red {
+            static let sentTrans = UIColor(netHex: 0xff6c6c).withAlphaComponent(0.6)
         }
     }
 }

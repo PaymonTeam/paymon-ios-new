@@ -115,6 +115,7 @@
 "Open in browser?"="Открыть в браузере?";
 "Open"="Открыть";
 "Cancel"="Отмена";
+"Delete"="Удалить";
 
 /*Notification settings*/
 "Messeges"="Сообщения";
@@ -147,6 +148,8 @@
 /*MoneyViewController*/
 
 "Wallet" = "Кошелек";
+"Backup"="Резервная копия";
+"Recovery"="Восстановление";
 "Exchange rates" = "Курсы валют";
 "Add"="Добавить";
 "Enter old passcode"="Введите старый пароль";
@@ -155,6 +158,10 @@
 "This is address of your Bitcoin wallet. To send to someone, click on QR code."="Это адрес вашего Bitcoin кошелька. Чтобы отправить его кому-либо, нажмите на QR-код.";
 "What to do next?"="Что делать дальше?";
 "To find out the address of your wallet and the QR-code, hold the cell of wallet. \n\n To transfer, deposit or withdraw funds, click on the dell of wallet."="Чтобы узнать адрес вашего кошелька и QR-код, удерживайте ячейку кошелька. \n\n Чтобы перевести, внести или снять средства, щелкните по ячейке кошелька.";
+"Bitcoin wallet"="Биткоин кошелек";
+"Received"="Полученные";
+"Sent"="Отправленные";
+"All"="Все";
 
 
 /*Money transfer*/
@@ -165,26 +172,10 @@
 "Can't read this QR-code"="Невозможно считать QR-код";
 "Make sure that the purse of the recipient is correct. To do this, click on the icon on the right."="Убедитесь, что кошелек получаетеля введен верно. Для этого нажмите на иконку справа";
 "Bitcoin address"="Bitcoin адрес";
+"Your wallet"="Ваш кошелек";
 "Send"="Отправить";
-
-
-/*Yandex Money depisit view controller*/
-
-"Yandex wallet:"="Яндекс кошелек:";
-"DEPOSIT"="ПОПОЛНИТЬ";
-"WITHDRAW"="ВЫВЕСТИ";
-"Failed to load exchange rate"="Ошибка: не удалось загрузить курс валюты";
-"You don't have enough money"="У вас не достаточно средств";
-"Allowed amount: "="Допустимая сумма: ";
-
-/*Money deposit view*/
-
-"Yandex money"="Яндекс деньги";
-"Add Yandex wallet"="Добавить Яндекс кошелек";
-"Want to deposit funds?"="Хотоите пополнить средства?";
-"To Deposit funds to your Bitcoin wallet, select one of the suggested variants of deposit. To do this, please login  in E-wallet system and then fill in the form relevant data. Enjoy your use!" = "Чтобы внести средства на ваш Bitcoin кошелек, выберите один из предложенных способов пополнения. Для этого пройдите авторизацию в системе электронного кошелька, а затем заполните форму соответствующими данными. Приятного использования!";
-"Want to withdraw funds?"="Хотите вывести средства?";
-"To withdraw funds from Bitcoin wallet, select one of the options withdrawal. To do this, login to the E-wallet system, and then fill in the form relevant data. Enjoy your use!"="Для вывода средств из кошелька Bitcoin, выберите один из вариантов вывода средств. Для этого войдите в систему электронного кошелька, а затем заполните форму соответствующими данными. Приятного использования!";
+"Transactions list is empty"="Список транзакций пуст";
+"History"="История";
 
 /*Wllet view controller*/
 
