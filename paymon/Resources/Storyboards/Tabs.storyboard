@@ -105,10 +105,10 @@
             </objects>
             <point key="canvasLocation" x="1466" y="1384"/>
         </scene>
-        <!--ChatsView-->
+        <!--ChatsViewController-->
         <scene sceneID="tqD-Cs-j8v">
             <objects>
-                <viewControllerPlaceholder storyboardName="Chats" referencedIdentifier="ChatsView" id="7Dm-Ff-e4i" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Chats" referencedIdentifier="ChatsViewController" id="7Dm-Ff-e4i" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chats" image="Chats" id="fR2-nu-mS7"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2C-QC-fQN" userLabel="First Responder" sceneMemberID="firstResponder"/>

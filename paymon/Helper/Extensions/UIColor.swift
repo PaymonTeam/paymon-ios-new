@@ -63,6 +63,13 @@ extension UIColor {
         struct Red {
             static let sentTrans = UIColor(netHex: 0xff6c6c).withAlphaComponent(0.6)
         }
+        
+        struct ChatsAction {
+            static let red = UIColor(netHex: 0xd3354d)
+            static let orange = UIColor(netHex: 0xf29f2c)
+            static let blue = UIColor(netHex: 0x43b7adb)
+
+        }
     }
 }
 

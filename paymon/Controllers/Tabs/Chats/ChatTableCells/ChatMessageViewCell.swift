@@ -16,10 +16,10 @@ class ChatMessageViewCell : UITableViewCell {
                 self.messageLabel.frame.width + 15, self.messageLabel.frame.height + 13)
         let bubblePath = UIBezierPath(roundedRect: bubbleSpace, cornerRadius: 10.0)
 
-//        red.setStroke()
+
         blue.setFill()
         bubblePath.fill()
-//        bubblePath.stroke()
+
     }
 
     func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
