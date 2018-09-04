@@ -86,7 +86,7 @@
 "Your invite code"="Ваш код для приглашения";
 "Invite your friends in Paymon and receive additional rewards after the end of ICO"="Приглашайте ваших друзей в Paymon и получите дополнительное вознаграждение после окончания ICO";
 "The more people will register with your invite сode, the more will be your reward"="Чем больше людей зарегистрируются по вашему инвайт-коду, тем больше будет ваше вознаграждение";
-"share"="поделиться";
+"Share"="Поделиться";
 "Hi! Install and register on this code '%@' in the app and get free cryptocurrency from Paymon!"="ПривЫУстанавливай и регистрируйся по этому коду '%@' в приложении и получи бесплатно криптовалюту от Paymon!";
 
 /*Update profile*/
@@ -162,6 +162,8 @@
 "Received"="Полученные";
 "Sent"="Отправленные";
 "All"="Все";
+"Private key"="Приватный ключ";
+"Public key"="Публичный ключ";
 
 
 /*Money transfer*/
@@ -176,6 +178,11 @@
 "Send"="Отправить";
 "Transactions list is empty"="Список транзакций пуст";
 "History"="История";
+"You do not have enough money"="У вас не достаточно средств";
+"To"="Получатель";
+"From"="Отправитель";
+"Network fee"="Комиссия сети";
+"Total amount"="Конечная сумма";
 
 /*Wllet view controller*/
 

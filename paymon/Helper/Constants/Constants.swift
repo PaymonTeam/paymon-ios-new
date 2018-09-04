@@ -31,7 +31,9 @@ struct VCIdentifier {
     static let CoinDetailsVCStoryID = "CoinDetailsViewController"
     
     static let qrScanViewController = "QRScannerViewController"
-
+    static let keysViewController = "KeysViewController"
+    
+    static let transferInformationViewController = "TransferInformationViewController"
     
 }
 

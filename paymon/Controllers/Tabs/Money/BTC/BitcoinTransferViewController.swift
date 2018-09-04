@@ -31,8 +31,8 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     
     private var getCourse : NSObjectProtocol!
     
-    var cryptoValue : Double!
-    var fiatValue : Double!
+    var cryptoValue : Double! = 0.0
+    var fiatValue : Double! = 0.0
     
     var addressIsNotEmpty = false
     var amountIsCorrect = false
@@ -40,14 +40,21 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     var course : Double!
     var fiatCurrancy : String!
     
-    var yourWalletBalanceValue : Double!
+    var publicKey : String!
+    var yourWalletBalanceValue = 1000000.0
     
     @objc func endEditing() {
         self.view.endEditing(true)
     }
     
     @IBAction func yourWalletClick(_ sender: Any) {
-        //TODO: Add view with information about BTC wallet
+        guard let keysViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
+        
+        //TODO: Set public key here
+        keysViewController.keyValue = self.publicKey
+        
+        self.present(keysViewController, animated: true, completion: nil)
+
     }
     override func viewWillAppear(_ animated: Bool) {
         
@@ -117,7 +124,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         
         self.fiatHint.alpha = 0
         self.cryptoHint.alpha = 0
-        self.send.alpha = 0
+        self.send.alpha = 1
         self.sendImage.alpha = 0
         self.amountView.alpha = 0
         self.walletInfoView.alpha = 0
@@ -125,6 +132,8 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         
         self.fiatHint.text = fiatCurrancy
         self.fiat.placeholder = fiatCurrancy
+        
+        self.send.isEnabled = true
     }
     
     @objc func fiatDidChanged(_ textField : UITextField) {
@@ -175,7 +184,11 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     @IBAction func sendClick(_ sender: Any) {
         if fiatValue < yourWalletBalanceValue {
             //TODO: present InformationViewController
-        }
+            
+            self.performSegue(withIdentifier: VCIdentifier.transferInformationViewController, sender: nil)
+            
+        } else {
+            _ = SimpleOkAlertController.init(title: "Transfer".localized, message: "You do not have enough money".localized, vc: self)        }
     }
     
     func showHints(isEmpty : Bool) {
@@ -199,11 +212,14 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
             UIView.animate(withDuration: 0.3, delay: 0, animations: {
                 self.send.alpha = 1
                 self.sendImage.alpha = 1
+                self.send.isEnabled = true
+
             })
         } else {
             UIView.animate(withDuration: 0.3, delay: 0, animations: {
                 self.send.alpha = 0
                 self.sendImage.alpha = 0
+                self.send.isEnabled = false
 
             })
         }

@@ -27,7 +27,37 @@ class BitcoinWalletViewController: PaymonViewController {
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func qrCodeClick(_ sender: Any) {
-        //TODO: Add show private and public keys and qr-codes
+        let keysMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
+        
+        let privateKey = UIAlertAction(title: "Private key".localized, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+            
+            guard let keysViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
+            
+            //TODO: Set private key here
+            keysViewController.keyValue = self.privateKey
+            
+            self.present(keysViewController, animated: true, completion: nil)
+            
+        })
+        
+        let publicKey = UIAlertAction(title: "Public key".localized, style: .default, handler: { (alert: UIAlertAction!) -> Void in
+            guard let keysViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
+            
+            //TODO: Set public key here
+            keysViewController.keyValue = self.publicKey
+            
+            self.present(keysViewController, animated: true, completion: nil)
+        })
+        
+        keysMenu.addAction(cancel)
+        keysMenu.addAction(publicKey)
+        keysMenu.addAction(privateKey)
+        
+        self.present(keysMenu, animated: true, completion: nil)
+
+        
     }
     
     @IBAction func funcsClick(_ sender: Any) {
