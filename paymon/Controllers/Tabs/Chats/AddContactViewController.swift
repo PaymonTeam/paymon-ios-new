@@ -15,25 +15,48 @@ class Contact {
     }
 }
 
-class AddContactViewController: UIViewController {
+class AddContactViewController: UIViewController, UISearchBarDelegate {
+    @IBOutlet weak var navigationBar: UINavigationBar!
     
+    @IBOutlet weak var newGroupView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var contactTableView: UITableView!
-    @IBOutlet weak var newGroupOrInviteMeButton: UIButton!
+    
     
     var cnContacts  = [CNContact]()
     
     var contacts = [Contact]()
 
-    var outputDict=[String:[String]]()
+    var outputDict = [String:[String]]()
+    var filteredOutput = [String:[String]]()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getContacts()
-        searchBar.backgroundImage = UIImage()
-        searchBar.textField?.textColor = UIColor.black
-        searchBar.textField?.backgroundColor = UIColor(red: 215/225.0, green: 215/225.0, blue: 215/225.0, alpha: 1.0)
+        setLayoutOptions()
+        
+        searchBar.delegate = self
+    }
+    
+    func setLayoutOptions() {
+        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+        
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+        
+        navigationBar.setTransparent()
+        newGroupView.layer.cornerRadius = newGroupView.frame.height/2
+
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.clear
+        
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        header.textLabel?.textAlignment = .right
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,6 +65,20 @@ class AddContactViewController: UIViewController {
     
     @IBAction func onClickback(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            filteredOutput = outputDict
+            contactTableView.reloadData()
+            return
+        }
+        
+        filteredOutput = outputDict.filter({contact -> Bool in
+            return contact.key.lowercased().contains(searchText.lowercased())
+        })
+        
+        contactTableView.reloadData()
     }
     
     func getContacts() {
@@ -103,7 +140,8 @@ class AddContactViewController: UIViewController {
                 if initialLetter != "" {
                     var letterArray = outputDict[initialLetter!] ?? [String]()
                     letterArray.append(word.name!)
-                    outputDict[initialLetter!]=letterArray
+                    outputDict[initialLetter!] = letterArray
+                    filteredOutput = outputDict
                 }
             }
         }
@@ -112,30 +150,30 @@ class AddContactViewController: UIViewController {
             self.contactTableView.reloadData()
         }
     }
-    
-    @IBAction func onClickNewGroup(_ sender: Any) {
-        let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
-        present(groupView, animated: false, completion: nil)
+
+    @IBAction func unWindCreateGroup(_ segue: UIStoryboardSegue) {
+        
     }
 }
+
+
 
 extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return outputDict.count
+        return filteredOutput.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let a = Array(outputDict.keys).sorted()
-        return (outputDict[a[section]]?.count)!
+        let a = Array(filteredOutput.keys).sorted()
+        return (filteredOutput[a[section]]?.count)!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let a = Array(outputDict.keys).sorted()
-        let data = outputDict[a[indexPath.section]]
+        let a = Array(filteredOutput.keys).sorted()
+        let data = filteredOutput[a[indexPath.section]]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as? ContactTableViewCell else {
             fatalError("Unable to deque tableview cell")
-            
         }
         cell.name.text = data?[indexPath.row]
         
@@ -143,11 +181,8 @@ extension AddContactViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let a = Array(outputDict.keys).sorted()
+        let a = Array(filteredOutput.keys).sorted()
         return a[section]
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
     }
 }
 

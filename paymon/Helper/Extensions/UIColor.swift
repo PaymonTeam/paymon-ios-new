@@ -26,6 +26,7 @@ extension UIColor {
         
         struct Gray {
             static let ethereum = UIColor(netHex: 0x9b9b9b).withAlphaComponent(0.7)
+            static let lightGray = UIColor(netHex: 0xafafaf)
         }
         
         struct Blue {

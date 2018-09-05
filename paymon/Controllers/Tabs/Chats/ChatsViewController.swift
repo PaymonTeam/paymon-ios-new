@@ -2,14 +2,13 @@
 // Created by Vladislav on 28/08/2017.
 // Copyright (c) 2017 Paymon. All rights reserved.
 //
-
 import Foundation
 import UIKit
 import web3swift
 import Contacts
 import ContactsUI
 
-class ChatsViewController: PaymonViewController, NotificationManagerListener {
+class ChatsViewController: PaymonViewController, NotificationManagerListener, UISearchBarDelegate {
     public class CellChatData {
         var photoID:Int64!
         var name = ""
@@ -19,17 +18,17 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
         var chatID:Int32!
     }
     
-    @IBOutlet weak var borderConstraint: NSLayoutConstraint!
-    
     public class CellDialogData : CellChatData {
         
     }
     public class CellGroupData : CellChatData {
         public var lastMsgPhoto:RPC.PM_photo?
     }
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var chatsTable: UITableView!
     
     var list:[CellChatData] = []
+    var filteredChats : [CellChatData] = []
     var isLoading:Bool = false
     var activityView:UIActivityIndicatorView!
     let editNavigationItem = UINavigationItem()
@@ -63,32 +62,106 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
         list.removeAll()
+        
+        setLayoutOptions()
+        
+        chatsTable.dataSource = self
+        chatsTable.delegate = self
+        searchBar.delegate = self
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            filteredChats = list
+            chatsTable.reloadData()
+            return
+        }
+        
+        filteredChats = list.filter({chat -> Bool in
+            return chat.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        chatsTable.reloadData()
+    }
+    
+    func setLayoutOptions() {
         activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityView.center = self.view.center
         self.view.addSubview(activityView)
         
-        chatsTable.dataSource = self
-        chatsTable.delegate = self
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
+        self.tabBarController?.tabBar.items?[0].title = "Chats".localized
+        self.tabBarController?.tabBar.items?[1].title = "Contacts".localized
+        self.tabBarController?.tabBar.items?[2].title = "Wallet".localized
+        self.tabBarController?.tabBar.items?[3].title = "Games".localized
+        self.tabBarController?.tabBar.items?[4].title = "Profile".localized
+        
+        self.navigationItem.title = "Chats".localized
+        navigationBar.setTransparent()
+        
+        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
     }
     
     @IBAction func onClickAddContact(_ sender: Any) {
         guard let vc = StoryBoard.chat.instantiateViewController(withIdentifier: "AddContactViewController") as? AddContactViewController else {return}
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let mute = muteAction(at: indexPath)
+        let clear = clearAction(at: indexPath)
+        let delete = deleteAction(at: indexPath)
         
-    func setup() {
-        self.tabBarController?.tabBar.items?[0].title = "Chats".localized
-        self.tabBarController?.tabBar.items?[1].title = "Contacts".localized
-        self.tabBarController?.tabBar.items?[2].title = "Wallet".localized
-        self.tabBarController?.tabBar.items?[3].title = "Games".localized
-        self.tabBarController?.tabBar.items?[4].title = "Profile".localized
-
-        self.navigationItem.title = "Chats".localized
-
-        borderConstraint.constant = 0.5
+        return UISwipeActionsConfiguration(actions: [delete, clear, mute])
+    }
+    
+    @available(iOS 11.0, *)
+    func muteAction(at indexPath: IndexPath) -> UIContextualAction {
+        
+        let action = UIContextualAction(style: .normal, title: "Mute") { (action, view, completion) in
+            //TODO: set mute chat
+            completion(true)
+        }
+        
+        action.image = #imageLiteral(resourceName: "Mute")
+        action.backgroundColor = UIColor.AppColor.ChatsAction.blue
+        
+        return action
+        
+    }
+    
+    @available(iOS 11.0, *)
+    func clearAction(at indexPath: IndexPath) -> UIContextualAction {
+        
+        let action = UIContextualAction(style: .normal, title: "Clear") { (action, view, completion) in
+            //TODO: clear chat history
+            completion(true)
+        }
+        
+        action.image = #imageLiteral(resourceName: "History")
+        action.backgroundColor = UIColor.AppColor.ChatsAction.orange
+        
+        return action
+        
+    }
+    
+    @available(iOS 11.0, *)
+    func deleteAction(at indexPath: IndexPath) -> UIContextualAction {
+        
+        let action = UIContextualAction(style: .normal, title: "Delete") { (action, view, completion) in
+            //TODO: delete chat
+            completion(true)
+        }
+        
+        action.image = #imageLiteral(resourceName: "Delete")
+        action.backgroundColor = UIColor.AppColor.ChatsAction.red
+        
+        return action
+        
     }
     
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
@@ -172,6 +245,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
                 }
                 list.removeAll()
                 list.append(contentsOf: array)
+                
+                filteredChats = list
                 chatsTable.reloadData()
             } else {
             }
@@ -196,12 +271,12 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener {
 
 extension ChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return filteredChats.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let data = list[row]
+        let data = filteredChats[row]
         if data is CellDialogData {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableViewCell") as! ChatsTableViewCell
             cell.title.text = data.name
@@ -228,7 +303,7 @@ extension ChatsViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        let data = list[row]
+        let data = filteredChats[row]
         tableView.deselectRow(at: indexPath, animated: true)
         let chatView = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
         chatView.setValue(data.name, forKey: "title")

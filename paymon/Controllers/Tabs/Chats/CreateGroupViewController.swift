@@ -11,19 +11,20 @@ import UIKit
 class GroupContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: ObservableImageView!
-    @IBOutlet weak var checkBox: UIImageView!
 }
 
-class GroupContactsHeaderView : UIView {
-    @IBOutlet weak var txtVContacts: UITextView!
-}
+//class GroupContactsHeaderView : UIView {
+//    @IBOutlet weak var txtVContacts: UITextView!
+//}
 
-class CreateGroupViewController: PaymonViewController , UITableViewDataSource, UITableViewDelegate{
+class CreateGroupViewController: PaymonViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     @IBOutlet weak var btnCreateGroup: UIBarButtonItem!
     @IBOutlet weak var tblVContacts: UITableView!
     @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var usersData:[RPC.UserObject] = []
+    var filteredData:[RPC.UserObject] = []
     var selectedUserData:NSMutableArray = []
     var isGroupAlreadyCreated:Bool = false
     var chatID: Int32!
@@ -32,6 +33,7 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
         super.viewDidLoad()
         for user in MessageManager.instance.userContacts.values {
             usersData.append(user)
+            filteredData = usersData
         }
         if isGroupAlreadyCreated {
             let navigationItem = UINavigationItem()
@@ -40,11 +42,36 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                 navigationBar.items!.append(navigationItem)
             }
         }
-        self.setTableHeaderView()
+
+        setLayoutOptions()
+        searchBar.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setLayoutOptions() {
+        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+        
+        navigationBar.setTransparent()
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            filteredData = usersData
+            tblVContacts.reloadData()
+            return
+        }
+        
+        filteredData = usersData.filter({user -> Bool in
+            return Utils.formatUserName(user).lowercased().contains(searchText.lowercased())
+        })
+        
+        tblVContacts.reloadData()
     }
     
     //MARK: - IBActions
@@ -113,26 +140,24 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     //MARK: - TableViewDelegates
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usersData.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
-        let data = usersData[row]
+        let data = filteredData[row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupContactsTableViewCell") as! GroupContactsTableViewCell
         cell.name.text = Utils.formatUserName(data)
         cell.photo.setPhoto(ownerID: data.id, photoID: data.photoID)
-        if selectedUserData.contains(data) {
-            cell.checkBox.image = UIImage(named: "checked-checkbox")
-        } else {
-            cell.checkBox.image = UIImage(named: "unchecked-checkbox")
-        }
+        
+        cell.accessoryType = selectedUserData.contains(data) ? .checkmark : .none
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
-        let data:RPC.UserObject = usersData[row]
+        let data:RPC.UserObject = filteredData[row]
         tableView.deselectRow(at: indexPath, animated: true)
         if selectedUserData.contains(data) {
             selectedUserData.removeObject(identicalTo: data)
@@ -140,21 +165,25 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
             selectedUserData.add(data)
         }
         tableView.reloadData()
-        self.setTableHeaderView()
     }
     
-    func setTableHeaderView() {
-        let headerView:GroupContactsHeaderView = tblVContacts.tableHeaderView as! GroupContactsHeaderView
-        if selectedUserData.count == 0 {
-            headerView.txtVContacts.text = "Whom would you like to message?"
-            headerView.txtVContacts.textColor = UIColor.gray
-        } else {
-            let strContacts:NSMutableArray! = NSMutableArray()
-            for user in selectedUserData {
-                strContacts.add(Utils.formatUserName(user as! RPC.UserObject))
-            }
-            headerView.txtVContacts.text = strContacts.componentsJoined(by: ", ")
-            headerView.txtVContacts.textColor = UIColor.darkGray
-        }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let a = Array(filteredData).sorted(by: { Utils.formatUserName($0) > Utils.formatUserName($1) })
+        return Utils.formatUserName(a[section])
     }
+    
+//    func setTableHeaderView() {
+//        let headerView:GroupContactsHeaderView = tblVContacts.tableHeaderView as! GroupContactsHeaderView
+//        if selectedUserData.count == 0 {
+//            headerView.txtVContacts.text = "Whom would you like to message?"
+//            headerView.txtVContacts.textColor = UIColor.gray
+//        } else {
+//            let strContacts:NSMutableArray! = NSMutableArray()
+//            for user in selectedUserData {
+//                strContacts.add(Utils.formatUserName(user as! RPC.UserObject))
+//            }
+//            headerView.txtVContacts.text = strContacts.componentsJoined(by: ", ")
+//            headerView.txtVContacts.textColor = UIColor.darkGray
+//        }
+//    }
 }
