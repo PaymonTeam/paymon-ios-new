@@ -24,17 +24,25 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     @IBOutlet weak var searchBar: UISearchBar!
     
     var usersData:[RPC.UserObject] = []
-    var filteredData:[RPC.UserObject] = []
+//    var filteredData:[RPC.UserObject] = []
     var selectedUserData:NSMutableArray = []
     var isGroupAlreadyCreated:Bool = false
     var chatID: Int32!
+    
+    var filteredOutput = [String:[RPC.UserObject]]()
+    
+    var outputDict = [String:[RPC.UserObject]]()
+    var tableSection = [String]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         for user in MessageManager.instance.userContacts.values {
             usersData.append(user)
-            filteredData = usersData
         }
+        
+        getUsersDict()
+        
         if isGroupAlreadyCreated {
             let navigationItem = UINavigationItem()
             navigationItem.title = value(forKey: "title") as? String
@@ -45,6 +53,28 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
 
         setLayoutOptions()
         searchBar.delegate = self
+    }
+    
+    func getUsersDict() {
+        for user in usersData {
+            
+            let key = Utils.formatUserName(user).substring(toIndex: 1).uppercased()
+            
+            if  var users = outputDict[key] {
+                users.append(user)
+                outputDict[key] = users
+            } else {
+                outputDict[key] = [user]
+            }
+            
+            tableSection = [String](outputDict.keys).sorted()
+        }
+        
+        filteredOutput = outputDict
+        
+        DispatchQueue.main.async {
+            self.tblVContacts.reloadData()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,15 +92,21 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
-            filteredData = usersData
+            filteredOutput = outputDict
+            tableSection = [String](outputDict.keys).sorted()
             tblVContacts.reloadData()
             return
         }
-        
-        filteredData = usersData.filter({user -> Bool in
-            return Utils.formatUserName(user).lowercased().contains(searchText.lowercased())
+
+        filteredOutput = outputDict.filter({user -> Bool in
+            
+            return user.key.lowercased().contains(searchText.lowercased())
         })
+        tableSection = [String](filteredOutput.keys).sorted()
+
         
+
+
         tblVContacts.reloadData()
     }
     
@@ -98,8 +134,8 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
             }
         } else {
             if selectedUserData.count > 0 {
-                let alert = UIAlertController(title: "CREATE GROUP".localized, message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "CANCEL".localized, style: .default, handler: { (action) in
+                let alert = UIAlertController(title: "Create group".localized, message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: { (action) in
                     
                 }))
                 alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (nil) in
@@ -136,54 +172,60 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
         self.dismiss(animated: true, completion: nil)
     }
     
-    
-    //MARK: - TableViewDelegates
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredData.count
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let key = tableSection[indexPath.section]
+        if let users = filteredOutput[key] {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GroupContactsTableViewCell") as! GroupContactsTableViewCell
+            cell.name.text = Utils.formatUserName(users[indexPath.row])
+            cell.photo.setPhoto(ownerID: users[indexPath.row].id, photoID: users[indexPath.row].photoID)
+            
+            cell.accessoryType = selectedUserData.contains(users[indexPath.row]) ? .checkmark : .none
+            
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        let data = filteredData[row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupContactsTableViewCell") as! GroupContactsTableViewCell
-        cell.name.text = Utils.formatUserName(data)
-        cell.photo.setPhoto(ownerID: data.id, photoID: data.photoID)
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.clear
         
-        cell.accessoryType = selectedUserData.contains(data) ? .checkmark : .none
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        header.textLabel?.textAlignment = .right
         
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        let data:RPC.UserObject = filteredData[row]
-        tableView.deselectRow(at: indexPath, animated: true)
-        if selectedUserData.contains(data) {
-            selectedUserData.removeObject(identicalTo: data)
-        } else {
-            selectedUserData.add(data)
+        let key = tableSection[indexPath.section]
+        if let users = filteredOutput[key] {
+            tableView.deselectRow(at: indexPath, animated: true)
+            if selectedUserData.contains(users[indexPath.row]) {
+                selectedUserData.removeObject(identicalTo: users[indexPath.row])
+            } else {
+                selectedUserData.add(users[indexPath.row])
+            }
         }
+        
         tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let a = Array(filteredData).sorted(by: { Utils.formatUserName($0) > Utils.formatUserName($1) })
-        return Utils.formatUserName(a[section])
+        return tableSection[section]
     }
     
-//    func setTableHeaderView() {
-//        let headerView:GroupContactsHeaderView = tblVContacts.tableHeaderView as! GroupContactsHeaderView
-//        if selectedUserData.count == 0 {
-//            headerView.txtVContacts.text = "Whom would you like to message?"
-//            headerView.txtVContacts.textColor = UIColor.gray
-//        } else {
-//            let strContacts:NSMutableArray! = NSMutableArray()
-//            for user in selectedUserData {
-//                strContacts.add(Utils.formatUserName(user as! RPC.UserObject))
-//            }
-//            headerView.txtVContacts.text = strContacts.componentsJoined(by: ", ")
-//            headerView.txtVContacts.textColor = UIColor.darkGray
-//        }
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return tableSection.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let key = tableSection[section]
+        if let users = filteredOutput[key] {
+            return users.count
+        }
+        
+        return 0
+    }
 }

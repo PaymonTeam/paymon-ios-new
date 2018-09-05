@@ -398,7 +398,7 @@
                                                     <rect key="frame" x="56" y="55" width="303" height="1"/>
                                                     <color key="backgroundColor" white="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="06V-22-8kL"/>
+                                                        <constraint firstAttribute="height" constant="1" id="llx-VS-FS5"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="111" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5A-uF-Vqw">
@@ -411,11 +411,11 @@
                                             <constraints>
                                                 <constraint firstItem="P5A-uF-Vqw" firstAttribute="centerY" secondItem="PRr-d1-YQX" secondAttribute="centerY" id="End-y0-TBu"/>
                                                 <constraint firstAttribute="trailing" secondItem="P5A-uF-Vqw" secondAttribute="trailing" constant="8" id="Fck-FX-Omu"/>
-                                                <constraint firstAttribute="trailing" secondItem="V01-BM-Ej1" secondAttribute="trailing" id="Hxa-99-g17"/>
+                                                <constraint firstAttribute="trailing" secondItem="V01-BM-Ej1" secondAttribute="trailing" id="Ha6-r5-lmm"/>
+                                                <constraint firstAttribute="bottom" secondItem="V01-BM-Ej1" secondAttribute="bottom" id="Nhc-He-Z6f"/>
                                                 <constraint firstItem="G30-VC-Uk1" firstAttribute="leading" secondItem="PRr-d1-YQX" secondAttribute="leading" constant="8" id="SUr-ZA-cbz"/>
-                                                <constraint firstAttribute="bottom" secondItem="V01-BM-Ej1" secondAttribute="bottom" id="VDq-HL-CO0"/>
+                                                <constraint firstItem="P5A-uF-Vqw" firstAttribute="leading" secondItem="V01-BM-Ej1" secondAttribute="leading" id="cZn-UM-ikd"/>
                                                 <constraint firstItem="G30-VC-Uk1" firstAttribute="centerY" secondItem="PRr-d1-YQX" secondAttribute="centerY" id="epj-bX-OSd"/>
-                                                <constraint firstItem="P5A-uF-Vqw" firstAttribute="leading" secondItem="V01-BM-Ej1" secondAttribute="leading" id="kXu-MB-yeg"/>
                                                 <constraint firstItem="P5A-uF-Vqw" firstAttribute="leading" secondItem="G30-VC-Uk1" secondAttribute="trailing" constant="8" id="oTy-Dm-gMx"/>
                                             </constraints>
                                         </tableViewCellContentView>
