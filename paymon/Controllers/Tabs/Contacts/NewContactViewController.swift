@@ -36,7 +36,7 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
     
     var cnContacts  = [CNContact]()
     var contacts = [Contact]()
-    var outputDict = [String:[String]]()
+    var outputDict = [String:[Contact]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +53,6 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        outputDict.removeAll()
         
         NotificationManager.instance.addObserver(self, id: NotificationManager.dialogsNeedReload)
         NotificationManager.instance.addObserver(self, id: NotificationManager.userAuthorized)
@@ -86,6 +84,7 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
     
     func getContacts() {
         contacts.removeAll()
+        outputDict.removeAll()
         let store = CNContactStore()
         
         switch CNContactStore.authorizationStatus(for: .contacts){
@@ -140,12 +139,12 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
         }
         
         
-        for word in contacts {
-            if let value = word.name?.isEmpty, !value {
-                let initialLetter = word.name?.substring(toIndex: 1) .uppercased()
+        for contact in contacts {
+            if let value = contact.name?.isEmpty, !value {
+                let initialLetter = contact.name?.substring(toIndex: 1) .uppercased()
                 if initialLetter != "" {
-                    var letterArray = outputDict[initialLetter!] ?? [String]()
-                    letterArray.append(word.name!)
+                    var letterArray = outputDict[initialLetter!] ?? [Contact]()
+                    letterArray.append(contact)
                     outputDict[initialLetter!]=letterArray
                 }
             }
@@ -255,7 +254,7 @@ extension NewContactViewController: UITableViewDataSource {
         let a = Array(outputDict.keys).sorted()
         let data = outputDict[a[indexPath.section - 1]]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
-        cell.name.text = data?[indexPath.row]
+        cell.name.text = data?[indexPath.row].name
             
 //        if data is CellDialogData {
 //            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableViewCell") as! ChatsTableViewCell
@@ -277,6 +276,7 @@ extension NewContactViewController: UITableViewDataSource {
 extension NewContactViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             let row = indexPath.row
             let data = list[row]
@@ -287,7 +287,11 @@ extension NewContactViewController: UITableViewDelegate {
             chatView.isGroup = false
             present(chatView, animated: false, completion: nil)
         } else {
-            
+            let a = Array(outputDict.keys).sorted()
+            let data = outputDict[a[indexPath.section - 1]]
+            let detailView = StoryBoard.contacts.instantiateViewController(withIdentifier: "ContactDetailViewController") as! ContactDetailViewController
+            detailView.contact = data?[indexPath.row]
+            navigationController?.pushViewController(detailView, animated: true)
         }
     }
 }
