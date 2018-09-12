@@ -174,16 +174,6 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
         
         
     }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        switch (section) {
-            case 0: return "Information about you".localized
-            case 1: return ""
-            case 2: return ""
-            default: return "Information about you".localized
-        }
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

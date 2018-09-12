@@ -124,7 +124,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         
         self.fiatHint.alpha = 0
         self.cryptoHint.alpha = 0
-        self.send.alpha = 1
+        self.send.alpha = 0
         self.sendImage.alpha = 0
         self.amountView.alpha = 0
         self.walletInfoView.alpha = 0
@@ -133,7 +133,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         self.fiatHint.text = fiatCurrancy
         self.fiat.placeholder = fiatCurrancy
         
-        self.send.isEnabled = true
+        self.send.isEnabled = false
     }
     
     @objc func fiatDidChanged(_ textField : UITextField) {

@@ -13,10 +13,6 @@ class GroupContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var photo: ObservableImageView!
 }
 
-//class GroupContactsHeaderView : UIView {
-//    @IBOutlet weak var txtVContacts: UITextView!
-//}
-
 class CreateGroupViewController: PaymonViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     @IBOutlet weak var btnCreateGroup: UIBarButtonItem!
     @IBOutlet weak var tblVContacts: UITableView!
@@ -24,7 +20,6 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     @IBOutlet weak var searchBar: UISearchBar!
     
     var usersData:[RPC.UserObject] = []
-//    var filteredData:[RPC.UserObject] = []
     var selectedUserData:NSMutableArray = []
     var isGroupAlreadyCreated:Bool = false
     var chatID: Int32!
@@ -83,10 +78,12 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     
     func setLayoutOptions() {
         searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+        searchBar.placeholder = "Search for users".localized
 
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
         navigationBar.setTransparent()
+        navigationBar.topItem?.title = "Create group".localized
         
     }
     

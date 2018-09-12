@@ -13,11 +13,11 @@ class ChatMessageRcvViewCell : UITableViewCell {
 
     override func draw(_ rect: CGRect) {
 
-        let gray = UIColor(red: 231/255, green: 231/255, blue: 231/255, alpha: 1)
+        let gray = UIColor.white.withAlphaComponent(0.8)
 
-        let bubbleSpace = CGRectMake(self.messageLabel.frame.minX - 7, self.messageLabel.frame.minY - 5,
-                self.messageLabel.frame.width + 15, self.messageLabel.frame.height + 13)
-        let bubblePath = UIBezierPath(roundedRect: bubbleSpace, cornerRadius: 10.0)
+        let bubbleSpace = CGRectMake(self.messageLabel.frame.minX - 16 - timeLabel.frame.width, self.messageLabel.frame.minY - 6,
+                                     self.messageLabel.frame.width + 28 + timeLabel.frame.width, self.messageLabel.frame.height + 14)
+        let bubblePath = UIBezierPath(roundedRect: bubbleSpace, cornerRadius: 13.0)
 
         gray.setFill()
         bubblePath.fill()

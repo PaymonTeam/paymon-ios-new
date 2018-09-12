@@ -6,35 +6,14 @@
 import UIKit
 import UserNotifications
 
-class GroupChatMessageRcvViewCell : ChatMessageRcvViewCell {
-    @IBOutlet weak var photo: ObservableImageView!
-    @IBOutlet weak var lblName: UILabel!
-}
-//import PureLayout
-
-extension String {
-    
-    func widthOfString(usingFont font: UIFont) -> CGFloat {
-        let fontAttributes = [kCTFontAttributeName: font]
-        let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
-        return size.width
-    }
-    
-    func heightOfString(usingFont font: UIFont) -> CGFloat {
-        let fontAttributes = [kCTFontAttributeName: font]
-        let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
-        return size.height
-    }
-}
-
 class ChatViewController: PaymonViewController, NotificationManagerListener {
     
-    
     @IBOutlet weak var messageTextView: UITextView!
-    
-    @IBOutlet weak var messageViewHeight: NSLayoutConstraint!
+
     @IBOutlet weak var messageTextViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var navBar: UINavigationBar!
+    
+    @IBOutlet weak var sendButtonImage: UIImageView!
+    @IBOutlet weak var messagesView: UIView!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contraintViewBottom: NSLayoutConstraint!
@@ -46,68 +25,80 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     var chatID: Int32!
     var isGroup: Bool!
     var users = SharedArray<RPC.UserObject>()
-    var oldFrame : CGRect!
-    
-    @IBAction private func onNavBarItemRightClicked() {
-        dismiss(animated: true)
-    }
-    
-    @IBAction private func onNavBarItemLeftClicked() {
-        dismiss(animated: true)
-    }
+
     
     @IBAction func onSendClicked() {
-        if let text = messageTextView.text {
-            if text.ltrim([" "]).rtrim([" "]).isEmpty {
-                return
-            }
-            let mid = MessageManager.generateMessageID()
-            let message = RPC.PM_message()
-            message.itemID = 0
-            message.itemType = .NONE
-            message.from_id = User.currentUser!.id
-            if isGroup {
-                message.to_id = RPC.PM_peerGroup()
-                message.to_id.group_id = chatID
-            } else {
-                message.to_id = RPC.PM_peerUser()
-                message.to_id.user_id = chatID
-            }
-            message.id = mid
-            message.text = text
-            message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
-            
-            NetworkManager.instance.sendPacket(message) { p, e in
-                if let update = p as? RPC.PM_updateMessageID {
-                    for i in 0..<self.messages.count {
-                        if self.messages[i] == update.oldID {
-                            self.messages.remove(at: i)
-                            break
-                        }
-                    }
-                    DispatchQueue.global().sync {
-                        self.messages.append(update.newID)
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+        
+        guard let text = messageTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty, text != "To write a message".localized else {return}
+
+        print(text)
+        
+        let mid = MessageManager.generateMessageID()
+        let message = RPC.PM_message()
+        message.itemID = 0
+        message.itemType = .NONE
+        message.from_id = User.currentUser!.id
+        if isGroup {
+            message.to_id = RPC.PM_peerGroup()
+            message.to_id.group_id = chatID
+        } else {
+            message.to_id = RPC.PM_peerUser()
+            message.to_id.user_id = chatID
+        }
+        message.id = mid
+        message.text = text
+        message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
+        
+        NetworkManager.instance.sendPacket(message) { p, e in
+            if let update = p as? RPC.PM_updateMessageID {
+                for i in 0..<self.messages.count {
+                    if self.messages[i] == update.oldID {
+                        self.messages.remove(at: i)
+                        break
                     }
                 }
+                DispatchQueue.global().sync {
+                    self.messages.append(update.newID)
+                }
+                
+                DispatchQueue.main.async {
+//                        self.tableView.reloadData()
+                }
             }
-            
-            DispatchQueue.global().sync {
-                messages.append(mid)
-            }
-            
-            MessageManager.instance.putMessage(message, serverTime: false)
-            let index = IndexPath(row: messages.count > 0 ? messages.count - 1 : 0, section: 0)
-            tableView.insertRows(at: [index], with: .bottom)
-            tableView.scrollToRow(at: index, at: .bottom, animated: false)
-            
-            messageTextView.text = ""
-            messageTextView.frame = oldFrame
-            messageViewHeight.constant = 44
         }
+        messages.append(mid)
+        
+        MessageManager.instance.putMessage(message, serverTime: false)
+        
+        DispatchQueue.main.async {
+            let index = IndexPath(row: self.messages.count > 0 ? self.messages.count - 1 : 0, section: 0)
+            self.tableView.insertRows(at: [index], with: .bottom)
+            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+        }
+        
+        messageTextView.text = ""
+        textViewDidChange(messageTextView)
+        
+    }
+    
+    func setLayoutOptions() {
+        messageTextView.layer.cornerRadius = messageTextView.frame.height/2
+        messageTextView.text = "To write a message".localized
+        messageTextView.textColor = UIColor.white.withAlphaComponent(0.4)
+        messageTextView.translatesAutoresizingMaskIntoConstraints = false
+        messageTextView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+
+        textViewDidChange(messageTextView)
+        
+        lblTitle.text = value(forKey: "title") as? String
+        
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+        
+        sendButton.layer.cornerRadius = sendButton.frame.height/2
+        
+        //TODO: for test
+        lblParticipants.text = "Online"
+
     }
     
     override func viewDidLoad() {
@@ -121,28 +112,14 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         if isGroup {
             users = MessageManager.instance.groupsUsers.value(forKey: chatID)!
         }
-        messageTextView.layer.cornerRadius = 15
-        messageTextView.layer.borderWidth = 1;
-        messageTextView.layer.borderColor = UIColor(r: 235, g: 235, b: 241).cgColor
-        messageTextView.text = "To write a message".localized
-        messageTextView.textColor = UIColor.lightGray
         
-        let fixedWidth = messageTextView.frame.size.width
-        messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newSize = messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        var newFrame = messageTextView.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height - 2)
-        messageTextView.frame = newFrame
-        oldFrame = newFrame
+        setLayoutOptions()
         
-        lblTitle.text = value(forKey: "title") as? String
-        sendButton.addTarget(self, action: #selector(onSendClicked), for: .touchUpInside)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 140
         
         messageTextView.delegate = self
+        
         let getChatMessages = RPC.PM_getChatMessages()
         getChatMessages.count = 20
         if isGroup {
@@ -170,7 +147,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             
             let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
             
-            contraintViewBottom.constant = isKeyboardShowing ? keyboardFrame!.height : 0
+            contraintViewBottom.constant = isKeyboardShowing ? -keyboardFrame!.height : 0
             
             UIView.animate(withDuration: 0,
                            delay: 0,
@@ -180,17 +157,23 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             }, completion: {
                 (completed) in
                 
-                if isKeyboardShowing {
-                    if self.messages.count >= 1 {
-                        self.tableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: false)
+                DispatchQueue.main.async {
+                    
+                    if isKeyboardShowing {
+                        if self.messages.count >= 1 {
+                            self.tableView.scrollToRow(at: IndexPath(row: self.messages.count - 1, section: 0), at: .bottom, animated: true)
+                        }
                     }
+
                 }
+                
             })
         }
     }
     
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if id == NotificationManager.chatAddMessages {
+            
             if args.count == 2 {
                 if args[1] is Bool {
                     if let messagesToAdd = args[0] as? [Int64] {
@@ -204,20 +187,20 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                         
                         if self.messages.count > 0 {
                             let index = IndexPath(row: self.messages.count - 1, section: 0)
-                            self.tableView.scrollToRow(at: index, at: .bottom, animated: false)
+                            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+
                         }
                     }
                 }
             }
         } else if id == NotificationManager.didReceivedNewMessages {
+            
             if args.count == 1 {
                 if let messagesToAdd = args[0] as? [RPC.Message] {
                     messagesToAdd.forEach({ msg in
-                        
                         DispatchQueue.global().sync {
                             self.messages.append(msg.id)
                         }
-                        
                     })
                 }
                 DispatchQueue.main.async {
@@ -225,28 +208,19 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                     
                     if self.messages.count > 0 {
                         let index = IndexPath(row: self.messages.count - 1, section: 0)
-                        self.tableView.scrollToRow(at: index, at: .bottom, animated: false)
+                        self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+
                     }
                 }
             }
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let fixedWidth = messageTextView.frame.size.width
-        messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        let newSize = messageTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        var newFrame = messageTextView.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
-        messageTextView.frame = newFrame
-        
-    }
+//    @IBAction func btnSettingAction(_ sender: Any) {
+//        self.goToSetting()
+//    }
     
-    @IBAction func btnSettingAction(_ sender: Any) {
-        self.goToSetting()
-    }
+    
     @IBAction func btnBackTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -278,6 +252,7 @@ extension ChatViewController: UITableViewDataSource {
                 if message.itemType == nil || message.itemType == .NONE {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageViewCell") as! ChatMessageViewCell
                     cell.messageLabel.text = message.text
+                    cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                     cell.messageLabel.sizeToFit()
                     return cell
                 } else {
@@ -287,13 +262,15 @@ extension ChatViewController: UITableViewDataSource {
                 }
             } else {
                 if isGroup {
+                    print("isGroup")
                     if message.itemType == nil || message.itemType == .NONE {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupChatMessageRcvViewCell") as! GroupChatMessageRcvViewCell
                         cell.messageLabel.text = message.text
                         cell.messageLabel.sizeToFit()
+                        cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                         cell.photo.setPhoto(ownerID: message.from_id, photoID: MediaManager.instance.userProfilePhotoIDs[message.from_id]!)
                         let user = MessageManager.instance.users[message.from_id]
-                        cell.lblName.text = Utils.formatUserName(user!)
+                        cell.name.text = Utils.formatUserName(user!)
                         return cell
                     } else {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemRcvViewCell") as! ChatMessageItemRcvViewCell
@@ -304,6 +281,7 @@ extension ChatViewController: UITableViewDataSource {
                     if message.itemType == nil || message.itemType == .NONE {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageRcvViewCell") as! ChatMessageRcvViewCell
                         cell.messageLabel.text = message.text
+                        cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                         cell.messageLabel.sizeToFit()
                         return cell
                     } else {
@@ -324,92 +302,53 @@ extension ChatViewController: UITableViewDataSource {
 extension ChatViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         messageTextView.endEditing(true)
-        
     }
 }
 
 extension ChatViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            DispatchQueue.main.async {
-                self.onSendClicked()
-            }
-            return false
-        }
-        return true
-    }
-
+    
     func textViewDidChange(_ textView: UITextView) {
-        resizeTextView(textView)
         
-        if textView.text == "" {
-            textView.frame = oldFrame
-            messageViewHeight.constant = 44
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        textView.constraints.forEach{ (constraint) in
+            if constraint.firstAttribute == .height {
+                constraint.constant = estimatedSize.height
+            }
         }
         
+        if !textView.text.isEmpty && textView.text != "To write a message".localized {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sendButton.backgroundColor = UIColor.white.withAlphaComponent(0.8)
+                self.sendButtonImage.image = #imageLiteral(resourceName: "SendColor")
+                self.sendButtonImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi/4)
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.sendButton.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+                self.sendButtonImage.image = #imageLiteral(resourceName: "SendGray")
+                self.sendButtonImage.transform = CGAffineTransform(rotationAngle: 0)
+
+                self.view.layoutIfNeeded()
+
+            })
+        }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        resizeTextView(textView)
-        
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor(r: 32, g: 32, b: 32)
+
+        if textView.textColor == UIColor.white.withAlphaComponent(0.4) {
+            textView.text = ""
+            textView.textColor = UIColor.white.withAlphaComponent(0.8)
         }
     }
-    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "To write a message".localized
-            textView.textColor = UIColor.lightGray
-            
-            if textView.text == "" {
-                textView.frame = oldFrame
-                messageViewHeight.constant = 44
-            }
-        }
-        
-        resizeTextView(textView)
-    }
-    func resizeTextView(_ textView: UITextView){
-
-        let fixedWidth = textView.frame.size.width
-        let newSize = textView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        var newFrame = textView.frame
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height - 2)
-        textView.frame = newFrame
-
-        UIView.animate(withDuration: 0,
-                       delay: 0,
-                       options: UIViewAnimationOptions.curveEaseOut,
-                       animations: {
-                        self.view.layoutIfNeeded()
-        }, completion: {
-            (completed) in
-
-        })
-
-        if newFrame.height > oldFrame.height {
-            let resizeFrame = newFrame.height - oldFrame.height
-            oldFrame = newFrame
-            messageViewHeight.constant += resizeFrame
-
-        } else if oldFrame.height > newFrame.height {
-
-            let resizeFrame = oldFrame.height - newFrame.height
-            oldFrame = newFrame
-            messageViewHeight.constant -= resizeFrame
-            UIView.animate(withDuration: 0,
-                           delay: 0,
-                           options: UIViewAnimationOptions.curveEaseOut,
-                           animations: {
-                            self.view.layoutIfNeeded()
-            }, completion: {
-                (completed) in
-
-            })
+            textView.textColor = UIColor.white.withAlphaComponent(0.4)
         }
     }
 }

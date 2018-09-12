@@ -77,13 +77,27 @@ open class Utils {
         return countries
         
     }
+    
+    public static func formatChatDateTime(timestamp:Int64, format24h:Bool) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        dateFormatter.locale = NSLocale.current
+        
+        dateFormatter.dateFormat = "HH:mm"
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+
+        let result = dateFormatter.string(from: date)
+        
+        return result
+    }
+
 
     public static func formatDateTime(timestamp:Int64, format24h:Bool) -> String {
         let dateFormatter = DateFormatter()
         let calendar = Calendar.current
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
-
+        
         var result : String = ""
         
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))

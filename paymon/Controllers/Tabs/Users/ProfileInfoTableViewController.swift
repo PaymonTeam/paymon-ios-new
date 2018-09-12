@@ -11,18 +11,11 @@ class ProfileInfoTableViewController : UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.updateView()
+        
+        print(self.tableView.frame.height)
 
     }
-
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        switch (section) {
-        case 0: return "Contact information".localized
-        case 1: return "Personal information".localized
-        default: return "Personal information".localized
-        }
-    }
-
+    
     func updateView() {
         
         guard let user = User.currentUser as RPC.UserObject? else {

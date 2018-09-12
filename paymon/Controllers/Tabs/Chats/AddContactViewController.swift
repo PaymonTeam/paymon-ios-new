@@ -22,6 +22,7 @@ class AddContactViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var contactTableView: UITableView!
     
+    @IBOutlet weak var newGroup: UIButton!
     
     var cnContacts  = [CNContact]()
     
@@ -41,10 +42,14 @@ class AddContactViewController: UIViewController, UISearchBarDelegate {
     
     func setLayoutOptions() {
         searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+        searchBar.placeholder = "Search for contacts or users".localized
+
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
         navigationBar.setTransparent()
+        navigationBar.topItem?.title = "New chat".localized
+        newGroup.setTitle("New group".localized, for: .normal)
         newGroupView.layer.cornerRadius = newGroupView.frame.height/2
 
     }

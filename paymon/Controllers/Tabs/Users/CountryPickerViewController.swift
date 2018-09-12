@@ -76,12 +76,21 @@ class CountryPickerViewController: PaymonViewController, UITableViewDelegate, UI
         tableView.delegate = self
         tableView.dataSource = self
         
-        navigationBar.topItem?.title = "Countries".localized
-        searchBar.placeholder = "Enter your country".localized
-        
         if let user = User.currentUser {
             selectCountry = user.country
         }
+        
+        setLayoutOptions()
+    }
+    
+    func setLayoutOptions() {
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+        
+        navigationBar.topItem?.title = "Countries".localized
+        searchBar.placeholder = "Enter your country".localized
+        
+        navigationBar.setTransparent()
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {

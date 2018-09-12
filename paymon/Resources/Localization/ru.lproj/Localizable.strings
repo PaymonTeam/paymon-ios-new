@@ -72,9 +72,19 @@
 "Password changed successfully"="Пароль был успешно изменен";
 
 
-/*Chat View*/
+/*Chats View*/
 
 "To write a message"="Написать сообщение";
+"Search for users or groups"="Поиск по людям и группам";
+"Search for contacts or users"="Поиск по контактам и людям";
+"Search for users"="Поиск по людям";
+"New chat"="Новый чат";
+"New group"="Новая группа";
+"Create group"="Создать группу";
+"Update..."="Обновление...";
+"Was online "="Был(а) ";
+
+
 
 /*Profile*/
 
@@ -82,7 +92,7 @@
 "Personal information" = "Персональная информация";
 "Information about you" = "Информация о вас";
 "Not choosen" = "Не выбрано";
-"Invite Friends"="Пригласить друзей";
+"Invite friends"="Пригласить друзей";
 "Your invite code"="Ваш код для приглашения";
 "Invite your friends in Paymon and receive additional rewards after the end of ICO"="Приглашайте ваших друзей в Paymon и получите дополнительное вознаграждение после окончания ICO";
 "The more people will register with your invite сode, the more will be your reward"="Чем больше людей зарегистрируются по вашему инвайт-коду, тем больше будет ваше вознаграждение";

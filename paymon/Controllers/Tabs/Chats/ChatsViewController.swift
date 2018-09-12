@@ -30,10 +30,9 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     var list:[CellChatData] = []
     var filteredChats : [CellChatData] = []
     var isLoading:Bool = false
-    var activityView:UIActivityIndicatorView!
-    let editNavigationItem = UINavigationItem()
     
     @IBOutlet weak var navigationBar: UINavigationBar!
+    var refresher: UIRefreshControl!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -46,7 +45,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         isLoading = false
         if (User.isAuthenticated) {
             isLoading = true
-            activityView.startAnimating()
+            navigationBar.topItem?.title = "Update...".localized
             MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
         }
     }
@@ -70,6 +69,17 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         chatsTable.delegate = self
         searchBar.delegate = self
         
+        refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(ChatsViewController.refresh), for: UIControlEvents.valueChanged)
+        chatsTable.addSubview(refresher)
+        
+    }
+    
+    @objc func refresh() {
+        
+        DispatchQueue.main.async {
+            NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -87,9 +97,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     }
     
     func setLayoutOptions() {
-        activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityView.center = self.view.center
-        self.view.addSubview(activityView)
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
@@ -99,10 +106,11 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         self.tabBarController?.tabBar.items?[3].title = "Games".localized
         self.tabBarController?.tabBar.items?[4].title = "Profile".localized
         
-        self.navigationItem.title = "Chats".localized
+        self.navigationBar.topItem?.title = "Chats".localized
         navigationBar.setTransparent()
         
         searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+        searchBar.placeholder = "Search for users or groups".localized
     }
     
     @IBAction func onClickAddContact(_ sender: Any) {
@@ -237,8 +245,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                 array.append(data)
             }
             
-            activityView.stopAnimating()
-            
+            self.navigationBar.topItem?.title = "Chats".localized
+
             if !array.isEmpty {
                 array.sort {
                     $0.time > $1.time
@@ -255,15 +263,20 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         } else if (id == NotificationManager.didDisconnectedFromServer) {
             isLoading = false
             DispatchQueue.main.async {
-                self.activityView.stopAnimating()
+                self.navigationBar.topItem?.title = "Chats".localized
             }
         } else if id == NotificationManager.userAuthorized {
             if !isLoading {
                 isLoading = true
                 DispatchQueue.main.async {
-                    self.activityView.startAnimating()
+                    self.navigationBar.topItem?.title = "Update...".localized
                 }
                 MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
+            }
+        }
+        DispatchQueue.main.async {
+            if self.refresher.isRefreshing {
+                self.refresher.endRefreshing()
             }
         }
     }

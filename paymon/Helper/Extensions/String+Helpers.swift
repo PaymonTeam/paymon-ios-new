@@ -77,6 +77,21 @@ extension String {
             return ""
         }
     }
+    
+    
+        
+    func widthOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [kCTFontAttributeName: font]
+        let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
+        return size.width
+    }
+    
+    func heightOfString(usingFont font: UIFont) -> CGFloat {
+        let fontAttributes = [kCTFontAttributeName: font]
+        let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
+        return size.height
+    }
+    
 
 }
 

@@ -13,6 +13,7 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
     private var observerUpdateFalse : NSObjectProtocol!
     private var showCountryPicker : NSObjectProtocol!
 
+    @IBOutlet weak var headerView: UIView!
     var needRemoveObservers = true
     
     @IBAction func arrowBackClick(_ sender: Any) {
@@ -48,14 +49,28 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
         
         self.addObservers()
 
-        changePhoto.setTitle("Change photo".localized, for: .normal)
+        setLayoutOptions()
         
         if let user = User.currentUser {
             avatar.setPhoto(ownerID: user.id, photoID: user.photoID)
         }
         self.updateItem.isEnabled = false
 
+
+    }
+    
+    func setLayoutOptions(){
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+        
+        self.headerView.layer.cornerRadius = 30
+        
+        let widthScreen = UIScreen.main.bounds.width
+        
+        self.headerView.setGradientLayer(frame: CGRect(x: 0, y: 0, width: widthScreen, height: self.headerView.frame.height), topColor: UIColor.white.cgColor, bottomColor: UIColor.AppColor.Blue.primaryBlueUltraLight.cgColor)
+        
+        navigationBar.setTransparent()
         navigationBar.topItem?.title = "Update Profile".localized
+        changePhoto.setTitle("Change photo".localized, for: .normal)
 
     }
     

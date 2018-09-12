@@ -38,6 +38,8 @@ extension UIColor {
 
             static let primaryBlue = UIColor(netHex: 0x0099cc)
             static let paymon = UIColor(netHex: 0x0099cc).withAlphaComponent(0.7)
+            
+            static let chatBlueBubble = UIColor(netHex: 0xbeefff).withAlphaComponent(1)
         }
         
         struct Orange {
@@ -52,7 +54,7 @@ extension UIColor {
             static let primaryBlackLight = UIColor(netHex: 0x626262)
             static let primaryBlackUltraLight = UIColor(netHex: 0xe2e2e2)
             static let walletTableInfoDark = UIColor(netHex: 0x515151)
-            static let walletTableInfoLight = UIColor(netHex: 0x8e8e8e)
+            static let walletTableInfoLight = UIColor(netHex: 0x6e6e6e)
         }
         
         struct Green {

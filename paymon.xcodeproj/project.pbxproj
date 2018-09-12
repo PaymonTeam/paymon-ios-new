@@ -154,6 +154,8 @@
 		B0C7447821147C7F008885C1 /* ExchangeRatesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447621147C7F008885C1 /* ExchangeRatesParser.swift */; };
 		B0C7447A21149BBF008885C1 /* ChartsRatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */; };
 		B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */; };
+		B0D43B4921401D7D0052B1A9 /* ContactWasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */; };
+		B0D43B5E214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
 		B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */; };
 		D66275EDD87D20306F62E7E8 /* Pods_paymon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3764DFE35E2623F4092A261 /* Pods_paymon.framework */; };
@@ -375,6 +377,8 @@
 		B0C7447621147C7F008885C1 /* ExchangeRatesParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRatesParser.swift; sourceTree = "<group>"; };
 		B0C7447921149BBE008885C1 /* ChartsRatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsRatesViewController.swift; sourceTree = "<group>"; };
 		B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeInterfaceOrientationMask.swift; sourceTree = "<group>"; };
+		B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactWasTableViewCell.swift; sourceTree = "<group>"; };
+		B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatMessageRcvViewCell.swift; sourceTree = "<group>"; };
 		B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
 		B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerViewController.swift; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -438,6 +442,7 @@
 				0EB732422136FD2A0069B383 /* NewContactViewController.swift */,
 				0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */,
 				0EE2A959213C04700076ED83 /* ContactDetailViewController.swift */,
+				B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 				0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */,
 				0EA074D1210656C7002FF527 /* ChatMessageItemViewCell.swift */,
 				0EA074D3210656FC002FF527 /* ChatMessageItemRcvViewCell.swift */,
+				B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */,
 			);
 			path = ChatTableCells;
 			sourceTree = "<group>";
@@ -1428,6 +1434,7 @@
 				B019555720FFAD7500F3DDB0 /* Packet.swift in Sources */,
 				B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */,
 				0EA074CE21065686002FF527 /* ChatMessageRcvViewCell.swift in Sources */,
+				B0D43B5E214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift in Sources */,
 				0E0402C9210644A500D6F703 /* ChatsViewController.swift in Sources */,
 				0EA074CC2106561B002FF527 /* ChatViewController.swift in Sources */,
 				B019554720FFAC5900F3DDB0 /* BaseService.swift in Sources */,
@@ -1483,6 +1490,7 @@
 				B0C7447721147C7F008885C1 /* ExchangeRatesForChartsParser.swift in Sources */,
 				B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
+				B0D43B4921401D7D0052B1A9 /* ContactWasTableViewCell.swift in Sources */,
 				B019551820FFAA6600F3DDB0 /* PMFileManager.swift in Sources */,
 				B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */,
 				B01954EE20FFA98500F3DDB0 /* Ether.swift in Sources */,

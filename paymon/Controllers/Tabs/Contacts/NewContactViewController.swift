@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class NewContactViewController: UIViewController, NotificationManagerListener {
+class NewContactViewController: PaymonViewController, NotificationManagerListener {
     
     public class CellChatData {
         var photoID:Int64!
@@ -25,30 +25,40 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
         
     }
     
+    @IBOutlet weak var inviteFriendsView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var contactTableView: UITableView!
     
+    @IBOutlet weak var inviteFriends: UIButton!
     var isLoading:Bool = false
     
     var list:[CellChatData] = []
-    var activityView:UIActivityIndicatorView!
-    let editNavigationItem = UINavigationItem()
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     var cnContacts  = [CNContact]()
     var contacts = [Contact]()
     var outputDict = [String:[Contact]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.backgroundImage = UIImage()
-        searchBar.textField?.backgroundColor = UIColor(red: 215/225.0, green: 215/225.0, blue: 215/225.0, alpha: 1.0)
         
+        setLayoutOptions()
         list.removeAll()
-        activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityView.center = self.view.center
-        self.view.addSubview(activityView)
+        navigationBar.topItem?.title = "Contacts".localized
         
+    }
+    
+    func setLayoutOptions() {
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
+        self.navigationBar.topItem?.title = "Contacts".localized
+        navigationBar.setTransparent()
+        
+        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+        searchBar.placeholder = "Search for users or groups".localized
+        inviteFriendsView.layer.cornerRadius = inviteFriendsView.frame.height/2
+        inviteFriends.setTitle("Invite friends".localized, for: .normal)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -62,7 +72,7 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
         isLoading = false
         if (User.isAuthenticated) {
             isLoading = true
-            activityView.startAnimating()
+            navigationBar.topItem?.title = "Update...".localized
             MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
         }
         
@@ -186,8 +196,8 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
                 array.append(data)
             }
             
-            activityView.stopAnimating()
-            
+            navigationBar.topItem?.title = "Contacts".localized
+
             if !array.isEmpty {
                 array.sort {
                     $0.time > $1.time
@@ -204,13 +214,13 @@ class NewContactViewController: UIViewController, NotificationManagerListener {
         } else if (id == NotificationManager.didDisconnectedFromServer) {
             isLoading = false
             DispatchQueue.main.async {
-                self.activityView.stopAnimating()
+                self.navigationBar.topItem?.title = "Contacts".localized
             }
         } else if id == NotificationManager.userAuthorized {
             if !isLoading {
                 isLoading = true
                 DispatchQueue.main.async {
-                    self.activityView.startAnimating()
+                    self.navigationBar.topItem?.title = "Update...".localized
                 }
                 MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
             }
@@ -243,12 +253,11 @@ extension NewContactViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableViewCell") as! ChatsTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ContactWasTableViewCell") as! ContactWasTableViewCell
             let data = list[indexPath.row]
-            cell.title.text = data.name
-            cell.lastMessageText.text = data.lastMessageText
-            cell.lastMessageTime.text = data.timeString
-            cell.photo.setPhoto(ownerID: data.chatID, photoID: data.photoID)
+            cell.name.text = data.name
+            cell.timeWhenWas.text = "Was online ".localized + "\(data.timeString)"
+            cell.avatar.setPhoto(ownerID: data.chatID, photoID: data.photoID)
             return cell
         } else {
         let a = Array(outputDict.keys).sorted()
@@ -268,12 +277,18 @@ extension NewContactViewController: UITableViewDataSource {
         return cell
         }
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 74 
-    }
 }
 extension NewContactViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor.clear
+        
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.textColor = UIColor.white.withAlphaComponent(0.7)
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        header.textLabel?.textAlignment = .right
+        
+    }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
