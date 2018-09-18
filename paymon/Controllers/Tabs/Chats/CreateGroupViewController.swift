@@ -7,17 +7,19 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class GroupContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: ObservableImageView!
 }
 
-class CreateGroupViewController: PaymonViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
+class CreateGroupViewController: PaymonViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var btnCreateGroup: UIBarButtonItem!
     @IBOutlet weak var tblVContacts: UITableView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    var participantsFromGroup = SharedArray<RPC.UserObject>()
     
     var usersData:[RPC.UserObject] = []
     var selectedUserData:NSMutableArray = []
@@ -28,26 +30,33 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     
     var outputDict = [String:[RPC.UserObject]]()
     var tableSection = [String]()
+    var saveSelested = false
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var i = 0
+        let count = participantsFromGroup.count
+        
         for user in MessageManager.instance.userContacts.values {
-            usersData.append(user)
+            for part in participantsFromGroup.array {
+                if user.id! != part.id! {
+                    i += 1
+                }
+            }
+            
+            if i == count {
+                usersData.append(user)
+            }
+            i = 0
         }
         
         getUsersDict()
-        
-        if isGroupAlreadyCreated {
-            let navigationItem = UINavigationItem()
-            navigationItem.title = value(forKey: "title") as? String
-            if navigationBar.items != nil {
-                navigationBar.items!.append(navigationItem)
-            }
-        }
 
         setLayoutOptions()
         searchBar.delegate = self
+        self.navigationController?.delegate = self
     }
     
     func getUsersDict() {
@@ -82,8 +91,11 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
 
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Create group".localized
+        if isGroupAlreadyCreated {
+            self.title = "Add".localized
+        } else {
+            self.title = "Create group".localized
+        }
         
     }
     
@@ -101,16 +113,32 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
         })
         tableSection = [String](filteredOutput.keys).sorted()
 
-        
-
-
         tblVContacts.reloadData()
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+
+        if saveSelested {
+            guard let settingsGroupVC = viewController as? GroupSettingViewController else {return}
+            
+            if selectedUserData.count != 0 {
+                for user in selectedUserData {
+                    let data = user as! RPC.UserObject
+                    settingsGroupVC.participants.append(data)
+                }
+                
+                settingsGroupVC.tableViewParticipants.reloadData()
+            }
+        }
+        
     }
     
     //MARK: - IBActions
     
     @IBAction func createGroupAction(_ sender: Any) {
+        
         if isGroupAlreadyCreated {
+            
             let addParticipant:RPC.PM_group_addParticipants! =  RPC.PM_group_addParticipants();
             addParticipant.userIDs = []
             for user in self.selectedUserData {
@@ -121,21 +149,33 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                 return ;
             }
             
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+            
             addParticipant.id = chatID;
             NetworkManager.instance.sendPacket(addParticipant) { response, e in
-                _ = MessageManager.instance
-                if (response != nil) {
-                    let _:RPC.Group! = response as! RPC.Group?
-                    self.dismiss(animated: true, completion: nil)
+                
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
+                if response is RPC.PM_boolTrue {
+                    self.saveSelested = true
+
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    self.saveSelested = false
+                    print("response false")
                 }
             }
         } else {
             if selectedUserData.count > 0 {
-                let alert = UIAlertController(title: "Create group".localized, message: "", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Create group".localized, message: "Enter group name".localized, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: { (action) in
                     
                 }))
-                alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (nil) in
+                alert.addAction(UIAlertAction(title: "Ok".localized, style: .default, handler: { (nil) in
                     let textField = alert.textFields![0] as UITextField
                     if !(textField.text?.isEmpty)! {
                         let createGroup = RPC.PM_createGroup()
@@ -145,7 +185,12 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                             createGroup.userIDs.append(data.id)
                         }
                         createGroup.title = textField.text;
+                        let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+                        
                         NetworkManager.instance.sendPacket(createGroup) { response, e in
+                            DispatchQueue.main.async {
+                                MBProgressHUD.hide(for: self.view, animated: true)
+                            }
                             let manager = MessageManager.instance
                             if (response != nil) {
                                 let group:RPC.Group! = response as! RPC.Group?
@@ -162,11 +207,6 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
             }
         }
         
-    }
-    
-    
-    @IBAction func btnBackAction(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

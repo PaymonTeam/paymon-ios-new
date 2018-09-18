@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8hJ-Jp-Q74">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -51,14 +51,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VYV-35-3ZQ"/>
                     </view>
-                    <connections>
-                        <outlet property="borderConstraint" destination="RCP-gF-ZJF" id="tc2-oK-kbL"/>
-                        <outlet property="navigationBar" destination="7PI-RH-XCs" id="anz-qk-KFc"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="Qy9-iq-Gou"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKm-jx-46B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1194" y="3754"/>
+            <point key="canvasLocation" x="2132" y="3753.3733133433288"/>
         </scene>
         <!--Settings Table View-->
         <scene sceneID="uGI-uI-AMV">
@@ -157,29 +154,8 @@
                             </tableViewSection>
                             <tableViewSection id="jbV-h7-2s6">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableViewCell" textLabel="fXZ-H1-a2Y" imageView="e0Z-b1-Nxf" style="IBUITableViewCellStyleDefault" id="C3l-ei-Qbf">
-                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C3l-ei-Qbf" id="Sxy-zb-Pr4">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="FAQ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fXZ-H1-a2Y">
-                                                    <rect key="frame" x="56" y="0.0" width="284" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="faq" id="e0Z-b1-Nxf">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableViewCell" textLabel="BLd-Ht-fOr" imageView="gfQ-CV-rW1" style="IBUITableViewCellStyleDefault" id="ZKK-Be-dmS">
-                                        <rect key="frame" x="0.0" y="265" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="221" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZKK-Be-dmS" id="TXT-0r-YVT">
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
@@ -207,7 +183,7 @@
                             <tableViewSection id="ZKc-7Q-dm8">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TableViewCell" id="kPS-84-Sj4">
-                                        <rect key="frame" x="0.0" y="328" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="284" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kPS-84-Sj4" id="JO4-Re-bzr">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -239,7 +215,6 @@
                     </tableView>
                     <connections>
                         <outlet property="aboutTheProgramCell" destination="BLd-Ht-fOr" id="2XJ-Z8-MYd"/>
-                        <outlet property="faqCell" destination="fXZ-H1-a2Y" id="g0C-5Q-Zoc"/>
                         <outlet property="logOutCell" destination="1qw-ND-qW1" id="prl-y6-JZZ"/>
                         <outlet property="notificationsLabel" destination="Oux-uf-qb0" id="SjZ-8x-Y4q"/>
                         <outlet property="notificationsTableViewCell" destination="Umz-Ht-da1" id="Du8-FB-umK"/>
@@ -251,7 +226,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uok-BU-pRs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1929" y="3782"/>
+            <point key="canvasLocation" x="2868" y="3781.2593703148427"/>
         </scene>
         <!--About Program View Controller-->
         <scene sceneID="LKh-vN-56i">
@@ -952,10 +927,27 @@
             </objects>
             <point key="canvasLocation" x="924" y="6741"/>
         </scene>
+        <!--Paymon Navigation Controller-->
+        <scene sceneID="pO2-tt-N71">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8hJ-Jp-Q74" customClass="PaymonNavigationController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p9s-7J-KJh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eer-zw-zyR" kind="relationship" relationship="rootViewController" id="pfm-CP-ppK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Wr-gw-1M9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1378" y="3752"/>
+        </scene>
     </scenes>
     <resources>
         <image name="about_program" width="25" height="25"/>
-        <image name="faq" width="25" height="25"/>
         <image name="paymon_logo" width="512" height="512"/>
         <image name="settings_notification" width="25" height="25"/>
         <image name="settings_security" width="25" height="25"/>

@@ -30,8 +30,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     var list:[CellChatData] = []
     var filteredChats : [CellChatData] = []
     var isLoading:Bool = false
-    
-    @IBOutlet weak var navigationBar: UINavigationBar!
+
     var refresher: UIRefreshControl!
     
     override func viewDidAppear(_ animated: Bool) {
@@ -45,7 +44,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         isLoading = false
         if (User.isAuthenticated) {
             isLoading = true
-            navigationBar.topItem?.title = "Update...".localized
+            self.navigationItem.title = "Update...".localized
+
             MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
         }
     }
@@ -96,24 +96,42 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         chatsTable.reloadData()
     }
     
+    func searchBarCancelButtonShow(show : Bool) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.searchBar.showsCancelButton = show
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        self.searchBarCancelButtonShow(show: false)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("hey")
+        self.searchBarCancelButtonShow(show: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.searchBarCancelButtonShow(show: false)
+    }
+    
     func setLayoutOptions() {
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
-        self.tabBarController?.tabBar.items?[0].title = "Chats".localized
-        self.tabBarController?.tabBar.items?[1].title = "Contacts".localized
-        self.tabBarController?.tabBar.items?[2].title = "Wallet".localized
-        self.tabBarController?.tabBar.items?[3].title = "Games".localized
-        self.tabBarController?.tabBar.items?[4].title = "Profile".localized
-        
-        self.navigationBar.topItem?.title = "Chats".localized
-        navigationBar.setTransparent()
+        self.navigationItem.title = "Chats".localized
         
         searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
         searchBar.placeholder = "Search for users or groups".localized
+        searchBar.showsCancelButton = false
+        
     }
     
     @IBAction func onClickAddContact(_ sender: Any) {
+        self.navigationItem.title = "Chats".localized
+
         guard let vc = StoryBoard.chat.instantiateViewController(withIdentifier: "AddContactViewController") as? AddContactViewController else {return}
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -245,7 +263,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                 array.append(data)
             }
             
-            self.navigationBar.topItem?.title = "Chats".localized
+            self.navigationItem.title = "Chats".localized
 
             if !array.isEmpty {
                 array.sort {
@@ -263,13 +281,15 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         } else if (id == NotificationManager.didDisconnectedFromServer) {
             isLoading = false
             DispatchQueue.main.async {
-                self.navigationBar.topItem?.title = "Chats".localized
+                self.navigationItem.title = "Chats".localized
             }
         } else if id == NotificationManager.userAuthorized {
             if !isLoading {
                 isLoading = true
                 DispatchQueue.main.async {
-                    self.navigationBar.topItem?.title = "Update...".localized
+
+                    self.navigationItem.title = "Update...".localized
+
                 }
                 MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
             }
@@ -288,6 +308,7 @@ extension ChatsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let row = indexPath.row
         let data = filteredChats[row]
         if data is CellDialogData {
@@ -315,19 +336,21 @@ extension ChatsViewController: UITableViewDataSource {
 extension ChatsViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         let row = indexPath.row
         let data = filteredChats[row]
         tableView.deselectRow(at: indexPath, animated: true)
-        let chatView = storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-        chatView.setValue(data.name, forKey: "title")
+        let chatViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.chatViewController) as! ChatViewController
+        chatViewController.setValue(data.name, forKey: "title")
         if data is CellGroupData {
-            chatView.isGroup = true
+            chatViewController.isGroup = true
         } else {
-            chatView.isGroup = false
+            chatViewController.isGroup = false
         }
-        chatView.chatID = data.chatID
+        chatViewController.chatID = data.chatID
         
-        
-        present(chatView, animated: false, completion: nil)
+        self.navigationItem.title = "Chats".localized
+
+        self.navigationController?.pushViewController(chatViewController, animated: true)
     }
 }

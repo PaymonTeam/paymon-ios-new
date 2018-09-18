@@ -7,62 +7,120 @@
 //
 
 import UIKit
+import MBProgressHUD
+
 
 class GroupSettingContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var photo: ObservableImageView!
-    @IBOutlet weak var checkBox: UIImageView!
     @IBOutlet weak var btnCross: UIButton!
+    @IBOutlet weak var cross: UIImageView!
 }
 
-class GroupSettingViewController: PaymonViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var btnGroupImage: UIButton!
-    @IBOutlet weak var tblParticipants: UITableView!
-    @IBOutlet weak var btnAddParticipants: UIButton!
-    @IBOutlet weak var txtfTitle: UITextField!
+class GroupSettingViewController: PaymonViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+    
+    @IBOutlet weak var done: UIBarButtonItem!
+    @IBOutlet weak var groupTitleHint: UILabel!
+    @IBOutlet weak var addView: UIView!
+    @IBOutlet weak var groupImage: ObservableImageView!
+    @IBOutlet weak var tableViewParticipants: UITableView!
+    @IBOutlet weak var addParticipants: UIButton!
+    @IBOutlet weak var groupTitle: UITextField!
+
     var users:[RPC.UserObject] = []
     var chatID: Int32!
     var participants = SharedArray<RPC.UserObject>()
     var isCreator:Bool = false
     var creatorID:Int32!
     var group:RPC.Group!
-    var activityView:UIActivityIndicatorView!
+    var newGroupTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityView.color = UIColor(r: 0, g: 122, b: 255)
-        activityView.center = self.view.center
-        self.view.addSubview(activityView)
-        activityView.stopAnimating()
+    
         participants = MessageManager.instance.groupsUsers.value(forKey: chatID)!
+        
         group = MessageManager.instance.groups[chatID]!
-        txtfTitle.text = group.title
+        groupTitle.text = group.title
         creatorID = group.creatorID;
-        isCreator = (creatorID == User.currentUser?.id);
+        isCreator = creatorID == User.currentUser?.id
+        
+        self.groupTitle.delegate = self
+        self.navigationController?.delegate = self
+        
+        setLayoutOptions()
+
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        switch (textField) {
+        case groupTitle:
+            return newLength <= 128
+        
+        default: print("")
+        }
+        
+        return true
+    }
+    
+    func setLayoutOptions() {
+        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+        
+        groupTitle.layer.cornerRadius = groupTitle.frame.height/2
+        addView.layer.cornerRadius = addView.frame.height/2
+        
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: self.groupTitle.frame.height))
+
+        groupTitle.leftView = paddingView
+        groupTitle.leftViewMode = UITextFieldViewMode.always
+        
+        let pickImage = UITapGestureRecognizer(target: self, action: #selector(self.openImagePicker(_:)))
+        groupImage.isUserInteractionEnabled = true
+        groupImage.addGestureRecognizer(pickImage)
+        
+        self.title = "Group".localized
+        addParticipants.setTitle("Add participants".localized, for: .normal)
+        groupTitleHint.text = "Group name".localized
+        
+        groupTitle.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+        self.done.isEnabled = false
+
+
+    }
+    
+    @objc func textFieldDidChanged(_ textField : UITextField) {
+        if textField.text != group.title && !(textField.text?.isEmpty)!{
+            self.done.isEnabled = true
+        } else {
+            self.done.isEnabled = false
+        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    //MARK: - IBActions
-    
     @IBAction func btnAddParticipantsTapped(_ sender: Any) {
-        let groupView = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
-        groupView.isGroupAlreadyCreated = true
-        groupView.chatID = chatID
-        groupView.setValue(group.title, forKey: "title")
-        present(groupView, animated: false, completion: nil)
+        let createGroupViewController = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
+        createGroupViewController.isGroupAlreadyCreated = true
+        createGroupViewController.chatID = chatID
+        createGroupViewController.participantsFromGroup = participants
+        
+        self.navigationController?.pushViewController(createGroupViewController, animated: true)
     }
     
-    @IBAction func btnGroupImageTapped(_ sender: Any) {
+    @objc func openImagePicker(_ sender : UITapGestureRecognizer) {
         let cardPicker = UIImagePickerController()
         cardPicker.allowsEditing = true
         cardPicker.delegate = self
         cardPicker.sourceType = .photoLibrary
         present(cardPicker, animated: true)
+        
     }
+
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         picker.dismiss(animated: true)
@@ -79,77 +137,100 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
             packet.id = chatID
             let oldPhotoID = group.photo.id!
             let photoID = photo.id!
-            btnGroupImage.setImage(image, for: .normal)
+            groupImage.image = image
             ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
             
-            DispatchQueue.main.async {
-                self.activityView.startAnimating()
-            }
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
             
             NetworkManager.instance.sendPacket(packet) { packet, error in
+                
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
                 if (packet is RPC.PM_boolTrue) {
                     Utils.stageQueue.run {
                         PMFileManager.instance.startUploading(photo: photo, onFinished: {
                             print("File has uploaded")
-                            DispatchQueue.main.async {
-                                self.activityView.stopAnimating()
-                            }
+                            
                         }, onError: { code in
                             print("file upload failed \(code)")
-                            DispatchQueue.main.async {
-                                self.activityView.stopAnimating()
-                            }
+                            
                         }, onProgress: { p in
                         })
                     }
                 } else {
-                    DispatchQueue.main.async {
-                        self.activityView.stopAnimating()
-                    }
+                    
                     PMFileManager.instance.cancelFileUpload(fileID: photoID);
                 }
             }
         }
     }
-    @IBAction func btnBackTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard let chatVC = viewController as? ChatViewController else {return}
+        
+        if !newGroupTitle.isEmpty {
+            chatVC.chatTitle.text = newGroupTitle
+        }
+        
+        var text = "Participants: ".localized
+        text.append("\(participants.count)")
+        
+        chatVC.chatSubtitle.text = text
+        
     }
+
     @IBAction func btnDoneTapped(_ sender: Any) {
-        if txtfTitle.text != group.title {
-            let setSettings = RPC.PM_group_setSettings()
-            setSettings.id = chatID;
-            setSettings.title = txtfTitle.text!;
-            NetworkManager.instance.sendPacket(setSettings) { response, e in
-                let manager = MessageManager.instance
-                if (response != nil) {
-                    DispatchQueue.main.async {
-                        manager.groups[self.chatID]?.title = self.txtfTitle.text!
-                    }
+        self.view.endEditing(true)
+        self.done.isEnabled = false
+        
+        let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+
+        let setSettings = RPC.PM_group_setSettings()
+        setSettings.id = chatID;
+        setSettings.title = groupTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        newGroupTitle = groupTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        print("new group title: \(newGroupTitle)")
+        NetworkManager.instance.sendPacket(setSettings) { response, e in
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+
+            let manager = MessageManager.instance
+            if (response != nil) {
+                DispatchQueue.main.async {
+                    manager.groups[self.chatID]?.title = self.groupTitle.text!
+                    Utils.showSuccesHud(vc: self)
                 }
             }
         }
+        
     }
     @objc func btnCrossTapped(sender:UIButton) {
         let user = participants[sender.tag]
-        let alert = UIAlertController(title: "Are you sure to remove this user".localized, message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "CANCEL".localized, style: .default, handler: { (action) in
+        let alert = UIAlertController(title: "Remove user".localized, message: "Are you sure to remove this user?".localized, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: { (action) in
 
         }))
-        alert.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (nil) in
+        alert.addAction(UIAlertAction(title: "Ok".localized, style: .default, handler: { (nil) in
 
             let removeParticipant = RPC.PM_group_removeParticipant();
             removeParticipant.id = self.chatID;
             removeParticipant.userID = user.id;
+            
             NetworkManager.instance.sendPacket(removeParticipant) { response, e in
                 if (response != nil) {
-                    self.participants.remove(at: sender.tag)
-                    self.tblParticipants.reloadData()
+                    
+                    DispatchQueue.main.async {
+                        self.participants.remove(at: sender.tag)
+
+                        self.tableViewParticipants.reloadData()
+                    }
                 }
             }
         }))
-        alert.addTextField { (textField) in
-            textField.placeholder = "Enter group title"
-        }
         self.present(alert, animated: true, completion: nil)
     }
     //MARK: - TableViewDelegates
@@ -164,11 +245,13 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSettingContactsTableViewCell") as! GroupSettingContactsTableViewCell
         cell.name.text = Utils.formatUserName(data)
         cell.photo.setPhoto(ownerID: data.id, photoID: data.photoID)
-        cell.btnCross.isHidden = true
-        if data.id != creatorID {
+        
+        if data.id != creatorID && isCreator {
+            
             cell.btnCross.addTarget(self, action:#selector(btnCrossTapped), for: .touchUpInside)
             cell.btnCross.tag = row
-            cell.btnCross.isHidden = false
+            cell.btnCross.isEnabled = true
+            cell.cross.isHidden = false
         }
         return cell
     }

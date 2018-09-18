@@ -15,7 +15,5 @@ class TabsViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(User.currentUser?.token)
-        
     }
 }

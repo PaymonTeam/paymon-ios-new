@@ -346,8 +346,8 @@ public class UserManager {
     
     static func authByToken(window : UIWindow) {
 
-        guard let startViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as? StartViewController else {return}
-        guard let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as? TabsViewController else {return}
+        guard let startViewController = StoryBoard.main.instantiateInitialViewController() as? PaymonNavigationController else {return}
+        guard let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: "NavigationControllerTab") as? UINavigationController else {return}
 
             let auth = RPC.PM_authToken()
             
@@ -360,8 +360,8 @@ public class UserManager {
                 
                 if e != nil || !(p is RPC.PM_userFull) {
                     DispatchQueue.main.async {
-                        window.rootViewController = startViewController
-                        window.makeKeyAndVisible()
+
+                    window.rootViewController?.present(startViewController, animated: false, completion: nil)
                     }
                 } else {
                     User.isAuthenticated = true
@@ -370,8 +370,8 @@ public class UserManager {
                     User.loadConfig()
                     
                     DispatchQueue.main.sync {
-                        window.rootViewController = tabsViewController
-                        window.makeKeyAndVisible()
+                        print("Show mee")
+                    window.rootViewController?.present(tabsViewController, animated: false, completion: nil)
                     }
 
                     NotificationManager.instance.postNotificationName(id: NotificationManager.userAuthorized)

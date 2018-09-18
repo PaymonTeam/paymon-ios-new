@@ -20,7 +20,7 @@ class KeysViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        keyValue = "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
+//        keyValue = "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
         key.text = keyValue
         share.setTitle("Share".localized, for: .normal)
         

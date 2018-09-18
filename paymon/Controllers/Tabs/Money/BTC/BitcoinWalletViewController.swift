@@ -9,8 +9,6 @@
 import Foundation
 
 class BitcoinWalletViewController: PaymonViewController {
-
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var tableTransactionsView: WalletTableInfoUIView!
     @IBOutlet weak var balanceView: UIView!
@@ -22,10 +20,12 @@ class BitcoinWalletViewController: PaymonViewController {
     
     var privateKey : String!
     var publicKey : String!
-    
+
+    @IBOutlet weak var backItem: UIBarButtonItem!
     @IBAction func backClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func qrCodeClick(_ sender: Any) {
         let keysMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
@@ -100,8 +100,9 @@ class BitcoinWalletViewController: PaymonViewController {
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
-        self.navigationBar.setTransparent()
-        self.navigationBar.topItem?.title = "Bitcoin wallet".localized
+        self.title = "Bitcoin wallet".localized
+        self.backItem.title = "Back".localized
+
     }
     
     func getWalletInfo() {
@@ -124,10 +125,6 @@ class BitcoinWalletViewController: PaymonViewController {
                 transferViewController.fiatCurrancy = Money.usd
             }
         }
-    }
-    
-    @IBAction func unWindBitcoinTransfer(_ segue: UIStoryboardSegue) {
-        
     }
     
 }

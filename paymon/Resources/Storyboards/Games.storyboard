@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L6r-88-j7i">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Games View Controller-->
+        <scene sceneID="xMA-If-Cy3">
+            <objects>
+                <viewController storyboardIdentifier="GamesViewController" id="nNs-bT-04V" customClass="GamesViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mwV-as-TNz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GamePad" translatesAutoresizingMaskIntoConstraints="NO" id="INH-vG-rjd">
+                                <rect key="frame" x="79" y="183" width="217" height="301"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="301" id="cGB-6g-qxl"/>
+                                    <constraint firstAttribute="width" constant="217" id="uKy-ml-AEg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SZ-vh-0Eg">
+                                <rect key="frame" x="16" y="492" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0n-qf-GqB">
+                                <rect key="frame" x="16" y="520" width="343" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1SZ-vh-0Eg" firstAttribute="top" secondItem="INH-vG-rjd" secondAttribute="bottom" constant="8" id="1m3-sv-QOc"/>
+                            <constraint firstItem="INH-vG-rjd" firstAttribute="centerY" secondItem="mwV-as-TNz" secondAttribute="centerY" id="2DB-sD-CHs"/>
+                            <constraint firstItem="INH-vG-rjd" firstAttribute="centerX" secondItem="KMf-sd-gqc" secondAttribute="centerX" id="36f-ec-Bgr"/>
+                            <constraint firstItem="1SZ-vh-0Eg" firstAttribute="leading" secondItem="KMf-sd-gqc" secondAttribute="leading" constant="16" id="RK9-jD-zxG"/>
+                            <constraint firstItem="KMf-sd-gqc" firstAttribute="trailing" secondItem="1SZ-vh-0Eg" secondAttribute="trailing" constant="16" id="aTA-dH-wbJ"/>
+                            <constraint firstItem="k0n-qf-GqB" firstAttribute="leading" secondItem="KMf-sd-gqc" secondAttribute="leading" constant="16" id="gUh-bN-LNa"/>
+                            <constraint firstItem="KMf-sd-gqc" firstAttribute="trailing" secondItem="k0n-qf-GqB" secondAttribute="trailing" constant="16" id="rQm-67-ZFu"/>
+                            <constraint firstItem="k0n-qf-GqB" firstAttribute="top" secondItem="1SZ-vh-0Eg" secondAttribute="bottom" constant="8" id="wbD-cY-wLF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KMf-sd-gqc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="efw-lT-SIl"/>
+                    <connections>
+                        <outlet property="bottomLabel" destination="k0n-qf-GqB" id="xfJ-Qb-IvL"/>
+                        <outlet property="topLabel" destination="1SZ-vh-0Eg" id="keR-CK-zkJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HNH-ue-nRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="436" y="-453.82308845577217"/>
+        </scene>
+        <!--Paymon Navigation Controller-->
+        <scene sceneID="2j4-eN-dgy">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationControllerGames" automaticallyAdjustsScrollViewInsets="NO" id="L6r-88-j7i" customClass="PaymonNavigationController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Games" id="fRx-4f-WwS">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g4s-gz-Ga3">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nNs-bT-04V" kind="relationship" relationship="rootViewController" id="hkc-2g-YX3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lkr-jz-7m1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-503.19999999999999" y="-453.82308845577217"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GamePad" width="256" height="256"/>
+        <image name="Games" width="32" height="32"/>
+    </resources>
+</document>

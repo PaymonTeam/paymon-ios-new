@@ -16,7 +16,6 @@ class Contact {
 }
 
 class AddContactViewController: UIViewController, UISearchBarDelegate {
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var newGroupView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -47,11 +46,10 @@ class AddContactViewController: UIViewController, UISearchBarDelegate {
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "New chat".localized
+        self.title = "New chat".localized
         newGroup.setTitle("New group".localized, for: .normal)
         newGroupView.layer.cornerRadius = newGroupView.frame.height/2
-
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

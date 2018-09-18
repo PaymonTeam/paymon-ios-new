@@ -43,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
 
         //setup ether
         loadEthenWallet()
-        let vc = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.startViewController)
+        let vc = StoryBoard.main.instantiateInitialViewController()
         self.window?.rootViewController = vc
-        self.window?.makeKeyAndVisible()
+
         return true
     }
     
@@ -100,11 +100,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
             if User.currentUser != nil {
                 UserManager.authByToken(window: self.window!)
             } else {
-                guard let startViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.startViewController) as? StartViewController else {return}
+                guard let startViewController = StoryBoard.main.instantiateInitialViewController() as? PaymonNavigationController else {return}
                 
                 DispatchQueue.main.async {
                     self.window!.rootViewController = startViewController
-                    self.window!.makeKeyAndVisible()
+                    self.window?.rootViewController?.navigationController?.present(startViewController, animated: false, completion: nil)
                 }
                 
             }

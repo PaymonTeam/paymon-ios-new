@@ -34,6 +34,14 @@ struct VCIdentifier {
     static let keysViewController = "KeysViewController"
     
     static let transferInformationViewController = "TransferInformationViewController"
+    static let chatViewController = "ChatViewController"
+    
+    static let contactDetailViewController = "ContactDetailViewController"
+    
+    static let groupSettingViewController = "GroupSettingViewController"
+    static let friendProfileViewController = "FriendProfileViewController"
+
+
     
 }
 

@@ -32,8 +32,8 @@ extension Notification.Name {
     static let updateRates = Notification.Name(rawValue: "updateRates")
     static let updateTransaction = Notification.Name(rawValue: "updateTransaction")
     static let getCourse = Notification.Name(rawValue: "getCourse")
-
-
-
+    static let setBtcAddress = Notification.Name(rawValue: "setBtcAddress")
+    
+    static let setFriendProfileInfo = Notification.Name(rawValue: "setFriendProfileInfo")
 
 }

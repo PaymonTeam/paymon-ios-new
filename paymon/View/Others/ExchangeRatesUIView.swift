@@ -22,9 +22,7 @@ class ExchangeRatesUIView: UIView {
         let width: CGFloat = UIScreen.main.bounds.width
                 
         self.setGradientLayer(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.height), topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
-        
-        
-        
+
         self.layer.cornerRadius = 30
 
     }

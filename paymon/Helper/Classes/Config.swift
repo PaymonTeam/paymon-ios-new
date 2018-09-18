@@ -7,7 +7,7 @@ import Foundation
 
 class Config {
     open static let BUILD_DEBUG = true
-    open static let BUILD_PRODUCTION = true
+    open static let BUILD_PRODUCTION = false
     open static let HOST = BUILD_DEBUG ? "91.226.80.26" : "91.226.80.26"
     open static let PORT:UInt16 = BUILD_PRODUCTION ? 7966 : 7968
 

@@ -9,7 +9,6 @@
 import UIKit
 
 class TransferInformationViewController: UIViewController {
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var sendImage: UIImageView!
     @IBOutlet weak var send: UIButton!
@@ -38,8 +37,6 @@ class TransferInformationViewController: UIViewController {
     }
     
     func setLayoutOptions() {
-
-        navigationBar.setTransparent()
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
@@ -56,5 +53,6 @@ class TransferInformationViewController: UIViewController {
         yourWallet.text = "Your wallet".localized
         networkFeeHint.text = "Network fee".localized
         totalAmountHint.text = "Total amount".localized
+        self.title = "Transfer info".localized
     }
 }

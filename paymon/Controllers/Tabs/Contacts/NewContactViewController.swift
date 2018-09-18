@@ -10,7 +10,7 @@ import UIKit
 import Contacts
 import ContactsUI
 
-class NewContactViewController: PaymonViewController, NotificationManagerListener {
+class NewContactViewController: PaymonViewController, NotificationManagerListener, UISearchBarDelegate {
     
     public class CellChatData {
         var photoID:Int64!
@@ -21,8 +21,8 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         var chatID:Int32!
     }
     
-    public class CellDialogData : CellChatData {
-        
+    public class CellContactData : CellChatData {
+        var login : String!
     }
     
     @IBOutlet weak var inviteFriendsView: UIView!
@@ -32,27 +32,32 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
     @IBOutlet weak var inviteFriends: UIButton!
     var isLoading:Bool = false
     
-    var list:[CellChatData] = []
+    var existUsersArray:[CellContactData] = []
+    var existUsersFilteredArray:[CellContactData] = []
+
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
     var cnContacts  = [CNContact]()
     var contacts = [Contact]()
-    var outputDict = [String:[Contact]]()
+    var phoneContactsDict = [String:[Contact]]()
+    var phoneContactsFilteredDict = [String:[Contact]]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setLayoutOptions()
-        list.removeAll()
-        navigationBar.topItem?.title = "Contacts".localized
         
+        existUsersArray.removeAll()
+        self.getContacts()
+        
+        searchBar.delegate = self
+
     }
     
     func setLayoutOptions() {
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
-        self.navigationBar.topItem?.title = "Contacts".localized
-        navigationBar.setTransparent()
+        self.navigationItem.title = "Contacts".localized
         
         searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
         searchBar.placeholder = "Search for users or groups".localized
@@ -72,7 +77,8 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         isLoading = false
         if (User.isAuthenticated) {
             isLoading = true
-            navigationBar.topItem?.title = "Update...".localized
+            self.navigationItem.title = "Update...".localized
+
             MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
         }
         
@@ -92,9 +98,77 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         // Dispose of any resources that can be recreated.
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard !searchText.isEmpty else {
+            phoneContactsFilteredDict = phoneContactsDict
+            existUsersFilteredArray = existUsersArray
+            contactTableView.reloadData()
+            return
+        }
+        
+        phoneContactsFilteredDict = phoneContactsDict.filter({contact -> Bool in
+            return contact.key.lowercased().contains(searchText.lowercased())
+        })
+        
+        existUsersFilteredArray = existUsersArray.filter({chat -> Bool in
+            return chat.name.lowercased().contains(searchText.lowercased())
+        })
+        
+        if phoneContactsFilteredDict.isEmpty && existUsersFilteredArray.isEmpty {
+            print()
+            let searchContact = RPC.PM_searchContact()
+            searchContact.query = searchText.lowercased()
+            NetworkManager.instance.sendPacket(searchContact) { packet, error in
+                if let usersPacket = packet as? RPC.PM_users {
+                    for packetUser in usersPacket.users {
+                        guard let user = packetUser as? RPC.UserObject else {return}
+                        
+                        let data = CellContactData()
+                        
+                        let username = Utils.formatUserName(user)
+                        
+//                        var lastMessageTime = ""
+//
+//                        if let lastMessageID = MessageManager.instance.lastMessages[user.id] {
+//
+//                            print("last message id \(lastMessageID)")
+//
+//
+//                            if let msg:RPC.Message = MessageManager.instance.messages[lastMessageID] {
+//
+//                                lastMessageTime = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
+//                                print("last message time \(lastMessageTime)")
+//                            }
+//                        }
+                        data.chatID = user.id
+                        data.photoID = user.photoID
+                        data.name = username
+                        data.login = "@\(user.login!)"
+                        
+//                        data.timeString = lastMessageTime
+
+                        self.existUsersFilteredArray.append(data)
+                        
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.contactTableView.reloadData()
+                    }
+
+                } else if let e = error {
+                    print(e.message)
+                }
+                
+            }
+        }
+        
+        contactTableView.reloadData()
+
+    }
+    
     func getContacts() {
         contacts.removeAll()
-        outputDict.removeAll()
+        phoneContactsDict.removeAll()
         let store = CNContactStore()
         
         switch CNContactStore.authorizationStatus(for: .contacts){
@@ -153,12 +227,14 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
             if let value = contact.name?.isEmpty, !value {
                 let initialLetter = contact.name?.substring(toIndex: 1) .uppercased()
                 if initialLetter != "" {
-                    var letterArray = outputDict[initialLetter!] ?? [Contact]()
+                    var letterArray = phoneContactsDict[initialLetter!] ?? [Contact]()
                     letterArray.append(contact)
-                    outputDict[initialLetter!]=letterArray
+                    phoneContactsDict[initialLetter!]=letterArray
                 }
             }
         }
+        
+        phoneContactsFilteredDict = phoneContactsDict
         
         
         DispatchQueue.main.async {
@@ -169,21 +245,18 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if (id == NotificationManager.dialogsNeedReload || id == NotificationManager.didReceivedNewMessages) {
             
-            var array:[CellChatData] = []
+            var array:[CellContactData] = []
             for user in MessageManager.instance.userContacts.values {
-                let data = CellDialogData()
+                let data = CellContactData()
                 
                 let username = Utils.formatUserName(user)
-                var lastMessageText = ""
+                print(username)
+                
                 var lastMessageTime = ""
                 
                 if let lastMessageID = MessageManager.instance.lastMessages[user.id] {
                     if let msg:RPC.Message = MessageManager.instance.messages[lastMessageID] {
-                        if (msg is RPC.PM_message) {
-                            lastMessageText = msg.text
-                        } else if (msg is RPC.PM_messageItem) {
-                            lastMessageText = String(describing: msg.itemType!)
-                        }
+                        
                         data.time = Int64(msg.date)
                         lastMessageTime = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
                     }
@@ -191,22 +264,22 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
                 data.chatID = user.id
                 data.photoID = user.photoID
                 data.name = username
-                data.lastMessageText = lastMessageText
+                
                 data.timeString = lastMessageTime
                 array.append(data)
             }
             
-            navigationBar.topItem?.title = "Contacts".localized
+            self.navigationItem.title = "Contacts".localized
 
             if !array.isEmpty {
                 array.sort {
                     $0.time > $1.time
                 }
-                list.removeAll()
-                list.append(contentsOf: array)
-                self.getContacts()
-
-               // contactTableView.reloadData()
+                existUsersArray.removeAll()
+                existUsersArray.append(contentsOf: array)
+                existUsersFilteredArray = existUsersArray
+                
+                contactTableView.reloadData()
             } else {
             }
             
@@ -214,13 +287,13 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         } else if (id == NotificationManager.didDisconnectedFromServer) {
             isLoading = false
             DispatchQueue.main.async {
-                self.navigationBar.topItem?.title = "Contacts".localized
+                self.navigationItem.title = "Contacts".localized
             }
         } else if id == NotificationManager.userAuthorized {
             if !isLoading {
                 isLoading = true
                 DispatchQueue.main.async {
-                    self.navigationBar.topItem?.title = "Update...".localized
+                    self.navigationItem.title = "Update...".localized
                 }
                 MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
             }
@@ -231,14 +304,15 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
 
 extension NewContactViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return outputDict.count + 1
+        return phoneContactsFilteredDict.count + 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return list.count
+            return existUsersFilteredArray.count
         } else {
-            let a = Array(outputDict.keys).sorted()
-            return (outputDict[a[section - 1]]?.count)!
+            let a = Array(phoneContactsFilteredDict.keys).sorted()
+            return (phoneContactsFilteredDict[a[section - 1]]?.count)!
         }
     }
     
@@ -246,33 +320,29 @@ extension NewContactViewController: UITableViewDataSource {
         if section == 0 {
             return ""
         } else {
-            let a = Array(outputDict.keys).sorted()
+            let a = Array(phoneContactsFilteredDict.keys).sorted()
             return a[section - 1 ]
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ContactWasTableViewCell") as! ContactWasTableViewCell
-            let data = list[indexPath.row]
+            let data = existUsersFilteredArray[indexPath.row]
             cell.name.text = data.name
-            cell.timeWhenWas.text = "Was online ".localized + "\(data.timeString)"
+            if !data.timeString.isEmpty {
+                cell.timeWhenWas.text = "last seen ".localized + "\(data.timeString)"
+            } else {
+                cell.timeWhenWas.text = data.login!
+            }
             cell.avatar.setPhoto(ownerID: data.chatID, photoID: data.photoID)
             return cell
         } else {
-        let a = Array(outputDict.keys).sorted()
-        let data = outputDict[a[indexPath.section - 1]]
+        let a = Array(phoneContactsFilteredDict.keys).sorted()
+        let data = phoneContactsFilteredDict[a[indexPath.section - 1]]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ContactTableViewCell") as! ContactTableViewCell
         cell.name.text = data?[indexPath.row].name
-            
-//        if data is CellDialogData {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableViewCell") as! ChatsTableViewCell
-//            cell.title.text = data.name
-//            cell.lastMessageText.text = data.lastMessageText
-//            cell.lastMessageTime.text = data.timeString
-//            cell.photo.setPhoto(ownerID: data.chatID, photoID: data.photoID)
-//            return cell
-//        }
         
         return cell
         }
@@ -292,19 +362,22 @@ extension NewContactViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        self.navigationItem.title = "Contacts".localized
+
         if indexPath.section == 0 {
             let row = indexPath.row
-            let data = list[row]
+            let data = existUsersFilteredArray[row]
             tableView.deselectRow(at: indexPath, animated: true)
-            let chatView = StoryBoard.chat.instantiateViewController(withIdentifier: "ChatViewController") as! ChatViewController
-            chatView.setValue(data.name, forKey: "title")
-            chatView.chatID = data.chatID
-            chatView.isGroup = false
-            present(chatView, animated: false, completion: nil)
+            guard let chatViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.chatViewController) as? ChatViewController else {return}
+            chatViewController.setValue(data.name, forKey: "title")
+            chatViewController.chatID = data.chatID
+            chatViewController.isGroup = false
+            self.navigationController?.pushViewController(chatViewController, animated: true)
         } else {
-            let a = Array(outputDict.keys).sorted()
-            let data = outputDict[a[indexPath.section - 1]]
-            let detailView = StoryBoard.contacts.instantiateViewController(withIdentifier: "ContactDetailViewController") as! ContactDetailViewController
+            let a = Array(phoneContactsFilteredDict.keys).sorted()
+            let data = phoneContactsFilteredDict[a[indexPath.section - 1]]
+            guard let detailView = StoryBoard.contacts.instantiateViewController(withIdentifier: VCIdentifier.contactDetailViewController) as? ContactDetailViewController else {return}
             detailView.contact = data?[indexPath.row]
             navigationController?.pushViewController(detailView, animated: true)
         }

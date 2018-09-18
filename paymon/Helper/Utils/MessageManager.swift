@@ -36,9 +36,6 @@ class MessageManager : NotificationManagerListener {
     }
 
     public func putGroup(_ group:RPC.Group) {
-        if groups[group.id] != nil {
-            return
-        }
 
         let pid = group.photo.id
         if (pid == 0) {
@@ -49,6 +46,7 @@ class MessageManager : NotificationManagerListener {
 
         groups[group.id] = group
         groupsUsers[group.id] = group.users
+        
         for user in group.users.array {
             putUser(user)
         }
@@ -171,7 +169,7 @@ class MessageManager : NotificationManagerListener {
     }
 
     public func loadChats(_ fromCache:Bool) {
-        if (fromCache) {
+        if fromCache {
 
     //            ApplicationLoader.applicationHandler.post(Runnable() {
     //                @Override
@@ -185,8 +183,10 @@ class MessageManager : NotificationManagerListener {
             }
 
             let packet = RPC.PM_chatsAndMessages()
+            
 
             let _ = NetworkManager.instance.sendPacket(packet) { p, e in
+
                 if (p == nil && e != nil) {
                     DispatchQueue.main.async {
                         NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
@@ -198,14 +198,20 @@ class MessageManager : NotificationManagerListener {
                     for msg in packet.messages {
                         self.putMessage(msg, serverTime: true)
                     }
+
                     for grp in packet.groups {
+                        
                         self.putGroup(grp)
                     }
+                    
+//                    print(self.groupsUsers.value(forKey: 185)?.array.count)
+                    
                     for usr in packet.users {
                         self.putUser(usr)
                     }
 
                     DispatchQueue.main.async {
+
                         NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
                     }
                 }

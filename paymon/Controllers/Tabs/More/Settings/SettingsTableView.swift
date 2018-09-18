@@ -8,7 +8,6 @@ class SettingsTableView : UITableViewController {
     @IBOutlet weak var settingsName: UILabel!
     
     @IBOutlet weak var notificationsLabel: UILabel!
-    @IBOutlet var faqCell: UILabel!
     @IBOutlet var securityCell: UILabel!
     @IBOutlet var logOutCell: UIButton!
     
@@ -45,29 +44,10 @@ class SettingsTableView : UITableViewController {
         }
     }
     
-    // Action of FaqCell tap gesture.
-    @objc func showFaqDialog() {
-        let faqAlertController = UIAlertController(title: "Open in browser?".localized, message: nil, preferredStyle: UIAlertControllerStyle.alert)
-        faqAlertController.addAction(UIAlertAction(title: "Cancel".localized, style: UIAlertActionStyle.default, handler: { (action) in
-            faqAlertController.dismiss(animated: true, completion: nil)
-        }))
-        faqAlertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
-            UIApplication.shared.open(URL(string: "https://paymon.ru/faq-rus.html")! as URL, options: [:], completionHandler: nil)
-        }))
-        
-        self.present(faqAlertController, animated: true, completion: nil)
-    }
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Tap gesture added to the faqCell to show the dialog box to open URL on browser.
-        let tap = UITapGestureRecognizer(target: self, action: #selector(showFaqDialog))
-        faqCell.isUserInteractionEnabled = true
-        faqCell.addGestureRecognizer(tap)
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

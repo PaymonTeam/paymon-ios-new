@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rza-4V-Sn6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pUd-KA-j6f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,26 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Paymon Navigation Controller-->
+        <scene sceneID="bK4-mg-4UZ">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationControllerUser" id="pUd-KA-j6f" customClass="PaymonNavigationController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TNq-zd-r2Y">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Rza-4V-Sn6" kind="relationship" relationship="rootViewController" id="HjQ-We-3KB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8lj-18-edh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410" y="1281"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="PIs-eO-h7f">
             <objects>
@@ -19,22 +39,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5i-a3-2Of">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Title" id="F0V-Qu-EAl">
-                                        <barButtonItem key="rightBarButtonItem" image="Settings" id="HwT-Q0-VN8">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="settingsItemClick:" destination="Rza-4V-Sn6" id="H6k-07-vdw"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kga-b2-wwt">
                                 <rect key="frame" x="16" y="72" width="343" height="76"/>
                                 <subviews>
@@ -58,7 +62,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="NPA-Sc-4oO">
-                                        <rect key="frame" x="82" y="18" width="205" height="40"/>
+                                        <rect key="frame" x="82" y="17" width="205" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7H9-fc-ytR">
                                                 <rect key="frame" x="0.0" y="0.0" width="205" height="21.5"/>
@@ -67,8 +71,8 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOZ-z6-n7o">
-                                                <rect key="frame" x="0.0" y="25.5" width="205" height="14.5"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                <rect key="frame" x="0.0" y="25.5" width="205" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -101,32 +105,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="kga-b2-wwt" firstAttribute="leading" secondItem="69q-2d-gIn" secondAttribute="leading" constant="16" id="0De-Uf-udD"/>
+                            <constraint firstItem="kga-b2-wwt" firstAttribute="top" secondItem="69q-2d-gIn" secondAttribute="top" constant="8" id="19r-f1-f1H"/>
                             <constraint firstItem="VFo-Ai-zn6" firstAttribute="leading" secondItem="69q-2d-gIn" secondAttribute="leading" constant="16" id="F0r-4e-L7e"/>
                             <constraint firstItem="VFo-Ai-zn6" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="69q-2d-gIn" secondAttribute="bottom" constant="-8" id="Sdr-W2-WGE"/>
-                            <constraint firstItem="E5i-a3-2Of" firstAttribute="leading" secondItem="69q-2d-gIn" secondAttribute="leading" id="V1J-30-StX"/>
                             <constraint firstItem="VFo-Ai-zn6" firstAttribute="top" secondItem="kga-b2-wwt" secondAttribute="bottom" constant="8" id="ZAj-Hm-lfc"/>
-                            <constraint firstItem="E5i-a3-2Of" firstAttribute="trailing" secondItem="69q-2d-gIn" secondAttribute="trailing" id="hLN-h5-Rfa"/>
-                            <constraint firstItem="E5i-a3-2Of" firstAttribute="top" secondItem="69q-2d-gIn" secondAttribute="top" id="ieT-CB-50u"/>
                             <constraint firstItem="69q-2d-gIn" firstAttribute="trailing" secondItem="kga-b2-wwt" secondAttribute="trailing" constant="16" id="kCj-dp-pd6"/>
-                            <constraint firstItem="kga-b2-wwt" firstAttribute="top" secondItem="E5i-a3-2Of" secondAttribute="bottom" constant="8" id="nC8-aw-84q"/>
                             <constraint firstItem="VFo-Ai-zn6" firstAttribute="trailing" secondItem="69q-2d-gIn" secondAttribute="trailing" constant="-16" id="ydX-HR-itK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="69q-2d-gIn"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="Home" id="Xqs-zP-RXm"/>
+                    <navigationItem key="navigationItem" id="xYH-xU-MB5"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="headerView" destination="kga-b2-wwt" id="hf7-P3-IMR"/>
-                        <outlet property="navigationBar" destination="E5i-a3-2Of" id="3cn-dZ-1kS"/>
                         <outlet property="profileAvatar" destination="7Cz-sy-nOY" id="2Zw-TI-OTN"/>
                         <outlet property="profileLogin" destination="EOZ-z6-n7o" id="kcu-hw-stX"/>
                         <outlet property="profileName" destination="7H9-fc-ytR" id="409-ty-acW"/>
                         <outlet property="tableViewHeight" destination="I0V-ry-wq6" id="SYJ-vY-G1O"/>
+                        <segue destination="YGF-Tk-yIa" kind="show" identifier="" id="00B-Fh-WAA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GDo-xz-m4a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2210.4000000000001" y="1284.1079460269866"/>
+            <point key="canvasLocation" x="2209" y="1282"/>
         </scene>
         <!--Update Profile View-->
         <scene sceneID="P2g-pP-Jc6">
@@ -151,28 +152,6 @@
                                     <segue destination="obF-ep-Ilk" kind="embed" id="y2y-jD-Y6R"/>
                                 </connections>
                             </containerView>
-                            <navigationBar contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="hZM-dN-Knt">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Update profile" id="VjM-rO-7WD">
-                                        <barButtonItem key="leftBarButtonItem" image="ArrowBack" id="xY8-UY-OOo">
-                                            <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="arrowBackClick:" destination="YGF-Tk-yIa" id="Vlh-36-wY5"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="ArrowCheck" id="2dD-5q-TWD">
-                                            <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="updateItemClick:" destination="YGF-Tk-yIa" id="7UM-Gu-Wfg"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5f-qz-GaA">
                                 <rect key="frame" x="16" y="72" width="343" height="98"/>
                                 <subviews>
@@ -213,16 +192,13 @@
                             <bool key="isElement" value="NO"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="hZM-dN-Knt" firstAttribute="top" secondItem="BAZ-ot-zLb" secondAttribute="top" id="6QE-DZ-ABz"/>
-                            <constraint firstItem="hZM-dN-Knt" firstAttribute="leading" secondItem="BAZ-ot-zLb" secondAttribute="leading" id="7yl-UH-LWw"/>
                             <constraint firstItem="C5f-qz-GaA" firstAttribute="leading" secondItem="BAZ-ot-zLb" secondAttribute="leading" constant="16" id="9Zu-R4-LWW"/>
                             <constraint firstItem="BAZ-ot-zLb" firstAttribute="trailing" secondItem="C5f-qz-GaA" secondAttribute="trailing" constant="16" id="PWy-yO-9rO"/>
                             <constraint firstItem="BAZ-ot-zLb" firstAttribute="trailing" secondItem="bwH-kc-fay" secondAttribute="trailing" constant="16" id="Seb-Tt-MkI"/>
-                            <constraint firstItem="C5f-qz-GaA" firstAttribute="top" secondItem="hZM-dN-Knt" secondAttribute="bottom" constant="8" id="WOA-mE-WeB"/>
                             <constraint firstItem="bwH-kc-fay" firstAttribute="leading" secondItem="BAZ-ot-zLb" secondAttribute="leading" constant="16" id="egQ-pM-jym"/>
+                            <constraint firstItem="C5f-qz-GaA" firstAttribute="top" secondItem="BAZ-ot-zLb" secondAttribute="top" constant="8" id="k3N-JP-TJw"/>
                             <constraint firstItem="bwH-kc-fay" firstAttribute="top" secondItem="C5f-qz-GaA" secondAttribute="bottom" constant="8" id="kLC-EP-Wxa"/>
                             <constraint firstItem="BAZ-ot-zLb" firstAttribute="bottom" secondItem="bwH-kc-fay" secondAttribute="bottom" constant="16" id="pXF-TP-r17"/>
-                            <constraint firstItem="hZM-dN-Knt" firstAttribute="trailing" secondItem="BAZ-ot-zLb" secondAttribute="trailing" id="v4P-XA-We3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BAZ-ot-zLb"/>
                         <variation key="default">
@@ -231,19 +207,25 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="oLt-Zs-IhB"/>
+                    <navigationItem key="navigationItem" id="oLt-Zs-IhB">
+                        <barButtonItem key="rightBarButtonItem" image="ArrowCheck" id="2dD-5q-TWD">
+                            <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="updateItemClick:" destination="YGF-Tk-yIa" id="7UM-Gu-Wfg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="avatar" destination="qlk-W8-vuc" id="lhM-AK-q7F"/>
                         <outlet property="changePhoto" destination="IA7-bb-Wzt" id="JT9-XU-4hp"/>
                         <outlet property="headerView" destination="C5f-qz-GaA" id="jjn-oB-h8J"/>
-                        <outlet property="navigationBar" destination="hZM-dN-Knt" id="kTM-eC-oYW"/>
                         <outlet property="updateItem" destination="2dD-5q-TWD" id="kAo-Z0-6Ag"/>
-                        <segue destination="rvn-Hr-h7G" kind="custom" identifier="CountryPickerViewController" customClass="FromRightSegue" customModule="paymon" customModuleProvider="target" id="UQM-HE-uoJ"/>
+                        <segue destination="rvn-Hr-h7G" kind="show" identifier="" id="UQM-HE-uoJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMC-2U-9S9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2949.5999999999999" y="1283.2083958020989"/>
+            <point key="canvasLocation" x="2924" y="1282"/>
         </scene>
         <!--Country Picker View Controller-->
         <scene sceneID="1Oy-p2-wsr">
@@ -254,7 +236,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vk1-3M-v6r">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellCountry" textLabel="Itm-Su-hFU" imageView="yWw-Op-46j" style="IBUITableViewCellStyleDefault" id="eqf-3T-45Y" customClass="CountryCell" customModule="paymon" customModuleProvider="target">
@@ -284,22 +266,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hQg-eR-2e9">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Title" id="yb1-Jd-xPd">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="ArrowBack" id="bHV-u2-93D">
-                                            <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <segue destination="hI3-Bt-dzo" kind="unwind" customClass="UnwindSegueFromRight" customModule="paymon" customModuleProvider="target" unwindAction="unWindUpdateProfile:" id="ZuX-XJ-QQ5"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Enter your country" translatesAutoresizingMaskIntoConstraints="NO" id="I9T-eo-SoI">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -311,29 +277,24 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="hQg-eR-2e9" firstAttribute="leading" secondItem="Zhv-er-1tP" secondAttribute="leading" id="2rH-vZ-Gsw"/>
-                            <constraint firstItem="hQg-eR-2e9" firstAttribute="trailing" secondItem="Zhv-er-1tP" secondAttribute="trailing" id="7s0-qW-lyS"/>
+                            <constraint firstItem="I9T-eo-SoI" firstAttribute="top" secondItem="Zhv-er-1tP" secondAttribute="top" id="4On-ZY-N4J"/>
                             <constraint firstItem="Vk1-3M-v6r" firstAttribute="top" secondItem="I9T-eo-SoI" secondAttribute="bottom" id="9xU-HL-uM9"/>
                             <constraint firstItem="Vk1-3M-v6r" firstAttribute="trailing" secondItem="Zhv-er-1tP" secondAttribute="trailing" id="Bqh-yQ-IFE"/>
-                            <constraint firstItem="hQg-eR-2e9" firstAttribute="top" secondItem="Zhv-er-1tP" secondAttribute="top" id="Byw-qc-HK6"/>
                             <constraint firstItem="I9T-eo-SoI" firstAttribute="leading" secondItem="Zhv-er-1tP" secondAttribute="leading" id="S0N-fT-r60"/>
                             <constraint firstItem="I9T-eo-SoI" firstAttribute="trailing" secondItem="Zhv-er-1tP" secondAttribute="trailing" id="bND-C1-q0a"/>
                             <constraint firstItem="Vk1-3M-v6r" firstAttribute="leading" secondItem="Zhv-er-1tP" secondAttribute="leading" id="jgU-T8-my5"/>
-                            <constraint firstItem="I9T-eo-SoI" firstAttribute="top" secondItem="hQg-eR-2e9" secondAttribute="bottom" id="oL1-OS-yon"/>
                             <constraint firstItem="Vk1-3M-v6r" firstAttribute="bottom" secondItem="Zhv-er-1tP" secondAttribute="bottom" id="zGz-wP-kXk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zhv-er-1tP"/>
                     </view>
                     <connections>
-                        <outlet property="navigationBar" destination="hQg-eR-2e9" id="CN9-ye-c6O"/>
                         <outlet property="searchBar" destination="I9T-eo-SoI" id="n1j-uh-T5U"/>
                         <outlet property="tableView" destination="Vk1-3M-v6r" id="LAU-8i-cl5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pco-iA-84W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="hI3-Bt-dzo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3645.5999999999999" y="1283.2083958020989"/>
+            <point key="canvasLocation" x="3790" y="1284"/>
         </scene>
         <!--Profile Information Table-->
         <scene sceneID="Jr4-5a-uDH">
@@ -853,15 +814,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ArrowBack" width="33" height="33"/>
         <image name="ArrowCheck" width="33" height="33"/>
         <image name="Bday" width="32" height="32"/>
         <image name="City" width="32" height="32"/>
         <image name="Country" width="32" height="32"/>
         <image name="Edit" width="32" height="32"/>
         <image name="Email" width="32" height="32"/>
-        <image name="Home" width="32" height="32"/>
         <image name="Phone" width="32" height="32"/>
-        <image name="Settings" width="32" height="32"/>
     </resources>
 </document>

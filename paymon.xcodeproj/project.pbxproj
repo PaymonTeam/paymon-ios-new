@@ -49,6 +49,9 @@
 		B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B722100F15E00A3CBF1 /* NotificationName.swift */; };
 		B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B762101E10400A3CBF1 /* SignUpViewController.swift */; };
 		B0011B8321023F9000A3CBF1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B8221023F9000A3CBF1 /* UserManager.swift */; };
+		B00977FF214C60B000191B90 /* Games.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B00977FE214C60B000191B90 /* Games.storyboard */; };
+		B0097801214C622C00191B90 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0097800214C622C00191B90 /* More.storyboard */; };
+		B0097804214C654C00191B90 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0097803214C654C00191B90 /* MoreViewController.swift */; };
 		B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D320FFA8DA00F3DDB0 /* Keychain.swift */; };
 		B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */; };
 		B01954DF20FFA92100F3DDB0 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D720FFA92000F3DDB0 /* Ethereum.swift */; };
@@ -124,9 +127,12 @@
 		B043973921357956004DAAAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B043973821357955004DAAAA /* Assets.xcassets */; };
 		B043973B2135D7A5004DAAAA /* MoneyAmountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */; };
 		B0493E622112AAE800B7AA94 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0493E612112AAE700B7AA94 /* UIColor.swift */; };
+		B055A76A2148EA5C0068CA0A /* PaymonNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B055A7692148EA5B0068CA0A /* PaymonNavigationController.swift */; };
 		B0817C622133F9FD003A1604 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0817C612133F9FC003A1604 /* QRScannerViewController.swift */; };
 		B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA88A21030F2100AAA805 /* SignInViewController.swift */; };
 		B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */; };
+		B08E390821512C53008E09D3 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390721512C53008E09D3 /* FriendProfileViewController.swift */; };
+		B08E390B21513BF1008E09D3 /* FriendProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
 		B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97920FCF7DB00718608 /* Main.storyboard */; };
 		B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */; };
@@ -245,6 +251,9 @@
 		B0011B722100F15E00A3CBF1 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		B0011B762101E10400A3CBF1 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B0011B8221023F9000A3CBF1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		B00977FE214C60B000191B90 /* Games.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Games.storyboard; sourceTree = "<group>"; };
+		B0097800214C622C00191B90 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		B0097803214C654C00191B90 /* MoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		B01954D320FFA8DA00F3DDB0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		B01954D720FFA92000F3DDB0 /* Ethereum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
@@ -340,9 +349,12 @@
 		B043973821357955004DAAAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyAmountTextField.swift; sourceTree = "<group>"; };
 		B0493E612112AAE700B7AA94 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		B055A7692148EA5B0068CA0A /* PaymonNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymonNavigationController.swift; sourceTree = "<group>"; };
 		B0817C612133F9FC003A1604 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		B08CA88A21030F2100AAA805 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleShowSegue.swift; sourceTree = "<group>"; };
+		B08E390721512C53008E09D3 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
+		B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileTableViewController.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B099C97520FCF7DB00718608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B099C97A20FCF7DB00718608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -450,6 +462,7 @@
 		0EA074C321065489002FF527 /* Chats */ = {
 			isa = PBXGroup;
 			children = (
+				B08E390921513BC8008E09D3 /* Friend profile */,
 				0E0402C4210644A400D6F703 /* ChatsViewController.swift */,
 				0EA074C421065515002FF527 /* CreateGroupViewController.swift */,
 				0EA074CB2106561B002FF527 /* ChatViewController.swift */,
@@ -531,6 +544,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B0097802214C64E400191B90 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				B099C9AE20FDD25100718608 /* Users */,
+				B099C9AF20FDD25700718608 /* Settings */,
+				B0C396A5210A3B0F00E0C344 /* Games */,
+				B0097803214C654C00191B90 /* MoreViewController.swift */,
+			);
+			path = More;
+			sourceTree = "<group>";
+		};
 		B03D136C2131857E00F442AF /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
@@ -556,6 +580,15 @@
 				B03D13762131AE0500F442AF /* TransactionTableViewCell.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		B08E390921513BC8008E09D3 /* Friend profile */ = {
+			isa = PBXGroup;
+			children = (
+				B08E390721512C53008E09D3 /* FriendProfileViewController.swift */,
+				B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */,
+			);
+			path = "Friend profile";
 			sourceTree = "<group>";
 		};
 		B099C96920FCF7DB00718608 = {
@@ -697,7 +730,6 @@
 			children = (
 				D816BA332120C395001B6FE8 /* SuperViewController */,
 				B099C9B020FDD25D00718608 /* Others */,
-				B099C9AF20FDD25700718608 /* Settings */,
 				B099C9AB20FDD23C00718608 /* Tabs */,
 			);
 			path = Controllers;
@@ -706,10 +738,10 @@
 		B099C9AB20FDD23C00718608 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */,
+				B0097802214C64E400191B90 /* More */,
 				B0ACFFF1211233B1007BE95C /* Money */,
 				0E0F477E210BA325004B4A3C /* Contacts */,
-				B0C396A5210A3B0F00E0C344 /* Games */,
-				B099C9AE20FDD25100718608 /* Users */,
 				0EA074C321065489002FF527 /* Chats */,
 			);
 			path = Tabs;
@@ -759,7 +791,7 @@
 			children = (
 				B0C396B3210A5C1300E0C344 /* Main */,
 				B0C396AA210A497A00E0C344 /* ForgotPassword */,
-				B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */,
+				B055A7692148EA5B0068CA0A /* PaymonNavigationController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -820,6 +852,8 @@
 				B0ACFFEF21122EB6007BE95C /* Money.storyboard */,
 				0E074C13210E357200CB3853 /* Setting.storyboard */,
 				B03D1363212F548600F442AF /* Bitcoin.storyboard */,
+				B00977FE214C60B000191B90 /* Games.storyboard */,
+				B0097800214C622C00191B90 /* More.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1238,10 +1272,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */,
+				B0097801214C622C00191B90 /* More.storyboard in Resources */,
 				B03D1364212F548600F442AF /* Bitcoin.storyboard in Resources */,
 				D820C70C21037EDA001D3B00 /* (null) in Resources */,
 				B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */,
 				B0ACFFF021122EB6007BE95C /* Money.storyboard in Resources */,
+				B00977FF214C60B000191B90 /* Games.storyboard in Resources */,
 				D820C6BA21036E09001D3B00 /* (null) in Resources */,
 				B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */,
 				D820C6BB21036E09001D3B00 /* (null) in Resources */,
@@ -1377,6 +1413,7 @@
 				B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */,
 				B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */,
 				B0C396B0210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift in Sources */,
+				B0097804214C654C00191B90 /* MoreViewController.swift in Sources */,
 				B01954E520FFA92100F3DDB0 /* StickerPack.swift in Sources */,
 				B043973B2135D7A5004DAAAA /* MoneyAmountTextField.swift in Sources */,
 				B0ACFFF621123580007BE95C /* MoneyViewController.swift in Sources */,
@@ -1386,6 +1423,7 @@
 				D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */,
 				B01F0DFD2108847C008FB6F0 /* FromRightSegue.swift in Sources */,
 				B0817C622133F9FD003A1604 /* QRScannerViewController.swift in Sources */,
+				B055A76A2148EA5C0068CA0A /* PaymonNavigationController.swift in Sources */,
 				B03D1367212F5DEE00F442AF /* BitcoinWalletViewController.swift in Sources */,
 				B042CB8E2138239000B8F195 /* TransferInformationViewController.swift in Sources */,
 				0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */,
@@ -1453,6 +1491,7 @@
 				0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */,
 				0EC1A6AF213A904F0089CE1E /* ContactTableViewCell.swift in Sources */,
 				B0011B6C2100A1C400A3CBF1 /* Defaults.swift in Sources */,
+				B08E390B21513BF1008E09D3 /* FriendProfileTableViewController.swift in Sources */,
 				0E074C1F210E3B0700CB3853 /* SettingsViewController.swift in Sources */,
 				0E074C25210E3B0700CB3853 /* SettingsNotificationViewController.swift in Sources */,
 				0EA074D6210658D2002FF527 /* GroupSettingViewController.swift in Sources */,
@@ -1502,6 +1541,7 @@
 				0E074C24210E3B0700CB3853 /* SettingsBasicViewController.swift in Sources */,
 				D849F8412113A07C009B425E /* ByteArray.cpp in Sources */,
 				D849F8422113A07C009B425E /* SerializedBuffer.cpp in Sources */,
+				B08E390821512C53008E09D3 /* FriendProfileViewController.swift in Sources */,
 				B042CB8A2137EEE200B8F195 /* KeysViewController.swift in Sources */,
 				B03D13772131AE0500F442AF /* TransactionTableViewCell.swift in Sources */,
 				B019554520FFAC5900F3DDB0 /* ConnectionManager.swift in Sources */,

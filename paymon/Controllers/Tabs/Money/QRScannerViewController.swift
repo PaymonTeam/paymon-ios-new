@@ -11,8 +11,8 @@ protocol QRCaptureDelegate: class {
     func qrCaptureDidDetect(object: AVMetadataMachineReadableCodeObject)
 }
 
-class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    @IBOutlet weak var navigationBar: UINavigationBar!
+class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UINavigationControllerDelegate {
+
     @IBOutlet weak var square: UIImageView!
     var video = AVCaptureVideoPreviewLayer()
     var delegate: QRCaptureDelegate?
@@ -31,6 +31,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.delegate = self
         guard let captureDevice = AVCaptureDevice.default(for: .video) else {return}
         
         print("capure device was created")
@@ -63,11 +64,16 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
         view.layer.addSublayer(video)
 
-        navigationBar.setTransparent()
         view.bringSubview(toFront: square)
-        view.bringSubview(toFront: navigationBar)
 
         session.startRunning()
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        guard let btcTransferVC = viewController as? BitcoinTransferViewController else {return}
+        btcTransferVC.address.text = result
+        btcTransferVC.addressIsNotEmpty = resultValid
+
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -107,7 +113,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                     
                     if !result.isEmpty {
                         resultValid = true
-                        self.performSegue(withIdentifier: "unWindQrScan", sender: nil)
+
+                        self.navigationController?.popViewController(animated: true)
                     } else {
                         resultValid = false
                         

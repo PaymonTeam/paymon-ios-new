@@ -5,27 +5,16 @@ import UserNotifications
 class ProfileViewController: PaymonViewController {
     
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var profileAvatar: ObservableImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileLogin: UILabel!
     
     @IBOutlet weak var headerView: UIView!
     
-    @IBAction func settingsItemClick(_ sender: Any) {
-        //        let settingsView = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController") as! SettingsViewController
-        //        settingsView.modalPresentationStyle = .overCurrentContext
-        //        present(settingsView, animated: true)
-        
-        User.clearConfig()
-        self.dismiss(animated: true, completion: nil)
-        
-    }
-    
     @IBAction func updateProfileClick(_ sender: Any) {
-        guard let updateProfileViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.updateProfileViewController) as! UpdateProfileViewController? else {return}
         
-        self.present(updateProfileViewController, animated: true, completion: nil)
+        guard let updateProfile = StoryBoard.user.instantiateViewController(withIdentifier: VCIdentifier.updateProfileViewController) as? UpdateProfileViewController else {return}
+        self.navigationController?.pushViewController(updateProfile, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +32,9 @@ class ProfileViewController: PaymonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+//        User.clearConfig()
+//        self.dismiss(animated: true, completion: nil)
         setLayoutOptions()
     }
     
@@ -55,8 +47,7 @@ class ProfileViewController: PaymonViewController {
         
         self.headerView.setGradientLayer(frame: CGRect(x: 0, y: 0, width: widthScreen, height: self.headerView.frame.height), topColor: UIColor.white.cgColor, bottomColor: UIColor.AppColor.Blue.primaryBlueUltraLight.cgColor)
         
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Profile".localized
+        self.navigationItem.title = "Profile".localized
 
     }
     

@@ -9,7 +9,6 @@
 import UIKit
 
 class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
     @IBOutlet weak var yourWallet: UIButton!
     @IBOutlet weak var loading: UIActivityIndicatorView!
@@ -30,6 +29,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     @IBOutlet weak var yourWalletBalance: UILabel!
     
     private var getCourse : NSObjectProtocol!
+    private var setBtcAddress : NSObjectProtocol!
     
     var cryptoValue : Double! = 0.0
     var fiatValue : Double! = 0.0
@@ -98,6 +98,18 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
             }
         }
         
+        setBtcAddress = NotificationCenter.default.addObserver(forName: .setBtcAddress, object: nil, queue: OperationQueue.main ){ notification in
+            
+            if let course = notification.object as? Double {
+                self.course = course
+                
+                DispatchQueue.main.async {
+                    self.loading.stopAnimating()
+                    self.showAmountAndInfoView()
+                }
+            }
+        }
+        
     }
     
     func setLayoutOptions() {
@@ -117,8 +129,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         
         self.amountAndWalletView.layer.cornerRadius = 30
         
-        self.navigationBar.setTransparent()
-        self.navigationBar.topItem?.title = "Transfer".localized
+        self.title = "Transfer".localized
         self.address.placeholder = "Bitcoin address".localized
         self.yourWallet.setTitle("Your wallet".localized, for: .normal)
         
@@ -185,7 +196,9 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         if fiatValue < yourWalletBalanceValue {
             //TODO: present InformationViewController
             
-            self.performSegue(withIdentifier: VCIdentifier.transferInformationViewController, sender: nil)
+            let transferInfoVC = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.transferInformationViewController) as! TransferInformationViewController
+            
+            self.navigationController?.pushViewController(transferInfoVC, animated: true)
             
         } else {
             _ = SimpleOkAlertController.init(title: "Transfer".localized, message: "You do not have enough money".localized, vc: self)        }

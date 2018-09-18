@@ -11,25 +11,22 @@ import MBProgressHUD
 
 class SignInViewController: PaymonViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    
     @IBOutlet weak var signInItem: UIBarButtonItem!
-    @IBOutlet weak var arrowBack: UIBarButtonItem!
+
     @IBOutlet weak var login: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var passwordForgot: UIButton!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var signInBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var stackTestFields: UIView!
     @IBAction func passwordForgotClick(_ sender: Any) {
         let forgotPasswordEmailViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordEmailViewController) as! ForgotPasswordEmailViewController
         
         DispatchQueue.main.async {
             self.present(forgotPasswordEmailViewController, animated: true)
         }
-    }
-    
-    @IBAction func arrowBackClick(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func signInClick(_ sender: Any) {
@@ -50,6 +47,13 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        
+        
+        setLayoutOptions()
+
+    }
+    
+    func setLayoutOptions() {
         self.view.addUIViewBackground(name: "MainBackground")
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -58,14 +62,17 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         login.delegate = self
         password.delegate = self
         
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Sign in".localized
-        
         login.placeholder = "Login or email".localized
         password.placeholder = "Password".localized
         signIn.setTitle("sign in".localized, for: .normal)
         passwordForgot.setTitle("Forgot your password?".localized, for: .normal)
-
+        
+        self.title = "Sign in".localized
+        
+        self.stackTestFields.layer.masksToBounds = true
+        self.stackTestFields.layer.cornerRadius = 30
+        self.signIn.layer.cornerRadius = self.signIn.frame.height/2
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -103,7 +110,7 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         if let userInfo = notification.userInfo {
             let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
             
-            signInBottomConstraint.constant = notification.name == NSNotification.Name.UIKeyboardWillShow ? keyboardFrame!.height : 0
+            signInBottomConstraint.constant = notification.name == NSNotification.Name.UIKeyboardWillShow ? keyboardFrame!.height + 8 : 8
             
             UIView.animate(withDuration: 0,
                            delay: 0,

@@ -17,26 +17,24 @@ class StartViewController: PaymonViewController {
     @IBOutlet weak var hintLbl: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var signInBtn: UIButton!
-
-    @IBAction func signInAction(_ sender: Any) {
-        let signInViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.signInViewController) as! SignInViewController
-        present(signInViewController, animated: true)
-
-    }
-    @IBAction func signUpAction(_ sender: Any) {
-        let signUpViewController = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.signUpViewController) as! SignUpViewController
-        present(signUpViewController, animated: true)
-
-    }
+    
+    @IBOutlet weak var stackButtons: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        hintLbl.text = "Already have an account?".localized
+        setLayoutOptions()
 
+    }
+
+    func setLayoutOptions() {
+        hintLbl.text = "Already have an account?".localized
+        
         signInBtn.setTitle("sign in".localized, for: .normal)
         signUpBtn.setTitle("sign up".localized, for: .normal)
-
+        
+        stackButtons.layer.masksToBounds = true
+        stackButtons.layer.cornerRadius = 30
     }
 
     override func viewWillAppear(_ animated: Bool) {

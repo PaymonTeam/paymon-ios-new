@@ -182,6 +182,21 @@ class RPC {
             stream.writeByteArrayData(key)
         }
     }
+    
+    class PM_getUserInfo : Packet {
+        static let svuid:Int32 = 543732124
+        
+        var user_id:Int32!
+        
+        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            user_id = stream.readInt32(exception)
+        }
+        
+        override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_getUserInfo.svuid)
+            stream.write(user_id)
+        }
+    }
 
     class PM_serverDHdata : Packet {
         static let svuid:Int32 = 1874402433

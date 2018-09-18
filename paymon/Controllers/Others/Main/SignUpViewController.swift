@@ -10,10 +10,7 @@ import Foundation
 
 class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var hintTitle: UILabel!
     @IBOutlet weak var login: UITextField!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var repeatPassword: UITextField!
@@ -22,8 +19,9 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     @IBOutlet weak var hintLogin: UILabel!
     
     @IBOutlet weak var signUpItem: UIBarButtonItem!
-    @IBOutlet weak var backArrow: UIBarButtonItem!
     
+    @IBOutlet weak var topStackTextFields: UIView!
+    @IBOutlet weak var stackTextFields: UIView!
     private var disableSignUpButtons: NSObjectProtocol!
     private var enableSignUpButtons: NSObjectProtocol!
     
@@ -39,10 +37,6 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     
     let blueLight = UIColor.AppColor.Blue.primaryBlue.withAlphaComponent(0.15)
     let whiteLight = UIColor.white.withAlphaComponent(0.15)
-    
-    @IBAction func arrowBackClick(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     
     override func viewDidLoad() {
         
@@ -69,11 +63,18 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
         password.delegate = self
         repeatPassword.delegate = self
         email.delegate = self
-
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Sign up".localized
         
-        hintTitle.text = "Please enter your information".localized
+        login.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+        password.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+        repeatPassword.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+        email.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+        
+        setLayoutOptions()
+    }
+    
+    func setLayoutOptions() {
+        self.title = "Sign up".localized
+        
         hintLogin.text = "Login length is at least 3 characters".localized
         hintPassword.text = "Password length is at least 8 characters".localized
         
@@ -82,11 +83,11 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
         repeatPassword.placeholder = "Repeat password".localized
         email.placeholder = "E-mail".localized
         
-        login.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
-        password.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
-        repeatPassword.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
-        email.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+        stackTextFields.layer.masksToBounds = true
+        stackTextFields.layer.cornerRadius = 30
         
+        topStackTextFields.layer.masksToBounds = true
+        topStackTextFields.layer.cornerRadius = 30
     }
     
     @objc func dismissKeyboard() {

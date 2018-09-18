@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sNR-oc-TOP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6pZ-vg-FUp">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -112,37 +112,31 @@
             </objects>
             <point key="canvasLocation" x="13.6" y="-540.17991004497753"/>
         </scene>
+        <!--Paymon Navigation Controller-->
+        <scene sceneID="LSB-4l-xYE">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationControllerMoney" id="6pZ-vg-FUp" customClass="PaymonNavigationController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ss9-UH-tgp">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sNR-oc-TOP" kind="relationship" relationship="rootViewController" id="xD1-uS-wKn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gok-v7-Lyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-834" y="172"/>
+        </scene>
         <!--Bitcoin Wallet View Controller-->
         <scene sceneID="H3x-Lt-vtf">
             <objects>
-                <viewController id="sNR-oc-TOP" customClass="BitcoinWalletViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BitcoinWalletViewController" id="sNR-oc-TOP" customClass="BitcoinWalletViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cNJ-Hd-GQ4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OnE-7B-ZaZ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="0.7007211538" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Bitcoin wallet" id="ayC-h1-Osk">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="ArrowBack" id="59d-b6-9ll">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.70047075319999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="backClick:" destination="sNR-oc-TOP" id="xx6-t5-lF0"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="funcs" image="WalletFuncs" id="L30-7p-5Wh">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.6984675481" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="funcsClick:" destination="sNR-oc-TOP" id="kQy-2e-cgg"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Sh-9L-CiT" userLabel="Balance view">
                                 <rect key="frame" x="16" y="72" width="343" height="64"/>
                                 <subviews>
@@ -173,7 +167,7 @@
                                                 <rect key="frame" x="22" y="0.0" width="32" height="64"/>
                                                 <state key="normal" image="SendButton"/>
                                                 <connections>
-                                                    <segue destination="S3g-d2-wDd" kind="custom" customClass="FromRightSegue" customModule="paymon" customModuleProvider="target" id="yT2-Ws-uby"/>
+                                                    <segue destination="S3g-d2-wDd" kind="show" id="yT2-Ws-uby"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -258,21 +252,31 @@
                             <constraint firstItem="HM9-SL-045" firstAttribute="top" secondItem="1Sh-9L-CiT" secondAttribute="bottom" constant="8" id="1jg-e5-lWX"/>
                             <constraint firstItem="kRl-5L-fGy" firstAttribute="trailing" secondItem="HM9-SL-045" secondAttribute="trailing" constant="16" id="9dt-gn-q4q"/>
                             <constraint firstItem="1Sh-9L-CiT" firstAttribute="trailing" secondItem="kRl-5L-fGy" secondAttribute="trailing" constant="-16" id="Bck-6Z-5iS"/>
-                            <constraint firstItem="OnE-7B-ZaZ" firstAttribute="leading" secondItem="kRl-5L-fGy" secondAttribute="leading" id="C1K-tk-8Ni"/>
                             <constraint firstItem="1Sh-9L-CiT" firstAttribute="leading" secondItem="kRl-5L-fGy" secondAttribute="leading" constant="16" id="SN8-nB-i7t"/>
-                            <constraint firstItem="OnE-7B-ZaZ" firstAttribute="trailing" secondItem="kRl-5L-fGy" secondAttribute="trailing" id="SyE-Zn-c3j"/>
-                            <constraint firstItem="1Sh-9L-CiT" firstAttribute="top" secondItem="OnE-7B-ZaZ" secondAttribute="bottom" constant="8" id="WNp-3o-ObH"/>
+                            <constraint firstItem="1Sh-9L-CiT" firstAttribute="top" secondItem="kRl-5L-fGy" secondAttribute="top" constant="8" id="TLy-Oi-VK8"/>
                             <constraint firstItem="HM9-SL-045" firstAttribute="leading" secondItem="kRl-5L-fGy" secondAttribute="leading" constant="16" id="a1E-xF-kXv"/>
-                            <constraint firstItem="OnE-7B-ZaZ" firstAttribute="top" secondItem="kRl-5L-fGy" secondAttribute="top" id="ceW-Kw-zWS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kRl-5L-fGy"/>
                     </view>
+                    <navigationItem key="navigationItem" id="uSo-bk-CNp">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="P9R-rD-aA0">
+                            <connections>
+                                <action selector="backClick:" destination="sNR-oc-TOP" id="msK-6s-wZc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="funcs" image="WalletFuncs" id="L30-7p-5Wh">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.6984675481" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="funcsClick:" destination="sNR-oc-TOP" id="kQy-2e-cgg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="backItem" destination="P9R-rD-aA0" id="Ym4-ac-s28"/>
                         <outlet property="balanceView" destination="1Sh-9L-CiT" id="8M3-Z0-cNy"/>
                         <outlet property="cryptoBalance" destination="0Ku-vh-o3f" id="y04-xu-5tc"/>
                         <outlet property="fiatBalance" destination="pi0-vT-AhY" id="Tfr-IT-rQR"/>
                         <outlet property="fiatSymbol" destination="z9I-Pa-L2a" id="hAp-bd-ksI"/>
-                        <outlet property="navigationBar" destination="OnE-7B-ZaZ" id="2a3-sr-DCm"/>
                         <outlet property="tableTransactionsView" destination="HM9-SL-045" id="mEt-rD-Wrk"/>
                     </connections>
                 </viewController>
@@ -288,23 +292,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XY4-62-YFd">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="0.7007211538" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Transfer" id="EjI-7h-PN1">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="ArrowBack" id="oIp-KR-u6i">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.70047075319999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <segue destination="wmA-IK-DDw" kind="unwind" customClass="UnwindSegueFromRight" customModule="paymon" customModuleProvider="target" unwindAction="unWindBitcoinTransfer:" id="jKE-Cr-RbA"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sGE-2X-xiQ" userLabel="Balance view">
                                 <rect key="frame" x="16" y="72" width="343" height="64"/>
                                 <subviews>
@@ -315,7 +302,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="32" height="64"/>
                                                 <state key="normal" image="Camera"/>
                                                 <connections>
-                                                    <segue destination="EZ2-0l-zSp" kind="custom" identifier="QRScannerViewController" customClass="FromRightSegue" customModule="paymon" customModuleProvider="target" id="J0j-my-s4i"/>
+                                                    <segue destination="EZ2-0l-zSp" kind="show" identifier="" id="J0j-my-s4i"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -525,17 +512,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.79058994390000004" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XY4-62-YFd" firstAttribute="top" secondItem="7jj-dM-pUs" secondAttribute="top" id="0XS-T3-mhj"/>
                             <constraint firstItem="7jj-dM-pUs" firstAttribute="bottom" secondItem="mB1-2F-teZ" secondAttribute="bottom" constant="20" id="3IH-xe-tWS"/>
-                            <constraint firstItem="sGE-2X-xiQ" firstAttribute="top" secondItem="XY4-62-YFd" secondAttribute="bottom" constant="8" id="4Ng-hM-Wdx"/>
-                            <constraint firstItem="XY4-62-YFd" firstAttribute="leading" secondItem="7jj-dM-pUs" secondAttribute="leading" id="4PN-g0-cAl"/>
+                            <constraint firstItem="sGE-2X-xiQ" firstAttribute="top" secondItem="7jj-dM-pUs" secondAttribute="top" constant="8" id="Eme-X7-fjQ"/>
                             <constraint firstItem="7jj-dM-pUs" firstAttribute="trailing" secondItem="0rb-MB-uqE" secondAttribute="trailing" constant="16" id="IWA-bi-uf9"/>
                             <constraint firstItem="sGE-2X-xiQ" firstAttribute="trailing" secondItem="7jj-dM-pUs" secondAttribute="trailing" constant="-16" id="NaA-RO-5Hm"/>
                             <constraint firstItem="0rb-MB-uqE" firstAttribute="leading" secondItem="7jj-dM-pUs" secondAttribute="leading" constant="16" id="Qtc-XE-JSa"/>
                             <constraint firstItem="sGE-2X-xiQ" firstAttribute="leading" secondItem="7jj-dM-pUs" secondAttribute="leading" constant="16" id="agj-8L-RYy"/>
                             <constraint firstItem="fdw-1b-vnO" firstAttribute="centerY" secondItem="mB1-2F-teZ" secondAttribute="centerY" id="gKq-Me-Uc8"/>
                             <constraint firstItem="7jj-dM-pUs" firstAttribute="trailing" secondItem="mB1-2F-teZ" secondAttribute="trailing" constant="16" id="hvm-m9-NLu"/>
-                            <constraint firstItem="XY4-62-YFd" firstAttribute="trailing" secondItem="7jj-dM-pUs" secondAttribute="trailing" id="ivB-af-Lkn"/>
                             <constraint firstItem="fdw-1b-vnO" firstAttribute="centerX" secondItem="mB1-2F-teZ" secondAttribute="centerX" id="l8v-rk-6OX"/>
                             <constraint firstItem="0rb-MB-uqE" firstAttribute="top" secondItem="sGE-2X-xiQ" secondAttribute="bottom" constant="8" id="w6t-Cj-W2q"/>
                         </constraints>
@@ -552,43 +536,27 @@
                         <outlet property="fiatHint" destination="NMv-o4-1r0" id="LJL-4f-jcL"/>
                         <outlet property="line" destination="Va0-5e-v2q" id="Nje-al-61u"/>
                         <outlet property="loading" destination="rO3-fB-ApZ" id="uAL-tR-n86"/>
-                        <outlet property="navigationBar" destination="XY4-62-YFd" id="6gM-32-aGA"/>
                         <outlet property="send" destination="mB1-2F-teZ" id="dQY-N1-ig6"/>
                         <outlet property="sendBottomConstraint" destination="3IH-xe-tWS" id="Bmp-bH-GE7"/>
                         <outlet property="sendImage" destination="fdw-1b-vnO" id="yLs-rJ-wNn"/>
                         <outlet property="walletInfoView" destination="0hz-iO-8zT" id="HZv-Ty-rhm"/>
                         <outlet property="yourWallet" destination="E5w-Qf-3DS" id="Gx9-TQ-Jei"/>
                         <outlet property="yourWalletBalance" destination="ca1-0Z-Hpb" id="GN0-Tl-eSM"/>
-                        <segue destination="gEu-xi-rcn" kind="custom" identifier="TransferInformationViewController" customClass="FromRightSegue" customModule="paymon" customModuleProvider="target" id="ccu-xq-nLi"/>
+                        <segue destination="gEu-xi-rcn" kind="show" identifier="" id="ccu-xq-nLi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qQh-z8-fKu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="wmA-IK-DDw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="772" y="175"/>
         </scene>
         <!--Transfer Information View Controller-->
         <scene sceneID="mPv-n1-R39">
             <objects>
-                <viewController id="gEu-xi-rcn" customClass="TransferInformationViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TransferInformationViewController" id="gEu-xi-rcn" customClass="TransferInformationViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3cf-b5-FEx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xiU-FA-PwT">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="barTintColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="0.7007211538" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Transfer info" id="d2p-4Y-R5h">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="ArrowBack" id="1cp-wZ-pdv">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.70047075319999996" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gu-P7-Nmq">
                                 <rect key="frame" x="16" y="72" width="343" height="256"/>
                                 <subviews>
@@ -758,13 +726,6 @@
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6O-o0-MSf">
-                                                        <rect key="frame" x="0.0" y="63" width="343" height="1"/>
-                                                        <color key="backgroundColor" white="1" alpha="0.1032151442" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="1" id="NjH-Wp-jBJ"/>
-                                                        </constraints>
-                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -772,11 +733,8 @@
                                                     <constraint firstItem="Wio-KS-WhJ" firstAttribute="centerY" secondItem="Dj0-gp-zez" secondAttribute="centerY" id="L2e-Ly-9dY"/>
                                                     <constraint firstAttribute="height" constant="64" id="W9g-Ji-7ua"/>
                                                     <constraint firstItem="seu-WM-hYq" firstAttribute="centerY" secondItem="Dj0-gp-zez" secondAttribute="centerY" id="bIx-VE-4KT"/>
-                                                    <constraint firstItem="N6O-o0-MSf" firstAttribute="leading" secondItem="Dj0-gp-zez" secondAttribute="leading" id="biy-M8-JJ6"/>
                                                     <constraint firstItem="5vU-jk-ZBE" firstAttribute="centerY" secondItem="Dj0-gp-zez" secondAttribute="centerY" id="fgU-qS-0L3"/>
                                                     <constraint firstItem="5vU-jk-ZBE" firstAttribute="leading" secondItem="Wio-KS-WhJ" secondAttribute="trailing" constant="16" id="g9R-20-KAy"/>
-                                                    <constraint firstAttribute="bottom" secondItem="N6O-o0-MSf" secondAttribute="bottom" id="m7q-F5-BhZ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="N6O-o0-MSf" secondAttribute="trailing" id="qgn-jj-mXo"/>
                                                     <constraint firstAttribute="trailing" secondItem="seu-WM-hYq" secondAttribute="trailing" constant="16" id="ypK-jl-bW8"/>
                                                 </constraints>
                                             </view>
@@ -822,21 +780,17 @@
                         <color key="backgroundColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.69829226762820518" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Eiq-QS-hhs" firstAttribute="bottom" secondItem="yzZ-nb-RhE" secondAttribute="bottom" constant="16" id="0on-nN-vDf"/>
-                            <constraint firstItem="xiU-FA-PwT" firstAttribute="leading" secondItem="Eiq-QS-hhs" secondAttribute="leading" id="R6G-yp-tSm"/>
                             <constraint firstItem="Eiq-QS-hhs" firstAttribute="trailing" secondItem="yzZ-nb-RhE" secondAttribute="trailing" constant="16" id="SOi-Yj-kih"/>
                             <constraint firstItem="Eiq-QS-hhs" firstAttribute="trailing" secondItem="2Gu-P7-Nmq" secondAttribute="trailing" constant="16" id="SgD-OT-NWH"/>
                             <constraint firstItem="MOk-8h-rcz" firstAttribute="centerX" secondItem="yzZ-nb-RhE" secondAttribute="centerX" id="YKf-ce-GDB"/>
-                            <constraint firstItem="xiU-FA-PwT" firstAttribute="top" secondItem="Eiq-QS-hhs" secondAttribute="top" id="bT1-W5-XWb"/>
-                            <constraint firstItem="xiU-FA-PwT" firstAttribute="trailing" secondItem="Eiq-QS-hhs" secondAttribute="trailing" id="kOQ-h4-4tl"/>
+                            <constraint firstItem="2Gu-P7-Nmq" firstAttribute="top" secondItem="Eiq-QS-hhs" secondAttribute="top" constant="8" id="Zbc-La-Cw9"/>
                             <constraint firstItem="2Gu-P7-Nmq" firstAttribute="leading" secondItem="Eiq-QS-hhs" secondAttribute="leading" constant="16" id="njS-WN-XPV"/>
                             <constraint firstItem="MOk-8h-rcz" firstAttribute="centerY" secondItem="yzZ-nb-RhE" secondAttribute="centerY" id="nxR-2B-4To"/>
-                            <constraint firstItem="2Gu-P7-Nmq" firstAttribute="top" secondItem="xiU-FA-PwT" secondAttribute="bottom" constant="8" id="vR5-S2-0J7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Eiq-QS-hhs"/>
                     </view>
                     <connections>
                         <outlet property="fromHint" destination="WlP-Yi-wbk" id="hQ6-Vp-636"/>
-                        <outlet property="navigationBar" destination="xiU-FA-PwT" id="JzU-7J-24n"/>
                         <outlet property="networkFeeAmount" destination="mHi-Qv-Y9h" id="CzV-af-y09"/>
                         <outlet property="networkFeeHint" destination="Fvx-LE-miU" id="8tu-Lg-kPb"/>
                         <outlet property="send" destination="yzZ-nb-RhE" id="qOV-c7-4FN"/>
@@ -882,19 +836,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Gh-tB-9a2">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem id="CCr-0e-wZo">
-                                        <barButtonItem key="leftBarButtonItem" title="Item" image="ArrowBack" id="dVG-xa-nDi">
-                                            <connections>
-                                                <segue destination="345-ti-bhZ" kind="unwind" identifier="unWindQrScan" customClass="UnwindSegueFromRight" customModule="paymon" customModuleProvider="target" unwindAction="unWindQrScan:" id="7Za-gJ-Bwd"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QrCodeSquare" translatesAutoresizingMaskIntoConstraints="NO" id="Obu-Mn-FHv">
                                 <rect key="frame" x="59.5" y="205.5" width="256" height="256"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -902,23 +843,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Gh-tB-9a2" firstAttribute="leading" secondItem="bHf-E2-KgC" secondAttribute="leading" id="alG-yG-HLm"/>
                             <constraint firstItem="Obu-Mn-FHv" firstAttribute="centerY" secondItem="en6-3A-Lra" secondAttribute="centerY" id="eUY-ph-F48"/>
-                            <constraint firstItem="9Gh-tB-9a2" firstAttribute="top" secondItem="RVg-9T-ydf" secondAttribute="bottom" id="v6K-Rp-iwh"/>
-                            <constraint firstItem="9Gh-tB-9a2" firstAttribute="trailing" secondItem="bHf-E2-KgC" secondAttribute="trailing" id="w33-Lp-qwT"/>
                             <constraint firstItem="Obu-Mn-FHv" firstAttribute="centerX" secondItem="en6-3A-Lra" secondAttribute="centerX" id="wtf-t8-Jmb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bHf-E2-KgC"/>
                     </view>
                     <connections>
-                        <outlet property="navigationBar" destination="9Gh-tB-9a2" id="1Us-Fe-zaZ"/>
                         <outlet property="square" destination="Obu-Mn-FHv" id="x5a-fy-I1b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FxR-Vh-oLN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="345-ti-bhZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="721" y="-519"/>
+            <point key="canvasLocation" x="721" y="-540"/>
         </scene>
         <!--Transactions View Controller-->
         <scene sceneID="kYu-23-8Sk">
@@ -1089,7 +1025,6 @@
     </scenes>
     <resources>
         <image name="AmountReverse" width="17" height="13"/>
-        <image name="ArrowBack" width="33" height="33"/>
         <image name="BitcoinClear" width="19" height="26"/>
         <image name="Camera" width="32" height="28"/>
         <image name="Circle" width="85" height="85"/>

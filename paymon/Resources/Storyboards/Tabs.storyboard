@@ -1,15 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P84-dD-mCt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HiJ-4c-NVc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="iMz-5g-LAg">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationControllerTab" navigationBarHidden="YES" id="HiJ-4c-NVc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YX8-cB-Lzq">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="P84-dD-mCt" kind="relationship" relationship="rootViewController" id="wO9-vd-fjQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="75c-eU-kOs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1270" y="5"/>
+        </scene>
         <!--Tabs View Controller-->
         <scene sceneID="fJ7-I5-TNs">
             <objects>
@@ -26,111 +40,57 @@
                         <segue destination="7Dm-Ff-e4i" kind="relationship" relationship="viewControllers" id="9iz-qn-DhR"/>
                         <segue destination="3L4-RE-kH0" kind="relationship" relationship="viewControllers" id="kOS-Z0-Nub"/>
                         <segue destination="BTP-X1-XlM" kind="relationship" relationship="viewControllers" id="ege-Mk-bky"/>
-                        <segue destination="TW9-C2-wP1" kind="relationship" relationship="viewControllers" id="9Bb-6a-A62"/>
-                        <segue destination="Kg1-g7-NRh" kind="relationship" relationship="viewControllers" id="NhI-NK-ZiW"/>
+                        <segue destination="Bvw-PX-kFi" kind="relationship" relationship="viewControllers" id="0Kh-NL-Ydx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91j-d1-pCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2094" y="5"/>
         </scene>
-        <!--Games-->
-        <scene sceneID="moZ-gm-xrX">
-            <objects>
-                <viewController id="TW9-C2-wP1" customClass="GamesViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="y8A-Pm-EDT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GamePad" translatesAutoresizingMaskIntoConstraints="NO" id="DHA-nb-LpQ">
-                                <rect key="frame" x="79" y="183" width="217" height="301"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="217" id="UmT-HU-Njl"/>
-                                    <constraint firstAttribute="height" constant="301" id="zRX-Pn-Zbt"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkX-os-6N4">
-                                <rect key="frame" x="16" y="492" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Lr-1K-K1P">
-                                <rect key="frame" x="16" y="520" width="343" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="0.10980392156862745" green="0.10980392156862745" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="5Lr-1K-K1P" firstAttribute="leading" secondItem="lvS-y6-mPL" secondAttribute="leading" constant="16" id="Bez-cO-9tY"/>
-                            <constraint firstItem="lvS-y6-mPL" firstAttribute="trailing" secondItem="PkX-os-6N4" secondAttribute="trailing" constant="16" id="O7h-fB-WT5"/>
-                            <constraint firstItem="PkX-os-6N4" firstAttribute="top" secondItem="DHA-nb-LpQ" secondAttribute="bottom" constant="8" id="P1J-Yc-B1P"/>
-                            <constraint firstItem="5Lr-1K-K1P" firstAttribute="top" secondItem="PkX-os-6N4" secondAttribute="bottom" constant="8" id="Prz-tI-xH9"/>
-                            <constraint firstItem="lvS-y6-mPL" firstAttribute="trailing" secondItem="5Lr-1K-K1P" secondAttribute="trailing" constant="16" id="Qs8-NB-acJ"/>
-                            <constraint firstItem="DHA-nb-LpQ" firstAttribute="centerY" secondItem="y8A-Pm-EDT" secondAttribute="centerY" id="gZq-LP-bHr"/>
-                            <constraint firstItem="PkX-os-6N4" firstAttribute="leading" secondItem="lvS-y6-mPL" secondAttribute="leading" constant="16" id="mfF-Fo-2YC"/>
-                            <constraint firstItem="DHA-nb-LpQ" firstAttribute="centerX" secondItem="lvS-y6-mPL" secondAttribute="centerX" id="qEN-yq-56w"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="lvS-y6-mPL"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Games" image="Games" id="UmU-Mr-PR2"/>
-                    <connections>
-                        <outlet property="bottomLabel" destination="5Lr-1K-K1P" id="xEA-nd-vzI"/>
-                        <outlet property="topLabel" destination="PkX-os-6N4" id="9wr-b6-Kjp"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V42-cr-CNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3422" y="1404"/>
-        </scene>
-        <!--MoneyViewController-->
+        <!--NavigationControllerMoney-->
         <scene sceneID="0zu-S9-GtQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="Money" referencedIdentifier="MoneyViewController" id="BTP-X1-XlM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Wallet" image="Wallet" id="Qtn-YO-hh6"/>
+                <viewControllerPlaceholder storyboardName="Money" referencedIdentifier="NavigationControllerMoney" id="BTP-X1-XlM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Wallet" id="Qtn-YO-hh6"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2Y-57-kP4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2274" y="1009"/>
+            <point key="canvasLocation" x="2228" y="480"/>
         </scene>
         <!--NavigationControllerContact-->
         <scene sceneID="jHw-Np-OJe">
             <objects>
                 <viewControllerPlaceholder storyboardName="Contacts" referencedIdentifier="NavigationControllerContact" id="3L4-RE-kH0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Contacts" image="Contacts" id="iOY-Lj-ISG"/>
+                    <tabBarItem key="tabBarItem" title="" image="Contacts" id="iOY-Lj-ISG"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Raq-KN-IGt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466" y="1384"/>
+            <point key="canvasLocation" x="1864" y="480"/>
         </scene>
-        <!--ChatsViewController-->
+        <!--NavigationControllerChats-->
         <scene sceneID="tqD-Cs-j8v">
             <objects>
-                <viewControllerPlaceholder storyboardName="Chats" referencedIdentifier="ChatsViewController" id="7Dm-Ff-e4i" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Chats" image="Chats" id="fR2-nu-mS7"/>
+                <viewControllerPlaceholder storyboardName="Chats" referencedIdentifier="NavigationControllerChats" id="7Dm-Ff-e4i" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Chats" id="fR2-nu-mS7"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2C-QC-fQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="491" y="1385"/>
+            <point key="canvasLocation" x="1494" y="480"/>
         </scene>
-        <!--ProfileViewController-->
-        <scene sceneID="oXf-Bd-zWx">
+        <!--NavigationControllerMore-->
+        <scene sceneID="8h1-FY-Hes">
             <objects>
-                <viewControllerPlaceholder storyboardName="User" referencedIdentifier="ProfileViewController" id="Kg1-g7-NRh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="Home" id="smB-Er-oqR"/>
+                <viewControllerPlaceholder storyboardName="More" referencedIdentifier="NavigationControllerMore" id="Bvw-PX-kFi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Home" id="YIS-4q-re5"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jjc-hL-25U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zok-HU-ANF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4299" y="1369"/>
+            <point key="canvasLocation" x="2638" y="479"/>
         </scene>
     </scenes>
     <resources>
         <image name="Chats" width="32" height="32"/>
         <image name="Contacts" width="32" height="32"/>
-        <image name="GamePad" width="256" height="256"/>
-        <image name="Games" width="32" height="32"/>
         <image name="Home" width="32" height="32"/>
         <image name="Wallet" width="32" height="32"/>
     </resources>

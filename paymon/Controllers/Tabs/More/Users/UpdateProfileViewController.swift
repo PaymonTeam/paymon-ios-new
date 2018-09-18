@@ -2,8 +2,6 @@ import UIKit
 import Foundation
 
 class UpdateProfileViewController: PaymonViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    @IBOutlet weak var navigationBar: UINavigationBar!
 
     @IBOutlet weak var updateItem: UIBarButtonItem!
     @IBOutlet weak var changePhoto: UIButton!
@@ -16,9 +14,6 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
     @IBOutlet weak var headerView: UIView!
     var needRemoveObservers = true
     
-    @IBAction func arrowBackClick(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     func addObservers() {
             observerUpdateTrue = NotificationCenter.default.addObserver(forName: .updateProfileInfoTrue, object: nil, queue: nil ){ notification in
                 print("change!")
@@ -38,7 +33,9 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
 
                 UpdateProfileInfoTableViewController.needRemoveObservers = false
                 self.needRemoveObservers = false
-                self.performSegue(withIdentifier: VCIdentifier.countryPickerViewController, sender: nil)
+                
+                guard let countryPicker = StoryBoard.user.instantiateViewController(withIdentifier: VCIdentifier.countryPickerViewController) as? CountryPickerViewController else {return}
+                self.navigationController?.pushViewController(countryPicker, animated: true)
 
             }
         }
@@ -68,8 +65,7 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
         
         self.headerView.setGradientLayer(frame: CGRect(x: 0, y: 0, width: widthScreen, height: self.headerView.frame.height), topColor: UIColor.white.cgColor, bottomColor: UIColor.AppColor.Blue.primaryBlueUltraLight.cgColor)
         
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Update Profile".localized
+        self.title = "Update Profile".localized
         changePhoto.setTitle("Change photo".localized, for: .normal)
 
     }
@@ -94,8 +90,6 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-//        print(needRemoveObservers)
        
         if needRemoveObservers {
             NotificationCenter.default.removeObserver(observerUpdateTrue)
@@ -112,14 +106,4 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
         
         UserManager.updateAvatar(info: info, avatarView: avatar, vc: self)
     }
-    
-    @IBAction func unWindUpdateProfile(_ segue: UIStoryboardSegue) {
-        self.needRemoveObservers = true
-        
-        guard let countryPickerVC = segue.source as? CountryPickerViewController else {return}
-        NotificationCenter.default.post(name: .setCountry, object: countryPickerVC.selectCountry)
-        
-    }
-    
-    
 }

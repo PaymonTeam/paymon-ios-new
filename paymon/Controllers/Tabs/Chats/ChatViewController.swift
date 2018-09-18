@@ -10,6 +10,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     
     @IBOutlet weak var messageTextView: UITextView!
 
+    @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var messageTextViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var sendButtonImage: UIImageView!
@@ -17,10 +18,11 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contraintViewBottom: NSLayoutConstraint!
-    @IBOutlet weak var groupIconImageView: ObservableImageView!
-    @IBOutlet weak var lblParticipants: UILabel!
     
-    @IBOutlet weak var lblTitle: UILabel!
+
+    @IBOutlet weak var chatTitle: UILabel!
+    @IBOutlet weak var chatSubtitle: UILabel!
+    @IBOutlet weak var customTitleView: UIView!
     var messages: [Int64] = [] //RPC.Message?
     var chatID: Int32!
     var isGroup: Bool!
@@ -30,8 +32,6 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     @IBAction func onSendClicked() {
         
         guard let text = messageTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty, text != "To write a message".localized else {return}
-
-        print(text)
         
         let mid = MessageManager.generateMessageID()
         let message = RPC.PM_message()
@@ -61,9 +61,6 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                     self.messages.append(update.newID)
                 }
                 
-                DispatchQueue.main.async {
-//                        self.tableView.reloadData()
-                }
             }
         }
         messages.append(mid)
@@ -80,6 +77,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         textViewDidChange(messageTextView)
         
     }
+
     
     func setLayoutOptions() {
         messageTextView.layer.cornerRadius = messageTextView.frame.height/2
@@ -90,15 +88,31 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
 
         textViewDidChange(messageTextView)
         
-        lblTitle.text = value(forKey: "title") as? String
+        self.chatTitle.text = value(forKey: "title") as? String
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
         sendButton.layer.cornerRadius = sendButton.frame.height/2
-        
-        //TODO: for test
-        lblParticipants.text = "Online"
+        customTitleView.sizeToFit()
+        self.backButton.title = "Back".localized
 
+
+    }
+    
+    @IBAction func titleClick(_ sender: Any) {
+        
+        if isGroup {
+            guard let groupSettingVC = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.groupSettingViewController) as? GroupSettingViewController else {return}
+            groupSettingVC.chatID = chatID
+            
+            navigationController?.pushViewController(groupSettingVC, animated: true)
+        } else {
+            guard let friendProfileVC = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.friendProfileViewController) as? FriendProfileViewController else {return}
+            friendProfileVC.id = chatID
+            friendProfileVC.fromChat = true
+            
+            navigationController?.pushViewController(friendProfileVC, animated: true)
+        }
     }
     
     override func viewDidLoad() {
@@ -126,14 +140,22 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             let peerGroup = RPC.PM_peerGroup()
             peerGroup.group_id = chatID;
             getChatMessages.chatID = peerGroup
-            lblParticipants.text = "Participants: " + String(users.count)
+            
             let group:RPC.Group! = MessageManager.instance.groups[chatID]!
-            groupIconImageView.setPhoto(ownerID: group.id, photoID: group.photo.id)
+
+            var text = "Participants: ".localized
+            text.append("\(group.users.count)")
+            
+            chatSubtitle.text = text
+
+//            groupIconImageView.setPhoto(ownerID: group.id, photoID: group.photo.id)
         } else {
             let peerUser = RPC.PM_peerUser()
             peerUser.user_id = chatID;
             getChatMessages.chatID = peerUser
-            groupIconImageView.isHidden = true
+            chatSubtitle.text = "Online"
+
+//            groupIconImageView.isHidden = true
         }
         getChatMessages.offset = 0
         MessageManager.instance.loadMessages(chatID: chatID, count: 20, offset: 0, isGroup: isGroup)
@@ -187,7 +209,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                         
                         if self.messages.count > 0 {
                             let index = IndexPath(row: self.messages.count - 1, section: 0)
-                            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+                            self.tableView.scrollToRow(at: index, at: .bottom, animated: false)
 
                         }
                     }
@@ -216,26 +238,25 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         }
     }
     
-//    @IBAction func btnSettingAction(_ sender: Any) {
-//        self.goToSetting()
-//    }
-    
-    
-    @IBAction func btnBackTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.chatAddMessages)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didReceivedNewMessages)
         NotificationCenter.default.removeObserver(self)
+        
     }
     
-    func goToSetting() {
-        let groupSettingView = storyboard?.instantiateViewController(withIdentifier: "GroupSettingViewController") as! GroupSettingViewController
-        groupSettingView.chatID = chatID
-        present(groupSettingView, animated: false, completion: nil)
+    @objc func clickPhoto(_ sender : UITapGestureRecognizer) {
+        guard let photo = sender.view as? ObservableImageView else {return}
+        
+        guard let friendProfileVC = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.friendProfileViewController) as? FriendProfileViewController else {return}
+        friendProfileVC.id = photo.getOwnerId()
+        friendProfileVC.fromChat = false
+        
+        navigationController?.pushViewController(friendProfileVC, animated: true)
+        
     }
+    
 }
 
 extension ChatViewController: UITableViewDataSource {
@@ -269,6 +290,11 @@ extension ChatViewController: UITableViewDataSource {
                         cell.messageLabel.sizeToFit()
                         cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                         cell.photo.setPhoto(ownerID: message.from_id, photoID: MediaManager.instance.userProfilePhotoIDs[message.from_id]!)
+                        
+                        let tapPhoto = UITapGestureRecognizer(target: self, action: #selector(self.clickPhoto(_:)))
+                        cell.photo.isUserInteractionEnabled = true
+                        cell.photo.addGestureRecognizer(tapPhoto)
+                        
                         let user = MessageManager.instance.users[message.from_id]
                         cell.name.text = Utils.formatUserName(user!)
                         return cell

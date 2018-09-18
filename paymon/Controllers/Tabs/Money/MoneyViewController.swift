@@ -9,25 +9,19 @@
 import UIKit
 
 class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var navigationBar: UINavigationBar!
     
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     var moneyArray : [CellMoneyData]!
     
     @IBOutlet weak var moneyTableView: UITableView!
-    
-    override func viewDidLayoutSubviews() {
-        
-        tableViewHeight.constant = self.moneyTableView.contentSize.height;
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         moneyTableView.delegate = self
         moneyTableView.dataSource = self
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Wallet".localized
+
+        navigationItem.title = "Wallet".localized
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
@@ -81,8 +75,12 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
             
             switch cell.cryptoType {
             case .bitcoin:
-                guard let bitcoinWalletViewController = StoryBoard.bitcoin.instantiateInitialViewController() as? BitcoinWalletViewController else {return}
-                self.present(bitcoinWalletViewController, animated: true, completion: nil)
+                
+                guard let bitcoinWalletNavigationController = StoryBoard.bitcoin.instantiateInitialViewController() as? PaymonNavigationController else {return}
+                self.navigationController?.present(bitcoinWalletNavigationController, animated: true, completion: nil)
+                
+
+//                self.present(bitcoinWalletNavigationController, animated: true, completion: nil)
             default:
                 print("Default")
             }

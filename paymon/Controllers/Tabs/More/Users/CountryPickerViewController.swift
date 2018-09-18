@@ -8,11 +8,10 @@
 
 import UIKit
 
-class CountryPickerViewController: PaymonViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class CountryPickerViewController: PaymonViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UINavigationControllerDelegate {
     
     var selectCountry : String!
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     var countries : [String]!
@@ -81,25 +80,19 @@ class CountryPickerViewController: PaymonViewController, UITableViewDelegate, UI
         }
         
         setLayoutOptions()
+        navigationController?.delegate = self
     }
     
     func setLayoutOptions() {
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
-        navigationBar.topItem?.title = "Countries".localized
+        self.title = "Countries".localized
         searchBar.placeholder = "Enter your country".localized
-        
-        navigationBar.setTransparent()
 
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-//        guard let user =  User.currentUser else {
-//            return
-//        }
-//
-//        user.country = selectCountry
-        
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        NotificationCenter.default.post(name: .setCountry, object: selectCountry)
     }
 
 }

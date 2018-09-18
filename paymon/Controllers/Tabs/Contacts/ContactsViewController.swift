@@ -47,8 +47,6 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
     var searchData:[RPC.UserObject] = []
     @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         createSearchBar()
@@ -69,7 +67,6 @@ class ContactsViewController : UITableViewController, UISearchBarDelegate {
         searchBar.textField?.textColor = UIColor.black
         searchBar.textField?.backgroundColor = UIColor(red: 215/225.0, green: 215/225.0, blue: 215/225.0, alpha: 1.0)
         
-      //  self.navigationItem.titleView = searchBar
     }
     
     //MARK: - TableView Delegate Methods.

@@ -42,6 +42,8 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
         layer.cornerRadius = frame.width / 2
         clipsToBounds = true
     }
+    
+    
 
     public func subscribe(photoID:Int64, ownerID:Int32) {
         if photoID == 0 || self.photoID == photoID || ownerID == 0 {
@@ -66,6 +68,10 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
         self.itemID = itemID
 
         tryLoadSticker()
+    }
+    
+    public func getOwnerId() -> Int32 {
+        return self.photoOwnerID
     }
 
     public func setPhoto(photo:RPC.PM_photo) {
