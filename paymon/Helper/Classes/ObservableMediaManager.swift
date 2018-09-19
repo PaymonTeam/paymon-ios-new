@@ -11,9 +11,9 @@ protocol IPhotoListener {
     func loadProgress(progress:Int32)
 }
 
-protocol IStickerListener {
-    func didLoadedSticker(sticker:StickerPack.Sticker)
-}
+//protocol IStickerListener {
+//    func didLoadedSticker(sticker:StickerPack.Sticker)
+//}
 
 class ObservableMediaManager {
     public static let instance = ObservableMediaManager()
@@ -26,11 +26,11 @@ class ObservableMediaManager {
     private var delayedUpdatePhotoIDPosts = SharedArray<DelayedPhotoUpdateIDPost>()
     private var photoIDsBitmaps = SharedDictionary<Int64, UIImage>()
 
-    private var stickerObservers = SharedDictionary<Int64, SharedArray<AnyObject>>()
-    private var removeStickerAfterBroadcast = SharedDictionary<Int64, SharedArray<AnyObject>>()
-    private var addStickerAfterBroadcast = SharedDictionary<Int64, SharedArray<AnyObject>>()
-    private var delayedStickerPosts = SharedArray<DelayedStickerPost>()
-    private var stickerIDsBitmaps = SharedDictionary<Int64, UIImage>()
+//    private var stickerObservers = SharedDictionary<Int64, SharedArray<AnyObject>>()
+//    private var removeStickerAfterBroadcast = SharedDictionary<Int64, SharedArray<AnyObject>>()
+//    private var addStickerAfterBroadcast = SharedDictionary<Int64, SharedArray<AnyObject>>()
+//    private var delayedStickerPosts = SharedArray<DelayedStickerPost>()
+//    private var stickerIDsBitmaps = SharedDictionary<Int64, UIImage>()
 
     private var broadcasting = 0
     private var animationInProgress = false
@@ -49,24 +49,24 @@ class ObservableMediaManager {
         return image
     }
 
-    public func loadStickerBitmap(stickerID:Int64) -> UIImage? {
-        let image = stickerIDsBitmaps[stickerID]
-        if (image == nil) {
-            let spid = MediaManager.instance.getStickerPackIDByStickerID(stickerID)
-            if spid != 0 {
-                let image = MediaManager.instance.loadStickerBitmap(stickerPackID: spid, stickerID: stickerID)
-    
-                if (image != nil) {
-                    stickerIDsBitmaps[stickerID] = image
-                } else {
-                    return nil
-                }
-            } else {
-                return nil
-            }
-        }
-        return image
-    }
+//    public func loadStickerBitmap(stickerID:Int64) -> UIImage? {
+//        let image = stickerIDsBitmaps[stickerID]
+//        if (image == nil) {
+//            let spid = MediaManager.instance.getStickerPackIDByStickerID(stickerID)
+//            if spid != 0 {
+//                let image = MediaManager.instance.loadStickerBitmap(stickerPackID: spid, stickerID: stickerID)
+//    
+//                if (image != nil) {
+//                    stickerIDsBitmaps[stickerID] = image
+//                } else {
+//                    return nil
+//                }
+//            } else {
+//                return nil
+//            }
+//        }
+//        return image
+//    }
 
     private class DelayedPhotoPost {
         private var photo:Photo
@@ -75,14 +75,14 @@ class ObservableMediaManager {
             self.photo = photo
         }
     }
-
-    private class DelayedStickerPost {
-        private var sticker:StickerPack.Sticker
-    
-        init(_ sticker:StickerPack.Sticker) {
-            self.sticker = sticker
-        }
-    }
+//
+//    private class DelayedStickerPost {
+//        private var sticker:StickerPack.Sticker
+//
+//        init(_ sticker:StickerPack.Sticker) {
+//            self.sticker = sticker
+//        }
+//    }
 
     private class DelayedPhotoUpdateIDPost {
         private var oldPhotoID: Int64
@@ -287,103 +287,103 @@ class ObservableMediaManager {
         }
     }
     
-    public func postStickerNotification(sticker:StickerPack.Sticker) {
-        let allowDuringAnimation = false
-    //        if (allowedNotifications != nil) {
-    //            for (int a = 0 a < allowedNotifications.length a += 1) {
-    //                if (allowedNotifications[a] == photo.getID()) {
-    //                    allowDuringAnimation = true
-    //                    break
-    //                }
-    //            }
-    //        }
-        postStickerNotificationInternal(allowDuringAnimation, sticker)
-    }
+//    public func postStickerNotification(sticker:StickerPack.Sticker) {
+//        let allowDuringAnimation = false
+//    //        if (allowedNotifications != nil) {
+//    //            for (int a = 0 a < allowedNotifications.length a += 1) {
+//    //                if (allowedNotifications[a] == photo.getID()) {
+//    //                    allowDuringAnimation = true
+//    //                    break
+//    //                }
+//    //            }
+//    //        }
+//        postStickerNotificationInternal(allowDuringAnimation, sticker)
+//    }
     
-    public func postStickerNotificationInternal(_ allowDuringAnimation:Bool, _ sticker:StickerPack.Sticker) {
-        if (!allowDuringAnimation && animationInProgress) {
-            let delayedStickerPost = DelayedStickerPost(sticker)
-            delayedStickerPosts.append(delayedStickerPost)
-            return
-        }
-        broadcasting += 1
-        if let stickerID = sticker.id {
-            let objects = stickerObservers[stickerID]
-            if (objects != nil && !objects!.isEmpty) {
-                for obj in objects!.array {
-                    (obj as! IStickerListener).didLoadedSticker(sticker: sticker)
-                }
-            }
-        }
-
-        broadcasting -= 1
-        if (broadcasting == 0) {
-            updateStickerBroadcasting()
-        }
-    }
+//    public func postStickerNotificationInternal(_ allowDuringAnimation:Bool, _ sticker:StickerPack.Sticker) {
+//        if (!allowDuringAnimation && animationInProgress) {
+//            let delayedStickerPost = DelayedStickerPost(sticker)
+//            delayedStickerPosts.append(delayedStickerPost)
+//            return
+//        }
+//        broadcasting += 1
+//        if let stickerID = sticker.id {
+//            let objects = stickerObservers[stickerID]
+//            if (objects != nil && !objects!.isEmpty) {
+//                for obj in objects!.array {
+//                    (obj as! IStickerListener).didLoadedSticker(sticker: sticker)
+//                }
+//            }
+//        }
+//
+//        broadcasting -= 1
+//        if (broadcasting == 0) {
+//            updateStickerBroadcasting()
+//        }
+//    }
     
-    private func updateStickerBroadcasting() {
-        if (removeStickerAfterBroadcast.count != 0) {
-            for key in removeStickerAfterBroadcast.keys {
-                if let arrayList = removeStickerAfterBroadcast[key] {
-                    for b in arrayList.array {
-                        removeStickerObserver(observer: b, stickerID: key)
-                    }
-                }
-            }
-            removeStickerAfterBroadcast.removeAll()
-        }
-        if (addStickerAfterBroadcast.count != 0) {
-            for key in addStickerAfterBroadcast.keys {
-                if let arrayList = addStickerAfterBroadcast[key] {
-                    for b in arrayList.array {
-                        addStickerObserver(observer: b, stickerID: key)
-                    }
-                }
-            }
-            addStickerAfterBroadcast.removeAll()
-        }
-    }
+//    private func updateStickerBroadcasting() {
+//        if (removeStickerAfterBroadcast.count != 0) {
+//            for key in removeStickerAfterBroadcast.keys {
+//                if let arrayList = removeStickerAfterBroadcast[key] {
+//                    for b in arrayList.array {
+//                        removeStickerObserver(observer: b, stickerID: key)
+//                    }
+//                }
+//            }
+//            removeStickerAfterBroadcast.removeAll()
+//        }
+//        if (addStickerAfterBroadcast.count != 0) {
+//            for key in addStickerAfterBroadcast.keys {
+//                if let arrayList = addStickerAfterBroadcast[key] {
+//                    for b in arrayList.array {
+//                        addStickerObserver(observer: b, stickerID: key)
+//                    }
+//                }
+//            }
+//            addStickerAfterBroadcast.removeAll()
+//        }
+//    }
     
-    public func addStickerObserver(observer:AnyObject, stickerID:Int64) {
-        if (broadcasting != 0) {
-            var arrayList = addStickerAfterBroadcast[stickerID]
-            if (arrayList == nil) {
-                arrayList = SharedArray<AnyObject>()
-                addStickerAfterBroadcast[stickerID] = arrayList
-            }
-            arrayList!.append(observer)
-            return
-        }
-        var objects = stickerObservers[stickerID]
-        if (objects == nil) {
-            objects = SharedArray<AnyObject>()
-            stickerObservers[stickerID] = objects
-        }
-        if (objects!.array.contains(where: { $0 === observer })) {
-            return
-        }
-        objects!.append(observer)
-    }
+//    public func addStickerObserver(observer:AnyObject, stickerID:Int64) {
+//        if (broadcasting != 0) {
+//            var arrayList = addStickerAfterBroadcast[stickerID]
+//            if (arrayList == nil) {
+//                arrayList = SharedArray<AnyObject>()
+//                addStickerAfterBroadcast[stickerID] = arrayList
+//            }
+//            arrayList!.append(observer)
+//            return
+//        }
+//        var objects = stickerObservers[stickerID]
+//        if (objects == nil) {
+//            objects = SharedArray<AnyObject>()
+//            stickerObservers[stickerID] = objects
+//        }
+//        if (objects!.array.contains(where: { $0 === observer })) {
+//            return
+//        }
+//        objects!.append(observer)
+//    }
     
-    public func removeStickerObserver(observer:AnyObject, stickerID:Int64) {
-        if (broadcasting != 0) {
-            var arrayList = removeStickerAfterBroadcast[stickerID]
-            if (arrayList == nil) {
-                arrayList = SharedArray<AnyObject>()
-                removeStickerAfterBroadcast[stickerID] = arrayList
-            }
-            arrayList!.append(observer)
-            return
-        }
-        let objects = stickerObservers[stickerID]
-        if (objects != nil) {
-            for (index, item) in objects!.array.enumerated() {
-                if item === observer {
-                    objects!.remove(at: index)
-                    break
-                }
-            }
-        }
-    }
+//    public func removeStickerObserver(observer:AnyObject, stickerID:Int64) {
+//        if (broadcasting != 0) {
+//            var arrayList = removeStickerAfterBroadcast[stickerID]
+//            if (arrayList == nil) {
+//                arrayList = SharedArray<AnyObject>()
+//                removeStickerAfterBroadcast[stickerID] = arrayList
+//            }
+//            arrayList!.append(observer)
+//            return
+//        }
+//        let objects = stickerObservers[stickerID]
+//        if (objects != nil) {
+//            for (index, item) in objects!.array.enumerated() {
+//                if item === observer {
+//                    objects!.remove(at: index)
+//                    break
+//                }
+//            }
+//        }
+//    }
 }

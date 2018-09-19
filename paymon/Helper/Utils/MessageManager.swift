@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MessageManager : NotificationManagerListener {
     public static let instance = MessageManager()
@@ -198,18 +199,16 @@ class MessageManager : NotificationManagerListener {
                     for msg in packet.messages {
                         self.putMessage(msg, serverTime: true)
                     }
-
-                    for grp in packet.groups {
-                        
-                        self.putGroup(grp)
-                    }
-                    
-//                    print(self.groupsUsers.value(forKey: 185)?.array.count)
                     
                     for usr in packet.users {
                         self.putUser(usr)
                     }
 
+                    for grp in packet.groups {
+                        
+                        self.putGroup(grp)
+                    }
+          
                     DispatchQueue.main.async {
 
                         NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
@@ -342,5 +341,46 @@ class MessageManager : NotificationManagerListener {
                 NotificationManager.instance.postNotificationName(id: NotificationManager.messagesIDdidupdated, args: oldID, newID)
             }
         }
+    }
+    
+    public func sendMessage(text : String, isGroup : Bool, chatId : Int32!, messages: [Int64]) {
+        
+        var messagesId = messages
+        
+        let mid = MessageManager.generateMessageID()
+        let message = RPC.PM_message()
+        message.itemID = 0
+        message.itemType = .NONE
+        message.from_id = User.currentUser!.id
+        if isGroup {
+            message.to_id = RPC.PM_peerGroup()
+            message.to_id.group_id = chatId
+        } else {
+            message.to_id = RPC.PM_peerUser()
+            message.to_id.user_id = chatId
+        }
+        message.id = mid
+        message.text = text
+        message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
+        
+        NetworkManager.instance.sendPacket(message) { p, e in
+            if let update = p as? RPC.PM_updateMessageID {
+                for i in 0..<messagesId.count {
+                    if messagesId[i] == update.oldID {
+                        messagesId.remove(at: i)
+                        break
+                    }
+                }
+                DispatchQueue.global().sync {
+                    messagesId.append(update.newID)
+                }
+                
+            }
+        }
+        messagesId.append(mid)
+        
+        NotificationCenter.default.post(name: .updateMessagesId, object: messagesId)
+        MessageManager.instance.putMessage(message, serverTime: false)
+        
     }
 }

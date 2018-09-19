@@ -74,7 +74,7 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
         if let cell = tableView.cellForRow(at: indexPath) as? MoneyCreatedTableViewCell {
             
             switch cell.cryptoType {
-            case .bitcoin:
+            case .bitcoin?:
                 
                 guard let bitcoinWalletNavigationController = StoryBoard.bitcoin.instantiateInitialViewController() as? PaymonNavigationController else {return}
                 self.navigationController?.present(bitcoinWalletNavigationController, animated: true, completion: nil)

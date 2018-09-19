@@ -29,15 +29,15 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
     
     @IBAction func createClick(_ sender: Any) {
         switch cryptoType {
-        case .bitcoin:
+        case .bitcoin?:
             // Create Bitcoin wallet code
         break
             
-        case .ethereum:
+        case .ethereum?:
             // Create Ethereum wallet code
             break
             
-        case .paymon:
+        case .paymon?:
             // Create Paymon wallet code
             break
         default:
@@ -47,15 +47,15 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
     
     @IBAction func restoreClick(_ sender: Any) {
         switch cryptoType {
-        case .bitcoin:
+        case .bitcoin?:
             // Restore Bitcoin wallet code
             break
             
-        case .ethereum:
+        case .ethereum?:
             // Restore Ethereum wallet code
             break
             
-        case .paymon:
+        case .paymon?:
             // Restore Paymon wallet code
             break
         default:

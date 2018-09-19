@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import paymon
+@testable import paymonTests
 
 class paymonTests: XCTestCase {
 

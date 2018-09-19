@@ -225,35 +225,35 @@ class PMFileManager {
         NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
     }
 
-    public func acceptStickerDownload(file:RPC.PM_file, messageID:Int64) {
-        if (downloadingFiles[file.id] != nil) {
-            return
-        }
-
-        let downloadingFile = DownloadingFile()
-        print("Downloading sticker. parts=\(file.partsCount), size=\(file.totalSize), id=\(file.id)")
-        downloadingFile.buffer = SerializedBuffer_Wrapper(size: UInt32(file.totalSize))//BuffersStorage.instance.getFreeBuffer(file.totalSize)
-
-        downloadingFile.onFinished = {
-            print("Sticker has downloaded")
-            MediaManager.instance.saveAndUpdateSticker(downloadingFile: downloadingFile)
-        }
-        downloadingFile.onError = { code in
-            print("Sticker download failed (\(code))")
-        }
-        downloadingFile.onProgress = { p in
-            print("Progress: \(p)%")
-        }
-
-        downloadingFile.currentPart = 0
-        downloadingFile.currentDownloaded = 0
-        downloadingFile.partsCount = file.partsCount
-        downloadingFile.name = file.name
-        downloadingFile.id = file.id
-        downloadingFiles[file.id] = downloadingFile
-
-        NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
-    }
+//    public func acceptStickerDownload(file:RPC.PM_file, messageID:Int64) {
+//        if (downloadingFiles[file.id] != nil) {
+//            return
+//        }
+//
+//        let downloadingFile = DownloadingFile()
+//        print("Downloading sticker. parts=\(file.partsCount), size=\(file.totalSize), id=\(file.id)")
+//        downloadingFile.buffer = SerializedBuffer_Wrapper(size: UInt32(file.totalSize))//BuffersStorage.instance.getFreeBuffer(file.totalSize)
+//
+//        downloadingFile.onFinished = {
+//            print("Sticker has downloaded")
+//            MediaManager.instance.saveAndUpdateSticker(downloadingFile: downloadingFile)
+//        }
+//        downloadingFile.onError = { code in
+//            print("Sticker download failed (\(code))")
+//        }
+//        downloadingFile.onProgress = { p in
+//            print("Progress: \(p)%")
+//        }
+//
+//        downloadingFile.currentPart = 0
+//        downloadingFile.currentDownloaded = 0
+//        downloadingFile.partsCount = file.partsCount
+//        downloadingFile.name = file.name
+//        downloadingFile.id = file.id
+//        downloadingFiles[file.id] = downloadingFile
+//
+//        NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
+//    }
 
     public func continueFileDownload(part:RPC.PM_filePart, messageID:Int64) {
         if let downloadingFile = downloadingFiles[part.fileID] {

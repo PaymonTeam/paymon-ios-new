@@ -328,11 +328,11 @@ extension String {
         return from ..< to
     }
 
-    subscript(_ range: CountableRange<Int>) -> String {
-        let idx1 = index(startIndex, offsetBy: range.lowerBound)
-        let idx2 = index(startIndex, offsetBy: range.upperBound)
-        return String(self[idx1..<idx2])
-    }
+//    subscript(_ range: CountableRange<Int>) -> String {
+//        let idx1 = index(startIndex, offsetBy: range.lowerBound)
+//        let idx2 = index(startIndex, offsetBy: range.upperBound)
+//        return String(self[idx1..<idx2])
+//    }
 //    var count: Int { return characters.count }
 }
 

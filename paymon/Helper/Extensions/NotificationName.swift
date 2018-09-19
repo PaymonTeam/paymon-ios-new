@@ -35,5 +35,8 @@ extension Notification.Name {
     static let setBtcAddress = Notification.Name(rawValue: "setBtcAddress")
     
     static let setFriendProfileInfo = Notification.Name(rawValue: "setFriendProfileInfo")
+    
+    static let updateMessagesId = Notification.Name(rawValue: "updateMessagesId")
+
 
 }

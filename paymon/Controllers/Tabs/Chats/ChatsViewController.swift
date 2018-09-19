@@ -123,7 +123,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         
         self.navigationItem.title = "Chats".localized
         
-        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white.withAlphaComponent(0.8)]
         searchBar.placeholder = "Search for users or groups".localized
         searchBar.showsCancelButton = false
         

@@ -202,7 +202,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 if file.type == PMFileManager.FileType.PHOTO {
                     PMFileManager.instance.acceptFileDownload(file: file, messageID: messageID)
                 } else if (file.type == PMFileManager.FileType.STICKER) {
-                    PMFileManager.instance.acceptStickerDownload(file: file, messageID: messageID)
+//                    PMFileManager.instance.acceptStickerDownload(file: file, messageID: messageID)
                 }
             } else if (packet is RPC.PM_filePart) {
                 PMFileManager.instance.continueFileDownload(part: packet as! RPC.PM_filePart, messageID: messageID)

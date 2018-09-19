@@ -18,7 +18,6 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contraintViewBottom: NSLayoutConstraint!
-    
 
     @IBOutlet weak var chatTitle: UILabel!
     @IBOutlet weak var chatSubtitle: UILabel!
@@ -27,57 +26,20 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     var chatID: Int32!
     var isGroup: Bool!
     var users = SharedArray<RPC.UserObject>()
+    
+    private var updateMessagesId : NSObjectProtocol!
 
     
     @IBAction func onSendClicked() {
         
         guard let text = messageTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines), !text.isEmpty, text != "To write a message".localized else {return}
         
-        let mid = MessageManager.generateMessageID()
-        let message = RPC.PM_message()
-        message.itemID = 0
-        message.itemType = .NONE
-        message.from_id = User.currentUser!.id
-        if isGroup {
-            message.to_id = RPC.PM_peerGroup()
-            message.to_id.group_id = chatID
-        } else {
-            message.to_id = RPC.PM_peerUser()
-            message.to_id.user_id = chatID
-        }
-        message.id = mid
-        message.text = text
-        message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
-        
-        NetworkManager.instance.sendPacket(message) { p, e in
-            if let update = p as? RPC.PM_updateMessageID {
-                for i in 0..<self.messages.count {
-                    if self.messages[i] == update.oldID {
-                        self.messages.remove(at: i)
-                        break
-                    }
-                }
-                DispatchQueue.global().sync {
-                    self.messages.append(update.newID)
-                }
-                
-            }
-        }
-        messages.append(mid)
-        
-        MessageManager.instance.putMessage(message, serverTime: false)
-        
-        DispatchQueue.main.async {
-            let index = IndexPath(row: self.messages.count > 0 ? self.messages.count - 1 : 0, section: 0)
-            self.tableView.insertRows(at: [index], with: .bottom)
-            self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-        }
-        
         messageTextView.text = ""
         textViewDidChange(messageTextView)
+
+        MessageManager.instance.sendMessage(text: text, isGroup : isGroup, chatId : chatID, messages: self.messages)
         
     }
-
     
     func setLayoutOptions() {
         messageTextView.layer.cornerRadius = messageTextView.frame.height/2
@@ -94,9 +56,9 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         
         sendButton.layer.cornerRadius = sendButton.frame.height/2
         customTitleView.sizeToFit()
-        self.backButton.title = "Back".localized
-
-
+        if self.backButton != nil {
+            self.backButton.title = "Back".localized
+        }
     }
     
     @IBAction func titleClick(_ sender: Any) {
@@ -122,6 +84,19 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        updateMessagesId = NotificationCenter.default.addObserver(forName: .updateMessagesId, object: nil, queue: nil ){ notification in
+            
+            if let messagesId = notification.object as? [Int64] {
+                self.messages = messagesId
+                
+                DispatchQueue.main.async {
+                    let index = IndexPath(row: self.messages.count > 0 ? self.messages.count - 1 : 0, section: 0)
+                    self.tableView.insertRows(at: [index], with: .bottom)
+                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+                }
+            }
+        }
         
         if isGroup {
             users = MessageManager.instance.groupsUsers.value(forKey: chatID)!
@@ -242,7 +217,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         super.viewWillDisappear(animated)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.chatAddMessages)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didReceivedNewMessages)
-        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(updateMessagesId)
         
     }
     
@@ -264,7 +239,6 @@ extension ChatViewController: UITableViewDataSource {
         return messages.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let mid = messages[row]
@@ -276,11 +250,12 @@ extension ChatViewController: UITableViewDataSource {
                     cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                     cell.messageLabel.sizeToFit()
                     return cell
-                } else {
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemViewCell") as! ChatMessageItemViewCell
-                    cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
-                    return cell
                 }
+//                else {
+//                    let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemViewCell") as! ChatMessageItemViewCell
+//                    cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
+//                    return cell
+//                }
             } else {
                 if isGroup {
                     print("isGroup")
@@ -298,11 +273,12 @@ extension ChatViewController: UITableViewDataSource {
                         let user = MessageManager.instance.users[message.from_id]
                         cell.name.text = Utils.formatUserName(user!)
                         return cell
-                    } else {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemRcvViewCell") as! ChatMessageItemRcvViewCell
-                        cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
-                        return cell
                     }
+//                    else {
+//                        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemRcvViewCell") as! ChatMessageItemRcvViewCell
+//                        cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
+//                        return cell
+//                    }
                 } else {
                     if message.itemType == nil || message.itemType == .NONE {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageRcvViewCell") as! ChatMessageRcvViewCell
@@ -310,11 +286,12 @@ extension ChatViewController: UITableViewDataSource {
                         cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                         cell.messageLabel.sizeToFit()
                         return cell
-                    } else {
-                        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemRcvViewCell") as! ChatMessageItemRcvViewCell
-                        cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
-                        return cell
                     }
+//                    else {
+//                        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemRcvViewCell") as! ChatMessageItemRcvViewCell
+//                        cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
+//                        return cell
+//                    }
                 }
                 
             }

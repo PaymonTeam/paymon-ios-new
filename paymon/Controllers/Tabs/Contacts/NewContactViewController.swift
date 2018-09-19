@@ -59,7 +59,8 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         
         self.navigationItem.title = "Contacts".localized
         
-        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white.withAlphaComponent(0.8)]
+
         searchBar.placeholder = "Search for users or groups".localized
         inviteFriendsView.layer.cornerRadius = inviteFriendsView.frame.height/2
         inviteFriends.setTitle("Invite friends".localized, for: .normal)

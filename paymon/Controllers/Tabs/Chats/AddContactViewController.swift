@@ -40,9 +40,9 @@ class AddContactViewController: UIViewController, UISearchBarDelegate {
     }
     
     func setLayoutOptions() {
-        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
+//        searchBar.textField?.textColor = UIColor.white.withAlphaComponent(0.8)
         searchBar.placeholder = "Search for contacts or users".localized
-
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white.withAlphaComponent(0.8)]
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         

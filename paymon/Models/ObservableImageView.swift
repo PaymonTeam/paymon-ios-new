@@ -7,7 +7,7 @@ import UIKit
 import Foundation
 //import QuartzCore
 
-class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
+class ObservableImageView: UIImageView, IPhotoListener {
     private var photoID:Int64
     private var photoOwnerID:Int32
 
@@ -57,18 +57,18 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
     //        tryLoadUIImage()
     }
 
-    public func subscribeItem(itemType:PMFileManager.FileType, itemID:Int64) {
-        self.itemType = itemType
-
-        if added {
-            ObservableMediaManager.instance.removeStickerObserver(observer: self, stickerID: itemID)
-        }
-        ObservableMediaManager.instance.addStickerObserver(observer: self, stickerID: itemID)
-        added = true
-        self.itemID = itemID
-
-        tryLoadSticker()
-    }
+//    public func subscribeItem(itemType:PMFileManager.FileType, itemID:Int64) {
+//        self.itemType = itemType
+//
+//        if added {
+//            ObservableMediaManager.instance.removeStickerObserver(observer: self, stickerID: itemID)
+//        }
+//        ObservableMediaManager.instance.addStickerObserver(observer: self, stickerID: itemID)
+//        added = true
+//        self.itemID = itemID
+//
+////        tryLoadSticker()
+//    }
     
     public func getOwnerId() -> Int32 {
         return self.photoOwnerID
@@ -92,16 +92,16 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
         }
     }
 
-    public func setSticker(itemType:PMFileManager.FileType, itemID:Int64) {
-        if self.itemID == itemID && itemType == PMFileManager.FileType.NONE {
-            return
-        } else {
-            if itemID == 0 || itemType == PMFileManager.FileType.NONE {
-                return
-            }
-            subscribeItem(itemType: itemType, itemID: itemID)
-        }
-    }
+//    public func setSticker(itemType:PMFileManager.FileType, itemID:Int64) {
+//        if self.itemID == itemID && itemType == PMFileManager.FileType.NONE {
+//            return
+//        } else {
+//            if itemID == 0 || itemType == PMFileManager.FileType.NONE {
+//                return
+//            }
+//            subscribeItem(itemType: itemType, itemID: itemID)
+//        }
+//    }
 
     public func subscribeProfilePhoto(ownerID:Int32, photoID:Int64) {
         self.photoOwnerID = ownerID
@@ -115,13 +115,13 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
         tryLoadUIImage()
     }
 
-    public func didLoadedSticker(sticker:StickerPack.Sticker) {
-        bitmap = sticker.image
-        image = bitmap
-        DispatchQueue.main.async {
-            self.setNeedsDisplay()
-        }
-    }
+//    public func didLoadedSticker(sticker:StickerPack.Sticker) {
+//        bitmap = sticker.image
+//        image = bitmap
+//        DispatchQueue.main.async {
+//            self.setNeedsDisplay()
+//        }
+//    }
 
     func didLoaded(photo: Photo) {
         bitmap = photo.image!
@@ -172,35 +172,35 @@ class ObservableImageView: UIImageView, IPhotoListener, IStickerListener {
         }
     }
 
-    private func tryLoadSticker() {
-        if itemID <= 0 {
-            return
-        }
-        print("trying to load sticker \(String(describing: itemType))_\(itemID)")
-
-        let bitmap = ObservableMediaManager.instance.loadStickerBitmap(stickerID: itemID)
-    //        var bitmap = MediaManager.instance.loadPhotoUIImage(photoOwnerID, photoID)
-
-        if bitmap != nil {
-            self.bitmap = bitmap!
-            image = bitmap
-        } else {
-    //            if isProfilePhoto {
-    //                setImageUIImage#import <UIKit/UIKit.h>(UIImageFactory.decodeResource(getResources(), R.drawable.ic_menu_camera))
-    //            } else {
-            image = ObservableImageView.profilePhotoNoneUIImage
-
-            //            }
-
-//            NetworkManager.instance.queue?.async {
-//                MediaManager.instance.requestStickerPack(stickerPackID: 1)
-//            }
-        }
-
-        DispatchQueue.main.async {
-            self.setNeedsDisplay()
-        }
-    }
+//    private func tryLoadSticker() {
+//        if itemID <= 0 {
+//            return
+//        }
+//        print("trying to load sticker \(String(describing: itemType))_\(itemID)")
+//
+//        let bitmap = ObservableMediaManager.instance.loadStickerBitmap(stickerID: itemID)
+//    //        var bitmap = MediaManager.instance.loadPhotoUIImage(photoOwnerID, photoID)
+//
+//        if bitmap != nil {
+//            self.bitmap = bitmap!
+//            image = bitmap
+//        } else {
+//    //            if isProfilePhoto {
+//    //                setImageUIImage#import <UIKit/UIKit.h>(UIImageFactory.decodeResource(getResources(), R.drawable.ic_menu_camera))
+//    //            } else {
+//            image = ObservableImageView.profilePhotoNoneUIImage
+//
+//            //            }
+//
+////            NetworkManager.instance.queue?.async {
+////                MediaManager.instance.requestStickerPack(stickerPackID: 1)
+////            }
+//        }
+//
+//        DispatchQueue.main.async {
+//            self.setNeedsDisplay()
+//        }
+//    }
 
     public func destroy() {
         ObservableMediaManager.instance.removePhotoObserver(observer: self, photoID: photoID)

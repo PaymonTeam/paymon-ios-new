@@ -20,7 +20,6 @@
 		0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C1E210E3B0600CB3853 /* SettingsSecurityViewController.swift */; };
 		0E074C2A210E435B00CB3853 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C29210E435B00CB3853 /* SettingsTableView.swift */; };
 		0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0F477C210BA137004B4A3C /* Contacts.storyboard */; };
-		0E0F4780210BA34A004B4A3C /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */; };
 		0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
@@ -217,7 +216,6 @@
 		0E074C1E210E3B0600CB3853 /* SettingsSecurityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSecurityViewController.swift; sourceTree = "<group>"; };
 		0E074C29210E435B00CB3853 /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		0E0F477C210BA137004B4A3C /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
-		0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewOld.swift; sourceTree = "<group>"; };
 		0EA074C421065515002FF527 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
@@ -450,7 +448,6 @@
 		0E0F477E210BA325004B4A3C /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				0E0F477F210BA34A004B4A3C /* ContactsViewController.swift */,
 				0EB732422136FD2A0069B383 /* NewContactViewController.swift */,
 				0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */,
 				0EE2A959213C04700076ED83 /* ContactDetailViewController.swift */,
@@ -1431,7 +1428,6 @@
 				B01954E120FFA92100F3DDB0 /* ObservableMediaManager.swift in Sources */,
 				B0C396AC210A49C300E0C344 /* ForgotPasswordEmailViewController.swift in Sources */,
 				B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */,
-				0E0F4780210BA34A004B4A3C /* ContactsViewController.swift in Sources */,
 				B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */,
 				B0C7447A21149BBF008885C1 /* ChartsRatesViewController.swift in Sources */,
 				0E074C22210E3B0700CB3853 /* SettingsMoneyTableViewController.swift in Sources */,
@@ -1797,6 +1793,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.max;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1837,6 +1834,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.max;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1862,6 +1860,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymonTests;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1884,6 +1883,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymonTests;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

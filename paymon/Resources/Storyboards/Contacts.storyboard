@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d9Y-rJ-bfM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d9Y-rJ-bfM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -87,7 +86,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Maksim Skorynin" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fck-Xe-etg">
-                                                    <rect key="frame" x="63" y="18" width="304" height="19.5"/>
+                                                    <rect key="frame" x="63" y="18.5" width="304" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -324,7 +323,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привет" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B80-0u-qjR">
-                                                    <rect key="frame" x="269" y="15" width="55" height="14.5"/>
+                                                    <rect key="frame" x="269" y="15.5" width="55" height="13"/>
                                                     <color key="tintColor" red="0.90770783050000003" green="0.91417991060000003" blue="0.93359615080000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="zqo-gs-9cl"/>
@@ -347,7 +346,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="HOZ-Qw-yxC" secondAttribute="bottom" constant="14" id="Rw5-9q-GlT"/>
                                                 <constraint firstItem="B80-0u-qjR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lJu-m7-OdC" secondAttribute="leadingMargin" constant="70" id="XJW-It-8Aa"/>
                                                 <constraint firstItem="B80-0u-qjR" firstAttribute="centerY" secondItem="lJu-m7-OdC" secondAttribute="centerY" id="rAV-8G-HNA"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="B80-0u-qjR" secondAttribute="bottom" constant="3" id="ucM-Kn-Ibb"/>
                                                 <constraint firstItem="HOZ-Qw-yxC" firstAttribute="leading" secondItem="B80-0u-qjR" secondAttribute="trailing" constant="8" id="vza-Nw-Lfc"/>
                                             </constraints>
                                             <variation key="default">
@@ -370,7 +368,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CER-LH-VSq">
-                                                    <rect key="frame" x="71" y="15" width="27.5" height="14.5"/>
+                                                    <rect key="frame" x="71" y="15" width="27.5" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" id="7Xq-Cb-R3r"/>
                                                     </constraints>
@@ -391,7 +389,6 @@
                                                 <constraint firstItem="CER-LH-VSq" firstAttribute="centerY" secondItem="YPC-i7-IAm" secondAttribute="centerY" id="KvM-MD-Yjh"/>
                                                 <constraint firstItem="CER-LH-VSq" firstAttribute="top" secondItem="YPC-i7-IAm" secondAttribute="topMargin" constant="4" id="Qu3-Yd-VYZ"/>
                                                 <constraint firstItem="LFc-TH-IxE" firstAttribute="leading" secondItem="YPC-i7-IAm" secondAttribute="leading" constant="16" id="aaf-DZ-osO"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="CER-LH-VSq" secondAttribute="bottom" constant="3.5" id="bkF-QH-7SB"/>
                                                 <constraint firstAttribute="bottom" secondItem="LFc-TH-IxE" secondAttribute="bottom" constant="14" id="lck-vx-Fva"/>
                                                 <constraint firstItem="CER-LH-VSq" firstAttribute="leading" secondItem="YPC-i7-IAm" secondAttribute="leadingMargin" constant="8" id="nFc-Vv-8RA"/>
                                             </constraints>
@@ -549,7 +546,7 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SendGray" translatesAutoresizingMaskIntoConstraints="NO" id="PjT-dV-dVZ">
-                                        <rect key="frame" x="339.5" y="12.5" width="20" height="20"/>
+                                        <rect key="frame" x="339" y="12" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="69s-h3-TBG"/>
                                             <constraint firstAttribute="width" constant="20" id="SJY-XQ-CxW"/>
@@ -597,8 +594,8 @@
                             <mask key="constraints">
                                 <exclude reference="Lde-xW-ZPM"/>
                                 <exclude reference="AvV-ZN-TxI"/>
-                                <exclude reference="Xcj-pV-M0u"/>
                                 <exclude reference="HuY-tQ-vCO"/>
+                                <exclude reference="Xcj-pV-M0u"/>
                                 <exclude reference="dVx-7s-9j3"/>
                             </mask>
                         </variation>
@@ -610,7 +607,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpY-Rk-5TI">
-                                    <rect key="frame" x="-0.5" y="22.5" width="118" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="22.5" width="118" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
