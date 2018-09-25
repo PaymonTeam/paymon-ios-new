@@ -3,18 +3,15 @@ PODS:
   - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.3)
-  - Charts (3.1.1):
-    - Charts/Core (= 3.1.1)
-  - Charts/Core (3.1.1)
-  - CryptoSwift (0.10.0)
-  - Geth (1.8.12)
+  - Charts (3.2.0):
+    - Charts/Core (= 3.2.0)
+  - Charts/Core (3.2.0)
   - MBProgressHUD (1.0.0)
   - ObjectMapper (3.3.0)
   - OpenSSL-Universal (1.0.2.13)
-  - PureLayout (3.0.2)
-  - web3swift (0.0.9):
-    - CryptoSwift
-    - Geth
+  - SDWebImage (4.4.2):
+    - SDWebImage/Core (= 4.4.2)
+  - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -22,43 +19,27 @@ DEPENDENCIES:
   - Charts
   - MBProgressHUD (~> 1.0.0)
   - OpenSSL-Universal
-  - PureLayout
-  - web3swift (from `https://github.com/MercuryProtocol/web3.swift.git`, branch `master`)
+  - SDWebImage (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
     - Charts
-    - CryptoSwift
-    - Geth
     - MBProgressHUD
     - ObjectMapper
     - OpenSSL-Universal
-    - PureLayout
-
-EXTERNAL SOURCES:
-  web3swift:
-    :branch: master
-    :git: https://github.com/MercuryProtocol/web3.swift.git
-
-CHECKOUT OPTIONS:
-  web3swift:
-    :commit: fe0c3047cc9f808774c6172afe3cb126715adf49
-    :git: https://github.com/MercuryProtocol/web3.swift.git
+    - SDWebImage
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
-  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  CryptoSwift: 6c778d69282bed3b4e975ff97a79d074f20bb011
-  Geth: db7c45e2930ff53366660645937de126ac02366e
+  Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   OpenSSL-Universal: 401888162f11c33ebbd46f782d9229da35c61327
-  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
-  web3swift: 9cf4ccef0c7f7e9f9abb3bc5867789b928800af6
+  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: f4d94920fe9558d4868438aaee148c09e6670429
+PODFILE CHECKSUM: e8a14852a117434d3e2370fb610a9c83e9a3a816
 
 COCOAPODS: 1.5.3

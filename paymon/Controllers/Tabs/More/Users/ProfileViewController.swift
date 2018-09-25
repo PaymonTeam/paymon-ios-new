@@ -4,8 +4,7 @@ import UserNotifications
 
 class ProfileViewController: PaymonViewController {
     
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var profileAvatar: ObservableImageView!
+    @IBOutlet weak var profileAvatar: CircularImageView!
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var profileLogin: UILabel!
     
@@ -23,7 +22,7 @@ class ProfileViewController: PaymonViewController {
         }
         DispatchQueue.main.async {
             
-            self.profileAvatar.setPhoto(ownerID: user.id, photoID: user.photoID)
+            self.profileAvatar.loadPhoto(url: user.photoUrl.url)
             self.profileName.text! = Utils.formatUserName(user)
             self.profileLogin.text = "@\(user.login!)"
         }

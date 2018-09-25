@@ -53,8 +53,6 @@ class ClassStore {
             object = RPC.PM_postConnectionData();
         case RPC.PM_updateMessageID.svuid:
             object = RPC.PM_updateMessageID();
-        case RPC.PM_photo.svuid:
-            object = RPC.PM_photo();
         case RPC.PM_requestPhoto.svuid:
             object = RPC.PM_requestPhoto();
         case RPC.PM_updatePhotoID.svuid:
@@ -131,6 +129,10 @@ class ClassStore {
             object = RPC.PM_restorePasswordRequestCode()
         case RPC.PM_restorePassword.svuid:
             object = RPC.PM_restorePassword()
+        case RPC.PM_photosURL.svuid:
+            object = RPC.PM_photosURL()
+        case RPC.PM_photoURL.svuid:
+            object = RPC.PM_photoURL()
             
         default:
             return nil;

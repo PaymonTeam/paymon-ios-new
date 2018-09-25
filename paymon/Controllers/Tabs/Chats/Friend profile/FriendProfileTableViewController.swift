@@ -11,8 +11,6 @@ import UIKit
 class FriendProfileTableViewController: UITableViewController {
 
     @IBOutlet weak var email: UILabel!
-    @IBOutlet weak var phone: UILabel!
-    @IBOutlet weak var bday: UILabel!
     
     private var setFriendProfileInfo: NSObjectProtocol!
     
@@ -22,11 +20,13 @@ class FriendProfileTableViewController: UITableViewController {
         setFriendProfileInfo = NotificationCenter.default.addObserver(forName: .setFriendProfileInfo, object: nil, queue: OperationQueue.main) {
             notification in
             
-            if let user = notification.object as? RPC.UserObject {
+            if let user = notification.object as? RPC.PM_userFull {
                 DispatchQueue.main.async {
-                    self.email.text = user.email
-                    self.phone.text = String(user.phoneNumber)
-                    self.bday.text = user.birthdate
+                    if user.email != nil {
+                        self.email.text = user.email
+                    } else {
+                        self.email.text = "Information is closed".localized
+                    }
                 }
             }
 

@@ -37,15 +37,15 @@ class NotificationSoundTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for i in 0...ringtone.count - 1 {
-            let ringtoneUrl = Bundle.main.url(forResource: ringtone[i], withExtension: mp3)
-            
-            do {
-                sounds.append(SystemSoundInfo(url: ringtoneUrl!, name: ringtone[i]))
-            } catch {
-                print("Error: \(error.localizedDescription)")
-            }
-        }
+//        for i in 0...ringtone.count - 1 {
+//            let ringtoneUrl = Bundle.main.url(forResource: ringtone[i], withExtension: mp3)
+//            
+//            do {
+//                sounds.append(SystemSoundInfo(url: ringtoneUrl!, name: ringtone[i]))
+//            } catch {
+//                print("Error: \(error.localizedDescription)")
+//            }
+//        }
         
         sounds = sounds.sorted(by: { (a, b) -> Bool in 
             a.name > b.name

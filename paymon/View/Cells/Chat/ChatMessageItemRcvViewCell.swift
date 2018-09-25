@@ -5,6 +5,6 @@
 
 import UIKit
 
-class ChatMessageItemRcvViewCell : ChatMessageItemViewCell {
-
-}
+//class ChatMessageItemRcvViewCell : ChatMessageItemViewCell {
+//
+//}

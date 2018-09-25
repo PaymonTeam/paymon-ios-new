@@ -115,13 +115,15 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
         case login:
             loginValue = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             loginValid = Utils.validateLogin(loginValue)
+            
             textField.backgroundColor = loginValid ? blueLight : whiteLight
         case password:
             passwordValue = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             passwordValid = Utils.validatePassword(passwordValue)
+            
             textField.backgroundColor = passwordValid ? blueLight : whiteLight
         case repeatPassword:
-            repeatPasswordValid = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines) == passwordValue
+            repeatPasswordValid = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines) == passwordValue && !(textField.text?.isEmpty)!
             textField.backgroundColor = repeatPasswordValid ? blueLight : whiteLight
         case email:
             emailValue = email.text!.trimmingCharacters(in: .whitespacesAndNewlines)

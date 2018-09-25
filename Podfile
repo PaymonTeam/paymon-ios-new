@@ -10,11 +10,12 @@ target 'paymon' do
   use_frameworks!
 
     pod 'Alamofire', '~> 4.0'
-    pod 'web3swift', :git => 'https://github.com/MercuryProtocol/web3.swift.git', :branch => 'master'
+    #pod 'web3swift', :git => 'https://github.com/MercuryProtocol/web3.swift.git', :branch => 'master'
     pod 'MBProgressHUD', '~> 1.0.0'
     pod 'AlamofireObjectMapper'
-    pod 'PureLayout'
+    #pod 'PureLayout'
     pod 'Charts'
+    pod 'SDWebImage', '~> 4.0'
 
 
   # Pods for paymon

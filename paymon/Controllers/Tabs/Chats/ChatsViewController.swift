@@ -4,26 +4,12 @@
 //
 import Foundation
 import UIKit
-import web3swift
+//import web3swift
 import Contacts
 import ContactsUI
 
 class ChatsViewController: PaymonViewController, NotificationManagerListener, UISearchBarDelegate {
-    public class CellChatData {
-        var photoID:Int64!
-        var name = ""
-        var lastMessageText = ""
-        var timeString = ""
-        var time:Int64 = 0
-        var chatID:Int32!
-    }
     
-    public class CellDialogData : CellChatData {
-        
-    }
-    public class CellGroupData : CellChatData {
-        public var lastMsgPhoto:RPC.PM_photo?
-    }
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var chatsTable: UITableView!
     
@@ -70,7 +56,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         searchBar.delegate = self
         
         refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(ChatsViewController.refresh), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(ChatsViewController.refresh), for: UIControl.Event.valueChanged)
         chatsTable.addSubview(refresher)
         
     }
@@ -123,7 +109,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         
         self.navigationItem.title = "Chats".localized
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white.withAlphaComponent(0.8)]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.8)]
         searchBar.placeholder = "Search for users or groups".localized
         searchBar.showsCancelButton = false
         
@@ -213,7 +199,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                     }
                 }
                 data.chatID = user.id
-                data.photoID = user.photoID
+                data.photoUrl = user.photoUrl
+
                 data.name = username
                 data.lastMessageText = lastMessageText
                 data.timeString = lastMessageTime
@@ -228,7 +215,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                 var lastMessageText = ""
                 var lastMessageTimeString = ""
                 
-                var lastMsgPhoto:RPC.PM_photo? = nil
+                var lastMsgPhoto:RPC.PM_photoURL? = nil
                 if let lastMessageID = MessageManager.instance.lastGroupMessages[group.id] {
                     if let msg = MessageManager.instance.messages[lastMessageID] {
                         if (msg is RPC.PM_message) {
@@ -241,21 +228,14 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                         
                         let user = MessageManager.instance.users[msg.from_id]
                         if (user != nil) {
-                            lastMsgPhoto = RPC.PM_photo()
-                            lastMsgPhoto!.user_id = user!.id
-                            lastMsgPhoto!.id = user!.photoID
+                            lastMsgPhoto = user!.photoUrl
                         }
                     }
                 }
-                let photo = group.photo
-                if (photo!.id == 0) {
-                    photo!.id = MediaManager.instance.generatePhotoID()
-                }
-                if (photo!.user_id == 0) {
-                    photo!.user_id = -group.id
-                }
+
                 data.chatID = group.id
-                data.photoID = photo!.id
+                data.photoUrl = group.photoUrl
+
                 data.name = title!
                 data.lastMessageText = lastMessageText
                 data.timeString = lastMessageTimeString
@@ -316,7 +296,8 @@ extension ChatsViewController: UITableViewDataSource {
             cell.title.text = data.name
             cell.lastMessageText.text = data.lastMessageText
             cell.lastMessageTime.text = data.timeString
-            cell.photo.setPhoto(ownerID: data.chatID, photoID: data.photoID)
+//            print("url \(String(describing: data.photoUrl.url))")
+            cell.photo.loadPhoto(url: data.photoUrl.url)
             return cell
         } else if data is CellGroupData {
             let groupData = data as! CellGroupData
@@ -324,10 +305,11 @@ extension ChatsViewController: UITableViewDataSource {
             cell.title.text = groupData.name
             cell.lastMessageText.text = groupData.lastMessageText
             cell.lastMessageTime.text = groupData.timeString
-            if groupData.lastMsgPhoto != nil {
-                cell.lastMessagePhoto.setPhoto(photo: groupData.lastMsgPhoto!)
-            }
-            cell.photo.setPhoto(ownerID: -groupData.chatID, photoID: groupData.photoID)
+            cell.photo.loadPhoto(url: groupData.photoUrl.url)
+//            print("url \(String(describing: groupData.lastMsgPhoto))")
+
+//            cell.lastMessagePhoto.loadPhoto(url: (groupData.lastMsgPhoto?.url)!)
+
             return cell
         }
         return tableView.dequeueReusableCell(withIdentifier: "ChatsTableViewCell") as! ChatsTableViewCell

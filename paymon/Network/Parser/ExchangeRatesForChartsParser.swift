@@ -13,7 +13,7 @@ class ExchangeRatesForChartsParser {
     
     struct Rate {
         let value : Double
-        let time : Int
+        let time : String
     }
     
     public class func parse(lineChartView : LineChartView, urlString : String, crypto : String, fiat : String) {
@@ -36,7 +36,9 @@ class ExchangeRatesForChartsParser {
                 
                 if let rates = json["Data"] as? [[String: Any]] {
                     for rate in rates {
-                        result.append(Rate(value: rate["close"] as? Double ?? Double(rate["close"] as! Int), time: rate["time"] as! Int))
+                        let timeChart = Utils.formatDateTime(timestamp: Int64(rate["time"] as! Int), format24h: false)
+                        print(timeChart)
+                        result.append(Rate(value: rate["close"] as? Double ?? Double(rate["close"] as! Int), time: timeChart))
                     }
                 }
 
@@ -50,15 +52,20 @@ class ExchangeRatesForChartsParser {
     
     class func updateCharts(lineChartView : LineChartView, arrayRates : [Rate], crypto : String, fiat : String) {
 
-        var dataEntries: [ChartDataEntry] = []
         let data = LineChartData()
 
+        var dataEntries: [ChartDataEntry] = []
+        var dates = [String]()
+        
         for i in 0..<arrayRates.count {
-            let dataEntry = ChartDataEntry(x: Double(arrayRates[i].time), y: arrayRates[i].value)
+            dates.append(arrayRates[i].time)
+
+            let dataEntry = ChartDataEntry(x: Double(i), y: arrayRates[i].value)
             dataEntries.append(dataEntry)
         }
 
         let line = LineChartDataSet(values: dataEntries, label: String(format: "%@-%@", crypto, fiat))
+        
         line.circleRadius = 2
         line.lineWidth = 1
         line.highlightColor = UIColor.blue //cross
@@ -71,7 +78,5 @@ class ExchangeRatesForChartsParser {
             lineChartView.data = data
             lineChartView.chartDescription?.text = "Here will be time"
         }
-
     }
-    
 }

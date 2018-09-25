@@ -44,8 +44,8 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         
         
@@ -108,13 +108,13 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
     @objc func handleKeyboard(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
-            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
+            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
             
-            signInBottomConstraint.constant = notification.name == NSNotification.Name.UIKeyboardWillShow ? keyboardFrame!.height + 8 : 8
+            signInBottomConstraint.constant = notification.name == UIResponder.keyboardWillShowNotification ? keyboardFrame!.height + 8 : 8
             
             UIView.animate(withDuration: 0,
                            delay: 0,
-                           options: UIViewAnimationOptions.curveEaseOut,
+                           options: UIView.AnimationOptions.curveEaseOut,
                            animations: {
                             self.view.layoutIfNeeded()
             }, completion: nil)

@@ -77,14 +77,14 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
         self.backgroundWidth.constant = self.widthScreen/2.5
         
         add.layer.cornerRadius = 20
-        add.contentEdgeInsets = UIEdgeInsetsMake(6, 12, 8, 12)
+        add.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 8, right: 12)
         addRightConstraint.constant = 16
         
         buttonsView.layer.cornerRadius = 30
         buttonsView.alpha = 0
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(closeAddFunc(swipe:)))
-        leftSwipe.direction = UISwipeGestureRecognizerDirection.left
+        leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
         
         self.addGestureRecognizer(leftSwipe)
     }
@@ -104,7 +104,7 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
     
     @objc func closeAddFunc(swipe:UISwipeGestureRecognizer) {
 
-        if (swipe.direction == UISwipeGestureRecognizerDirection.left) {
+        if (swipe.direction == UISwipeGestureRecognizer.Direction.left) {
             
             UIView.animate(withDuration: 0.1, animations: {
                 self.buttonsView.alpha = 0

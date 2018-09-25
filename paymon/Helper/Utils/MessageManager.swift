@@ -38,13 +38,6 @@ class MessageManager : NotificationManagerListener {
 
     public func putGroup(_ group:RPC.Group) {
 
-        let pid = group.photo.id
-        if (pid == 0) {
-            MediaManager.instance.groupPhotoIDs[group.id] = MediaManager.instance.generatePhotoID()
-        } else {
-            MediaManager.instance.groupPhotoIDs[group.id] = pid
-        }
-
         groups[group.id] = group
         groupsUsers[group.id] = group.users
         
@@ -59,35 +52,9 @@ class MessageManager : NotificationManagerListener {
         }
 
         users[user.id] = user
-        if (user.photoID == 0) {
-            MediaManager.instance.userProfilePhotoIDs[user.id] = MediaManager.instance.generatePhotoID()
-        } else {
-            MediaManager.instance.userProfilePhotoIDs[user.id] = user.photoID
-        }
         if MessageManager.instance.dialogMessages[user.id] != nil {
             userContacts[user.id] = user
         }
-    }
-
-    public func putSearchUser(_ user: RPC.UserObject) {
-        if searchUsers[user.id] != nil {
-            return
-        }
-        searchUsers[user.id] = user
-        if (user.photoID == 0) {
-            MediaManager.instance.userProfilePhotoIDs[user.id] = MediaManager.instance.generatePhotoID()
-        } else {
-            MediaManager.instance.userProfilePhotoIDs[user.id] = user.photoID
-        }
-    }
-
-    public func sortMessages(forChat: Int32) {
-
-    }
-
-    public func sortMessages() {
-        _ = messages.dict.sorted(by: { $1.value.date > $0.value.date
-        })
     }
 
     public func putMessage(_ msg:RPC.Message, serverTime:Bool) {
@@ -170,21 +137,15 @@ class MessageManager : NotificationManagerListener {
     }
 
     public func loadChats(_ fromCache:Bool) {
+        
         if fromCache {
-
-    //            ApplicationLoader.applicationHandler.post(Runnable() {
-    //                @Override
-    //                public func run() {
-    //                    NotificationManager.instance.postNotificationName(NotificationManager.dialogsNeedReload)
-    //                }
-    //            })
+            print("Load from cash")
         } else {
             if User.currentUser == nil {
                 return
             }
 
             let packet = RPC.PM_chatsAndMessages()
-            
 
             let _ = NetworkManager.instance.sendPacket(packet) { p, e in
 
@@ -192,10 +153,13 @@ class MessageManager : NotificationManagerListener {
                     DispatchQueue.main.async {
                         NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
                     }
+                    print("Error request")
+
                     return
                 }
 
                 if let packet = p as? RPC.PM_chatsAndMessages {
+                    
                     for msg in packet.messages {
                         self.putMessage(msg, serverTime: true)
                     }
@@ -205,7 +169,7 @@ class MessageManager : NotificationManagerListener {
                     }
 
                     for grp in packet.groups {
-                        
+
                         self.putGroup(grp)
                     }
           
@@ -259,9 +223,6 @@ class MessageManager : NotificationManagerListener {
         if (id == NotificationManager.didReceivedNewMessages) {
             if let messages = args[0] as? SharedArray<RPC.Message> {
                 var messagesToShow:[Int64] = []
-
-
-
                 for msg in messages.array {
                     putMessage(msg, serverTime: true)
                     var to_id = msg.to_id.user_id
@@ -279,28 +240,19 @@ class MessageManager : NotificationManagerListener {
                             messagesToShow.append(msg.id)
                         }
                     }
-                    //                chatAdapter.messageIDs.add(String.format(Locale.getDefault(), "%d: %s", msg.from_id, msg.text))
                 }
                 if (messagesToShow.count > 0) {
-//                    Collections.sort(messagesToShow, Comparator<Long>() {
-//                        @Override
-//                        public int compare(Long o1, Long o2) {
-//                            return o1.compareTo(o2)
-//                        }
-//                    })
+
                     messagesToShow.sort(by: {e1, e2 in
                         return e1 > e2
                     })
                     NotificationManager.instance.postNotificationName(id: NotificationManager.chatAddMessages, args: messagesToShow, false)
                 }
             }
-        } else if (id == NotificationManager.doLoadChatMessages) {
-//            if (args.length > 0) {
-//                int chatID = (int) args[0]
-
-//                    loadMessages(chatID)
-//            }
         }
+//        else if (id == NotificationManager.doLoadChatMessages) {
+//
+//        }
     }
 
     public func updateMessageID(oldID:Int64, newID:Int64) {

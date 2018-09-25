@@ -7,12 +7,6 @@ import UIKit
 
 class StartViewController: PaymonViewController {
 
-//    @IBOutlet weak var logo: UIImageView!
-//    @IBOutlet weak var signUp: UIButton!
-//    @IBOutlet weak var signIn: UIButton!
-//    @IBOutlet weak var hint: UILabel!
-//
-
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var hintLbl: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!

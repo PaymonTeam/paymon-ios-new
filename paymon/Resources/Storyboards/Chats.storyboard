@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -118,7 +117,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="WTz-ji-JtE" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="WTz-ji-JtE" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="14" width="30" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="AO7-3l-8Up"/>
@@ -171,58 +170,8 @@
                                         <connections>
                                             <outlet property="messageLabel" destination="9n7-kJ-4RZ" id="xlB-vT-1Ru"/>
                                             <outlet property="name" destination="24o-BQ-FGo" id="ud9-YT-cAT"/>
-                                            <outlet property="photo" destination="WTz-ji-JtE" id="fh3-3X-tfm"/>
+                                            <outlet property="photo" destination="WTz-ji-JtE" id="bJz-Gl-HV6"/>
                                             <outlet property="timeLabel" destination="0Ns-Qw-5of" id="Pgs-hh-Y34"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ChatMessageItemViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatMessageItemViewCell" rowHeight="70" id="BPN-pj-A6b" customClass="ChatMessageItemViewCell" customModule="paymon" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="160" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BPN-pj-A6b" id="Kf9-4H-NlE">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="fhO-r3-O5N" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
-                                                    <rect key="frame" x="312" y="11" width="48" height="48"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="0vt-7A-g0a"/>
-                                                        <constraint firstAttribute="height" constant="48" id="Og8-zr-JsZ"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="fhO-r3-O5N" firstAttribute="trailing" secondItem="Kf9-4H-NlE" secondAttribute="trailingMargin" id="4O7-XM-zMr"/>
-                                                <constraint firstItem="fhO-r3-O5N" firstAttribute="centerY" secondItem="Kf9-4H-NlE" secondAttribute="centerY" id="j39-cf-eSw"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="stickerImage" destination="fhO-r3-O5N" id="dlF-Go-sfx"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ChatMessageItemRcvViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChatMessageItemRcvViewCell" rowHeight="70" id="QVe-ir-J5v" customClass="ChatMessageItemRcvViewCell" customModule="paymon" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="230" width="375" height="70"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QVe-ir-J5v" id="Rlp-r7-F31">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="FLE-rJ-y1Q" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="11" width="48" height="48"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="LoI-gg-hEa"/>
-                                                        <constraint firstAttribute="height" constant="48" id="ZEX-mI-DfJ"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="FLE-rJ-y1Q" firstAttribute="centerY" secondItem="Rlp-r7-F31" secondAttribute="centerY" id="wN2-6o-MPf"/>
-                                                <constraint firstItem="FLE-rJ-y1Q" firstAttribute="leading" secondItem="Rlp-r7-F31" secondAttribute="leadingMargin" id="ziN-o9-hAZ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="stickerImage" destination="FLE-rJ-y1Q" id="O7e-aE-8Qt"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -375,7 +324,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" text="qwe" placeholder="Search for contact or users" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD5-To-9Kf">
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for contact or users" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LD5-To-9Kf">
                                 <rect key="frame" x="8" y="64" width="359" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -395,7 +344,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="G30-VC-Uk1" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="G30-VC-Uk1" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -520,7 +469,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-w2-Too" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="jKJ-w2-Too" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="9.5" width="55" height="55"/>
                                                     <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -583,7 +532,7 @@
                                         <connections>
                                             <outlet property="lastMessageText" destination="QUJ-yk-Tx5" id="Ggz-or-AQc"/>
                                             <outlet property="lastMessageTime" destination="5Te-0z-IlU" id="0Ka-9G-giV"/>
-                                            <outlet property="photo" destination="jKJ-w2-Too" id="bKB-QB-jcU"/>
+                                            <outlet property="photo" destination="jKJ-w2-Too" id="2sM-H7-apQ"/>
                                             <outlet property="title" destination="e6K-8J-d0Q" id="vFf-TI-ZC1"/>
                                         </connections>
                                     </tableViewCell>
@@ -594,7 +543,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-O0-unJ" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-O0-unJ" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="9.5" width="55" height="55"/>
                                                     <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -608,7 +557,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="add-u8-Vu2" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="add-u8-Vu2" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="79" y="41" width="24" height="24"/>
                                                     <color key="backgroundColor" white="0.70620263396919547" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -668,10 +617,10 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="separatorInset" minX="78" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="lastMessagePhoto" destination="add-u8-Vu2" id="mGy-j4-k9p"/>
+                                            <outlet property="lastMessagePhoto" destination="add-u8-Vu2" id="NQU-n6-Ti9"/>
                                             <outlet property="lastMessageText" destination="clX-Qg-Syd" id="oAb-xa-wAa"/>
                                             <outlet property="lastMessageTime" destination="c5Z-sL-2gW" id="IQX-Zc-hnS"/>
-                                            <outlet property="photo" destination="sLM-O0-unJ" id="MKn-ho-hzc"/>
+                                            <outlet property="photo" destination="sLM-O0-unJ" id="wMb-Kp-tzO"/>
                                             <outlet property="title" destination="PeB-ez-gLH" id="cXu-5C-IDj"/>
                                         </connections>
                                     </tableViewCell>
@@ -743,7 +692,7 @@
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="R2r-3A-D8p" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="R2r-3A-D8p" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="8" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -764,7 +713,7 @@
                                         <inset key="separatorInset" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="name" destination="cyh-62-cfK" id="Cst-T0-WEl"/>
-                                            <outlet property="photo" destination="R2r-3A-D8p" id="HNT-am-JNj"/>
+                                            <outlet property="photo" destination="R2r-3A-D8p" id="iU8-Cj-pRI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -834,7 +783,7 @@
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="IMS-19-dlW" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="IMS-19-dlW" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="16" y="8" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -883,7 +832,7 @@
                                             <outlet property="btnCross" destination="iht-zu-gKX" id="7o3-1z-BHD"/>
                                             <outlet property="cross" destination="TrZ-wa-MSs" id="NOj-dW-FNQ"/>
                                             <outlet property="name" destination="zZW-N1-EqG" id="qAP-IF-YI6"/>
-                                            <outlet property="photo" destination="IMS-19-dlW" id="P6r-q3-wGh"/>
+                                            <outlet property="photo" destination="IMS-19-dlW" id="xxd-aM-hOU"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -905,7 +854,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-hv-fIw" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-hv-fIw" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                         <rect key="frame" x="16" y="10" width="70" height="70"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -990,7 +939,7 @@
                         <outlet property="addParticipants" destination="xaX-O1-vVF" id="Tu7-Wn-5WF"/>
                         <outlet property="addView" destination="DoM-cg-PGj" id="ba7-Bl-mGm"/>
                         <outlet property="done" destination="JIR-1b-hTR" id="4q2-ea-J2N"/>
-                        <outlet property="groupImage" destination="l9f-hv-fIw" id="9Fu-nA-RJB"/>
+                        <outlet property="groupImage" destination="l9f-hv-fIw" id="II9-c0-x8v"/>
                         <outlet property="groupTitle" destination="jGZ-x2-6vQ" id="g84-Ap-IYh"/>
                         <outlet property="groupTitleHint" destination="jqi-Ci-lJJ" id="hjf-9y-zWH"/>
                         <outlet property="tableViewParticipants" destination="Qdq-bT-1um" id="6eS-aL-rP5"/>
@@ -1034,7 +983,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4G-ya-cAH">
                                 <rect key="frame" x="16" y="72" width="343" height="76"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pab-R7-iDk" customClass="ObservableImageView" customModule="paymon" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pab-R7-iDk" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                         <rect key="frame" x="16" y="13" width="50" height="50"/>
                                         <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1069,18 +1018,18 @@
                                     <constraint firstAttribute="height" constant="76" id="WRN-0B-2t7"/>
                                 </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvg-01-Ybw" customClass="WalletTableInfoUIView" customModule="paymon" customModuleProvider="target">
-                                <rect key="frame" x="16" y="156" width="343" height="165"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uvg-01-Ybw" customClass="UserInfoTableInfoUIView" customModule="paymon" customModuleProvider="target">
+                                <rect key="frame" x="16" y="156" width="343" height="55"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="jJH-OV-H4O"/>
+                                    <constraint firstAttribute="height" constant="55" id="jJH-OV-H4O"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="i2N-53-nlO" kind="embed" id="GYX-na-8Nx"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6K-U5-tjX">
-                                <rect key="frame" x="16" y="329" width="343" height="89"/>
+                                <rect key="frame" x="16" y="219" width="343" height="89"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="3zk-N4-peR">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="89"/>
@@ -1146,7 +1095,7 @@
                     <navigationItem key="navigationItem" id="PQv-eQ-Lg9"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="avatar" destination="pab-R7-iDk" id="774-a4-7wU"/>
+                        <outlet property="avatar" destination="pab-R7-iDk" id="HA0-Jz-JV6"/>
                         <outlet property="headerView" destination="Z4G-ya-cAH" id="FRQ-Zi-hB5"/>
                         <outlet property="login" destination="Ug4-GS-uBP" id="RUi-Ba-ugV"/>
                         <outlet property="name" destination="exn-h0-lkQ" id="phO-A1-5VW"/>
@@ -1164,57 +1113,14 @@
             <objects>
                 <tableViewController title="Profile Information Table" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i2N-53-nlO" customClass="FriendProfileTableViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="2" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ge5-C0-f0k">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="165"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="ROR-sC-0MB">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Q3g-kZ-Chs">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3g-kZ-Chs" id="rQL-yN-7yh">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Phone" translatesAutoresizingMaskIntoConstraints="NO" id="gNA-yT-iSY">
-                                                    <rect key="frame" x="16" y="15.5" width="24" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="coq-Kx-mfT"/>
-                                                        <constraint firstAttribute="width" constant="24" id="dsS-aE-biY"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R74-LQ-wtm">
-                                                    <rect key="frame" x="56" y="0.0" width="271" height="55"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OMv-Zr-Taw">
-                                                    <rect key="frame" x="56" y="54" width="287" height="1"/>
-                                                    <color key="backgroundColor" white="1" alpha="0.098983373400000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="SJJ-ca-AID"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="R74-LQ-wtm" firstAttribute="leading" secondItem="gNA-yT-iSY" secondAttribute="trailing" constant="16" id="79f-Wu-puC"/>
-                                                <constraint firstAttribute="trailing" secondItem="OMv-Zr-Taw" secondAttribute="trailing" id="8W4-he-IQL"/>
-                                                <constraint firstItem="OMv-Zr-Taw" firstAttribute="leading" secondItem="R74-LQ-wtm" secondAttribute="leading" id="BRj-ha-SsK"/>
-                                                <constraint firstItem="gNA-yT-iSY" firstAttribute="leading" secondItem="rQL-yN-7yh" secondAttribute="leadingMargin" id="QgZ-GB-rWX"/>
-                                                <constraint firstItem="gNA-yT-iSY" firstAttribute="centerY" secondItem="rQL-yN-7yh" secondAttribute="centerY" id="jPb-pp-PNt"/>
-                                                <constraint firstAttribute="trailing" secondItem="R74-LQ-wtm" secondAttribute="trailing" constant="16" id="kzE-ss-tbc"/>
-                                                <constraint firstItem="R74-LQ-wtm" firstAttribute="top" secondItem="rQL-yN-7yh" secondAttribute="top" id="sev-Y9-rAa"/>
-                                                <constraint firstAttribute="bottom" secondItem="OMv-Zr-Taw" secondAttribute="bottom" id="srA-LK-gE9"/>
-                                                <constraint firstAttribute="bottom" secondItem="R74-LQ-wtm" secondAttribute="bottom" id="wDz-MK-OqO"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="separatorInset" minX="56" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="A4B-16-dGt">
-                                        <rect key="frame" x="0.0" y="55" width="343" height="55"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A4B-16-dGt" id="xgS-M7-6WK">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
@@ -1233,24 +1139,14 @@
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rTS-Uq-iuI">
-                                                    <rect key="frame" x="56" y="54" width="287" height="1"/>
-                                                    <color key="backgroundColor" white="1" alpha="0.098983373400000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="GVT-VB-vB3"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="eYT-Hb-Put" firstAttribute="centerY" secondItem="xgS-M7-6WK" secondAttribute="centerY" id="2Cz-hr-yTl"/>
-                                                <constraint firstItem="rTS-Uq-iuI" firstAttribute="leading" secondItem="Sei-Dm-dyL" secondAttribute="leading" id="3P5-Q7-nCK"/>
                                                 <constraint firstItem="Sei-Dm-dyL" firstAttribute="top" secondItem="xgS-M7-6WK" secondAttribute="top" id="3yG-vM-FhX"/>
-                                                <constraint firstAttribute="bottom" secondItem="rTS-Uq-iuI" secondAttribute="bottom" id="KuY-X8-dy3"/>
                                                 <constraint firstAttribute="trailing" secondItem="Sei-Dm-dyL" secondAttribute="trailing" constant="16" id="LHz-LC-tKt"/>
                                                 <constraint firstAttribute="bottom" secondItem="Sei-Dm-dyL" secondAttribute="bottom" id="OS0-EM-oke"/>
                                                 <constraint firstItem="eYT-Hb-Put" firstAttribute="leading" secondItem="xgS-M7-6WK" secondAttribute="leadingMargin" id="Znc-qv-G1P"/>
                                                 <constraint firstItem="Sei-Dm-dyL" firstAttribute="leading" secondItem="eYT-Hb-Put" secondAttribute="trailing" constant="16" id="iI8-Zq-Y9o"/>
-                                                <constraint firstAttribute="trailing" secondItem="rTS-Uq-iuI" secondAttribute="trailing" id="sDQ-4T-Bmh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1259,48 +1155,12 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="yvE-Wa-Q5F">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="nal-0g-ff1">
-                                        <rect key="frame" x="0.0" y="110" width="343" height="55"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nal-0g-ff1" id="qty-0K-16x">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="55"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bday" translatesAutoresizingMaskIntoConstraints="NO" id="Et3-JC-dx8">
-                                                    <rect key="frame" x="16" y="15.5" width="24" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="aCK-up-OPv"/>
-                                                        <constraint firstAttribute="width" constant="24" id="mvV-gr-Ly2"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcI-ac-zhz">
-                                                    <rect key="frame" x="56" y="0.0" width="271" height="55"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="vcI-ac-zhz" firstAttribute="top" secondItem="qty-0K-16x" secondAttribute="top" id="0LR-CC-MBc"/>
-                                                <constraint firstAttribute="bottom" secondItem="vcI-ac-zhz" secondAttribute="bottom" id="13Q-IL-9Bm"/>
-                                                <constraint firstAttribute="trailing" secondItem="vcI-ac-zhz" secondAttribute="trailing" constant="16" id="4nC-WB-uyH"/>
-                                                <constraint firstItem="vcI-ac-zhz" firstAttribute="leading" secondItem="Et3-JC-dx8" secondAttribute="trailing" constant="16" id="XfZ-dh-ivs"/>
-                                                <constraint firstItem="Et3-JC-dx8" firstAttribute="centerY" secondItem="qty-0K-16x" secondAttribute="centerY" id="YNa-wu-50l"/>
-                                                <constraint firstItem="Et3-JC-dx8" firstAttribute="leading" secondItem="qty-0K-16x" secondAttribute="leadingMargin" id="bgv-0D-fft"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="separatorInset" minX="56" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </tableViewCell>
-                                </cells>
+                                <cells/>
                             </tableViewSection>
                         </sections>
                     </tableView>
                     <connections>
-                        <outlet property="bday" destination="vcI-ac-zhz" id="lIL-oR-HzG"/>
                         <outlet property="email" destination="Sei-Dm-dyL" id="s1c-Uw-yvw"/>
-                        <outlet property="phone" destination="R74-LQ-wtm" id="PaM-Ww-WnC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qII-K9-DZ0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1311,13 +1171,11 @@
     <resources>
         <image name="AddUser" width="42" height="42"/>
         <image name="ArrowCheck" width="33" height="33"/>
-        <image name="Bday" width="32" height="32"/>
         <image name="Chats" width="32" height="32"/>
         <image name="Cross" width="42" height="42"/>
         <image name="Email" width="32" height="32"/>
         <image name="Group" width="42" height="42"/>
         <image name="NonPhoto" width="256" height="256"/>
-        <image name="Phone" width="32" height="32"/>
         <image name="Plus" width="15" height="15"/>
         <image name="SendGray" width="32" height="32"/>
         <image name="user-group" width="16" height="16"/>

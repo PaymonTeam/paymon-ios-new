@@ -112,6 +112,7 @@
 "Hi! Install and register on this code '%@' in the app and get free cryptocurrency from Paymon!"="ПривЫУстанавливай и регистрируйся по этому коду '%@' в приложении и получи бесплатно криптовалюту от Paymon!";
 "Send message"="Отправить сообщение";
 "Wallets"="Кошельки";
+"Information is closed"="Информация закрыта";
 
 /*Update profile*/
 "Change photo" = "Изменить фото";
@@ -189,6 +190,7 @@
 "Private key"="Приватный ключ";
 "Public key"="Публичный ключ";
 "Back"="Назад";
+"Chart"="График";
 
 
 /*Money transfer*/
@@ -215,3 +217,6 @@
 "Transfer"="Перевод";
 "Deposit"="Пополнение";
 "Withdraw"="Вывод";
+
+/*Contacts*/
+"Invite to Paymon"="Пригласить в Paymon";

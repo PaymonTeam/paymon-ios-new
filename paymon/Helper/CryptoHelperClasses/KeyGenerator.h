@@ -9,7 +9,7 @@
 #include "SerializedBuffer.h"
 #include "Defines.h"
 
-#include "cryptopp/cryptlib.h"
+#include <cryptopp/cryptlib.h>
 #include "cryptopp/hex.h"
 
 #include <stdexcept>

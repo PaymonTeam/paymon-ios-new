@@ -20,7 +20,6 @@
 		0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C1E210E3B0600CB3853 /* SettingsSecurityViewController.swift */; };
 		0E074C2A210E435B00CB3853 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C29210E435B00CB3853 /* SettingsTableView.swift */; };
 		0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0F477C210BA137004B4A3C /* Contacts.storyboard */; };
-		0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
 		0EA074CA210655F3002FF527 /* ChatsTableGroupViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C9210655F2002FF527 /* ChatsTableGroupViewCell.swift */; };
@@ -55,7 +54,6 @@
 		B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */; };
 		B01954DF20FFA92100F3DDB0 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D720FFA92000F3DDB0 /* Ethereum.swift */; };
 		B01954E020FFA92100F3DDB0 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D820FFA92000F3DDB0 /* Config.swift */; };
-		B01954E120FFA92100F3DDB0 /* ObservableMediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954D920FFA92000F3DDB0 /* ObservableMediaManager.swift */; };
 		B01954E220FFA92100F3DDB0 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954DA20FFA92000F3DDB0 /* Photo.swift */; };
 		B01954E320FFA92100F3DDB0 /* QRGenerater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954DB20FFA92100F3DDB0 /* QRGenerater.swift */; };
 		B01954E420FFA92100F3DDB0 /* ClassStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01954DC20FFA92100F3DDB0 /* ClassStore.swift */; };
@@ -83,11 +81,9 @@
 		B019551E20FFAA6600F3DDB0 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019551120FFAA6600F3DDB0 /* KeychainItemAccessibility.swift */; };
 		B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019551220FFAA6600F3DDB0 /* KeychainWrapper.swift */; };
 		B019552020FFAA6600F3DDB0 /* SerializableData.mm in Sources */ = {isa = PBXBuildFile; fileRef = B019551320FFAA6600F3DDB0 /* SerializableData.mm */; };
-		B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019551520FFAA6600F3DDB0 /* MediaManager.swift */; };
 		B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */; };
 		B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */; };
 		B019553D20FFAC0F00F3DDB0 /* ETH.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553820FFAC0E00F3DDB0 /* ETH.swift */; };
-		B019553E20FFAC0F00F3DDB0 /* ObservableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553920FFAC0F00F3DDB0 /* ObservableImageView.swift */; };
 		B019553F20FFAC0F00F3DDB0 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553A20FFAC0F00F3DDB0 /* Transaction.swift */; };
 		B019554020FFAC0F00F3DDB0 /* KeystoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553B20FFAC0F00F3DDB0 /* KeystoreService.swift */; };
 		B019554120FFAC0F00F3DDB0 /* TransactionFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019553C20FFAC0F00F3DDB0 /* TransactionFactory.swift */; };
@@ -102,7 +98,6 @@
 		B019555B20FFAD7500F3DDB0 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B019555420FFAD7400F3DDB0 /* Request.m */; };
 		B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555520FFAD7500F3DDB0 /* RPC.swift */; };
 		B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */; };
-		B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01CBAC420FF85EC00A061FB /* MainViewController.swift */; };
 		B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */; };
 		B01F0DE821086E5A008FB6F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B01F0DEA21086E5A008FB6F0 /* Localizable.strings */; };
 		B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B01F0DEC2108700F008FB6F0 /* User.storyboard */; };
@@ -127,9 +122,14 @@
 		B043973B2135D7A5004DAAAA /* MoneyAmountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */; };
 		B0493E622112AAE800B7AA94 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0493E612112AAE700B7AA94 /* UIColor.swift */; };
 		B055A76A2148EA5C0068CA0A /* PaymonNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B055A7692148EA5B0068CA0A /* PaymonNavigationController.swift */; };
+		B06960842152A6D500B1E693 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06960832152A6D500B1E693 /* CircularImageView.swift */; };
 		B0817C622133F9FD003A1604 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0817C612133F9FC003A1604 /* QRScannerViewController.swift */; };
+		B08336522153CF81008958BC /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B08336512153CF80008958BC /* libcryptopp.a */; };
 		B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA88A21030F2100AAA805 /* SignInViewController.swift */; };
 		B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */; };
+		B08DFD86215928BE002B5C1A /* UserInfoTableInfoUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08DFD85215928BE002B5C1A /* UserInfoTableInfoUIView.swift */; };
+		B08DFD89215936ED002B5C1A /* ChatsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08DFD88215936ED002B5C1A /* ChatsData.swift */; };
+		B08DFD8F215937F5002B5C1A /* CellContactData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08DFD8E215937F5002B5C1A /* CellContactData.swift */; };
 		B08E390821512C53008E09D3 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390721512C53008E09D3 /* FriendProfileViewController.swift */; };
 		B08E390B21513BF1008E09D3 /* FriendProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
@@ -162,18 +162,12 @@
 		B0D43B4921401D7D0052B1A9 /* ContactWasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */; };
 		B0D43B5E214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
-		B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */; };
-		D66275EDD87D20306F62E7E8 /* Pods_paymon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3764DFE35E2623F4092A261 /* Pods_paymon.framework */; };
 		D816BA352120C3CE001B6FE8 /* PaymonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */; };
-		D81A6039211ED57700333F39 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81A6037211ED57700333F39 /* libssl.a */; };
-		D81A603A211ED57700333F39 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81A6038211ED57700333F39 /* libcrypto.a */; };
-		D81C9CC32118F780009130C0 /* libcryptopp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D81C9CC22118F77F009130C0 /* libcryptopp.a */; };
 		D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D820C69D210122B5001D3B00 /* Ethur.storyboard */; };
 		D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A02101232E001D3B00 /* CoinDetailsViewController.swift */; };
 		D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A12101232E001D3B00 /* ReceiveViewController.swift */; };
 		D820C6A72101232E001D3B00 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A22101232E001D3B00 /* SendViewController.swift */; };
 		D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A42101232E001D3B00 /* ChooseCurrencyViewController.swift */; };
-		D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D820C6AC210125D8001D3B00 /* AVFoundation.framework */; };
 		D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B121012FD7001D3B00 /* NetworkManager.swift */; };
 		D820C6BA21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D820C6BB21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
@@ -183,6 +177,7 @@
 		D849F8412113A07C009B425E /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83D2113A07B009B425E /* ByteArray.cpp */; };
 		D849F8422113A07C009B425E /* SerializedBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83E2113A07B009B425E /* SerializedBuffer.cpp */; };
 		D849F8432113A07C009B425E /* KeyGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83F2113A07B009B425E /* KeyGenerator.cpp */; };
+		EC3A29D61F9AD07313AD63D1 /* Pods_paymon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3764DFE35E2623F4092A261 /* Pods_paymon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,7 +211,6 @@
 		0E074C1E210E3B0600CB3853 /* SettingsSecurityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSecurityViewController.swift; sourceTree = "<group>"; };
 		0E074C29210E435B00CB3853 /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
 		0E0F477C210BA137004B4A3C /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
-		0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewOld.swift; sourceTree = "<group>"; };
 		0EA074C421065515002FF527 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
 		0EA074C9210655F2002FF527 /* ChatsTableGroupViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableGroupViewCell.swift; sourceTree = "<group>"; };
@@ -256,7 +250,6 @@
 		B01954D420FFA8DA00F3DDB0 /* KeychainHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		B01954D720FFA92000F3DDB0 /* Ethereum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
 		B01954D820FFA92000F3DDB0 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		B01954D920FFA92000F3DDB0 /* ObservableMediaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableMediaManager.swift; sourceTree = "<group>"; };
 		B01954DA20FFA92000F3DDB0 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		B01954DB20FFA92100F3DDB0 /* QRGenerater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRGenerater.swift; sourceTree = "<group>"; };
 		B01954DC20FFA92100F3DDB0 /* ClassStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassStore.swift; sourceTree = "<group>"; };
@@ -295,11 +288,9 @@
 		B019551220FFAA6600F3DDB0 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		B019551320FFAA6600F3DDB0 /* SerializableData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SerializableData.mm; sourceTree = "<group>"; };
 		B019551420FFAA6600F3DDB0 /* ByteArray_Wrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ByteArray_Wrapper.h; sourceTree = "<group>"; };
-		B019551520FFAA6600F3DDB0 /* MediaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaManager.swift; sourceTree = "<group>"; };
 		B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		B019552D20FFAB6B00F3DDB0 /* TabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsViewController.swift; sourceTree = "<group>"; };
 		B019553820FFAC0E00F3DDB0 /* ETH.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETH.swift; sourceTree = "<group>"; };
-		B019553920FFAC0F00F3DDB0 /* ObservableImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableImageView.swift; sourceTree = "<group>"; };
 		B019553A20FFAC0F00F3DDB0 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		B019553B20FFAC0F00F3DDB0 /* KeystoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeystoreService.swift; sourceTree = "<group>"; };
 		B019553C20FFAC0F00F3DDB0 /* TransactionFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFactory.swift; sourceTree = "<group>"; };
@@ -318,7 +309,6 @@
 		B019555420FFAD7400F3DDB0 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		B019555520FFAD7500F3DDB0 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
-		B01CBAC420FF85EC00A061FB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGuardViewCell.swift; sourceTree = "<group>"; };
 		B01F0DD42108661A008FB6F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B01F0DD52108661A008FB6F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -348,9 +338,14 @@
 		B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyAmountTextField.swift; sourceTree = "<group>"; };
 		B0493E612112AAE700B7AA94 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B055A7692148EA5B0068CA0A /* PaymonNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymonNavigationController.swift; sourceTree = "<group>"; };
+		B06960832152A6D500B1E693 /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		B0817C612133F9FC003A1604 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		B08336512153CF80008958BC /* libcryptopp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcryptopp.a; path = ../../../../../usr/local/Cellar/cryptopp/7.0.0/lib/libcryptopp.a; sourceTree = "<group>"; };
 		B08CA88A21030F2100AAA805 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		B08CA89B210623CF00AAA805 /* SimpleShowSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleShowSegue.swift; sourceTree = "<group>"; };
+		B08DFD85215928BE002B5C1A /* UserInfoTableInfoUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableInfoUIView.swift; sourceTree = "<group>"; };
+		B08DFD88215936ED002B5C1A /* ChatsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsData.swift; sourceTree = "<group>"; };
+		B08DFD8E215937F5002B5C1A /* CellContactData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellContactData.swift; sourceTree = "<group>"; };
 		B08E390721512C53008E09D3 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileTableViewController.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,7 +385,6 @@
 		B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactWasTableViewCell.swift; sourceTree = "<group>"; };
 		B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatMessageRcvViewCell.swift; sourceTree = "<group>"; };
 		B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
-		B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPickerViewController.swift; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05E199DF40685C191ADE6F1 /* Pods-paymonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-paymonTests/Pods-paymonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymonViewController.swift; sourceTree = "<group>"; };
@@ -418,11 +412,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D81A6039211ED57700333F39 /* libssl.a in Frameworks */,
-				D81A603A211ED57700333F39 /* libcrypto.a in Frameworks */,
-				D81C9CC32118F780009130C0 /* libcryptopp.a in Frameworks */,
-				D820C6AD210125D9001D3B00 /* AVFoundation.framework in Frameworks */,
-				D66275EDD87D20306F62E7E8 /* Pods_paymon.framework in Frameworks */,
+				EC3A29D61F9AD07313AD63D1 /* Pods_paymon.framework in Frameworks */,
+				B08336522153CF81008958BC /* libcryptopp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,9 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				0EB732422136FD2A0069B383 /* NewContactViewController.swift */,
-				0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */,
 				0EE2A959213C04700076ED83 /* ContactDetailViewController.swift */,
-				B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -465,24 +454,8 @@
 				0EA074CB2106561B002FF527 /* ChatViewController.swift */,
 				0EA074D5210658D2002FF527 /* GroupSettingViewController.swift */,
 				0EC1A6B0213BAE8E0089CE1E /* AddContactViewController.swift */,
-				0EA074C62106552B002FF527 /* ChatTableCells */,
 			);
 			path = Chats;
-			sourceTree = "<group>";
-		};
-		0EA074C62106552B002FF527 /* ChatTableCells */ = {
-			isa = PBXGroup;
-			children = (
-				0E9D32122107A75600A8BB15 /* ChatsTableViewOld.swift */,
-				0EA074CF210656B5002FF527 /* ChatMessageViewCell.swift */,
-				0EA074CD21065686002FF527 /* ChatMessageRcvViewCell.swift */,
-				0EA074C9210655F2002FF527 /* ChatsTableGroupViewCell.swift */,
-				0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */,
-				0EA074D1210656C7002FF527 /* ChatMessageItemViewCell.swift */,
-				0EA074D3210656FC002FF527 /* ChatMessageItemRcvViewCell.swift */,
-				B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */,
-			);
-			path = ChatTableCells;
 			sourceTree = "<group>";
 		};
 		0EA66B9F210F7FAC00CC1162 /* Notifications */ = {
@@ -517,6 +490,7 @@
 		2E6D321D2242C00919558443 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B08336512153CF80008958BC /* libcryptopp.a */,
 				D81A6038211ED57700333F39 /* libcrypto.a */,
 				D81A6037211ED57700333F39 /* libssl.a */,
 				D81C9CC22118F77F009130C0 /* libcryptopp.a */,
@@ -577,6 +551,52 @@
 				B03D13762131AE0500F442AF /* TransactionTableViewCell.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		B08DFD87215936DA002B5C1A /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				B08DFD88215936ED002B5C1A /* ChatsData.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		B08DFD8A21593760002B5C1A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */,
+				0EA074CF210656B5002FF527 /* ChatMessageViewCell.swift */,
+				0EA074CD21065686002FF527 /* ChatMessageRcvViewCell.swift */,
+				0EA074D1210656C7002FF527 /* ChatMessageItemViewCell.swift */,
+				0EA074D3210656FC002FF527 /* ChatMessageItemRcvViewCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		B08DFD8B21593767002B5C1A /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				0EA074C9210655F2002FF527 /* ChatsTableGroupViewCell.swift */,
+				0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
+		B08DFD8C215937A0002B5C1A /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */,
+				0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		B08DFD8D215937CA002B5C1A /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				B08DFD8E215937F5002B5C1A /* CellContactData.swift */,
+			);
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 		B08E390921513BC8008E09D3 /* Friend profile */ = {
@@ -700,10 +720,11 @@
 		B099C9A720FDD20D00718608 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B08DFD8D215937CA002B5C1A /* Contacts */,
+				B08DFD87215936DA002B5C1A /* Chats */,
 				B0ACFFF72112666D007BE95C /* Money */,
 				B019553820FFAC0E00F3DDB0 /* ETH.swift */,
 				B019553B20FFAC0F00F3DDB0 /* KeystoreService.swift */,
-				B019553920FFAC0F00F3DDB0 /* ObservableImageView.swift */,
 				B019553A20FFAC0F00F3DDB0 /* Transaction.swift */,
 				B019553C20FFAC0F00F3DDB0 /* TransactionFactory.swift */,
 			);
@@ -762,7 +783,6 @@
 				B01F0DF121087263008FB6F0 /* ProfileViewController.swift */,
 				B01F0DF221087263008FB6F0 /* UpdateProfileInfoTableViewController.swift */,
 				B01F0DF321087263008FB6F0 /* UpdateProfileViewController.swift */,
-				B0F104F0210C6A12002F8BFA /* CountryPickerViewController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -788,7 +808,6 @@
 			children = (
 				B0C396B3210A5C1300E0C344 /* Main */,
 				B0C396AA210A497A00E0C344 /* ForgotPassword */,
-				B055A7692148EA5B0068CA0A /* PaymonNavigationController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -805,6 +824,7 @@
 		B099C9B220FDD27100718608 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				B06960832152A6D500B1E693 /* CircularImageView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -815,6 +835,7 @@
 				B0AC1D2721146AA4004D8577 /* ExchangeRatesUIView.swift */,
 				B03D1368212F771600F442AF /* WalletTableInfoUIView.swift */,
 				B043973A2135D7A5004DAAAA /* MoneyAmountTextField.swift */,
+				B08DFD85215928BE002B5C1A /* UserInfoTableInfoUIView.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -829,6 +850,9 @@
 		B099C9B520FDD28400718608 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B08DFD8C215937A0002B5C1A /* Contact */,
+				B08DFD8B21593767002B5C1A /* Chats */,
+				B08DFD8A21593760002B5C1A /* Chat */,
 				B0ACFFF2211233CB007BE95C /* Money */,
 				B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */,
 			);
@@ -882,7 +906,6 @@
 				B019550A20FFAA6500F3DDB0 /* EthereumManager.swift */,
 				B019551120FFAA6600F3DDB0 /* KeychainItemAccessibility.swift */,
 				B019551220FFAA6600F3DDB0 /* KeychainWrapper.swift */,
-				B019551520FFAA6600F3DDB0 /* MediaManager.swift */,
 				B019550820FFAA6500F3DDB0 /* MessageManager.swift */,
 				B019550D20FFAA6600F3DDB0 /* NotificationManager.swift */,
 				B019550420FFAA6500F3DDB0 /* PMFileManager.swift */,
@@ -959,10 +982,10 @@
 		B099C9C020FDD38300718608 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B019555520FFAD7500F3DDB0 /* RPC.swift */,
 				B01954DC20FFA92100F3DDB0 /* ClassStore.swift */,
 				B01954D820FFA92000F3DDB0 /* Config.swift */,
 				B01954D720FFA92000F3DDB0 /* Ethereum.swift */,
-				B01954D920FFA92000F3DDB0 /* ObservableMediaManager.swift */,
 				B01954DA20FFA92000F3DDB0 /* Photo.swift */,
 				B01954DB20FFA92100F3DDB0 /* QRGenerater.swift */,
 				B01954DD20FFA92100F3DDB0 /* StickerPack.swift */,
@@ -1030,7 +1053,6 @@
 				B019555220FFAD7400F3DDB0 /* Queue.m */,
 				B019555020FFAD7400F3DDB0 /* Request.h */,
 				B019555420FFAD7400F3DDB0 /* Request.m */,
-				B019555520FFAD7500F3DDB0 /* RPC.swift */,
 			);
 			path = AsyncSocket;
 			sourceTree = "<group>";
@@ -1115,7 +1137,6 @@
 			isa = PBXGroup;
 			children = (
 				B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */,
-				B01CBAC420FF85EC00A061FB /* MainViewController.swift */,
 				B0011B762101E10400A3CBF1 /* SignUpViewController.swift */,
 				B08CA88A21030F2100AAA805 /* SignInViewController.swift */,
 			);
@@ -1135,6 +1156,7 @@
 			isa = PBXGroup;
 			children = (
 				D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */,
+				B055A7692148EA5B0068CA0A /* PaymonNavigationController.swift */,
 			);
 			path = SuperViewController;
 			sourceTree = "<group>";
@@ -1234,10 +1256,12 @@
 					};
 					B099C98520FCF7DC00718608 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = B099C97120FCF7DB00718608;
 					};
 					B099C99020FCF7DC00718608 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 						TestTargetID = B099C97120FCF7DB00718608;
 					};
 				};
@@ -1316,20 +1340,18 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1408,7 +1430,6 @@
 				B01954F220FFA9B400F3DDB0 /* TransactionService.swift in Sources */,
 				B01F0DF721087264008FB6F0 /* ProfileViewController.swift in Sources */,
 				B0011B772101E10400A3CBF1 /* SignUpViewController.swift in Sources */,
-				B019552120FFAA6600F3DDB0 /* MediaManager.swift in Sources */,
 				B0C396B0210A4E1100E0C344 /* ForgotPasswordChangeViewController.swift in Sources */,
 				B0097804214C654C00191B90 /* MoreViewController.swift in Sources */,
 				B01954E520FFA92100F3DDB0 /* StickerPack.swift in Sources */,
@@ -1425,9 +1446,7 @@
 				B042CB8E2138239000B8F195 /* TransferInformationViewController.swift in Sources */,
 				0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */,
 				B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */,
-				B01954E120FFA92100F3DDB0 /* ObservableMediaManager.swift in Sources */,
 				B0C396AC210A49C300E0C344 /* ForgotPasswordEmailViewController.swift in Sources */,
-				B01CBAC520FF85EC00A061FB /* MainViewController.swift in Sources */,
 				B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */,
 				B0C7447A21149BBF008885C1 /* ChartsRatesViewController.swift in Sources */,
 				0E074C22210E3B0700CB3853 /* SettingsMoneyTableViewController.swift in Sources */,
@@ -1437,6 +1456,7 @@
 				0EB732432136FD2A0069B383 /* NewContactViewController.swift in Sources */,
 				B019551920FFAA6600F3DDB0 /* ByteArray_Wrapper.mm in Sources */,
 				B0AC1D26211456E8004D8577 /* CryptoManager.swift in Sources */,
+				B08DFD86215928BE002B5C1A /* UserInfoTableInfoUIView.swift in Sources */,
 				B0ACFFF921126688007BE95C /* CellMoneyData.swift in Sources */,
 				0EA074D2210656C7002FF527 /* ChatMessageItemViewCell.swift in Sources */,
 				B0C7447821147C7F008885C1 /* ExchangeRatesParser.swift in Sources */,
@@ -1444,6 +1464,7 @@
 				B01954E020FFA92100F3DDB0 /* Config.swift in Sources */,
 				B019554920FFAC7C00F3DDB0 /* EthernService.swift in Sources */,
 				B01954FB20FFAA1600F3DDB0 /* Constants.swift in Sources */,
+				B08DFD8F215937F5002B5C1A /* CellContactData.swift in Sources */,
 				B019551D20FFAA6600F3DDB0 /* NotificationManager.swift in Sources */,
 				B019555B20FFAD7500F3DDB0 /* Request.m in Sources */,
 				B01954F820FFA9F000F3DDB0 /* KeyGenerator.swift in Sources */,
@@ -1474,14 +1495,15 @@
 				B019554720FFAC5900F3DDB0 /* BaseService.swift in Sources */,
 				B019554620FFAC5900F3DDB0 /* API.swift in Sources */,
 				0EE2A95A213C04700076ED83 /* ContactDetailViewController.swift in Sources */,
+				B08DFD89215936ED002B5C1A /* ChatsData.swift in Sources */,
 				B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */,
 				B01954DF20FFA92100F3DDB0 /* Ethereum.swift in Sources */,
-				0E9D32132107A75700A8BB15 /* ChatsTableViewOld.swift in Sources */,
 				B019555A20FFAD7500F3DDB0 /* Queue.m in Sources */,
 				B01F0DF821087264008FB6F0 /* UpdateProfileInfoTableViewController.swift in Sources */,
 				D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */,
 				B03D136E213185A100F442AF /* BitcoinTransactions.swift in Sources */,
 				B019550020FFAA3E00F3DDB0 /* UIView+Loading.swift in Sources */,
+				B06960842152A6D500B1E693 /* CircularImageView.swift in Sources */,
 				B01954FF20FFAA3E00F3DDB0 /* String+Helpers.swift in Sources */,
 				B0011B8321023F9000A3CBF1 /* UserManager.swift in Sources */,
 				0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */,
@@ -1504,7 +1526,6 @@
 				B042CB8C2137F92500B8F195 /* CopyLabel.swift in Sources */,
 				B01954D620FFA8DA00F3DDB0 /* KeychainHelper.swift in Sources */,
 				B03D137B2132D3BA00F442AF /* BitcoinTransferViewController.swift in Sources */,
-				B019553E20FFAC0F00F3DDB0 /* ObservableImageView.swift in Sources */,
 				B019551C20FFAA6600F3DDB0 /* EthereumManager.swift in Sources */,
 				B01954E220FFA92100F3DDB0 /* Photo.swift in Sources */,
 				B019553F20FFAC0F00F3DDB0 /* Transaction.swift in Sources */,
@@ -1521,7 +1542,6 @@
 				0EA66BA4210F810C00CC1162 /* SecurityPasswordViewController.swift in Sources */,
 				0EA074D4210656FC002FF527 /* ChatMessageItemRcvViewCell.swift in Sources */,
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
-				B0F104F1210C6A12002F8BFA /* CountryPickerViewController.swift in Sources */,
 				B0C7447721147C7F008885C1 /* ExchangeRatesForChartsParser.swift in Sources */,
 				B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
@@ -1671,7 +1691,7 @@
 					/usr/local/Cellar/cryptopp/7.0.0/include,
 				);
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/cryptopp/7.0.0/lib,
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
@@ -1687,6 +1707,7 @@
 		};
 		B099C99920FCF7DC00718608 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F19248E7DF96502E85DB597 /* Pods-paymon.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1737,7 +1758,7 @@
 					/usr/local/Cellar/cryptopp/7.0.0/include,
 				);
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/Cellar/cryptopp/7.0.0/lib,
 					/usr/local/Cellar/openssl/1.0.2o_2/lib,
@@ -1781,7 +1802,7 @@
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/include-ios",
 				);
 				INFOPLIST_FILE = paymon/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1799,7 +1820,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -1822,7 +1843,7 @@
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/include-ios",
 				);
 				INFOPLIST_FILE = paymon/Application/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1839,7 +1860,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -1862,7 +1883,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymonTests;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/paymon.app/paymon";
 			};
@@ -1885,7 +1906,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymonTests;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/paymon.app/paymon";
 			};
@@ -1906,7 +1927,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymonUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = paymon;
 			};
@@ -1927,7 +1948,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.paymonUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = paymon;
 			};

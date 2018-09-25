@@ -17,8 +17,6 @@ along with Paymon.  If not, see <http://www.gnu.org/licenses/>.
 
 import Foundation
 import UIKit
-import AudioToolbox
-import UserNotifications
 
 class NetworkManager: NSObject, NetworkManagerDelegate {
     class FutureRequest {
@@ -114,24 +112,6 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
         return messageId
     }
 
-//    func scheduleNotification(event : String, body : String, interval: TimeInterval) {
-//        let content = UNMutableNotificationContent()
-//
-//        let endIndex = User.notificationSound.index(User.notificationSound.endIndex, offsetBy: -4)
-//        let sound = User.notificationSound.substring(to: endIndex)
-//
-//        content.title = event
-//        content.body = body
-//        content.categoryIdentifier = "CALLINNOTIFICATION"
-//        content.sound = UNNotificationSound(named: sound)
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
-//        let identifier = "id_\(event)"
-//        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-//
-//        let center = UNUserNotificationCenter.current()
-//        center.add(request)
-//    }
-
     private func processServerResponse(object: Packet!, messageID: Int64) {
         NetworkManager_Wrapper.netQueue().run {
             var packet: Packet! = object
@@ -145,11 +125,11 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 let message = packet as! RPC.Message
                 MessageManager.instance.putMessage(message, serverTime: true)
 
-                if User.notificationSwitchWorry {
-                    if let user: RPC.UserObject = MessageManager.instance.users[message.from_id] {
-                        _ = Utils.formatUserName(user)
-                    }
-                }
+//                if User.notificationSwitchWorry {
+//                    if let user: RPC.UserObject = MessageManager.instance.users[message.from_id] {
+//                        _ = Utils.formatUserName(user)
+//                    }
+//                }
 
                 var messages: [RPC.Message] = []
                 messages.append(message)
@@ -159,18 +139,30 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
             } else if (packet is RPC.PM_updateMessageID) {
                 let update = packet as! RPC.PM_updateMessageID
                 MessageManager.instance.updateMessageID(oldID: update.oldID, newID: update.newID)
-            } else if packet is RPC.PM_updatePhotoID {
-                let update = packet as! RPC.PM_updatePhotoID
-                print("OLD PHOTO ID \(update.oldID) - NEW PHOTO ID \(update.newID)")
-                MediaManager.instance.updatePhotoID(oldID: update.oldID, newID: update.newID)
-                DispatchQueue.main.async {
-                    ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: update.oldID, newPhotoID: update.newID)
+            }
+//            else if packet is RPC.PM_updatePhotoID {
+//                let update = packet as! RPC.PM_updatePhotoID
+//                print("OLD PHOTO ID \(update.oldID) - NEW PHOTO ID \(update.newID)")
+////                MediaManager.instance.updatePhotoID(oldID: update.oldID, newID: update.newID)
+//                DispatchQueue.main.async {
+//                    ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: update.oldID, newPhotoID: update.newID)
+//                }
+//            }
+            else if (packet is RPC.PM_photoURL) {
+                let update = packet as! RPC.PM_photoURL
+                if let peerUser = update.peer as? RPC.PM_peerUser {
+                    MessageManager.instance.users[peerUser.user_id]?.photoUrl.url = update.url
+                    MessageManager.instance.userContacts[peerUser.user_id]?.photoUrl.url = update.url
+                    if User.currentUser?.id == peerUser.user_id {
+                        User.currentUser?.photoUrl.url = update.url
+                        User.saveConfig()
+                    }
+
+                } else if let peerGroup = update.peer as? RPC.PM_peerGroup {
+                    MessageManager.instance.groups[peerGroup.group_id]?.photoUrl.url = update.url
                 }
-            } else if (packet is RPC.PM_photo) {
-                //  RPC.PM_photo photo = (RPC.PM_photo) packet
-                //  MediaManager.instance.updatePhoto(photo)
             } else if (packet is RPC.PM_error) {
-                error = packet as! RPC.PM_error
+                error = packet as? RPC.PM_error
                 packet = nil
                 print("Paymon Error (\(error.code!)): \(error.message!)")
 
@@ -184,28 +176,30 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                     DispatchQueue.main.async {
                         NotificationManager.instance.postNotificationName(id: NotificationManager.authByTokenFailed)
                     }
-//                    NetworkManager.instance.authByToken()
+
                 case RPC.ERROR_AUTH:
                     print("ERROR_AUTH")
-//                    Toast.makeText(ApplicationLoader.applicationContext, getString(R.string.auth_wrong_login_or_password), Toast.LENGTH_LONG).show()
+
                 case RPC.ERROR_SPAMMING:
                     print("ERROR_SPAMMING")
                 default:
                     break;
-//                    Toast.makeText(ApplicationLoader.applicationContext, getString(R.string.error_spamming), Toast.LENGTH_LONG).show()
+
                 }
             } else if (packet is RPC.PM_postConnectionData) {
                 KeyGenerator.instance.setPostConnectionData(packet as! RPC.PM_postConnectionData)
                 self.handshaked = true
-            } else if packet is RPC.PM_file {
-                let file = packet as! RPC.PM_file
-                if file.type == PMFileManager.FileType.PHOTO {
-                    PMFileManager.instance.acceptFileDownload(file: file, messageID: messageID)
-                } else if (file.type == PMFileManager.FileType.STICKER) {
-//                    PMFileManager.instance.acceptStickerDownload(file: file, messageID: messageID)
-                }
-            } else if (packet is RPC.PM_filePart) {
-                PMFileManager.instance.continueFileDownload(part: packet as! RPC.PM_filePart, messageID: messageID)
+            }
+//            else if packet is RPC.PM_file {
+//                let file = packet as! RPC.PM_file
+//                if file.type == PMFileManager.FileType.PHOTO {
+//                    PMFileManager.instance.acceptFileDownload(file: file, messageID: messageID)
+//                } else if (file.type == PMFileManager.FileType.STICKER) {
+////                    PMFileManager.instance.acceptStickerDownload(file: file, messageID: messageID)
+//                }
+//            }
+            else if (packet is RPC.PM_filePart) {
+//                PMFileManager.instance.continueFileDownload(part: packet as! RPC.PM_filePart, messageID: messageID)
             }
 
             if (listener != nil) {
@@ -215,12 +209,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
     }
 
     func onConnectionDataReceived(_ connection: NetworkManager_Wrapper!, buffer: SerializedBuffer_Wrapper!, length: UInt32) {
-//    func onConnectionDataReceived(connection: NetworkManager_Wrapper?, _ data: SerializedBuffer_Wrapper!, length: UInt32) {
-//        if length == 4 {
-//            let code = buffer.readInt32(nil)
-//            connection?.reconnect()
-//            return
-//        }
+
         let mark = buffer.position()
 
         var err = false
@@ -309,15 +298,15 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
     }
 
     func onConnectionError(_ connection: NetworkManager_Wrapper!, error: Error!) {
-//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Connection closed" message:[error localizedDescription] preferredStyle:UIAlertControllerStyleAlert];
-//    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-//    [[[[UIApplication sharedApplication] keyWindow] rootViewController] presentViewController:alert animated:true completion:nil];
-        let alert = UIAlertController(title: "Connection error", message: error.localizedDescription, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default) { _ in
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(action)
-        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true)
+//        let alert = UIAlertController(title: "Connection error", message: error.localizedDescription, preferredStyle: .alert)
+//        let action = UIAlertAction(title: "OK", style: .default) { _ in
+//            alert.dismiss(animated: true)
+//        }
+//        alert.addAction(action)
+//        DispatchQueue.main.async {
+//            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true)
+//
+//        }
     }
 
     func sendPacketNowOrLater(_ packet: Packet) {

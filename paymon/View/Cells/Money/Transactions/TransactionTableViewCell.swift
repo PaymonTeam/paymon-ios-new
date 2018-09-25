@@ -11,7 +11,7 @@ import UIKit
 class TransactionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var lineHeight: NSLayoutConstraint!
-    @IBOutlet weak var avatar: ObservableImageView!
+    @IBOutlet weak var avatar: CircularImageView!
     @IBOutlet weak var from: UILabel!
     @IBOutlet weak var amount: UILabel!
     @IBOutlet weak var time: UILabel!

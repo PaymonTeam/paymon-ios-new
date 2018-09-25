@@ -78,11 +78,9 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
                 
                 guard let bitcoinWalletNavigationController = StoryBoard.bitcoin.instantiateInitialViewController() as? PaymonNavigationController else {return}
                 self.navigationController?.present(bitcoinWalletNavigationController, animated: true, completion: nil)
-                
 
-//                self.present(bitcoinWalletNavigationController, animated: true, completion: nil)
             default:
-                print("Default")
+                break
             }
             
         }

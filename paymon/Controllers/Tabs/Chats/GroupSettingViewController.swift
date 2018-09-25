@@ -12,7 +12,8 @@ import MBProgressHUD
 
 class GroupSettingContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var photo: ObservableImageView!
+    
+    @IBOutlet weak var photo: CircularImageView!
     @IBOutlet weak var btnCross: UIButton!
     @IBOutlet weak var cross: UIImageView!
 }
@@ -22,7 +23,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     @IBOutlet weak var done: UIBarButtonItem!
     @IBOutlet weak var groupTitleHint: UILabel!
     @IBOutlet weak var addView: UIView!
-    @IBOutlet weak var groupImage: ObservableImageView!
+    @IBOutlet weak var groupImage: CircularImageView!
     @IBOutlet weak var tableViewParticipants: UITableView!
     @IBOutlet weak var addParticipants: UIButton!
     @IBOutlet weak var groupTitle: UITextField!
@@ -75,7 +76,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: self.groupTitle.frame.height))
 
         groupTitle.leftView = paddingView
-        groupTitle.leftViewMode = UITextFieldViewMode.always
+        groupTitle.leftViewMode = UITextField.ViewMode.always
         
         let pickImage = UITapGestureRecognizer(target: self, action: #selector(self.openImagePicker(_:)))
         groupImage.isUserInteractionEnabled = true
@@ -122,50 +123,50 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     }
 
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-        picker.dismiss(animated: true)
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage, let currentUser = User.currentUser {
-            guard let photo = MediaManager.instance.savePhoto(image: image, user: currentUser) else {
-                return
-            }
-            guard let photoFile = MediaManager.instance.getFile(ownerID: photo.user_id, fileID: photo.id) else {
-                return
-            }
-            print("file saved \(photoFile)")
-            let packet = RPC.PM_group_setPhoto()
-            packet.photo = photo
-            packet.id = chatID
-            let oldPhotoID = group.photo.id!
-            let photoID = photo.id!
-            groupImage.image = image
-            ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
-            
-            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
-            
-            NetworkManager.instance.sendPacket(packet) { packet, error in
-                
-                DispatchQueue.main.async {
-                    MBProgressHUD.hide(for: self.view, animated: true)
-                }
-                
-                if (packet is RPC.PM_boolTrue) {
-                    Utils.stageQueue.run {
-                        PMFileManager.instance.startUploading(photo: photo, onFinished: {
-                            print("File has uploaded")
-                            
-                        }, onError: { code in
-                            print("file upload failed \(code)")
-                            
-                        }, onProgress: { p in
-                        })
-                    }
-                } else {
-                    
-                    PMFileManager.instance.cancelFileUpload(fileID: photoID);
-                }
-            }
-        }
-    }
+//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+//        picker.dismiss(animated: true)
+//        if let image = info[UIImagePickerControllerEditedImage] as? UIImage, let currentUser = User.currentUser {
+//            guard let photo = MediaManager.instance.savePhoto(image: image, user: currentUser) else {
+//                return
+//            }
+//            guard let photoFile = MediaManager.instance.getFile(ownerID: photo.user_id, fileID: photo.id) else {
+//                return
+//            }
+//            print("file saved \(photoFile)")
+//            let packet = RPC.PM_group_setPhoto()
+//            packet.photo = photo
+//            packet.id = chatID
+//            let oldPhotoID = group.photo.id!
+//            let photoID = photo.id!
+//            groupImage.image = image
+//            ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
+//            
+//            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+//            
+//            NetworkManager.instance.sendPacket(packet) { packet, error in
+//                
+//                DispatchQueue.main.async {
+//                    MBProgressHUD.hide(for: self.view, animated: true)
+//                }
+//                
+//                if (packet is RPC.PM_boolTrue) {
+//                    Utils.stageQueue.run {
+//                        PMFileManager.instance.startUploading(photo: photo, onFinished: {
+//                            print("File has uploaded")
+//                            
+//                        }, onError: { code in
+//                            print("file upload failed \(code)")
+//                            
+//                        }, onProgress: { p in
+//                        })
+//                    }
+//                } else {
+//                    
+//                    PMFileManager.instance.cancelFileUpload(fileID: photoID);
+//                }
+//            }
+//        }
+//    }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         guard let chatVC = viewController as? ChatViewController else {return}
@@ -224,7 +225,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
                 if (response != nil) {
                     
                     DispatchQueue.main.async {
-                        self.participants.remove(at: sender.tag)
+                        let _ = self.participants.remove(at: sender.tag)
 
                         self.tableViewParticipants.reloadData()
                     }
@@ -244,7 +245,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         let data = participants[row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSettingContactsTableViewCell") as! GroupSettingContactsTableViewCell
         cell.name.text = Utils.formatUserName(data)
-        cell.photo.setPhoto(ownerID: data.id, photoID: data.photoID)
+        cell.photo.loadPhoto(url: data.photoUrl.url)
         
         if data.id != creatorID && isCreator {
             

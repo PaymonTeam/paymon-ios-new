@@ -21,7 +21,6 @@ public class UserManager {
         register.password = password
         register.email = email
         register.walletKey = "OoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo";
-//        register.inviteCode = "";
         
         let _ = NetworkManager.instance.sendPacket(register) { p,e in
 
@@ -32,10 +31,10 @@ public class UserManager {
 
             if (p as? RPC.PM_userFull) != nil {
                 print("User has been registered")
-                let alertSuccess = UIAlertController(title: "Registration was successful".localized, message: "Congratulations, you have successfully registered. Account activation sent to your email. Confirm account and log in.".localized, preferredStyle: UIAlertControllerStyle.alert)
+                let alertSuccess = UIAlertController(title: "Registration was successful".localized, message: "Congratulations, you have successfully registered. Account activation sent to your email. Confirm account and log in.".localized, preferredStyle: UIAlertController.Style.alert)
 
-                alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
-                    viewController.dismiss(animated: true)
+                alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+                    viewController.navigationController?.popViewController(animated: true)
                 }))
 
                 DispatchQueue.main.async {
@@ -45,8 +44,8 @@ public class UserManager {
                 }
             } else if e != nil {
 
-                let alertError = UIAlertController(title: "Registration Failed".localized, message: "Such login or email is already in use".localized, preferredStyle: UIAlertControllerStyle.alert)
-                let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+                let alertError = UIAlertController(title: "Registration Failed".localized, message: "Such login or email is already in use".localized, preferredStyle: UIAlertController.Style.alert)
+                let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
                     NotificationCenter.default.post(name: .enableSignUpButtons, object: nil)
                 })
 
@@ -64,8 +63,11 @@ public class UserManager {
         
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
         
-        NetworkManager.instance.auth(login: login, password: password, callback: { p, e in
+        print("Send packet")
+
         
+        NetworkManager.instance.auth(login: login, password: password, callback: { p, e in
+            
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: vc.view, animated: true)
             }
@@ -75,7 +77,7 @@ public class UserManager {
                 if user.confirmed {
                     print("User has logged in")
                     User.currentUser = user
-                    print("\(String(describing: User.currentUser?.photoID))")
+                    print("\(String(describing: User.currentUser?.photoUrl))")
                     User.isAuthenticated = true
                     User.saveConfig()
                     User.loadConfig()
@@ -146,78 +148,11 @@ public class UserManager {
         
     }
     
-    static func updateAvatar(info: [String : Any], avatarView : ObservableImageView, vc : UIViewController){
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage, let currentUser = User.currentUser {
-            
-            guard let photo = MediaManager.instance.savePhoto(image: image, user: currentUser) else {
-                return
-            }
 
-            let packet = RPC.PM_setProfilePhoto()
-            packet.photo = photo
-            let oldPhotoID = currentUser.photoID!
-            let photoID = photo.id!
-            
-            DispatchQueue.main.async {
-                avatarView.setPhoto(photo: photo)
-            }
-            
-            ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
-            
-            let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
-
-            NetworkManager.instance.sendPacket(packet) { packet, error in
-                
-                DispatchQueue.main.async {
-                    MBProgressHUD.hide(for: vc.view, animated: true)
-                }
-                
-                if (packet is RPC.PM_boolTrue) {
-                    Utils.stageQueue.run {
-                        PMFileManager.instance.startUploading(photo: photo, onFinished: {
-                            
-                            DispatchQueue.main.async {
-                                Utils.showSuccesHud(vc: vc)
-                            }
-                            print("File has uploaded")
-
-                        }, onError: { code in
-                            print("file upload failed \(code)")
-
-                        }, onProgress: { p in
-                            
-                        })
-                    }
-                } else {
-
-                    _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
-                    
-                    //TODO переписать в Кастомный алерт
-                    PMFileManager.instance.cancelFileUpload(fileID: photoID);
-                }
-            }
-        }
-    }
-    
-    static func updateProfileInfo(name: String, surname : String, email: String, phone: String, city: String, bday: String, country: String, sex : Int, vc : UIViewController) {
-        User.currentUser!.city = city
-        if (!phone.isEmpty) {
-            User.currentUser!.phoneNumber = Int64(phone)
-        } else {
-            User.currentUser!.phoneNumber = 0
-        }
-        User.currentUser!.email = email
-        User.currentUser!.birthdate = bday
-        User.currentUser!.country = country
+    static func updateProfileInfo(name: String, surname : String, vc : UIViewController) {
 
         User.currentUser!.first_name = name
         User.currentUser!.last_name = surname
-
-        if (sex == 0) {
-            User.currentUser!.gender! = 1
-        } else if (sex == 1) {
-            User.currentUser!.gender! = 2
-        }
         
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
 
@@ -244,6 +179,8 @@ public class UserManager {
             }
         }
     }
+    
+    
     
     static func sendCodeRecoveryToEmail(vc : UIViewController, loginOrEmail : String) {
         let sendCodeToEmail = RPC.PM_restorePasswordRequestCode()
@@ -325,9 +262,9 @@ public class UserManager {
             if response is RPC.PM_boolTrue {
                 print("code is true")
                     
-                let alertSuccess = UIAlertController(title: "New password".localized, message: "Password changed successfully".localized, preferredStyle: UIAlertControllerStyle.alert)
+                let alertSuccess = UIAlertController(title: "New password".localized, message: "Password changed successfully".localized, preferredStyle: UIAlertController.Style.alert)
                 
-                alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+                alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
                     vc.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
                 }))
                 
@@ -346,7 +283,7 @@ public class UserManager {
     
     static func authByToken(window : UIWindow) {
 
-        guard let startViewController = StoryBoard.main.instantiateInitialViewController() as? PaymonNavigationController else {return}
+//        guard let startViewController = StoryBoard.main.instantiateInitialViewController() as? PaymonNavigationController else {return}
         guard let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: "NavigationControllerTab") as? UINavigationController else {return}
 
             let auth = RPC.PM_authToken()
@@ -356,28 +293,79 @@ public class UserManager {
             }
             
             auth.token = user.token
+
             let _ = NetworkManager.instance.sendPacket(auth) { p, e in
                 
                 if e != nil || !(p is RPC.PM_userFull) {
-                    DispatchQueue.main.async {
-
-                    window.rootViewController?.present(startViewController, animated: false, completion: nil)
-                    }
+                    print("Error auth by token", e as Any)
+//                    DispatchQueue.main.async {
+//
+//                    window.rootViewController?.present(tabsViewController, animated: false, completion: nil)
+//                    }
                 } else {
                     User.isAuthenticated = true
                     User.currentUser = (p as! RPC.PM_userFull)
+                    
                     User.saveConfig()
                     User.loadConfig()
-                    
-                    DispatchQueue.main.sync {
-                        print("Show mee")
-                    window.rootViewController?.present(tabsViewController, animated: false, completion: nil)
-                    }
 
                     NotificationManager.instance.postNotificationName(id: NotificationManager.userAuthorized)
                     NetworkManager.instance.sendFutureRequests()
                 }
                 
+                DispatchQueue.main.async {
+                    print("Show mee")
+                    window.rootViewController?.present(tabsViewController, animated: false, completion: nil)
+                }
+                
             }
+    }
+    
+    static func updateAvatar(info: [UIImagePickerController.InfoKey : Any], avatarView : CircularImageView, vc : UIViewController){
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            
+            var imageURL : URL!
+            
+            imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            
+            let packet = RPC.PM_setProfilePhoto()
+            
+            let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
+            
+            NetworkManager.instance.sendPacket(packet) { packet, error in
+                
+                
+                if (packet is RPC.PM_boolTrue) {
+                    Utils.stageQueue.run {
+                        PMFileManager.instance.startUploading(url: imageURL, onFinished: {
+                            
+                            DispatchQueue.main.async {
+                                MBProgressHUD.hide(for: vc.view, animated: true)
+                                Utils.showSuccesHud(vc: vc)
+                                avatarView.image = image
+
+                            }
+                            print("File has uploaded")
+                            
+                        }, onError: { code in
+                            print("file upload failed \(code)")
+                            
+                            DispatchQueue.main.async {
+                                _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
+                            }
+                            
+                        }, onProgress: { p in
+                            
+                        })
+                    }
+                } else {
+                    
+                    _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
+                    
+                    //TODO переписать в Кастомный алерт
+                    PMFileManager.instance.cancelFileUpload(fileID: Int64(User.currentUser.id));
+                }
+            }
+        }
     }
 }

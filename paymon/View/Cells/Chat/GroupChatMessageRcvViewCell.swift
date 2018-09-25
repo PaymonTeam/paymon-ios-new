@@ -13,7 +13,8 @@ class GroupChatMessageRcvViewCell : UITableViewCell{
     
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var photo: ObservableImageView!
+    
+    @IBOutlet weak var photo: CircularImageView!
     @IBOutlet weak var name: UILabel!
     
     

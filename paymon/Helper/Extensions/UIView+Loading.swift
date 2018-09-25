@@ -43,10 +43,10 @@ extension UIView {
         let imageViewBackground = UIImageView(frame: UIScreen.main.bounds)
         imageViewBackground.image = UIImage(named: name)
         
-        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
+        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
         
         self.addSubview(imageViewBackground)
-        self.sendSubview(toBack: imageViewBackground)
+        self.sendSubviewToBack(imageViewBackground)
     }
     
     func shake() {

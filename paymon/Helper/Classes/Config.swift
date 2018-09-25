@@ -6,10 +6,10 @@
 import Foundation
 
 class Config {
-    open static let BUILD_DEBUG = true
-    open static let BUILD_PRODUCTION = false
-    open static let HOST = BUILD_DEBUG ? "91.226.80.26" : "91.226.80.26"
-    open static let PORT:UInt16 = BUILD_PRODUCTION ? 7966 : 7968
+    public static let BUILD_DEBUG = true
+    public static let BUILD_PRODUCTION = false
+    public static let HOST = BUILD_DEBUG ? "91.226.80.26" : "91.226.80.26"
+    public static let PORT:UInt16 = BUILD_PRODUCTION ? 7966 : 7968
 
     public static let SETTINGS_NOTIFICATION = "settings_notification_"
     public static let SETTINGS_NOTIFICATION_WORRY = "settings_notification_worry"

@@ -11,7 +11,7 @@ import UIKit
 class MoreViewController: UIViewController {
 
     @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var avatar: ObservableImageView!
+    @IBOutlet weak var avatar: CircularImageView!
     @IBOutlet weak var login: UILabel!
     @IBOutlet weak var name: UILabel!
     
@@ -29,7 +29,7 @@ class MoreViewController: UIViewController {
         }
         DispatchQueue.main.async {
             
-            self.avatar.setPhoto(ownerID: user.id, photoID: user.photoID)
+            self.avatar.loadPhoto(url: user.photoUrl.url)
             self.name.text! = Utils.formatUserName(user)
             self.login.text = "@\(user.login!)"
         }

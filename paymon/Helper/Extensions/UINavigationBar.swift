@@ -14,3 +14,10 @@ extension UINavigationBar {
         self.shadowImage = UIImage()
     }
 }
+
+extension UITabBar {
+    func setTransparent(){
+        self.backgroundImage = UIImage()
+        self.shadowImage = UIImage()
+    }
+}

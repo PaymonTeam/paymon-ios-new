@@ -15,7 +15,8 @@ class FriendProfileViewController: PaymonViewController {
     @IBOutlet weak var sendMessage: UIButton!
     @IBOutlet weak var login: UILabel!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var avatar: ObservableImageView!
+    
+    @IBOutlet weak var avatar: CircularImageView!
     @IBOutlet weak var headerView: UIView!
     
     var funcsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -118,11 +119,11 @@ class FriendProfileViewController: PaymonViewController {
                 return
             }
             
-            guard let user = response as? RPC.UserObject else {return}
+            guard let user = response as? RPC.PM_userFull else {return}
             DispatchQueue.main.async {
                 self.name.text = Utils.formatUserName(user)
                 self.login.text = "@\(user.login!)"
-                self.avatar.setPhoto(ownerID: user.id, photoID: user.photoID)
+                self.avatar.loadPhoto(url: user.photoUrl.url)
             }
             NotificationCenter.default.post(name: .setFriendProfileInfo, object: user)
 

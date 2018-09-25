@@ -23,7 +23,7 @@ class PMFileManager {
     }
 
     public enum FileType: Int32 {
-        case NONE = 0, PHOTO, AUDIO, DOCUMENT, STICKER, ACTION
+        case NONE = 0, PHOTO, AUDIO, DOCUMENT, STICKER, ACTION, VIDEO, WALLET
     }
     typealias OnFinished = ()->()
     typealias OnError = (Int32)->()
@@ -60,25 +60,14 @@ class PMFileManager {
 
     var downloadingFiles: [Int64: DownloadingFile] = [:]
     var uploadingFiles: [Int64: UploadingFile] = [:]
+    var uploadingFileID : Int64! = 0
 
-    public func startUploading(photo: RPC.PM_photo, onFinished:OnFinished?, onError:OnError?, onProgress:OnProgress?) {
-        if uploadingFiles[photo.id] != nil {
-            return
-        }
+    public func startUploading(url: URL, onFinished:OnFinished?, onError:OnError?, onProgress:OnProgress?) {
 
-        guard let photoFile = MediaManager.instance.getFile(ownerID: photo.user_id, fileID: photo.id) else {
-            if onError != nil {
-                onError!(1)
-            }
-            return
-        }
-
-        print(photoFile)
-
-        if let data = FileManager.default.contents(atPath: photoFile) {
+        if let data = try? Data(contentsOf: url) {
             let uploadingFile = UploadingFile()
             print("fileSize=\(Int32(data.count))")
-            uploadingFile.fileSize = Int32(data.count) //(int) photoFile.length()
+            uploadingFile.fileSize = Int32(data.count)
             uploadingFile.uploadChunkSize = max(32, (uploadingFile.fileSize + 1024 * 3000 - 1) / (1024 * 3000))
             if (1024 % uploadingFile.uploadChunkSize != 0) {
                 var chunkSize: Int32 = 64
@@ -90,7 +79,7 @@ class PMFileManager {
             uploadingFile.uploadChunkSize *= 1024
             uploadingFile.partsCount = (uploadingFile.fileSize + uploadingFile.uploadChunkSize - 1) / uploadingFile.uploadChunkSize
             uploadingFile.type = FileType.PHOTO
-            uploadingFile.buffer = SerializedBuffer_Wrapper(size: UInt32(uploadingFile.fileSize)) //BuffersStorage.instance.getFreeBuffer(uploadingFile.fileSize)
+            uploadingFile.buffer = SerializedBuffer_Wrapper(size: UInt32(uploadingFile.fileSize))
             uploadingFile.buffer!.limit(UInt32(uploadingFile.fileSize))
             uploadingFile.buffer!.position(0)
             uploadingFile.buffer!.writeDataBytes(data)
@@ -100,17 +89,16 @@ class PMFileManager {
             uploadingFile.onError = onError
             uploadingFile.currentPart = 0
             uploadingFile.currentUploaded = 0
-            uploadingFile.name = "photo.jpg"
-            uploadingFile.id = photo.id
+            uploadingFile.name = "photoURL.jpg"
+            uploadingFile.id = Int64(User.currentUser.id)
 
             let file = RPC.PM_file()
-            file.id = uploadingFile.id
             file.partsCount = uploadingFile.partsCount
             file.totalSize = uploadingFile.fileSize
             file.type = FileType.PHOTO
-            print("Uploading file. parts=\(file.partsCount), size=\(file.totalSize), id=\(file.id)")
+            print("Uploading file. parts=\(String(describing: file.partsCount)), size=\(String(describing: file.totalSize))")
 
-            uploadingFiles[file.id] = uploadingFile
+            uploadingFiles[uploadingFile.id] = uploadingFile
 
             let _ = NetworkManager.instance.sendPacket(file) { response, error in
                 if (response != nil && error == nil) {
@@ -128,6 +116,7 @@ class PMFileManager {
                 }
             }
         } else {
+            print("ERRRRRRORROOROROR")
             if onError != nil {
                 onError!(2)
             }
@@ -143,12 +132,9 @@ class PMFileManager {
                 cancelFileUpload(fileID: uploadingFile.id)
                 return
             }
-//            memcpy(ba->bytes, imgBytes + currentUploaded, bytesToSendCount)
-//            byte bytes[] = byte[bytesToSendCount]
-            //
-//            try {
+
             var err: Bool = false
-//            var data = NSData(cap)//Data(capacity: Int(bytesToSendCount))
+
             if let data = uploadingFile.buffer!.readDataBytes(UInt32(bytesToSendCount), error: &err) {
                 if err {
                     print("Can't read uploading file buffer")
@@ -159,7 +145,6 @@ class PMFileManager {
                     return
                 }
                 let filePart = RPC.PM_filePart()
-                filePart.fileID = uploadingFile.id
                 filePart.part = uploadingFile.currentPart
                 filePart.bytes = data
                 uploadingFile.currentUploaded += bytesToSendCount
@@ -171,6 +156,7 @@ class PMFileManager {
                             if (uploadingFile.currentPart == uploadingFile.partsCount || uploadingFile.currentUploaded >= uploadingFile.fileSize) {
                                 uploadingFile.state = 2
                                 if (uploadingFile.onFinished != nil) {
+                                    print("OnFinisheв was called")
                                     uploadingFile.onFinished!()
                                 }
                                 self.uploadingFiles.removeValue(forKey: uploadingFile.id)
@@ -197,33 +183,33 @@ class PMFileManager {
         uploadingFiles.removeValue(forKey: fileID)
     }
 
-    public func acceptFileDownload(file:RPC.PM_file, messageID:Int64) {
-        if (downloadingFiles[file.id] != nil) {
-            return
-        }
-
-        let downloadingFile = DownloadingFile()
-        print("Downloading file. parts=\(file.partsCount), size=\(file.totalSize), id=\(file.id)")
-        downloadingFile.buffer = SerializedBuffer_Wrapper(size: UInt32(file.totalSize))//BuffersStorage.instance.getFreeBuffer()
-        downloadingFile.onFinished = {
-            print("File has downloaded")
-            MediaManager.instance.saveAndUpdatePhoto(downloadingFile: downloadingFile)
-        }
-        downloadingFile.onError = { code in
-            print("file download failed (\(code))")
-        }
-        downloadingFile.onProgress = { p in
-            print("Progress: \(p)%")
-        }
-        downloadingFile.currentPart = 0
-        downloadingFile.currentDownloaded = 0
-        downloadingFile.partsCount = file.partsCount
-        downloadingFile.name = file.name
-        downloadingFile.id = file.id
-        downloadingFiles[file.id] = downloadingFile
-
-        NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
-    }
+//    public func acceptFileDownload(file:RPC.PM_file, messageID:Int64) {
+//        if (downloadingFiles[file.id] != nil) {
+//            return
+//        }
+//
+//        let downloadingFile = DownloadingFile()
+//        print("Downloading file. parts=\(file.partsCount), size=\(file.totalSize), id=\(file.id)")
+//        downloadingFile.buffer = SerializedBuffer_Wrapper(size: UInt32(file.totalSize))//BuffersStorage.instance.getFreeBuffer()
+//        downloadingFile.onFinished = {
+//            print("File has downloaded")
+////            MediaManager.instance.saveAndUpdatePhoto(downloadingFile: downloadingFile)
+//        }
+//        downloadingFile.onError = { code in
+//            print("file download failed (\(code))")
+//        }
+//        downloadingFile.onProgress = { p in
+//            print("Progress: \(p)%")
+//        }
+//        downloadingFile.currentPart = 0
+//        downloadingFile.currentDownloaded = 0
+//        downloadingFile.partsCount = file.partsCount
+//        downloadingFile.name = file.name
+//        downloadingFile.id = file.id
+//        downloadingFiles[file.id] = downloadingFile
+//
+//        NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
+//    }
 
 //    public func acceptStickerDownload(file:RPC.PM_file, messageID:Int64) {
 //        if (downloadingFiles[file.id] != nil) {
@@ -254,29 +240,29 @@ class PMFileManager {
 //
 //        NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
 //    }
-
-    public func continueFileDownload(part:RPC.PM_filePart, messageID:Int64) {
-        if let downloadingFile = downloadingFiles[part.fileID] {
-            if (part.part == downloadingFile.currentPart) {
-                downloadingFile.currentDownloaded += Int32(part.bytes.count)
-                print("Downloading... \(downloadingFile.currentDownloaded)/\(downloadingFile.buffer!.limit())")
-                downloadingFile.buffer!.writeDataBytes(part.bytes)
-                downloadingFile.currentPart += 1
-                if (downloadingFile.currentPart == downloadingFile.partsCount) {
-                    if (downloadingFile.onFinished != nil) {
-                        downloadingFile.onFinished!()
-                    }
-                    downloadingFiles.removeValue(forKey: part.fileID)
-                }
-                NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
-            } else {
-                if (downloadingFile.onError != nil) {
-                    downloadingFile.onError!(1)
-                    NetworkManager.instance.sendPacket(RPC.PM_boolFalse(), onComplete: nil, messageID: messageID)
-                }
-            }
-        } else {
-            NetworkManager.instance.sendPacket(RPC.PM_boolFalse(), onComplete: nil, messageID: messageID)
-        }
-    }
+//
+//    public func continueFileDownload(part:RPC.PM_filePart, messageID:Int64) {
+//        if let downloadingFile = downloadingFiles[part.fileID] {
+//            if (part.part == downloadingFile.currentPart) {
+//                downloadingFile.currentDownloaded += Int32(part.bytes.count)
+//                print("Downloading... \(downloadingFile.currentDownloaded)/\(downloadingFile.buffer!.limit())")
+//                downloadingFile.buffer!.writeDataBytes(part.bytes)
+//                downloadingFile.currentPart += 1
+//                if (downloadingFile.currentPart == downloadingFile.partsCount) {
+//                    if (downloadingFile.onFinished != nil) {
+//                        downloadingFile.onFinished!()
+//                    }
+//                    downloadingFiles.removeValue(forKey: part.fileID)
+//                }
+//                NetworkManager.instance.sendPacket(RPC.PM_boolTrue(), onComplete: nil, messageID: messageID)
+//            } else {
+//                if (downloadingFile.onError != nil) {
+//                    downloadingFile.onError!(1)
+//                    NetworkManager.instance.sendPacket(RPC.PM_boolFalse(), onComplete: nil, messageID: messageID)
+//                }
+//            }
+//        } else {
+//            NetworkManager.instance.sendPacket(RPC.PM_boolFalse(), onComplete: nil, messageID: messageID)
+//        }
+//    }
 }

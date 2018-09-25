@@ -5,11 +5,10 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
 
     @IBOutlet weak var updateItem: UIBarButtonItem!
     @IBOutlet weak var changePhoto: UIButton!
-    @IBOutlet weak var avatar: ObservableImageView!
+    @IBOutlet weak var avatar: CircularImageView!
 
     private var observerUpdateTrue : NSObjectProtocol!
     private var observerUpdateFalse : NSObjectProtocol!
-    private var showCountryPicker : NSObjectProtocol!
 
     @IBOutlet weak var headerView: UIView!
     var needRemoveObservers = true
@@ -27,18 +26,7 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
                     self.updateItem.isEnabled = false
             }
         }
-        
-            showCountryPicker = NotificationCenter.default.addObserver(forName: .showCountryPicker, object: nil, queue: nil ){ notification in
-            DispatchQueue.main.async {
-
-                UpdateProfileInfoTableViewController.needRemoveObservers = false
-                self.needRemoveObservers = false
-                
-                guard let countryPicker = StoryBoard.user.instantiateViewController(withIdentifier: VCIdentifier.countryPickerViewController) as? CountryPickerViewController else {return}
-                self.navigationController?.pushViewController(countryPicker, animated: true)
-
-            }
-        }
+    
     }
 
     override func viewDidLoad() {
@@ -49,10 +37,9 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
         setLayoutOptions()
         
         if let user = User.currentUser {
-            avatar.setPhoto(ownerID: user.id, photoID: user.photoID)
+            avatar.loadPhoto(url: user.photoUrl.url)
         }
         self.updateItem.isEnabled = false
-
 
     }
     
@@ -74,11 +61,12 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
         needRemoveObservers = false
         UpdateProfileInfoTableViewController.needRemoveObservers = false
 
-        let cardPicker = UIImagePickerController()
-        cardPicker.allowsEditing = true
-        cardPicker.delegate = self
-        cardPicker.sourceType = .photoLibrary
-        present(cardPicker, animated: true)
+        let photoPicker = UIImagePickerController()
+        photoPicker.allowsEditing = true
+        photoPicker.delegate = self
+        photoPicker.sourceType = .photoLibrary
+        
+        present(photoPicker, animated: true)
     }
 
     @IBAction func updateItemClick(_ sender: Any) {
@@ -94,16 +82,16 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
         if needRemoveObservers {
             NotificationCenter.default.removeObserver(observerUpdateTrue)
             NotificationCenter.default.removeObserver(observerUpdateFalse)
-            NotificationCenter.default.removeObserver(showCountryPicker)
 
         }
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-        
+
         needRemoveObservers = true
-        
+
         UserManager.updateAvatar(info: info, avatarView: avatar, vc: self)
+
     }
 }

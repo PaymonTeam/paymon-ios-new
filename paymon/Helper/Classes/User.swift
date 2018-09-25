@@ -6,7 +6,7 @@
 import Foundation
 
 class User {
-    public static var currentUser: RPC.UserObject?
+    public static var currentUser: RPC.PM_userFull!
     public static var isAuthenticated = false
     public static var notificationSwitchWorry = true
     public static var notificationSwitchVibration = true
@@ -55,22 +55,18 @@ class User {
         print("load config")
 
         if currentUser == nil {
-//            let data = SerializedStream()
-//            currentUser!.serializeToStream(stream: data!)
-//            let userString = data!.out.base64EncodedString()
-//            KeychainWrapper.standard.set(userString, forKey: "user", withAccessibility: KeychainItemAccessibility.always)
             if let retrievedString = KeychainWrapper.standard.string(forKey: "user") {
                 let data = Data(base64Encoded: retrievedString)
                 let stream = SerializedStream(data: data)
                 if let deserialize = try? RPC.UserObject.deserialize(stream: stream!, constructor: stream!.readInt32(nil)) {
                     if (deserialize is RPC.PM_userFull) {
-                        currentUser = deserialize as! RPC.PM_userFull;
-                        print("User loaded: \(currentUser!.login!)")
+                        currentUser = deserialize as? RPC.PM_userFull;
                         
                     } else {
                         return
                     }
                 } else {
+                    print("Error deser user")
                     return
                 }
                 stream!.close()
@@ -115,7 +111,7 @@ class User {
 //        }
 //        }
 
-        MediaManager.instance.prepare()
+//        MediaManager.instance.prepare()
     }
 
     public static func clearConfig() {

@@ -11,19 +11,8 @@ import Contacts
 import ContactsUI
 
 class NewContactViewController: PaymonViewController, NotificationManagerListener, UISearchBarDelegate {
-    
-    public class CellChatData {
-        var photoID:Int64!
-        var name = ""
-        var lastMessageText = ""
-        var timeString = ""
-        var time:Int64 = 0
-        var chatID:Int32!
-    }
-    
-    public class CellContactData : CellChatData {
-        var login : String!
-    }
+
+
     
     @IBOutlet weak var inviteFriendsView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -59,7 +48,7 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         
         self.navigationItem.title = "Contacts".localized
         
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white.withAlphaComponent(0.8)]
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.8)]
 
         searchBar.placeholder = "Search for users or groups".localized
         inviteFriendsView.layer.cornerRadius = inviteFriendsView.frame.height/2
@@ -116,17 +105,16 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         })
         
         if phoneContactsFilteredDict.isEmpty && existUsersFilteredArray.isEmpty {
-            print()
+            
             let searchContact = RPC.PM_searchContact()
             searchContact.query = searchText.lowercased()
             NetworkManager.instance.sendPacket(searchContact) { packet, error in
                 if let usersPacket = packet as? RPC.PM_users {
                     for packetUser in usersPacket.users {
-                        guard let user = packetUser as? RPC.UserObject else {return}
                         
                         let data = CellContactData()
                         
-                        let username = Utils.formatUserName(user)
+                        let username = Utils.formatUserName(packetUser)
                         
 //                        var lastMessageTime = ""
 //
@@ -141,10 +129,10 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
 //                                print("last message time \(lastMessageTime)")
 //                            }
 //                        }
-                        data.chatID = user.id
-                        data.photoID = user.photoID
+                        data.chatID = packetUser.id
+                        data.photoUrl = packetUser.photoUrl
                         data.name = username
-                        data.login = "@\(user.login!)"
+                        data.login = "@\(packetUser.login!)"
                         
 //                        data.timeString = lastMessageTime
 
@@ -263,7 +251,7 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
                     }
                 }
                 data.chatID = user.id
-                data.photoID = user.photoID
+                data.photoUrl = user.photoUrl
                 data.name = username
                 
                 data.timeString = lastMessageTime
@@ -337,7 +325,7 @@ extension NewContactViewController: UITableViewDataSource {
             } else {
                 cell.timeWhenWas.text = data.login!
             }
-            cell.avatar.setPhoto(ownerID: data.chatID, photoID: data.photoID)
+            cell.avatar.loadPhoto(url: data.photoUrl.url)
             return cell
         } else {
         let a = Array(phoneContactsFilteredDict.keys).sorted()
@@ -370,7 +358,7 @@ extension NewContactViewController: UITableViewDelegate {
             let row = indexPath.row
             let data = existUsersFilteredArray[row]
             tableView.deselectRow(at: indexPath, animated: true)
-            guard let chatViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.chatViewController) as? ChatViewController else {return}
+            guard let chatViewController = StoryBoard.chat.instantiateViewController(withIdentifier: VCIdentifier.chatViewController) as? ChatViewController else {return}
             chatViewController.setValue(data.name, forKey: "title")
             chatViewController.chatID = data.chatID
             chatViewController.isGroup = false

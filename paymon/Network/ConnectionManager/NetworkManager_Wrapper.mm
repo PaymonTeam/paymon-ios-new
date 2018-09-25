@@ -249,7 +249,7 @@ void print(uint8_t *buffer, int size) {
 - (void)start {
     [[NetworkManager_Wrapper connectionQueue] run:^{
         if (self->_connection == nil) {
-            self->_connection = [[Connection alloc] initWithAddress:@"2a01:5560:1001:2d78:0000:0000:0000:0001" port:7966];
+            self->_connection = [[Connection alloc] initWithAddress:@"2a01:5560:1001:2d78:0000:0000:0000:0001" port:7968];
             [self->_connection setDelegate:self];
             [self->_connection start];
         }

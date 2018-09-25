@@ -11,7 +11,7 @@ import MBProgressHUD
 
 class GroupContactsTableViewCell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var photo: ObservableImageView!
+    @IBOutlet weak var photo: CircularImageView!
 }
 
 class CreateGroupViewController: PaymonViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UINavigationControllerDelegate {
@@ -215,7 +215,7 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupContactsTableViewCell") as! GroupContactsTableViewCell
             cell.name.text = Utils.formatUserName(users[indexPath.row])
-            cell.photo.setPhoto(ownerID: users[indexPath.row].id, photoID: users[indexPath.row].photoID)
+            cell.photo.loadPhoto(url: users[indexPath.row].photoUrl.url)
             
             cell.accessoryType = selectedUserData.contains(users[indexPath.row]) ? .checkmark : .none
             

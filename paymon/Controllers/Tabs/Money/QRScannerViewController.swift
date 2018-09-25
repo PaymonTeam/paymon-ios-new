@@ -64,7 +64,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
         view.layer.addSublayer(video)
 
-        view.bringSubview(toFront: square)
+        view.bringSubviewToFront(square)
 
         session.startRunning()
     }
@@ -121,7 +121,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                         let errorScanAlert = UIAlertController(title: "QR-Code scan".localized, message:
                             "Can't read this QR-code".localized, preferredStyle: .actionSheet)
                         
-                        errorScanAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+                        errorScanAlert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
                             self.session.startRunning()
                         }))
                         

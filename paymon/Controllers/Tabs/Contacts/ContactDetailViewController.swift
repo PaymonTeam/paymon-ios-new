@@ -12,8 +12,8 @@ class ContactDetailViewController: UIViewController {
 
     @IBOutlet weak var contactName: UILabel!
     
-    @IBOutlet weak var contactImage: ObservableImageView!
     @IBOutlet weak var contactNumber: UILabel!
+    @IBOutlet weak var avatar: CircularImageView!
     
     @IBOutlet weak var phoneView: UIView!
     @IBOutlet weak var inviteToPaymon: UIButton!
@@ -32,6 +32,7 @@ class ContactDetailViewController: UIViewController {
     
     func setLayoutOptions() {
         self.title = "Info".localized
+        self.inviteToPaymon.setTitle("Invite to Paymon".localized, for: .normal)
 
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         

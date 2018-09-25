@@ -265,31 +265,40 @@ class RPC {
     }
 
     class UserObject : Packet {
+        
+        public static let USER_FLAG_HIDDEN_EMAIL : Int32 = 0b1
+        
+        var flags:Int32!
         var id:Int32!
         var token:Data!
         var login:String!
         var first_name:String!
         var last_name:String!
-        var patronymic:String!
         var email:String!
-        var country:String!
-        var city:String!
-        var birthdate:String!
-        var phoneNumber:Int64!
-        var gender:Int32!
-        var walletKey:String!
-        var photoID:Int64!
+        var photoUrl:PM_photoURL!
         var confirmed:Bool!
-        var inviteCode:String!
+        var isEmailHidden:Bool!
+//        var patronymic:String!
+//        var country:String!
+//        var city:String!
+//        var birthdate:String!
+//        var phoneNumber:Int64!
+//        var gender:Int32!
+//        var walletKey:String!
+        
+//        var inviteCode:String!
 
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> UserObject {
+
             var result:UserObject
             switch(constructor) {
                 case RPC.PM_user.svuid:
                     result = RPC.PM_user()
                 case RPC.PM_userFull.svuid:
                     result = RPC.PM_userFull()
-                default: throw RPCError.DeserializeError
+                default:
+                    print("User object des error")
+                    throw RPCError.DeserializeError
             }
             result.readParams(stream: stream, exception: nil)
             return result
@@ -305,19 +314,28 @@ class RPC {
             first_name = stream.readString(exception)
             last_name = stream.readString(exception)
             token = stream.readByteArrayNSData(exception)
-            photoID = stream.readInt64(exception)
-            walletKey = stream.readString(exception)
+            let magic = stream.readInt32(exception)
+            if magic != PM_photoURL.svuid {
+                print(String(format: "user wrong Vector magic %x", magic))
+
+                return
+            }
+            photoUrl = PM_photoURL()
+            photoUrl.readParams(stream: stream, exception: exception)
+//            confirmed = stream.read(exception)
         }
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_user.svuid)
+
             stream.write(id)
             stream.write(login)
             stream.write(first_name)
             stream.write(last_name)
             stream.writeByteArrayData(token)
-            stream.write(photoID)
-            stream.write(walletKey)
+            photoUrl.serializeToStream(stream: stream)
+//            stream.write(confirmed)
+
         }
     }
 
@@ -325,42 +343,63 @@ class RPC {
         static let svuid:Int32 = 1692387515
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            flags = stream.readInt32(exception)
+            isEmailHidden = (flags & RPC.UserObject.USER_FLAG_HIDDEN_EMAIL) != 0
             id = stream.readInt32(exception)
             login = stream.readString(exception)
             first_name = stream.readString(exception)
             last_name = stream.readString(exception)
-            patronymic = stream.readString(exception)
-            email = stream.readString(exception)
-            country = stream.readString(exception)
-            city = stream.readString(exception)
-            birthdate = stream.readString(exception)
-            phoneNumber = stream.readInt64(exception)
-            gender = stream.readInt32(exception)
+//            patronymic = stream.readString(exception)
+            if !isEmailHidden {
+                email = stream.readString(exception)
+            }
+//            country = stream.readString(exception)
+//            city = stream.readString(exception)
+//            birthdate = stream.readString(exception)
+//            phoneNumber = stream.readInt64(exception)
+//            gender = stream.readInt32(exception)
             token = stream.readByteArrayNSData(exception)
-            photoID = stream.readInt64(exception)
-            walletKey = stream.readString(exception)
+            print(token)
+
+            
+            let magic = stream.readInt32(exception)
+            if magic != PM_photoURL.svuid {
+
+                print(String(format: "user full wrong Vector magic %x", magic))
+
+                return
+            }
+            
+            photoUrl = PM_photoURL()
+            
+            photoUrl.readParams(stream: stream, exception: exception)
+//            walletKey = stream.readString(exception)
             confirmed = stream.read(exception)
-            inviteCode = stream.readString(exception)
+//            inviteCode = stream.readString(exception)
         }
 
         override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_userFull.svuid)
+            stream.write(isEmailHidden ? (flags | RPC.UserObject.USER_FLAG_HIDDEN_EMAIL) : (flags & ~RPC.UserObject.USER_FLAG_HIDDEN_EMAIL))
             stream.write(PM_userFull.svuid)
             stream.write(id)
             stream.write(login)
             stream.write(first_name)
             stream.write(last_name)
-            stream.write(patronymic)
-            stream.write(email)
-            stream.write(country)
-            stream.write(city)
-            stream.write(birthdate)
-            stream.write(phoneNumber)
-            stream.write(gender)
+//            stream.write(patronymic)
+            if !isEmailHidden {
+                stream.write(email)
+            }
+//            stream.write(country)
+//            stream.write(city)
+//            stream.write(birthdate)
+//            stream.write(phoneNumber)
+//            stream.write(gender)
             stream.writeByteArrayData(token)
-            stream.write(photoID)
-            stream.write(walletKey)
+            photoUrl.serializeToStream(stream: stream)
+//            stream.write(walletKey)
             stream.write(confirmed)
-            stream.write(inviteCode)
+//            stream.write(inviteCode)
         }
     }
 
@@ -578,6 +617,8 @@ class RPC {
         static var MESSAGE_FLAG_REPLY:Int32 = 0b100
         static var MESSAGE_FLAG_VIEWS:Int32 = 0b1000
         static var MESSAGE_FLAG_EDITED:Int32 = 0b10000
+        static var MESSAGE_FLAG_ACTION:Int32 = 0b100000
+
 
         var id:Int64!
         var from_id:Int32!
@@ -592,6 +633,7 @@ class RPC {
         var edit_date:Int32! = 0
         var itemType:PMFileManager.FileType!
         var itemID:Int64!
+        var action:MessageAction!
 
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> Message {
             var result:Message
@@ -604,6 +646,53 @@ class RPC {
             }
             result.readParams(stream: stream, exception: nil)
             return result
+        }
+    }
+    
+    class MessageAction:Packet {
+        var message:String!
+        var users:SharedArray<RPC.UserObject>!
+        
+        static func deserialize(stream:SerializableData, constructor:Int32) throws -> MessageAction {
+            var result:MessageAction
+            switch(constructor) {
+            case PM_user.svuid:
+                result = PM_messageActionGroupCreate()
+            default: throw RPCError.DeserializeError
+            }
+            
+            result.readParams(stream: stream, exception: nil)
+            return result
+        }
+    }
+    
+    class PM_messageActionGroupCreate:MessageAction {
+        static let svuid:Int32 = 42618952
+
+        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            let magic = stream.readInt32(exception)
+            if magic != RPC.SVUID_ARRAY {
+                print(String(format: "user full wrong Vector magic %x", magic))
+                return
+            }
+            let count = stream.readInt32(exception)
+            for _ in 0..<count {
+                guard let user = try? UserObject.deserialize(stream: stream, constructor: stream.readInt32(exception)) else {return}
+                users.append(user)
+            }
+        }
+        
+        override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_messageActionGroupCreate.svuid)
+            stream.write(message)
+            stream.write(RPC.SVUID_ARRAY)
+            let count = Int32(users.count)
+            stream.write(count)
+            for i in 0..<count {
+                if let user = users.array[Int(i)] as? PM_userFull {
+                    user.serializeToStream(stream: stream)
+                }
+            }
         }
     }
 
@@ -663,10 +752,9 @@ class RPC {
         var id:Int32!
         var creatorID:Int32!
         var title:String!
-//        var date:Int32!
-//        var users:[UserObject]!
+
         var users:SharedArray<RPC.UserObject>!
-        var photo:PM_photo!
+        var photoUrl:PM_photoURL!
 
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> Group {
             guard (Group.svuid == constructor) else {
@@ -685,14 +773,10 @@ class RPC {
 
             var magic:Int32 = stream.readInt32(exception)
             if (magic != RPC.SVUID_ARRAY) {
-//                if (exception) {
-
-                    //throw RPCError.DeserializeError
-//                }
                 return
             }
             let count:Int32 = stream.readInt32(exception)
-//            for _ in 0..<count {
+
             users = SharedArray<UserObject>()
             for _ in 0..<count {
                 if let object = try? UserObject.deserialize(stream: stream, constructor: stream.readInt32(exception)) {
@@ -701,14 +785,13 @@ class RPC {
             }
 
             magic = stream.readInt32(exception)
-            if (magic != PM_photo.svuid) {
-//                if (exception) {
-                    print("Error desz")
-//                    throw RPCError.DeserializeError
-//                }
-                return
-            }
-            photo = try? MessageMedia.deserialize(stream: stream, constructor: magic) as! PM_photo
+//            if (magic != PM_photoURL.svuid) {
+//                    print("Error group pm photo desz")
+//                return
+//            }
+            
+            photoUrl = PM_photoURL()
+            photoUrl.readParams(stream: stream, exception: exception)
         }
 
         override func serializeToStream(stream: SerializableData) {
@@ -718,7 +801,7 @@ class RPC {
             stream.write(creatorID)
             stream.write(title)
             RPC.writeArray(stream, users.array)
-            photo.serializeToStream(stream: stream)
+            photoUrl.serializeToStream(stream: stream)
         }
     }
 
@@ -750,10 +833,8 @@ class RPC {
             id = stream.readInt32(exception)
             let magic:Int32 = stream.readInt32(exception)
             if (magic != SVUID_ARRAY) {
-//                if (exception) {
                     print("Error desz")
-                    //throw RPCError.DeserializeError
-//                }
+            
                 return
             }
             let count:Int32 = stream.readInt32(exception)
@@ -833,10 +914,7 @@ class RPC {
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             var magic:Int32 = stream.readInt32(exception)
             if (magic != SVUID_ARRAY) {
-//                if (exception) {
-                    //throw RPCError.DeserializeError
-                    print("Error desz")
-//                }
+                    print("Error desz chats and messages")
                 return
             }
             count = stream.readInt32(exception)
@@ -845,16 +923,13 @@ class RPC {
                 if let object = try? Message.deserialize(stream: stream, constructor: stream.readInt32(exception)) {
                     messages.append(object)
                 } else {
-                    print("Error desz")
+                    print("Error message desz")
                     return
                 }
             }
             magic = stream.readInt32(exception)
             if (magic != SVUID_ARRAY) {
-//                if (exception) {
-                    //throw RPCError.DeserializeError
-                    print("Error desz")
-//                }
+                    print("magic != SVUID ARRAY")
                 return
             }
             count = stream.readInt32(exception)
@@ -863,16 +938,14 @@ class RPC {
                 if let object = try? Group.deserialize(stream: stream, constructor: stream.readInt32(exception)) {
                     groups.append(object)
                 } else {
-                    print("Error desz")
+                    print("Error group desz")
                     return
                 }
             }
             magic = stream.readInt32(exception)
             if (magic != SVUID_ARRAY) {
-//                if (exception) {
-                    //throw RPCError.DeserializeError
-                    print("Error desz")
-//                }
+
+                print("magic != SVUID ARRAY 2")
                 return
             }
             count = stream.readInt32(exception)
@@ -906,10 +979,9 @@ class RPC {
 
             let magic:Int32 = stream.readInt32(exception)
             if (magic != SVUID_ARRAY) {
-//                if (exception) {
-                    //throw RPCError.DeserializeError
-                    print("Error desz")
-//                }
+
+                    print("Error chat messages desz")
+
                 return
             }
             let count:Int32 = stream.readInt32(exception)
@@ -954,23 +1026,18 @@ class RPC {
     class PM_setProfilePhoto : Packet {
         static let svuid:Int32 = 477263581
 
-        var photo:PM_photo!
-
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             let magic:Int32 = stream.readInt32(exception)
             if (magic != PM_photo.svuid) {
-//                if (exception) {
-                    print("Error desz")
-                    //throw Error(String.format("wrong var magic:PM_photo, got %x", magic))
-//                }
+
+                print("Error desz")
+                
                 return
             }
-            photo = try? MessageMedia.deserialize(stream: stream, constructor: magic) as! PM_photo
         }
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_setProfilePhoto.svuid)
-            photo.serializeToStream(stream: stream)
         }
     }
 
@@ -1078,12 +1145,18 @@ class RPC {
             if ((flags & Message.MESSAGE_FLAG_EDITED) != 0) {
                 edit_date = stream.readInt32(exception)
             }
+            
+            if ((flags & Message.MESSAGE_FLAG_ACTION) != 0) {
+                action = try? MessageAction.deserialize(stream: stream, constructor: stream.readInt32(exception))
+            }
+            
         }
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_messageItem.svuid)
             let b:Bool = unread
             flags = b ? (flags | Message.MESSAGE_FLAG_UNREAD) : (flags & (~Message.MESSAGE_FLAG_UNREAD))
+            flags = (action != nil) ? (flags | Message.MESSAGE_FLAG_ACTION) : (flags & ~Message.MESSAGE_FLAG_ACTION)
             stream.write(flags)
             stream.write(id)
 
@@ -1106,6 +1179,10 @@ class RPC {
             }
             if ((flags & Message.MESSAGE_FLAG_EDITED) != 0) {
                 stream.write(edit_date)
+            }
+            
+            if action != nil {
+                action.serializeToStream(stream: stream)
             }
         }
     }
@@ -1223,8 +1300,7 @@ class RPC {
 
     class PM_file : Packet {
         static let svuid:Int32 = 673680214
-
-        var id:Int64!
+        
         var partsCount:Int32!
         var totalSize:Int32!
         var type:PMFileManager.FileType!
@@ -1232,7 +1308,7 @@ class RPC {
 //        var md5_checksum:String!
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
-            id = stream.readInt64(exception)
+    
             partsCount = stream.readInt32(exception)
             totalSize = stream.readInt32(exception)
             type = PMFileManager.FileType(rawValue: stream.readInt32(exception))
@@ -1241,7 +1317,7 @@ class RPC {
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_file.svuid)
-            stream.write(id)
+            
             stream.write(partsCount)
             stream.write(totalSize)
             stream.write(type.rawValue)
@@ -1252,24 +1328,17 @@ class RPC {
     class PM_filePart : Packet {
         static let svuid:Int32 = 22502919
 
-        var fileID:Int64!
         var part:Int32!
-//        SerializedBuffer bytes
         var bytes:Data!
 
-//        Packet deserializeResponse(stream:SerializableData, var svuid:Int32, var exception:Bool) {
-//            return Bool.deserialize(stream, svuid, exception)
-//        }
-
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
-            fileID = stream.readInt64(exception)
+    
             part = stream.readInt32(exception)
             bytes = stream.readByteArrayNSData(exception)
         }
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_filePart.svuid)
-            stream.write(fileID)
             stream.write(part)
             stream.writeByteArrayData(bytes)
         }
@@ -1295,6 +1364,55 @@ class RPC {
             stream.write(limit)
         }
     }
+    
+    class PM_photosURL : Packet {
+        static let svuid:Int32 = 472919145
+        var urls = [String]()
+        
+        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            let magic = stream.readInt32(exception)
+            if magic != SVUID_ARRAY {
+//                if (exception?[0])! {
+                    print(String(format: "wrong Vector magic %x", magic))
+//                }
+                return
+            }
+            for _ in 0..<magic {
+                guard let url = stream.readString(exception) else {return}
+                urls.append(url)
+            }
+        }
+
+        override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_photosURL.svuid)
+            stream.write(SVUID_ARRAY)
+            let count = urls.count
+            stream.write(Int32(count))
+            for i in 0..<count {
+                stream.write(urls[i])
+            }
+        }
+
+    }
+    
+    class PM_photoURL : Packet {
+        static let svuid:Int32 = 1917996696
+        
+        var peer : Peer!
+        var url : String!
+        
+        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            
+            peer = try? Peer.deserialize(stream: stream, constructor: stream.readInt32(exception))
+            url = stream.readString(exception)
+            
+        }
+        
+        override func serializeToStream(stream: SerializableData) {
+            stream.write(PM_photoURL.svuid)
+            stream.write(url)
+        }
+    }
 
     class PM_photo : MessageMedia {
         static let svuid:Int32 = 1935780422
@@ -1304,34 +1422,20 @@ class RPC {
         var user_id:Int32!
         var date:Int32!
         var caption:String!
-//        GeoPovar geo:Int32!
-//        var sizes:[PhotoSize]!
         var flags:Int32!
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
-//            flags = stream.readInt32(exception)
+
             user_id = stream.readInt32(exception)
             id = stream.readInt64(exception)
-//            bytes = stream.readByteArrayNSData(exception)
-//            if (stream.readInt32(exception) == PM_file.svuid) {
-//                file = PM_file()
-//                file.readParams(stream, exception)
-//            } else {
-//                Log.e("paymon-dbg", "error while reading PM_file")
-//            }
-//            access_hash = stream.readInt64(exception)
-//            date = stream.readInt32(exception)
+
         }
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_photo.svuid)
-//            stream.write(flags)
             stream.write(user_id)
             stream.write(id)
-//            file.serializeToStream(stream)
-//            stream.writeByteArrayData(bytes)
-//            stream.write(access_hash)
-//            stream.write(date)
+
         }
     }
 

@@ -78,14 +78,10 @@ class NotificationManager {
         NotificationManager.didEstablishedSecuredConnection = NotificationManager.totalEvents; NotificationManager.totalEvents += 1
         NotificationManager.didDisconnectedFromServer = NotificationManager.totalEvents; NotificationManager.totalEvents += 1
         NotificationManager.doLoadChatMessages = NotificationManager.totalEvents; NotificationManager.totalEvents += 1
-        NotificationManager.didLoadedStickerPack = NotificationManager.totalEvents; NotificationManager.totalEvents += 1
+//        NotificationManager.didLoadedStickerPack = NotificationManager.totalEvents; NotificationManager.totalEvents += 1
         NotificationManager.authByTokenFailed = NotificationManager.totalEvents; NotificationManager.totalEvents += 1
     }
 
-//    private SparseArray<ArrayList<Object>> observers = new SparseArray<>()
-//    private SparseArray<ArrayList<Object>> removeAfterBroadcast = new SparseArray<>()
-//    private SparseArray<ArrayList<Object>> addAfterBroadcast = new SparseArray<>()
-//    private ArrayList<DelayedPost> delayedPosts = new ArrayList<>(10)
     private var observers:[Int:[AnyObject?]] = [:]
     private var removeAfterBroadcast:[Int:[AnyObject?]] = [:]
     private var addAfterBroadcast:[Int:[AnyObject?]] = [:]
@@ -156,15 +152,7 @@ class NotificationManager {
         broadcasting -= 1
         if broadcasting == 0 {
             if (!removeAfterBroadcast.isEmpty) {
-//                for let (k, toRemove) as (Int:[AnyObject?]) in removeAfterBroadcast.enumerated() {
-//                    for o in toRemove {
-//                        removeObserver(Object: o, id: k)
-//                    }
-//                }
-//                for (k,v) in removeAfterBroadcast.enumerated() {
-//                    let el = v as [AnyObject?]
-//
-//                }
+
                 for k in removeAfterBroadcast.keys {
                     if let arr = removeAfterBroadcast[k] {
                         for o in arr {
@@ -172,31 +160,11 @@ class NotificationManager {
                         }
                     }
                 }
-//                for (int a = 0 a < removeAfterBroadcast.count a += 1) {
-//                    int key = removeAfterBroadcast.keyAt(a)
-//                    ArrayList<Object> arrayList = removeAfterBroadcast.get(key)
-//                    for (int b = 0 b < arrayList.count b += 1) {
-//                        removeObserver(arrayList[b], key)
-//                    }
-//                }
+
                 removeAfterBroadcast.removeAll()
             }
             if (addAfterBroadcast.count != 0) {
-//                for (int a = 0 a < addAfterBroadcast.count a += 1) {
-//                    int key = addAfterBroadcast.keyAt(a)
-//                    ArrayList<Object> arrayList = addAfterBroadcast.get(key)
-//                    for (int b = 0 b < arrayList.count b += 1) {
-//                        addObserver(arrayList.get(b), key)
-//                    }
-//                }
-//                for let (k, toAdd):(Int:[AnyObject?]) in addAfterBroadcast.enumerated() {
-////                    for i in 0..<toAdd.count {
-////                        addObserver(Object: toAdd[i], id: k)
-////                    }
-//                    for o in toAdd {
-//                        addObserver(Object: o, id: k)
-//                    }
-//                }
+
                 for k in addAfterBroadcast.keys {
                     if let arr = addAfterBroadcast[k] {
                         for o in arr {
@@ -217,13 +185,6 @@ class NotificationManager {
                 addAfterBroadcast[id] = arr
             }
             addAfterBroadcast[id]!.append(observer)
-
-//            ArrayList<Object> arrayList = addAfterBroadcast.get(id)
-//            if arrayList == nil {
-//                arrayList = new ArrayList<>()
-//                addAfterBroadcast.put(id, arrayList)
-//            }
-//            arrayList.add(observer)
             return
         }
         var objects = observers[id]

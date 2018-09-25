@@ -82,8 +82,8 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         
         NotificationManager.instance.addObserver(self, id: NotificationManager.chatAddMessages)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         updateMessagesId = NotificationCenter.default.addObserver(forName: .updateMessagesId, object: nil, queue: nil ){ notification in
             
@@ -109,12 +109,12 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         
         messageTextView.delegate = self
         
-        let getChatMessages = RPC.PM_getChatMessages()
-        getChatMessages.count = 20
+//        let getChatMessages = RPC.PM_getChatMessages()
+//        getChatMessages.count = 20
         if isGroup {
             let peerGroup = RPC.PM_peerGroup()
             peerGroup.group_id = chatID;
-            getChatMessages.chatID = peerGroup
+//            getChatMessages.chatID = peerGroup
             
             let group:RPC.Group! = MessageManager.instance.groups[chatID]!
 
@@ -127,12 +127,12 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         } else {
             let peerUser = RPC.PM_peerUser()
             peerUser.user_id = chatID;
-            getChatMessages.chatID = peerUser
+//            getChatMessages.chatID = peerUser
             chatSubtitle.text = "Online"
 
 //            groupIconImageView.isHidden = true
         }
-        getChatMessages.offset = 0
+//        getChatMessages.offset = 0
         MessageManager.instance.loadMessages(chatID: chatID, count: 20, offset: 0, isGroup: isGroup)
         
     }
@@ -140,15 +140,15 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     @objc func handleKeyboardNotification(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
-            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
+            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
             
-            let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
+            let isKeyboardShowing = notification.name == UIResponder.keyboardWillShowNotification
             
             contraintViewBottom.constant = isKeyboardShowing ? -keyboardFrame!.height : 0
             
             UIView.animate(withDuration: 0,
                            delay: 0,
-                           options: UIViewAnimationOptions.curveEaseOut,
+                           options: UIView.AnimationOptions.curveEaseOut,
                            animations: {
                             self.view.layoutIfNeeded()
             }, completion: {
@@ -222,10 +222,11 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     }
     
     @objc func clickPhoto(_ sender : UITapGestureRecognizer) {
-        guard let photo = sender.view as? ObservableImageView else {return}
+        guard let photo = sender.view as? CircularImageView else {return}
         
         guard let friendProfileVC = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.friendProfileViewController) as? FriendProfileViewController else {return}
-        friendProfileVC.id = photo.getOwnerId()
+        friendProfileVC.id = photo.fromId
+
         friendProfileVC.fromChat = false
         
         navigationController?.pushViewController(friendProfileVC, animated: true)
@@ -240,9 +241,8 @@ extension ChatViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        let mid = messages[row]
-        if let message = MessageManager.instance.messages[mid] {
+
+        if let message = MessageManager.instance.messages[messages[indexPath.row]] {
             if message.from_id == User.currentUser!.id {
                 if message.itemType == nil || message.itemType == .NONE {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageViewCell") as! ChatMessageViewCell
@@ -258,13 +258,13 @@ extension ChatViewController: UITableViewDataSource {
 //                }
             } else {
                 if isGroup {
-                    print("isGroup")
                     if message.itemType == nil || message.itemType == .NONE {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupChatMessageRcvViewCell") as! GroupChatMessageRcvViewCell
                         cell.messageLabel.text = message.text
                         cell.messageLabel.sizeToFit()
                         cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
-                        cell.photo.setPhoto(ownerID: message.from_id, photoID: MediaManager.instance.userProfilePhotoIDs[message.from_id]!)
+                        cell.photo.loadPhoto(url: (MessageManager.instance.users[message.from_id]?.photoUrl.url)!)
+                        cell.photo.fromId = message.from_id
                         
                         let tapPhoto = UITapGestureRecognizer(target: self, action: #selector(self.clickPhoto(_:)))
                         cell.photo.isUserInteractionEnabled = true

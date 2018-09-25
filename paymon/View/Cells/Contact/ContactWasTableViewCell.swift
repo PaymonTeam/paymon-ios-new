@@ -11,5 +11,6 @@ import Foundation
 public class ContactWasTableViewCell : UITableViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var timeWhenWas: UILabel!
-    @IBOutlet weak var avatar: ObservableImageView!
+    @IBOutlet weak var avatar: CircularImageView!
+    
 }

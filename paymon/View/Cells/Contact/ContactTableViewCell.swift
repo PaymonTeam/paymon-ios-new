@@ -11,7 +11,9 @@ import UIKit
 class ContactTableViewCell: UITableViewCell {
 
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var userImage: ObservableImageView!
+    
+    @IBOutlet weak var userImage: CircularImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

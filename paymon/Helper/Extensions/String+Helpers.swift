@@ -82,13 +82,13 @@ extension String {
         
     func widthOfString(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [kCTFontAttributeName: font]
-        let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
+        let size = self.size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
         return size.width
     }
     
     func heightOfString(usingFont font: UIFont) -> CGFloat {
         let fontAttributes = [kCTFontAttributeName: font]
-        let size = self.size(withAttributes: fontAttributes as [NSAttributedStringKey : Any])
+        let size = self.size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
         return size.height
     }
     

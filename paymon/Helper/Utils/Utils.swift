@@ -8,9 +8,9 @@ import UIKit
 import MBProgressHUD
 
 open class Utils {
-    open static let stageQueue = Queue(name: "stageQueue")!
+    public static let stageQueue = Queue(name: "stageQueue")!
 
-    open static func currentTimeMillis() -> Int64 {
+    public static func currentTimeMillis() -> Int64 {
         let nowDouble = NSDate().timeIntervalSince1970
         return Int64(nowDouble*1000)
     }

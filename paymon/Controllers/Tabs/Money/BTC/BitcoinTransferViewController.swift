@@ -83,8 +83,8 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         crypto.addTarget(self, action: #selector(cryptoDidChanged(_:)), for: .editingChanged)
         address.addTarget(self, action: #selector(addressDidChanged(_:)), for: .editingChanged)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         getCourse = NotificationCenter.default.addObserver(forName: .getCourse, object: nil, queue: OperationQueue.main ){ notification in
             
@@ -270,13 +270,13 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     @objc func handleKeyboard(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
-            let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect
+            let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
             
-            sendBottomConstraint.constant = notification.name == NSNotification.Name.UIKeyboardWillShow ? keyboardFrame!.height + 16 : 16
+            sendBottomConstraint.constant = notification.name == UIResponder.keyboardWillShowNotification ? keyboardFrame!.height + 16 : 16
             
             UIView.animate(withDuration: 0,
                            delay: 0,
-                           options: UIViewAnimationOptions.curveEaseOut,
+                           options: UIView.AnimationOptions.curveEaseOut,
                            animations: {
                             self.view.layoutIfNeeded()
             }, completion: nil)

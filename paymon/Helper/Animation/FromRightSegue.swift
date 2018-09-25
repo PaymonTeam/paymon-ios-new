@@ -19,7 +19,7 @@ class FromRightSegue: UIStoryboardSegue {
         dst.view.transform = CGAffineTransform(translationX: src.view.frame.size.width, y: 0)
         
         UIView.animate(withDuration: 0.25, delay: 0.0,
-                                   options: UIViewAnimationOptions.curveEaseInOut,
+                       options: UIView.AnimationOptions.curveEaseInOut,
                                    animations: {
                                     dst.view.transform = CGAffineTransform(translationX: 0, y: 0)
         },
@@ -42,7 +42,7 @@ class UnwindSegueFromRight: UIStoryboardSegue {
         
         UIView.animate(withDuration: 0.25,
                                    delay: 0.0,
-                                   options: UIViewAnimationOptions.curveEaseInOut,
+                                   options: UIView.AnimationOptions.curveEaseInOut,
                                    animations: {
                                     src.view.transform = CGAffineTransform(translationX: src.view.frame.size.width, y: 0)
         },

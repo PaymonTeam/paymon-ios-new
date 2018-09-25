@@ -14,7 +14,6 @@ class PaymonNavigationController: UINavigationController {
         super.viewDidLoad()
 
         self.navigationBar.setTransparent()
-        self.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white.withAlphaComponent(0.7)]
-
+        self.navigationBar.titleTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white.withAlphaComponent(0.7)]
     }
 }

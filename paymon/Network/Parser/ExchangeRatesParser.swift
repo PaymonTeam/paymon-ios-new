@@ -35,7 +35,7 @@ class ExchangeRateParser{
             do {
                 guard let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] else {return}
                 if let rates = json[crypto] as? [String: Any] {
-                    result = rates[fiat] as! Double
+                    result = rates[fiat] as? Double
                 }
                 
 //                if let rates = json["ETH"] as? [String: Any] {

@@ -15,6 +15,7 @@ class KeysViewController: UIViewController {
     @IBOutlet weak var qrCode: UIImageView!
     @IBOutlet weak var infoView: UIView!
     
+    @IBOutlet weak var cancel: UIButton!
     var keyValue : String!
     
     override func viewDidLoad() {
@@ -23,6 +24,7 @@ class KeysViewController: UIViewController {
 //        keyValue = "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2"
         key.text = keyValue
         share.setTitle("Share".localized, for: .normal)
+        cancel.setTitle("Cancel".localized, for: .normal)
         
         setLayoutOptions()
         

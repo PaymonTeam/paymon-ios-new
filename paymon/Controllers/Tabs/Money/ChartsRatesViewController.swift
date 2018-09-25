@@ -12,8 +12,10 @@ import Charts
 
 class ChartsRatesViewController: PaymonViewController, UITabBarDelegate {
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var lineChart: LineChartView!
     @IBOutlet weak var tabBar: UITabBar!
+    @IBOutlet weak var backItem: UIBarButtonItem!
     
     var crypto = ""
     var fiat = ""
@@ -56,15 +58,15 @@ class ChartsRatesViewController: PaymonViewController, UITabBarDelegate {
         case 6:
             ExchangeRatesForChartsParser.parse(lineChartView: self.lineChart, urlString: urlYear, crypto: crypto, fiat: fiat)
         default:
-            print("How could you click on an element that does not exist?")
+            break
         }
     }
     
     override func viewDidLoad() {
         
         (UIApplication.shared.delegate as! AppDelegate).restrictRotation = .landscape
+        setLayoutOptions()
 
-        
         tabBar.delegate = self
         tabBar.selectedItem = tabBar.items![0]
         
@@ -76,9 +78,21 @@ class ChartsRatesViewController: PaymonViewController, UITabBarDelegate {
         urlSixMonths = String(format: ExchangeRatesConst.urlChartsSixMonths, crypto, fiat)
         urlYear = String(format: ExchangeRatesConst.urlChartsWeek, crypto, fiat)
         
+        ExchangeRatesForChartsParser.parse(lineChartView: lineChart, urlString: urlHour, crypto: crypto, fiat: fiat)
+    }
+    
+    func setLayoutOptions() {
+        self.navigationBar.setTransparent()
+        
+        self.tabBar.setTransparent()
+        
+        self.view.setGradientLayer(frame: CGRect(x: 0, y: 0, width: self.view.frame.height, height: self.view.frame.width), topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+        self.backItem.title = "Back".localized
+        
+        self.navigationBar.topItem?.title = "Chart".localized
+        
         lineChart.rightAxis.drawLabelsEnabled = false
         
-        ExchangeRatesForChartsParser.parse(lineChartView: lineChart, urlString: urlHour, crypto: crypto, fiat: fiat)
-        
+
     }
 }
