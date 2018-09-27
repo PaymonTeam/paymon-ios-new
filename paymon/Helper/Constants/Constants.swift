@@ -81,6 +81,14 @@ struct ExchangeRatesConst {
     static let urlChartsThreeMonths = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=90&tryConversion=false&tsym=%@"
     static let urlChartsSixMonths = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=180&tryConversion=false&tsym=%@"
     static let urlChartsYear = "https://min-api.cryptocompare.com/data/histoday?aggregate=1&e=CCCAGG&extraParams=CryptoCompare&fsym=%@&limit=365&tryConversion=false&tsym=%@"
+    
+    static let hour = "hour"
+    static let day = "day"
+    static let week = "week"
+    static let oneMonth = "oneMonth"
+    static let threeMonth = "threeMonth"
+    static let sixMonth = "sixMonth"
+    static let year = "year"
 }
 
 struct QRScan {

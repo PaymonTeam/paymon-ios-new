@@ -14,8 +14,10 @@ target 'paymon' do
     pod 'MBProgressHUD', '~> 1.0.0'
     pod 'AlamofireObjectMapper'
     #pod 'PureLayout'
-    pod 'Charts'
+    #pod 'Charts'
+    pod 'ScrollableGraphView'
     pod 'SDWebImage', '~> 4.0'
+    pod 'FLAnimatedImage', '~> 1.0'
 
 
   # Pods for paymon

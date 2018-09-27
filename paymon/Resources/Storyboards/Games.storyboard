@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L6r-88-j7i">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="L6r-88-j7i">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,48 +12,65 @@
         <!--Games View Controller-->
         <scene sceneID="xMA-If-Cy3">
             <objects>
-                <viewController storyboardIdentifier="GamesViewController" id="nNs-bT-04V" customClass="GamesViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GamesViewController" hidesBottomBarWhenPushed="YES" id="nNs-bT-04V" customClass="GamesViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mwV-as-TNz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GamePad" translatesAutoresizingMaskIntoConstraints="NO" id="INH-vG-rjd">
-                                <rect key="frame" x="79" y="183" width="217" height="301"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="301" id="cGB-6g-qxl"/>
-                                    <constraint firstAttribute="width" constant="217" id="uKy-ml-AEg"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFit" semanticContentAttribute="playback" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="INH-vG-rjd" customClass="FLAnimatedImageView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SZ-vh-0Eg">
-                                <rect key="frame" x="16" y="492" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0n-qf-GqB">
-                                <rect key="frame" x="16" y="520" width="343" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xkr-EN-btq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KVm-12-8zh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lbz-TF-UZS">
+                                            <rect key="frame" x="67.5" y="213.5" width="240" height="240"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GameController" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-OL-3AR">
+                                                    <rect key="frame" x="56" y="56" width="128" height="128"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="128" id="7FV-AT-Ae5"/>
+                                                        <constraint firstAttribute="width" constant="128" id="N7d-xK-Cro"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="L9r-OL-3AR" firstAttribute="centerX" secondItem="lbz-TF-UZS" secondAttribute="centerX" id="1sR-FY-qkJ"/>
+                                                <constraint firstItem="L9r-OL-3AR" firstAttribute="centerY" secondItem="lbz-TF-UZS" secondAttribute="centerY" id="IwK-zL-XeO"/>
+                                                <constraint firstAttribute="width" constant="240" id="bua-oF-fq8"/>
+                                                <constraint firstAttribute="height" constant="240" id="l77-fv-Qvu"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lbz-TF-UZS" firstAttribute="centerX" secondItem="KVm-12-8zh" secondAttribute="centerX" id="PCF-1w-9UN"/>
+                                        <constraint firstItem="lbz-TF-UZS" firstAttribute="centerY" secondItem="KVm-12-8zh" secondAttribute="centerY" id="jm3-dj-JrS"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="0.10980392160000001" green="0.10980392160000001" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="1SZ-vh-0Eg" firstAttribute="top" secondItem="INH-vG-rjd" secondAttribute="bottom" constant="8" id="1m3-sv-QOc"/>
-                            <constraint firstItem="INH-vG-rjd" firstAttribute="centerY" secondItem="mwV-as-TNz" secondAttribute="centerY" id="2DB-sD-CHs"/>
-                            <constraint firstItem="INH-vG-rjd" firstAttribute="centerX" secondItem="KMf-sd-gqc" secondAttribute="centerX" id="36f-ec-Bgr"/>
-                            <constraint firstItem="1SZ-vh-0Eg" firstAttribute="leading" secondItem="KMf-sd-gqc" secondAttribute="leading" constant="16" id="RK9-jD-zxG"/>
-                            <constraint firstItem="KMf-sd-gqc" firstAttribute="trailing" secondItem="1SZ-vh-0Eg" secondAttribute="trailing" constant="16" id="aTA-dH-wbJ"/>
-                            <constraint firstItem="k0n-qf-GqB" firstAttribute="leading" secondItem="KMf-sd-gqc" secondAttribute="leading" constant="16" id="gUh-bN-LNa"/>
-                            <constraint firstItem="KMf-sd-gqc" firstAttribute="trailing" secondItem="k0n-qf-GqB" secondAttribute="trailing" constant="16" id="rQm-67-ZFu"/>
-                            <constraint firstItem="k0n-qf-GqB" firstAttribute="top" secondItem="1SZ-vh-0Eg" secondAttribute="bottom" constant="8" id="wbD-cY-wLF"/>
+                            <constraint firstItem="Xkr-EN-btq" firstAttribute="trailing" secondItem="KMf-sd-gqc" secondAttribute="trailing" id="IMg-mY-rPV"/>
+                            <constraint firstItem="Xkr-EN-btq" firstAttribute="bottom" secondItem="KMf-sd-gqc" secondAttribute="bottom" id="PLP-hX-mXd"/>
+                            <constraint firstItem="Xkr-EN-btq" firstAttribute="leading" secondItem="KMf-sd-gqc" secondAttribute="leading" id="Q3Q-tI-jz1"/>
+                            <constraint firstItem="INH-vG-rjd" firstAttribute="bottom" secondItem="KMf-sd-gqc" secondAttribute="bottom" id="RNH-nN-ZuX"/>
+                            <constraint firstItem="INH-vG-rjd" firstAttribute="leading" secondItem="KMf-sd-gqc" secondAttribute="leading" id="Vxi-6W-xNm"/>
+                            <constraint firstItem="Xkr-EN-btq" firstAttribute="top" secondItem="mwV-as-TNz" secondAttribute="top" id="WLx-Vj-pXU"/>
+                            <constraint firstItem="INH-vG-rjd" firstAttribute="top" secondItem="mwV-as-TNz" secondAttribute="top" id="lml-Qu-muR"/>
+                            <constraint firstItem="INH-vG-rjd" firstAttribute="trailing" secondItem="KMf-sd-gqc" secondAttribute="trailing" id="z7S-5J-8C7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KMf-sd-gqc"/>
                     </view>
                     <navigationItem key="navigationItem" id="efw-lT-SIl"/>
                     <connections>
-                        <outlet property="bottomLabel" destination="k0n-qf-GqB" id="xfJ-Qb-IvL"/>
-                        <outlet property="topLabel" destination="1SZ-vh-0Eg" id="keR-CK-zkJ"/>
+                        <outlet property="background" destination="INH-vG-rjd" id="qNI-tz-Moe"/>
+                        <outlet property="gamePad" destination="lbz-TF-UZS" id="5Pg-po-yu1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HNH-ue-nRW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -84,7 +100,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="GamePad" width="256" height="256"/>
+        <image name="GameController" width="512" height="512"/>
         <image name="Games" width="32" height="32"/>
     </resources>
 </document>

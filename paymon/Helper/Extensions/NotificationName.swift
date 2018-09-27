@@ -37,6 +37,8 @@ extension Notification.Name {
     static let setFriendProfileInfo = Notification.Name(rawValue: "setFriendProfileInfo")
     
     static let updateMessagesId = Notification.Name(rawValue: "updateMessagesId")
+    static let updateCharts = Notification.Name(rawValue: "updateCharts")
 
+    
 
 }

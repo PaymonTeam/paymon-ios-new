@@ -7,23 +7,38 @@
 //
 
 import Foundation
+import FLAnimatedImage
 
 class GamesViewController: PaymonViewController {
     
-    @IBOutlet weak var bottomLabel: UILabel!
-    @IBOutlet weak var topLabel: UILabel!
     
+    @IBOutlet weak var gamePad: UIView!
+    @IBOutlet weak var background: FLAnimatedImageView!
     override func viewDidLoad() {
-        topLabel.text = "I still learning how to play".localized
-        bottomLabel.text = "We'll play later".localized
+
         
         setLayoutOptions()
     }
     
     func setLayoutOptions(){
-        self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
+    
+        gamePad.layer.cornerRadius = gamePad.frame.height/2
+        
+        guard let url = Bundle.main.url(forResource: "GameBackground", withExtension: "gif") else {return}
+
+        let gifData = try? Data(contentsOf: url)
+        let imageData = FLAnimatedImage(animatedGIFData: gifData)
+        background.animatedImage = imageData
         
         self.navigationItem.title = "Games".localized
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.turnPad(_:)))
+        gamePad.addGestureRecognizer(tap)
+    }
+    
+    @objc func turnPad(_ sender: UITapGestureRecognizer) {
+        UIView.transition(with: gamePad, duration: 0.7, options: .transitionFlipFromRight, animations: nil, completion: nil)
+        
         
     }
 }

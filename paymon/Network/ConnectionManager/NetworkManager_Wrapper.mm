@@ -49,6 +49,9 @@ static const NSTimeInterval sleepTimeout = 60.0;
     PMTimer *_sleepTimer;
     PMTimer *_retryTimer;
     NSInteger _retriesCount;
+//    NSString *filePath;
+//    NSString *filePath2;
+//    NSString *filePath3;
 }
 
 @end
@@ -62,6 +65,10 @@ static const NSTimeInterval sleepTimeout = 60.0;
         queue = [[Queue alloc] initWithName:"ru.paymon.netQueue"];
     });
     return queue;
+}
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                   inDomains:NSUserDomainMask] lastObject];
 }
 
 - (instancetype)initWithDelegate:(id <NetworkManagerDelegate>)delegate {
@@ -78,6 +85,13 @@ static const NSTimeInterval sleepTimeout = 60.0;
         unprocessedData = nullptr;
         lastPacketLength = 0;
         [self start];
+        
+        NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//        filePath = [documents stringByAppendingPathComponent:@"log"];
+//        filePath2 = [documents stringByAppendingPathComponent:@"log2"];
+//        filePath3 = [documents stringByAppendingPathComponent:@"log3"];
+        
+        
     }
     return self;
 }
@@ -195,27 +209,62 @@ void print(uint8_t *buffer, int size) {
         }
         if (packetLength < 0x7f) {
             buffer->writeByte((uint8_t) packetLength);
+            NSLog(@"first byte %x", (uint8_t) packetLength);
+
             bufferBytes += (buffer->limit() - 1);
+            NSData *data12 = [[NSData alloc] initWithBytes:buffer->bytes()+buffer->position()-1 length:1];
+//            [self writeToFile:self->filePath2 data:data12];
             AES_ctr128_encrypt(bufferBytes, bufferBytes, 1, &encryptKey, encryptIv, encryptCount, &encryptNum);
         } else {
+            NSLog(@"lenght %d", packetLength);
+
             packetLength = (packetLength << 8) + 0x7f;
+            
+            NSLog(@"first byte %x", packetLength);
+
             buffer->writeInt32(packetLength);
+            
+            NSData *data12 = [[NSData alloc] initWithBytes:buffer->bytes()+buffer->position()-4 length:4];
+//            [self writeToFile:self->filePath2 data:data12];
+            
             bufferBytes += (buffer->limit() - 4);
             AES_ctr128_encrypt(bufferBytes, bufferBytes, 4, &encryptKey, encryptIv, encryptCount, &encryptNum);
         }
 
+
         size_t size = (size_t) buffer->length();
         NSData *data1 = [[NSData alloc] initWithBytes:buffer->bytes() length:(NSUInteger) size];
+        ///
+//        [self writeToFile:self->filePath data:data1];
+        ///
         [self writeBytes:data1];
 
+        ////
+        size = (size_t) buff->limit();
+        NSData *data23 = [[NSData alloc] initWithBytes:buff->bytes() length:(NSUInteger) size];
+//        [self writeToFile:self->filePath2 data:data23];
+        ////
+        
         AES_ctr128_encrypt(buff->bytes(), buff->bytes(), buff->limit(), &encryptKey, encryptIv, encryptCount, &encryptNum);
 
         size = (size_t) buff->limit();
         NSData *data2 = [[NSData alloc] initWithBytes:buff->bytes() length:(NSUInteger) size];
+//        [self writeToFile:self->filePath data:data2];
         [self writeBytes:data2];
-
         [self setReadyForRequest];
     } sync:true];
+}
+
+- (void)writeToFile:(NSString*)path data:(NSData*)data {
+    // store them in a data object
+    //NSData * outData = [NSData dataWithBytes:v length:vNumBytes];
+    //assert (outData);
+    
+    // write to file
+    NSError * error = nil;
+    [data writeToFile:path options:NSDataWritingAtomic error:&error];
+    NSLog (@"error: %@", error);
+    //assert (error == nil);
 }
 
 - (void)setReadyForRequest {

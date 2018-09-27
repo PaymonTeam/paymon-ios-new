@@ -19,6 +19,7 @@ class MessageManager : NotificationManagerListener {
     var searchUsers = SharedDictionary<Int32,RPC.UserObject>()
     var groups = SharedDictionary<Int32,RPC.Group>()
     var groupsUsers = SharedDictionary<Int32,SharedArray<RPC.UserObject>>()
+    var chatDatesDicts = SharedDictionary<Int32,[String]>()
     var currentChatID:Int32 = 0
     static var lastMessageID = Utils.Atomic<Int64>()
 
@@ -63,7 +64,7 @@ class MessageManager : NotificationManagerListener {
         }
 
         if serverTime {
-            msg.date = msg.date + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
+            msg.date += Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
         }
         messages[msg.id] = msg
 
@@ -172,7 +173,7 @@ class MessageManager : NotificationManagerListener {
 
                         self.putGroup(grp)
                     }
-          
+                    
                     DispatchQueue.main.async {
 
                         NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
@@ -198,11 +199,11 @@ class MessageManager : NotificationManagerListener {
         packet.count = count
         packet.offset = offset
 
-        NetworkManager.instance.sendPacket(packet) { p, e in
-            if p == nil {
+        NetworkManager.instance.sendPacket(packet) {response, e in
+            if response == nil {
                 return
             }
-            if let packet = p as? RPC.PM_chatMessages {
+            if let packet = response as? RPC.PM_chatMessages {
                 if (packet.messages.count == 0) {
                     return
                 }

@@ -40,6 +40,7 @@
 		0EE2A95A213C04700076ED83 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE2A959213C04700076ED83 /* ContactDetailViewController.swift */; };
 		3E437C3864077E699C425530 /* Pods_paymonTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4653E7B9D5552DD6D7E6F70 /* Pods_paymonTests.framework */; };
 		6AECEA178FD6F827A3D6A15B /* Pods_paymonUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B2BFF67FCD3EF3CEBD321C3 /* Pods_paymonUITests.framework */; };
+		B000A5C3215B848F00365024 /* GameBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = B000A5C2215B848F00365024 /* GameBackground.gif */; };
 		B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B692100A1C400A3CBF1 /* SyncMode.swift */; };
 		B0011B6C2100A1C400A3CBF1 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B6A2100A1C400A3CBF1 /* Defaults.swift */; };
 		B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0011B6D2100A1F000A3CBF1 /* UserDefaults.swift */; };
@@ -169,9 +170,9 @@
 		D820C6A72101232E001D3B00 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A22101232E001D3B00 /* SendViewController.swift */; };
 		D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A42101232E001D3B00 /* ChooseCurrencyViewController.swift */; };
 		D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B121012FD7001D3B00 /* NetworkManager.swift */; };
-		D820C6BA21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D820C6BB21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		D820C70C21037EDA001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D820C6BA21036E09001D3B00 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		D820C6BB21036E09001D3B00 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		D820C70C21037EDA001D3B00 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
 		D849F83B21139ADB009B425E /* NetworkManager_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D849F83A21139ADA009B425E /* NetworkManager_Wrapper.mm */; };
 		D849F8402113A07C009B425E /* BuffersStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83C2113A07B009B425E /* BuffersStorage.cpp */; };
 		D849F8412113A07C009B425E /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83D2113A07B009B425E /* ByteArray.cpp */; };
@@ -235,6 +236,7 @@
 		5323104C07FEF380D53C81FA /* Pods-paymonUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-paymonUITests/Pods-paymonUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F19248E7DF96502E85DB597 /* Pods-paymon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-paymon/Pods-paymon.debug.xcconfig"; sourceTree = "<group>"; };
 		A4653E7B9D5552DD6D7E6F70 /* Pods_paymonTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymonTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B000A5C2215B848F00365024 /* GameBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GameBackground.gif; sourceTree = "<group>"; };
 		B0011B692100A1C400A3CBF1 /* SyncMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncMode.swift; sourceTree = "<group>"; };
 		B0011B6A2100A1C400A3CBF1 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		B0011B6D2100A1F000A3CBF1 /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 		B099C97420FCF7DB00718608 /* paymon */ = {
 			isa = PBXGroup;
 			children = (
+				B000A5C2215B848F00365024 /* GameBackground.gif */,
 				B099C9A420FDD1EB00718608 /* Helper */,
 				B099C9A520FDD1F800718608 /* Resources */,
 				B099C9A920FDD21A00718608 /* Controllers */,
@@ -1295,18 +1298,19 @@
 				0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */,
 				B0097801214C622C00191B90 /* More.storyboard in Resources */,
 				B03D1364212F548600F442AF /* Bitcoin.storyboard in Resources */,
-				D820C70C21037EDA001D3B00 /* (null) in Resources */,
+				D820C70C21037EDA001D3B00 /* BuildFile in Resources */,
 				B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */,
 				B0ACFFF021122EB6007BE95C /* Money.storyboard in Resources */,
 				B00977FF214C60B000191B90 /* Games.storyboard in Resources */,
-				D820C6BA21036E09001D3B00 /* (null) in Resources */,
+				D820C6BA21036E09001D3B00 /* BuildFile in Resources */,
 				B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */,
-				D820C6BB21036E09001D3B00 /* (null) in Resources */,
+				D820C6BB21036E09001D3B00 /* BuildFile in Resources */,
 				0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */,
 				B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */,
 				0E074C14210E357200CB3853 /* Setting.storyboard in Resources */,
 				B01F0DE821086E5A008FB6F0 /* Localizable.strings in Resources */,
 				B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */,
+				B000A5C3215B848F00365024 /* GameBackground.gif in Resources */,
 				B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */,
 				B043973921357956004DAAAA /* Assets.xcassets in Resources */,
 				D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */,
@@ -1339,19 +1343,21 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-paymon/Pods-paymon-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/ScrollableGraphView/ScrollableGraphView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ScrollableGraphView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

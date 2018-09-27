@@ -7,22 +7,22 @@
 //
 
 import Foundation
-import Charts
+import ScrollableGraphView
+
+public class Rate {
+    var values : [Double] = []
+    var dates : [String] = []
+}
 
 class ExchangeRatesForChartsParser {
     
-    struct Rate {
-        let value : Double
-        let time : String
-    }
-    
-    public class func parse(lineChartView : LineChartView, urlString : String, crypto : String, fiat : String) {
+    public class func parse(urlString : String, interval : String) {
         
         guard let url = URL(string: urlString) else {
             return
         }
         
-        var result : [Rate] = [Rate]()
+        let result = Rate()
         
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             guard let data = data else {return}
@@ -36,47 +36,21 @@ class ExchangeRatesForChartsParser {
                 
                 if let rates = json["Data"] as? [[String: Any]] {
                     for rate in rates {
-                        let timeChart = Utils.formatDateTime(timestamp: Int64(rate["time"] as! Int), format24h: false)
-                        print(timeChart)
-                        result.append(Rate(value: rate["close"] as? Double ?? Double(rate["close"] as! Int), time: timeChart))
+                        let timeChart = Utils.formatDateTimeCharts(timestamp: Int64(rate["time"] as! Int), interval: interval)
+//                        print(timeChart)
+                        result.values.append(rate["close"] as? Double ?? Double(rate["close"] as! Int))
+                        result.dates.append(timeChart)
+
                     }
                 }
+                
+                NotificationCenter.default.post(name: .updateCharts, object: result)
 
-                updateCharts(lineChartView: lineChartView, arrayRates: result, crypto: crypto, fiat: fiat)
+                
                 
             } catch let jsonError{
                 print("Error srializing json:", jsonError)
             }
         }.resume()
-    }
-    
-    class func updateCharts(lineChartView : LineChartView, arrayRates : [Rate], crypto : String, fiat : String) {
-
-        let data = LineChartData()
-
-        var dataEntries: [ChartDataEntry] = []
-        var dates = [String]()
-        
-        for i in 0..<arrayRates.count {
-            dates.append(arrayRates[i].time)
-
-            let dataEntry = ChartDataEntry(x: Double(i), y: arrayRates[i].value)
-            dataEntries.append(dataEntry)
-        }
-
-        let line = LineChartDataSet(values: dataEntries, label: String(format: "%@-%@", crypto, fiat))
-        
-        line.circleRadius = 2
-        line.lineWidth = 1
-        line.highlightColor = UIColor.blue //cross
-
-        data.addDataSet(line)
-
-        let queue = DispatchQueue.main
-        queue.async {
-            lineChartView.data = nil
-            lineChartView.data = data
-            lineChartView.chartDescription?.text = "Here will be time"
-        }
     }
 }

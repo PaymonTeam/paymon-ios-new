@@ -131,6 +131,34 @@ open class Utils {
         
         return result
     }
+    
+    public static func formatDateTimeCharts(timestamp:Int64, interval : String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        dateFormatter.locale = NSLocale.current
+        
+        var result : String = ""
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        
+        switch(interval) {
+        case ExchangeRatesConst.hour, ExchangeRatesConst.day:
+            dateFormatter.dateFormat = "HH:mm"
+            break
+        case ExchangeRatesConst.week, ExchangeRatesConst.oneMonth, ExchangeRatesConst.threeMonth, ExchangeRatesConst.sixMonth:
+            dateFormatter.dateFormat = "d MMM"
+            break
+        case ExchangeRatesConst.year:
+            dateFormatter.dateFormat = "d.MM.yy"
+            break
+        default:
+            break
+        }
+
+        result = dateFormatter.string(from: date)
+        
+        return result
+    }
 
     final class Box<T> {
         let value: T

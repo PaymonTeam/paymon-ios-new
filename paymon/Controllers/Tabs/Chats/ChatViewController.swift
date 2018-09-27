@@ -26,6 +26,8 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     var chatID: Int32!
     var isGroup: Bool!
     var users = SharedArray<RPC.UserObject>()
+    var afterScroll = false
+    var startView = true
     
     private var updateMessagesId : NSObjectProtocol!
 
@@ -97,25 +99,16 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                 }
             }
         }
-        
-        if isGroup {
-            users = MessageManager.instance.groupsUsers.value(forKey: chatID)!
-        }
-        
+
         setLayoutOptions()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
         messageTextView.delegate = self
-        
-//        let getChatMessages = RPC.PM_getChatMessages()
-//        getChatMessages.count = 20
+
         if isGroup {
-            let peerGroup = RPC.PM_peerGroup()
-            peerGroup.group_id = chatID;
-//            getChatMessages.chatID = peerGroup
-            
+            users = MessageManager.instance.groupsUsers.value(forKey: chatID)!
+
             let group:RPC.Group! = MessageManager.instance.groups[chatID]!
 
             var text = "Participants: ".localized
@@ -123,19 +116,15 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             
             chatSubtitle.text = text
 
-//            groupIconImageView.setPhoto(ownerID: group.id, photoID: group.photo.id)
         } else {
-            let peerUser = RPC.PM_peerUser()
-            peerUser.user_id = chatID;
-//            getChatMessages.chatID = peerUser
             chatSubtitle.text = "Online"
-
-//            groupIconImageView.isHidden = true
         }
-//        getChatMessages.offset = 0
-        MessageManager.instance.loadMessages(chatID: chatID, count: 20, offset: 0, isGroup: isGroup)
+        
+        MessageManager.instance.loadMessages(chatID: chatID, count: 40, offset: 0, isGroup: isGroup)
         
     }
+    
+    
     
     @objc func handleKeyboardNotification(notification: NSNotification) {
         
@@ -173,20 +162,62 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             
             if args.count == 2 {
                 if args[1] is Bool {
-                    if let messagesToAdd = args[0] as? [Int64] {
+                    if var messagesToAdd = args[0] as? [Int64] {
                         
                         DispatchQueue.global().sync {
-                            messages.append(contentsOf: messagesToAdd)
+                            
+                            var lastMessageData : RPC.Message!
+                            var i = 0
+                            for msg in messagesToAdd {
+                                guard let message = MessageManager.instance.messages[msg] else {return}
+                                
+                                if lastMessageData == nil {
+                                    lastMessageData = message
+                                } else {
+                                    
+                                }
+                                
+                                if message.itemType == PMFileManager.FileType.STICKER {
+                                    messagesToAdd.remove(at: i)
+                                    i -= 1
+                                }
+                                i += 1
+
+                            }
+                            
+                            if !self.afterScroll {
+                                messages.append(contentsOf: messagesToAdd)
+                            } else {
+                                messages.insert(contentsOf: messagesToAdd, at: 0)
+                            }
                         }
                     }
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
                         
-                        if self.messages.count > 0 {
-                            let index = IndexPath(row: self.messages.count - 1, section: 0)
-                            self.tableView.scrollToRow(at: index, at: .bottom, animated: false)
+                        let beforeContentSize = self.tableView.contentSize
 
+                        self.tableView.reloadData()
+
+                        if !self.afterScroll && self.startView {
+                            if self.messages.count > 0 {
+                                let index = IndexPath(row: self.messages.count - 1, section: 0)
+                                self.tableView.scrollToRow(at: index, at: .bottom, animated: false)
+                                self.afterScroll = true
+                                self.startView = false
+                            }
+                        } else {
+                            
+                            let afterContentSize = self.tableView.contentSize;
+                            
+                            let afterContentOffset = self.tableView.contentOffset;
+
+                            let newContentOffset = CGPoint(x: afterContentOffset.x, y: afterContentOffset.y + afterContentSize.height - beforeContentSize.height);
+                                
+                            self.tableView.contentOffset = newContentOffset;
+                            self.view.layoutIfNeeded()
+                            
                         }
+
                     }
                 }
             }
@@ -236,12 +267,13 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
 }
 
 extension ChatViewController: UITableViewDataSource {
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         if let message = MessageManager.instance.messages[messages[indexPath.row]] {
             if message.from_id == User.currentUser!.id {
                 if message.itemType == nil || message.itemType == .NONE {
@@ -251,11 +283,6 @@ extension ChatViewController: UITableViewDataSource {
                     cell.messageLabel.sizeToFit()
                     return cell
                 }
-//                else {
-//                    let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemViewCell") as! ChatMessageItemViewCell
-//                    cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
-//                    return cell
-//                }
             } else {
                 if isGroup {
                     if message.itemType == nil || message.itemType == .NONE {
@@ -274,11 +301,6 @@ extension ChatViewController: UITableViewDataSource {
                         cell.name.text = Utils.formatUserName(user!)
                         return cell
                     }
-//                    else {
-//                        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemRcvViewCell") as! ChatMessageItemRcvViewCell
-//                        cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
-//                        return cell
-//                    }
                 } else {
                     if message.itemType == nil || message.itemType == .NONE {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageRcvViewCell") as! ChatMessageRcvViewCell
@@ -287,22 +309,24 @@ extension ChatViewController: UITableViewDataSource {
                         cell.messageLabel.sizeToFit()
                         return cell
                     }
-//                    else {
-//                        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageItemRcvViewCell") as! ChatMessageItemRcvViewCell
-//                        cell.stickerImage.setSticker(itemType: message.itemType, itemID: message.itemID)
-//                        return cell
-//                    }
                 }
-                
             }
         }
-        
-        return UITableViewCell(style: .default, reuseIdentifier: nil)
+        return UITableViewCell()
     }
     
 }
 
 extension ChatViewController: UITableViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        print(scrollView.contentOffset.y)
+        if scrollView.contentOffset.y == 0 && !startView {
+            afterScroll = true
+
+            MessageManager.instance.loadMessages(chatID: chatID, count: 40, offset: Int32(messages.count), isGroup: isGroup)
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         messageTextView.endEditing(true)

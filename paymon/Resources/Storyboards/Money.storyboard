@@ -389,9 +389,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xa1-lK-0C8" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xa1-lK-0C8">
                                 <rect key="frame" x="0.0" y="64" width="375" height="530"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3X-wi-Q1T">
                                 <rect key="frame" x="0.0" y="610" width="375" height="49"/>
@@ -441,9 +441,9 @@
                     </view>
                     <connections>
                         <outlet property="backItem" destination="k68-mt-g87" id="KIc-qE-zQX"/>
-                        <outlet property="lineChart" destination="Xa1-lK-0C8" id="ukr-xl-cgc"/>
                         <outlet property="navigationBar" destination="kP1-uZ-4uW" id="Dr4-0d-Ri6"/>
                         <outlet property="tabBar" destination="w3X-wi-Q1T" id="GN2-Hc-0iX"/>
+                        <outlet property="viewForGraph" destination="Xa1-lK-0C8" id="0dl-0m-9Nk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6t-8J-tl9" userLabel="First Responder" sceneMemberID="firstResponder"/>
