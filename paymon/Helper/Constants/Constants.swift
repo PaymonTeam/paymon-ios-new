@@ -133,6 +133,7 @@ struct StoryBoard {
     static let chat = UIStoryboard(name: "Chats", bundle: Bundle.main)
     static let bitcoin = UIStoryboard(name: "Bitcoin", bundle: Bundle.main)
     static let contacts = UIStoryboard(name: "Contacts", bundle: Bundle.main)
-
+    static let passcode = UIStoryboard(name: "Passcode", bundle: Bundle.main)
+    
 }
 

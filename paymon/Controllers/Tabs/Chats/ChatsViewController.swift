@@ -306,10 +306,9 @@ extension ChatsViewController: UITableViewDataSource {
             cell.lastMessageText.text = groupData.lastMessageText
             cell.lastMessageTime.text = groupData.timeString
             cell.photo.loadPhoto(url: groupData.photoUrl.url)
-//            print("url \(String(describing: groupData.lastMsgPhoto))")
-
-//            cell.lastMessagePhoto.loadPhoto(url: (groupData.lastMsgPhoto?.url)!)
-
+            if groupData.lastMsgPhoto != nil {
+                cell.lastMessagePhoto.loadPhoto(url: (groupData.lastMsgPhoto?.url)!)
+            }
             return cell
         }
         return tableView.dequeueReusableCell(withIdentifier: "ChatsTableViewCell") as! ChatsTableViewCell

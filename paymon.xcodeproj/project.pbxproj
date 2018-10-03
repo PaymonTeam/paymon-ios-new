@@ -10,15 +10,11 @@
 		0E0402C9210644A500D6F703 /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0402C4210644A400D6F703 /* ChatsViewController.swift */; };
 		0E074C14210E357200CB3853 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E074C13210E357200CB3853 /* Setting.storyboard */; };
 		0E074C1F210E3B0700CB3853 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C15210E3B0400CB3853 /* SettingsViewController.swift */; };
-		0E074C20210E3B0700CB3853 /* SettingsBasicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C16210E3B0400CB3853 /* SettingsBasicTableViewController.swift */; };
-		0E074C22210E3B0700CB3853 /* SettingsMoneyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C18210E3B0500CB3853 /* SettingsMoneyTableViewController.swift */; };
-		0E074C23210E3B0700CB3853 /* SettingsMoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C19210E3B0500CB3853 /* SettingsMoneyViewController.swift */; };
-		0E074C24210E3B0700CB3853 /* SettingsBasicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C1A210E3B0500CB3853 /* SettingsBasicViewController.swift */; };
 		0E074C25210E3B0700CB3853 /* SettingsNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C1B210E3B0600CB3853 /* SettingsNotificationViewController.swift */; };
 		0E074C26210E3B0700CB3853 /* SettingsNotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C1C210E3B0600CB3853 /* SettingsNotificationTableViewController.swift */; };
 		0E074C27210E3B0700CB3853 /* SettingsSecurityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C1D210E3B0600CB3853 /* SettingsSecurityTableViewController.swift */; };
 		0E074C28210E3B0700CB3853 /* SettingsSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C1E210E3B0600CB3853 /* SettingsSecurityViewController.swift */; };
-		0E074C2A210E435B00CB3853 /* SettingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C29210E435B00CB3853 /* SettingsTableView.swift */; };
+		0E074C2A210E435B00CB3853 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E074C29210E435B00CB3853 /* SettingsTableViewController.swift */; };
 		0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E0F477C210BA137004B4A3C /* Contacts.storyboard */; };
 		0EA074C521065515002FF527 /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C421065515002FF527 /* CreateGroupViewController.swift */; };
 		0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */; };
@@ -32,7 +28,6 @@
 		0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EA075AB21065EE7002FF527 /* Chats.storyboard */; };
 		0EA66B97210F7E7900CC1162 /* NotificationSoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66B96210F7E7800CC1162 /* NotificationSoundViewController.swift */; };
 		0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */; };
-		0EA66BA4210F810C00CC1162 /* SecurityPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */; };
 		0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */; };
 		0EB732432136FD2A0069B383 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB732422136FD2A0069B383 /* NewContactViewController.swift */; };
 		0EC1A6AF213A904F0089CE1E /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */; };
@@ -133,6 +128,7 @@
 		B08DFD8F215937F5002B5C1A /* CellContactData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08DFD8E215937F5002B5C1A /* CellContactData.swift */; };
 		B08E390821512C53008E09D3 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390721512C53008E09D3 /* FriendProfileViewController.swift */; };
 		B08E390B21513BF1008E09D3 /* FriendProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */; };
+		B098FAD32164D6B6006C8EC7 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B098FAD22164D6B6006C8EC7 /* Passcode.storyboard */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
 		B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97920FCF7DB00718608 /* Main.storyboard */; };
 		B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */; };
@@ -163,6 +159,10 @@
 		B0D43B4921401D7D0052B1A9 /* ContactWasTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */; };
 		B0D43B5E214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */; };
 		B0E78F5D20FF97D4008A39D4 /* Tabs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */; };
+		B0EA22AD216372EE00092B8A /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA22AC216372EE00092B8A /* MoreTableViewController.swift */; };
+		B0EA22B02163840E00092B8A /* SettingAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA22AF2163840E00092B8A /* SettingAccountViewController.swift */; };
+		B0EA22B22163845200092B8A /* SettingAccountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA22B12163845200092B8A /* SettingAccountTableViewController.swift */; };
+		B0EA22B42163A9AE00092B8A /* AboutProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EA22B32163A9AE00092B8A /* AboutProgramTableViewController.swift */; };
 		D816BA352120C3CE001B6FE8 /* PaymonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */; };
 		D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D820C69D210122B5001D3B00 /* Ethur.storyboard */; };
 		D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A02101232E001D3B00 /* CoinDetailsViewController.swift */; };
@@ -170,9 +170,9 @@
 		D820C6A72101232E001D3B00 /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A22101232E001D3B00 /* SendViewController.swift */; };
 		D820C6A82101232E001D3B00 /* ChooseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A42101232E001D3B00 /* ChooseCurrencyViewController.swift */; };
 		D820C6B421012FD8001D3B00 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6B121012FD7001D3B00 /* NetworkManager.swift */; };
-		D820C6BA21036E09001D3B00 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
-		D820C6BB21036E09001D3B00 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
-		D820C70C21037EDA001D3B00 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		D820C6BA21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D820C6BB21036E09001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
+		D820C70C21037EDA001D3B00 /* (null) in Resources */ = {isa = PBXBuildFile; };
 		D849F83B21139ADB009B425E /* NetworkManager_Wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D849F83A21139ADA009B425E /* NetworkManager_Wrapper.mm */; };
 		D849F8402113A07C009B425E /* BuffersStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83C2113A07B009B425E /* BuffersStorage.cpp */; };
 		D849F8412113A07C009B425E /* ByteArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D849F83D2113A07B009B425E /* ByteArray.cpp */; };
@@ -202,15 +202,11 @@
 		0E0402C4210644A400D6F703 /* ChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		0E074C13210E357200CB3853 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		0E074C15210E3B0400CB3853 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		0E074C16210E3B0400CB3853 /* SettingsBasicTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBasicTableViewController.swift; sourceTree = "<group>"; };
-		0E074C18210E3B0500CB3853 /* SettingsMoneyTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMoneyTableViewController.swift; sourceTree = "<group>"; };
-		0E074C19210E3B0500CB3853 /* SettingsMoneyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMoneyViewController.swift; sourceTree = "<group>"; };
-		0E074C1A210E3B0500CB3853 /* SettingsBasicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsBasicViewController.swift; sourceTree = "<group>"; };
 		0E074C1B210E3B0600CB3853 /* SettingsNotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationViewController.swift; sourceTree = "<group>"; };
 		0E074C1C210E3B0600CB3853 /* SettingsNotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsNotificationTableViewController.swift; sourceTree = "<group>"; };
 		0E074C1D210E3B0600CB3853 /* SettingsSecurityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSecurityTableViewController.swift; sourceTree = "<group>"; };
 		0E074C1E210E3B0600CB3853 /* SettingsSecurityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSecurityViewController.swift; sourceTree = "<group>"; };
-		0E074C29210E435B00CB3853 /* SettingsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableView.swift; sourceTree = "<group>"; };
+		0E074C29210E435B00CB3853 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		0E0F477C210BA137004B4A3C /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		0EA074C421065515002FF527 /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		0EA074C7210655D8002FF527 /* ChatsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsTableViewCell.swift; sourceTree = "<group>"; };
@@ -224,7 +220,6 @@
 		0EA075AB21065EE7002FF527 /* Chats.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chats.storyboard; sourceTree = "<group>"; };
 		0EA66B96210F7E7800CC1162 /* NotificationSoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSoundViewController.swift; sourceTree = "<group>"; };
 		0EA66BA0210F807700CC1162 /* NotificationSoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSoundTableViewController.swift; sourceTree = "<group>"; };
-		0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityPasswordViewController.swift; sourceTree = "<group>"; };
 		0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutProgramViewController.swift; sourceTree = "<group>"; };
 		0EB732422136FD2A0069B383 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 		0EC1A6AE213A904F0089CE1E /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -350,6 +345,7 @@
 		B08DFD8E215937F5002B5C1A /* CellContactData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellContactData.swift; sourceTree = "<group>"; };
 		B08E390721512C53008E09D3 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileTableViewController.swift; sourceTree = "<group>"; };
+		B098FAD22164D6B6006C8EC7 /* Passcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B099C97520FCF7DB00718608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B099C97A20FCF7DB00718608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -387,6 +383,10 @@
 		B0D43B4821401D7D0052B1A9 /* ContactWasTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactWasTableViewCell.swift; sourceTree = "<group>"; };
 		B0D43B5D214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupChatMessageRcvViewCell.swift; sourceTree = "<group>"; };
 		B0E78F5C20FF97D4008A39D4 /* Tabs.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabs.storyboard; sourceTree = "<group>"; };
+		B0EA22AC216372EE00092B8A /* MoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
+		B0EA22AF2163840E00092B8A /* SettingAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAccountViewController.swift; sourceTree = "<group>"; };
+		B0EA22B12163845200092B8A /* SettingAccountTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAccountTableViewController.swift; sourceTree = "<group>"; };
+		B0EA22B32163A9AE00092B8A /* AboutProgramTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutProgramTableViewController.swift; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05E199DF40685C191ADE6F1 /* Pods-paymonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-paymonTests/Pods-paymonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymonViewController.swift; sourceTree = "<group>"; };
@@ -476,7 +476,6 @@
 			children = (
 				0E074C1E210E3B0600CB3853 /* SettingsSecurityViewController.swift */,
 				0E074C1D210E3B0600CB3853 /* SettingsSecurityTableViewController.swift */,
-				0EA66BA3210F810C00CC1162 /* SecurityPasswordViewController.swift */,
 			);
 			path = Security;
 			sourceTree = "<group>";
@@ -485,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				0EA66BA6210F818C00CC1162 /* AboutProgramViewController.swift */,
+				B0EA22B32163A9AE00092B8A /* AboutProgramTableViewController.swift */,
 			);
 			path = AboutTheProgram;
 			sourceTree = "<group>";
@@ -524,6 +524,7 @@
 				B099C9AF20FDD25700718608 /* Settings */,
 				B0C396A5210A3B0F00E0C344 /* Games */,
 				B0097803214C654C00191B90 /* MoreViewController.swift */,
+				B0EA22AC216372EE00092B8A /* MoreTableViewController.swift */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -793,15 +794,12 @@
 		B099C9AF20FDD25700718608 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B0EA22AE2163835600092B8A /* Account */,
 				0EA66BA5210F816E00CC1162 /* AboutTheProgram */,
 				0EA66BA2210F80BB00CC1162 /* Security */,
 				0EA66B9F210F7FAC00CC1162 /* Notifications */,
-				0E074C29210E435B00CB3853 /* SettingsTableView.swift */,
+				0E074C29210E435B00CB3853 /* SettingsTableViewController.swift */,
 				0E074C15210E3B0400CB3853 /* SettingsViewController.swift */,
-				0E074C16210E3B0400CB3853 /* SettingsBasicTableViewController.swift */,
-				0E074C1A210E3B0500CB3853 /* SettingsBasicViewController.swift */,
-				0E074C18210E3B0500CB3853 /* SettingsMoneyTableViewController.swift */,
-				0E074C19210E3B0500CB3853 /* SettingsMoneyViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -878,6 +876,7 @@
 				B03D1363212F548600F442AF /* Bitcoin.storyboard */,
 				B00977FE214C60B000191B90 /* Games.storyboard */,
 				B0097800214C622C00191B90 /* More.storyboard */,
+				B098FAD22164D6B6006C8EC7 /* Passcode.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -1155,6 +1154,15 @@
 			path = Parser;
 			sourceTree = "<group>";
 		};
+		B0EA22AE2163835600092B8A /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				B0EA22AF2163840E00092B8A /* SettingAccountViewController.swift */,
+				B0EA22B12163845200092B8A /* SettingAccountTableViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		D816BA332120C395001B6FE8 /* SuperViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -1298,13 +1306,14 @@
 				0EA075AC21065EE7002FF527 /* Chats.storyboard in Resources */,
 				B0097801214C622C00191B90 /* More.storyboard in Resources */,
 				B03D1364212F548600F442AF /* Bitcoin.storyboard in Resources */,
-				D820C70C21037EDA001D3B00 /* BuildFile in Resources */,
+				D820C70C21037EDA001D3B00 /* (null) in Resources */,
 				B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */,
 				B0ACFFF021122EB6007BE95C /* Money.storyboard in Resources */,
 				B00977FF214C60B000191B90 /* Games.storyboard in Resources */,
-				D820C6BA21036E09001D3B00 /* BuildFile in Resources */,
+				D820C6BA21036E09001D3B00 /* (null) in Resources */,
+				B098FAD32164D6B6006C8EC7 /* Passcode.storyboard in Resources */,
 				B0C396A9210A3EFA00E0C344 /* ForgotPassword.storyboard in Resources */,
-				D820C6BB21036E09001D3B00 /* BuildFile in Resources */,
+				D820C6BB21036E09001D3B00 /* (null) in Resources */,
 				0E0F477D210BA137004B4A3C /* Contacts.storyboard in Resources */,
 				B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */,
 				0E074C14210E357200CB3853 /* Setting.storyboard in Resources */,
@@ -1429,6 +1438,7 @@
 				B0C396B2210A50C700E0C344 /* UINavigationBar.swift in Sources */,
 				B019551720FFAA6600F3DDB0 /* SerializedStream.mm in Sources */,
 				0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */,
+				B0EA22B22163845200092B8A /* SettingAccountTableViewController.swift in Sources */,
 				B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */,
 				B019551E20FFAA6600F3DDB0 /* KeychainItemAccessibility.swift in Sources */,
 				0EA074D0210656B5002FF527 /* ChatMessageViewCell.swift in Sources */,
@@ -1455,7 +1465,6 @@
 				B0C396AC210A49C300E0C344 /* ForgotPasswordEmailViewController.swift in Sources */,
 				B0011B6E2100A1F100A3CBF1 /* UserDefaults.swift in Sources */,
 				B0C7447A21149BBF008885C1 /* ChartsRatesViewController.swift in Sources */,
-				0E074C22210E3B0700CB3853 /* SettingsMoneyTableViewController.swift in Sources */,
 				0EA66B97210F7E7900CC1162 /* NotificationSoundViewController.swift in Sources */,
 				B0AC1D2A211472DA004D8577 /* ExchangeRetesViewController.swift in Sources */,
 				B019550120FFAA3E00F3DDB0 /* DecimalExtension.swift in Sources */,
@@ -1485,6 +1494,7 @@
 				B019551B20FFAA6600F3DDB0 /* MessageManager.swift in Sources */,
 				B08CA89C210623CF00AAA805 /* SimpleShowSegue.swift in Sources */,
 				0EA074C8210655D8002FF527 /* ChatsTableViewCell.swift in Sources */,
+				B0EA22B42163A9AE00092B8A /* AboutProgramTableViewController.swift in Sources */,
 				B01954E320FFA92100F3DDB0 /* QRGenerater.swift in Sources */,
 				B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */,
 				B019551620FFAA6600F3DDB0 /* SerializedBuffer-Wrapper.mm in Sources */,
@@ -1505,6 +1515,7 @@
 				B019552F20FFAB6B00F3DDB0 /* TabsViewController.swift in Sources */,
 				B01954DF20FFA92100F3DDB0 /* Ethereum.swift in Sources */,
 				B019555A20FFAD7500F3DDB0 /* Queue.m in Sources */,
+				B0EA22B02163840E00092B8A /* SettingAccountViewController.swift in Sources */,
 				B01F0DF821087264008FB6F0 /* UpdateProfileInfoTableViewController.swift in Sources */,
 				D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */,
 				B03D136E213185A100F442AF /* BitcoinTransactions.swift in Sources */,
@@ -1535,7 +1546,7 @@
 				B019551C20FFAA6600F3DDB0 /* EthereumManager.swift in Sources */,
 				B01954E220FFA92100F3DDB0 /* Photo.swift in Sources */,
 				B019553F20FFAC0F00F3DDB0 /* Transaction.swift in Sources */,
-				0E074C2A210E435B00CB3853 /* SettingsTableView.swift in Sources */,
+				0E074C2A210E435B00CB3853 /* SettingsTableViewController.swift in Sources */,
 				B0AC1D2C211476A1004D8577 /* ExchangeRatesTableViewCell.swift in Sources */,
 				B01F0DF621087264008FB6F0 /* ProfileInfoTableViewController.swift in Sources */,
 				B01954F120FFA9B400F3DDB0 /* TransactionFactoryProtocol.swift in Sources */,
@@ -1545,12 +1556,12 @@
 				B01954F920FFA9F000F3DDB0 /* KeyGenerator_Wrapper.mm in Sources */,
 				D816BA352120C3CE001B6FE8 /* PaymonViewController.swift in Sources */,
 				B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */,
-				0EA66BA4210F810C00CC1162 /* SecurityPasswordViewController.swift in Sources */,
 				0EA074D4210656FC002FF527 /* ChatMessageItemRcvViewCell.swift in Sources */,
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
 				B0C7447721147C7F008885C1 /* ExchangeRatesForChartsParser.swift in Sources */,
 				B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
+				B0EA22AD216372EE00092B8A /* MoreTableViewController.swift in Sources */,
 				B0D43B4921401D7D0052B1A9 /* ContactWasTableViewCell.swift in Sources */,
 				B019551820FFAA6600F3DDB0 /* PMFileManager.swift in Sources */,
 				B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */,
@@ -1560,7 +1571,6 @@
 				D849F83B21139ADB009B425E /* NetworkManager_Wrapper.mm in Sources */,
 				B019552E20FFAB6B00F3DDB0 /* StartViewController.swift in Sources */,
 				B08CA88B21030F2100AAA805 /* SignInViewController.swift in Sources */,
-				0E074C24210E3B0700CB3853 /* SettingsBasicViewController.swift in Sources */,
 				D849F8412113A07C009B425E /* ByteArray.cpp in Sources */,
 				D849F8422113A07C009B425E /* SerializedBuffer.cpp in Sources */,
 				B08E390821512C53008E09D3 /* FriendProfileViewController.swift in Sources */,
@@ -1569,8 +1579,6 @@
 				B019554520FFAC5900F3DDB0 /* ConnectionManager.swift in Sources */,
 				B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */,
 				B0C396AE210A4B4200E0C344 /* ForgotPasswordCodeViewController.swift in Sources */,
-				0E074C23210E3B0700CB3853 /* SettingsMoneyViewController.swift in Sources */,
-				0E074C20210E3B0700CB3853 /* SettingsBasicTableViewController.swift in Sources */,
 				0E074C26210E3B0700CB3853 /* SettingsNotificationTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,6 @@ import Foundation
 
 class ForgotPasswordCodeViewController: PaymonViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var nextItem: UIBarButtonItem!
     @IBOutlet weak var recoveryCode: UITextField!
     @IBOutlet weak var hint: UILabel!
@@ -19,19 +18,25 @@ class ForgotPasswordCodeViewController: PaymonViewController, UITextFieldDelegat
     
     override func viewDidLoad() {
         
+        setLayoutOptions()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    
+    }
+    
+    func setLayoutOptions() {
+        
+        recoveryCode.layer.cornerRadius = recoveryCode.frame.height/2
+        
         self.view.addUIViewBackground(name: "MainBackground")
         
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Recovery password".localized
+        self.title = "Recovery password".localized
         
         recoveryCode.delegate = self
         recoveryCode.placeholder = "Recovery code".localized
         hint.text = "Please enter the recovery code that was sent to you to e-mail".localized
         nextItem.title = "Next".localized
-        
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    
     }
     
     @objc func dismissKeyboard(){
@@ -42,7 +47,7 @@ class ForgotPasswordCodeViewController: PaymonViewController, UITextFieldDelegat
         //TODO: send code response function
         self.view.endEditing(true)
         
-        guard let code = recoveryCode.text else {
+        guard let code = recoveryCode.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return
         }
         
@@ -50,10 +55,16 @@ class ForgotPasswordCodeViewController: PaymonViewController, UITextFieldDelegat
             recoveryCode.shake()
             return
         } else {
-            UserManager.verifyRecoveryCode(loginOrEmail: self.emailValue, code: Int32(code)!, vc: self)
+            let forgotPasswordChangeViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordChangeViewController) as! ForgotPasswordChangeViewController
+            
+            forgotPasswordChangeViewController.codeValue = Int32(code)
+            forgotPasswordChangeViewController.emailValue = self.emailValue
+            
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(forgotPasswordChangeViewController, animated: true)
+            }
+            
         }
-        
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -69,17 +80,7 @@ class ForgotPasswordCodeViewController: PaymonViewController, UITextFieldDelegat
         return true
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let changeViewController = segue.destination as? ForgotPasswordChangeViewController else {return}
-        changeViewController.emailValue = self.emailValue
-        changeViewController.codeValue = self.recoveryCode.text!
-    }
-    
     @IBAction func arrowBackItemClick(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func unWindForgotPasswordCode(_ segue: UIStoryboardSegue) {
-        
     }
 }

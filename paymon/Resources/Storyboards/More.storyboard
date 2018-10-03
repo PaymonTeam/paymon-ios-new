@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,7 +29,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yg-Rz-JyB">
-                                        <rect key="frame" x="303" y="26" width="24" height="24"/>
+                                        <rect key="frame" x="311" y="26" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="77R-N1-ZhR"/>
                                             <constraint firstAttribute="height" constant="24" id="dhu-xz-FUx"/>
@@ -38,16 +37,16 @@
                                         <state key="normal" image="DisclosureIndicator"/>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="hEh-ex-zfk">
-                                        <rect key="frame" x="82" y="17" width="205" height="42.5"/>
+                                        <rect key="frame" x="82" y="17" width="213" height="42.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lmb-Oy-BbC">
-                                                <rect key="frame" x="0.0" y="0.0" width="205" height="21.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="213" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYj-S6-dMR">
-                                                <rect key="frame" x="0.0" y="25.5" width="205" height="17"/>
+                                                <rect key="frame" x="0.0" y="25.5" width="213" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -66,7 +65,7 @@
                                     <constraint firstItem="hEh-ex-zfk" firstAttribute="centerY" secondItem="GT2-C5-O1Z" secondAttribute="centerY" id="4zF-Vd-cUt"/>
                                     <constraint firstItem="0yg-Rz-JyB" firstAttribute="leading" secondItem="hEh-ex-zfk" secondAttribute="trailing" constant="16" id="7fr-WZ-fhR"/>
                                     <constraint firstItem="0yg-Rz-JyB" firstAttribute="centerY" secondItem="GT2-C5-O1Z" secondAttribute="centerY" id="8fA-jr-But"/>
-                                    <constraint firstAttribute="trailing" secondItem="0yg-Rz-JyB" secondAttribute="trailing" constant="16" id="B73-No-Gpg"/>
+                                    <constraint firstAttribute="trailing" secondItem="0yg-Rz-JyB" secondAttribute="trailing" constant="8" id="B73-No-Gpg"/>
                                     <constraint firstItem="hEh-ex-zfk" firstAttribute="leading" secondItem="Dqt-75-Vsb" secondAttribute="trailing" constant="16" id="BcK-GT-2Ny"/>
                                     <constraint firstAttribute="trailing" secondItem="4e4-T5-PFj" secondAttribute="trailing" id="G3R-ks-mVl"/>
                                     <constraint firstItem="4e4-T5-PFj" firstAttribute="top" secondItem="GT2-C5-O1Z" secondAttribute="top" id="PvM-gS-5Hn"/>
@@ -135,7 +134,7 @@
         <!--More Information Table-->
         <scene sceneID="sEV-6R-gT8">
             <objects>
-                <tableViewController title="Profile Information Table" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vuc-TJ-hhE" userLabel="More Information Table" sceneMemberID="viewController">
+                <tableViewController title="Profile Information Table" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vuc-TJ-hhE" userLabel="More Information Table" customClass="MoreTableViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="2" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" id="Tmk-e0-88c">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="165"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -163,7 +162,7 @@
                                                         <constraint firstAttribute="height" constant="1" id="aEa-Qk-Vyg"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="City" translatesAutoresizingMaskIntoConstraints="NO" id="7T1-dC-hz7">
+                                                <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profit" translatesAutoresizingMaskIntoConstraints="NO" id="7T1-dC-hz7">
                                                     <rect key="frame" x="16" y="15.5" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="8gY-Hc-mJA"/>
@@ -239,7 +238,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="309" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.85000002384185791" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SendButton" translatesAutoresizingMaskIntoConstraints="NO" id="vR8-tV-th3">
+                                                <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Help" translatesAutoresizingMaskIntoConstraints="NO" id="vR8-tV-th3">
                                                     <rect key="frame" x="16" y="15.5" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="QTi-Z5-jgS"/>
@@ -269,10 +268,14 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
+                    <connections>
+                        <outlet property="games" destination="pxl-aQ-fGx" id="pcX-nQ-j9H"/>
+                        <outlet property="help" destination="Dzr-rj-r8U" id="VRu-9M-beC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fG0-Tw-PrT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="623" y="997"/>
+            <point key="canvasLocation" x="623" y="871"/>
         </scene>
         <!--GamesViewController-->
         <scene sceneID="fXJ-0v-JQi">
@@ -314,11 +317,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="City" width="32" height="32"/>
         <image name="DisclosureIndicator" width="14" height="19"/>
         <image name="Games" width="32" height="32"/>
+        <image name="Help" width="68" height="68"/>
         <image name="Home" width="32" height="32"/>
-        <image name="SendButton" width="32" height="28"/>
+        <image name="Profit" width="68" height="68"/>
         <image name="Settings" width="32" height="32"/>
     </resources>
 </document>

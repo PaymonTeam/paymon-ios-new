@@ -25,7 +25,7 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         let forgotPasswordEmailViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordEmailViewController) as! ForgotPasswordEmailViewController
         
         DispatchQueue.main.async {
-            self.present(forgotPasswordEmailViewController, animated: true)
+            self.navigationController?.pushViewController(forgotPasswordEmailViewController, animated: true)
         }
     }
     

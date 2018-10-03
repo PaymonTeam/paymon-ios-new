@@ -22,6 +22,7 @@
 "Sign up" = "Регистрация";
 "Login" = "Логин";
 "Login or email" = "Логин или электронная почта";
+"Email"="Электронная почта";
 
 "An error occurred during authorization"="Во время авторизации произошла ошибка";
 "Please enter your information"="Введите ваши данные";
@@ -96,7 +97,7 @@
 
 /*More*/
 "More"="Еще";
-
+"Help"="Помощь";
 
 /*Profile*/
 
@@ -135,7 +136,7 @@
 "Settings" = "Настройки";
 "Notifications" = "Уведомления";
 "Security" = "Безопасность";
-"About the program" = "О программе";
+"About the application" = "О приложении";
 "Log out" = "Выйти";
 "Open in browser?"="Открыть в браузере?";
 "Open"="Открыть";
@@ -159,10 +160,19 @@
 "Enter password"="Введите пароль";
 "Enter your secret password"="Введите ваш секретный пароль";
 "Input your password"="Введите пароль";
+"You can protect your application with a digital password"="Вы можете защитить свое приложение цифровым паролем";
+
+/*Account settings*/
+"Show email"="Показать электронный адрес";
+"Account"="Учетная запись";
+"Other users will be able to see your email address in your profile"="Другие пользователи смогут видеть адрес вашей электронной почты у вас профиле";
 
 /*About the program*/
-"Paymon for iOS"="Paymon для iOS";
-"version "="версия ";
+"Privacy policy"="Политика конфиденциальности";
+"Terms of use"="Пользовательское соглашение";
+"Licenses"="Лицензии";
+"Rate app"="Оценить приложение";
+"Version "="Версия ";
 
 /*Seed ViewController*/
 

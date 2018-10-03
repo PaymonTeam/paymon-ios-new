@@ -195,9 +195,14 @@ public class UserManager {
             
             if response is RPC.PM_boolTrue {
                 print("code sent")
-                DispatchQueue.main.async {
-                    vc.performSegue(withIdentifier: VCIdentifier.forgotPasswordCodeViewController, sender: nil)
-                }
+                 let forgotPasswordCodeViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordCodeViewController) as! ForgotPasswordCodeViewController
+                
+                forgotPasswordCodeViewController.emailValue = loginOrEmail
+
+                    DispatchQueue.main.async {
+                        vc.navigationController?.pushViewController(forgotPasswordCodeViewController, animated: true)
+                    }
+                
             } else {
                 //TODO: Если вернуться назад, приходит false но без ошибки
                 if let err = error?.code! {
@@ -210,38 +215,6 @@ public class UserManager {
                     }
                 }
             }
-        }
-    }
-    
-    static func verifyRecoveryCode(loginOrEmail : String, code: Int32, vc: UIViewController) {
-        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
-
-        print("\(code)")
-        print("\(loginOrEmail)")
-        
-        let verifyRecoveryCode = RPC.PM_verifyPasswordRecoveryCode()
-        verifyRecoveryCode.loginOrEmail = loginOrEmail
-        verifyRecoveryCode.code = code
-        
-        
-        
-        NetworkManager.instance.sendPacket(verifyRecoveryCode) { response, error in
-            
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: vc.view, animated: true)
-            }
-            
-            if response is RPC.PM_boolTrue {
-                print("code is true")
-                DispatchQueue.main.async {
-                    vc.performSegue(withIdentifier: VCIdentifier.forgotPasswordChangeViewController, sender: nil)
-                }
-            } else {
-                print("code is false \(String(describing: error?.code))")
-                _ = SimpleOkAlertController.init(title: "Recovery code".localized, message: "You entered an invalid recovery code".localized, vc: vc)
-            }
-            
-            
         }
     }
     
@@ -265,7 +238,7 @@ public class UserManager {
                 let alertSuccess = UIAlertController(title: "New password".localized, message: "Password changed successfully".localized, preferredStyle: UIAlertController.Style.alert)
                 
                 alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-                    vc.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                    vc.navigationController?.popToViewController((vc.navigationController?.viewControllers[1])!, animated: true)
                 }))
                 
                 DispatchQueue.main.async {
@@ -275,7 +248,11 @@ public class UserManager {
                 }
             } else {
                 print("code is false \(String(describing: error?.code))")
-                _ = SimpleOkAlertController.init(title: "New password".localized, message: "An error occurred while changing the password".localized, vc: vc)
+                DispatchQueue.main.async {
+                    vc.navigationController?.popViewController(animated: true)
+                    
+                    _ = SimpleOkAlertController.init(title: "New password".localized, message: "You entered an invalid recovery code".localized, vc: vc)
+                }
             }
         }
         
@@ -314,7 +291,6 @@ public class UserManager {
                 }
                 
                 DispatchQueue.main.async {
-                    print("Show mee")
                     window.rootViewController?.present(tabsViewController, animated: false, completion: nil)
                 }
                 

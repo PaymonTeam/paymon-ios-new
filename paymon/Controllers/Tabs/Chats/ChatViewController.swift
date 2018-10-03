@@ -123,9 +123,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         MessageManager.instance.loadMessages(chatID: chatID, count: 40, offset: 0, isGroup: isGroup)
         
     }
-    
-    
-    
+
     @objc func handleKeyboardNotification(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {

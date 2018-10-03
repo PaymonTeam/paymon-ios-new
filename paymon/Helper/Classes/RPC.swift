@@ -511,23 +511,23 @@ class RPC {
         }
     }
     
-    class PM_verifyPasswordRecoveryCode : Packet {
-        static let svuid:Int32 = 569433023
-        
-        var loginOrEmail : String!
-        var code : Int32!
-        
-        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
-            loginOrEmail = stream.readString(exception)
-            code = stream.readInt32(exception)
-        }
-        
-        override func serializeToStream(stream: SerializableData) {
-            stream.write(PM_verifyPasswordRecoveryCode.svuid)
-            stream.write(loginOrEmail)
-            stream.write(code)
-        }
-    }
+//    class PM_verifyPasswordRecoveryCode : Packet {
+//        static let svuid:Int32 = 569433023
+//        
+//        var loginOrEmail : String!
+//        var code : Int32!
+//        
+//        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+//            loginOrEmail = stream.readString(exception)
+//            code = stream.readInt32(exception)
+//        }
+//        
+//        override func serializeToStream(stream: SerializableData) {
+//            stream.write(PM_verifyPasswordRecoveryCode.svuid)
+//            stream.write(loginOrEmail)
+//            stream.write(code)
+//        }
+//    }
     
     class PM_restorePassword: Packet {
         static let svuid:Int32 = 23582811
@@ -537,16 +537,16 @@ class RPC {
         var code : Int32!
         
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
-            loginOrEmail = stream.readString(exception)
-            password = stream.readString(exception)
             code = stream.readInt32(exception)
+            password = stream.readString(exception)
+            loginOrEmail = stream.readString(exception)
         }
         
         override func serializeToStream(stream: SerializableData) {
-            stream.write(PM_restorePasswordRequestCode.svuid)
-            stream.write(loginOrEmail)
+            stream.write(PM_restorePassword.svuid)
             stream.write(code)
             stream.write(password)
+            stream.write(loginOrEmail)
         }
     }
 

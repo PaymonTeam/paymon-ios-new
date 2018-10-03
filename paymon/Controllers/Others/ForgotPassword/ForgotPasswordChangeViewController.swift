@@ -13,28 +13,58 @@ class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDeleg
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var newPassword: UITextField!
     @IBOutlet weak var changeItem: UIBarButtonItem!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var hint: UILabel!
+    @IBOutlet weak var stackButtons: UIView!
     
     var emailValue: String!
-    var codeValue: String!
+    var codeValue: Int32!
+    
+    let blueLight = UIColor.AppColor.Blue.primaryBlue.withAlphaComponent(0.15)
+    let whiteLight = UIColor.white.withAlphaComponent(0.15)
+    
+    var password = ""
+    var repeatPasswordS = ""
     
     override func viewDidLoad() {
         
-        self.view.addUIViewBackground(name: "MainBackground")
-        
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Recovery password".localized
+        setLayoutOptions()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
+
+        newPassword.delegate = self
+        repeatPassword.delegate = self
         
+        newPassword.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+        repeatPassword.addTarget(self, action: #selector(textFieldDidChanged(_:)), for: .editingChanged)
+    }
+    
+    @objc func textFieldDidChanged(_ textField : UITextField) {
+        
+        switch (textField) {
+        case newPassword:
+            password = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            textField.backgroundColor = !password.isEmpty && password.count >= 8 ? blueLight : whiteLight
+        case repeatPassword:
+            repeatPasswordS = textField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+
+            textField.backgroundColor = !repeatPasswordS.isEmpty && repeatPasswordS.elementsEqual(password) ? blueLight : whiteLight
+        default:
+            break
+        }
+    }
+    
+    func setLayoutOptions() {
         newPassword.placeholder = "New password".localized
         repeatPassword.placeholder = "Repeat password".localized
         hint.text = "Create a new password".localized
         
-        newPassword.delegate = self
-        repeatPassword.delegate = self
+        self.view.addUIViewBackground(name: "MainBackground")
+        
+        self.title = "Recovery password".localized
+        
+        stackButtons.layer.cornerRadius = 30
     }
     
     @objc func dismissKeyboard(){
@@ -43,14 +73,6 @@ class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDeleg
     
     @IBAction func sendResponse() {
         self.view.endEditing(true)
-
-        guard let password = newPassword.text else {
-            return
-        }
-        
-        guard let repeatPasswordS = repeatPassword.text else {
-            return
-        }
         
         if password.isEmpty || password.count < 8{
             newPassword.shake()
@@ -59,7 +81,7 @@ class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDeleg
             repeatPassword.shake()
             return
         } else {
-           UserManager.setNewPassword(loginOrEmail: self.emailValue, code: Int32(self.codeValue)!, password: password, vc: self)
+           UserManager.setNewPassword(loginOrEmail: self.emailValue, code: self.codeValue, password: password, vc: self)
 
         }
         

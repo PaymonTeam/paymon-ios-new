@@ -10,26 +10,28 @@ import Foundation
 
 class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var hint: UILabel!
     @IBOutlet weak var loginOrEmail: UITextField!
-    @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var sendItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         
-        self.view.addUIViewBackground(name: "MainBackground")
-        
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Recovery password".localized
-        
-        loginOrEmail.placeholder = "Login or email".localized
-        hint.text = "Please enter your login or email".localized
-        sendItem.title = "Send".localized
+        setLayoutOptions()
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
         loginOrEmail.delegate = self
+    }
+    
+    func setLayoutOptions() {
+        loginOrEmail.layer.cornerRadius = loginOrEmail.frame.height/2
+        
+        self.view.addUIViewBackground(name: "MainBackground")
+        
+        self.title = "Recovery password".localized
+        
+        loginOrEmail.placeholder = "Login or email".localized
+        sendItem.title = "Send".localized
     }
     
     @objc func dismissKeyboard(){
@@ -54,10 +56,10 @@ class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelega
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let codeViewController = segue.destination as? ForgotPasswordCodeViewController else {return}
-        codeViewController.emailValue = self.loginOrEmail.text!
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let codeViewController = segue.destination as? ForgotPasswordCodeViewController else {return}
+//        codeViewController.emailValue = self.loginOrEmail.text!
+//    }
     
     @IBAction func arrowBackItemClick(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -74,11 +76,6 @@ class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelega
         }
         
         return true
-    }
-
-    
-    @IBAction func unWindForgotPasswordEmail(_ segue: UIStoryboardSegue) {
-        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

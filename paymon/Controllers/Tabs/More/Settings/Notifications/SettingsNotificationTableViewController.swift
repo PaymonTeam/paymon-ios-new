@@ -16,17 +16,33 @@ class SettingsNotificationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setLayoutOptions()
+        
+        loadSettings()
+        
+    }
+    
+    func setLayoutOptions() {
         transactionsCell.textLabel!.text! = "Transactions".localized
         vibrationCell.textLabel!.text! = "Vibration".localized
         soundCell.textLabel!.text! = "Sound".localized
         disturbCell.textLabel!.text! = "Do not disturb".localized
         
+        switchTransactions.onTintColor = UIColor.AppColor.Blue.primaryBlue
+        switchVibration.onTintColor = UIColor.AppColor.Blue.primaryBlue
+        switchWorry.onTintColor = UIColor.AppColor.Blue.primaryBlue
+        
         transactionsCell.accessoryView = switchTransactions
         vibrationCell.accessoryView = switchVibration
         disturbCell.accessoryView = switchWorry
         
-        loadSettings()
         
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let view = view as? UITableViewHeaderFooterView {
+            view.textLabel?.textColor = UIColor.white.withAlphaComponent(0.4)
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

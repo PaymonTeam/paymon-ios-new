@@ -102,7 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
             } else {
                 print("current user nil")
                 guard let startViewController = StoryBoard.main.instantiateInitialViewController() as? PaymonNavigationController else {return}
-                self.window!.rootViewController = startViewController
 
                 DispatchQueue.main.async {
                     self.window?.rootViewController?.navigationController?.present(startViewController, animated: false, completion: nil)
