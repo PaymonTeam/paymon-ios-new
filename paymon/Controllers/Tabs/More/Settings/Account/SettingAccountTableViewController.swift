@@ -56,9 +56,9 @@ class SettingAccountTableViewController: UITableViewController {
     
     @objc func segmentControlChangeValue(_ segmentControl : UISegmentedControl) {
         if switchShowEmail.isOn == false {
-            User.securityPasswordProtectedString = ""
+            User.securityPasscodeValue = ""
             
-            User.saveSecuritySettings()
+//            User.saveSecuritySettings()
         }
     }
     
@@ -72,18 +72,18 @@ class SettingAccountTableViewController: UITableViewController {
     // Load the password protection setting from userDefaults.
     func loadSettings() {
         
-        switchShowEmail.setOn(User.securitySwitchPasswordProtected, animated: true)
+        switchShowEmail.setOn(User.securityPasscode, animated: true)
         
     }
     
     // Save the changes made by user in the password protection setting.
     func saveSettings () {
-        User.securitySwitchPasswordProtected = switchShowEmail.isOn
+        User.securityPasscode = switchShowEmail.isOn
         
         if (switchShowEmail.isOn == false) {
-            User.securityPasswordProtectedString = ""
+            User.securityPasscodeValue = ""
         }
         
-        User.saveSecuritySettings()
+//        User.saveSecuritySettings()
     }
 }

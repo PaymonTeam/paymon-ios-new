@@ -1,7 +1,150 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13142" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sva-xb-Lfc">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12042"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Paymon Navigation Controller-->
+        <scene sceneID="CLN-1E-RtS">
+            <objects>
+                <navigationController storyboardIdentifier="PasscodeNavigationController" id="sva-xb-Lfc" customClass="PaymonNavigationController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ghv-Hu-dVX">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CfM-fB-0T2" kind="relationship" relationship="rootViewController" id="a6h-QO-hjG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ezQ-Ar-JJO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1114" y="102"/>
+        </scene>
+        <!--Passcode View Controller-->
+        <scene sceneID="iIz-x7-QSj">
+            <objects>
+                <viewController storyboardIdentifier="PasscodeViewController" id="CfM-fB-0T2" customClass="PasscodeViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NaC-CO-08s">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="VuU-1F-cEg">
+                                <rect key="frame" x="67.5" y="213.5" width="240" height="320"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="08N-ym-uRz"/>
+                                    <constraint firstAttribute="width" constant="240" id="SLa-Nl-szZ"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="DKq-zJ-gga">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="NumPad" id="pP8-Xu-hBA" customClass="NumPadCollectionViewCell" customModule="paymon" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19F-ld-wzU">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <color key="backgroundColor" white="1" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="0.79519731570512819" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="19F-ld-wzU" firstAttribute="top" secondItem="pP8-Xu-hBA" secondAttribute="top" id="5M6-wD-svH"/>
+                                            <constraint firstItem="19F-ld-wzU" firstAttribute="leading" secondItem="pP8-Xu-hBA" secondAttribute="leading" id="Cek-Fp-bkd"/>
+                                            <constraint firstAttribute="trailing" secondItem="19F-ld-wzU" secondAttribute="trailing" id="If5-P7-xNr"/>
+                                            <constraint firstItem="19F-ld-wzU" firstAttribute="centerX" secondItem="pP8-Xu-hBA" secondAttribute="centerX" id="PU1-bG-pcj"/>
+                                            <constraint firstAttribute="bottom" secondItem="19F-ld-wzU" secondAttribute="bottom" id="Sk2-oK-xQm"/>
+                                            <constraint firstItem="19F-ld-wzU" firstAttribute="centerY" secondItem="pP8-Xu-hBA" secondAttribute="centerY" id="mQ3-UI-13X"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="label" destination="19F-ld-wzU" id="MMM-oq-dTK"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5s-AT-2eK">
+                                <rect key="frame" x="135.5" y="161.5" width="104" height="20"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5PU-u9-oUJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="104" height="20"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iE3-O6-GMy" customClass="InputCirclePasscodeView" customModule="paymon" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ti-dE-FCE" customClass="InputCirclePasscodeView" customModule="paymon" customModuleProvider="target">
+                                                <rect key="frame" x="28" y="0.0" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Tb-a2-S3o" customClass="InputCirclePasscodeView" customModule="paymon" customModuleProvider="target">
+                                                <rect key="frame" x="56" y="0.0" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5if-bs-6uK" customClass="InputCirclePasscodeView" customModule="paymon" customModuleProvider="target">
+                                                <rect key="frame" x="84" y="0.0" width="20" height="20"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="5PU-u9-oUJ" secondAttribute="bottom" id="KbT-hq-bUN"/>
+                                    <constraint firstAttribute="height" constant="20" id="KnR-aa-Tu5"/>
+                                    <constraint firstAttribute="trailing" secondItem="5PU-u9-oUJ" secondAttribute="trailing" id="Nxu-MK-jlH"/>
+                                    <constraint firstItem="5PU-u9-oUJ" firstAttribute="leading" secondItem="Q5s-AT-2eK" secondAttribute="leading" id="TOa-oK-oN2"/>
+                                    <constraint firstAttribute="width" constant="104" id="WwG-yg-uqt"/>
+                                    <constraint firstItem="5PU-u9-oUJ" firstAttribute="top" secondItem="Q5s-AT-2eK" secondAttribute="top" id="dUK-vt-5PG"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Input your passcode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsW-lZ-Pu1">
+                                <rect key="frame" x="114" y="110" width="147.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="0.60384114580000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Q5s-AT-2eK" firstAttribute="top" secondItem="bsW-lZ-Pu1" secondAttribute="bottom" constant="32" id="01s-c9-p1R"/>
+                            <constraint firstItem="bsW-lZ-Pu1" firstAttribute="centerX" secondItem="Q5s-AT-2eK" secondAttribute="centerX" id="5Uk-uQ-dFI"/>
+                            <constraint firstItem="VuU-1F-cEg" firstAttribute="centerX" secondItem="NaC-CO-08s" secondAttribute="centerX" id="7J9-fl-guP"/>
+                            <constraint firstItem="VuU-1F-cEg" firstAttribute="top" secondItem="Q5s-AT-2eK" secondAttribute="bottom" constant="32" id="LZu-jS-7sh"/>
+                            <constraint firstItem="VuU-1F-cEg" firstAttribute="centerY" secondItem="NaC-CO-08s" secondAttribute="centerY" constant="40" id="QCz-dp-fSd"/>
+                            <constraint firstItem="Q5s-AT-2eK" firstAttribute="centerX" secondItem="VuU-1F-cEg" secondAttribute="centerX" id="iLi-7H-OSR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bLA-5Y-rGK"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aAM-x7-MDo"/>
+                    <connections>
+                        <outlet property="circleFour" destination="5if-bs-6uK" id="EfV-ce-j86"/>
+                        <outlet property="circleOne" destination="iE3-O6-GMy" id="Rac-2D-Wgf"/>
+                        <outlet property="circleThree" destination="8Tb-a2-S3o" id="K4c-6b-9A3"/>
+                        <outlet property="circleTwo" destination="0Ti-dE-FCE" id="iuA-2c-WY7"/>
+                        <outlet property="circlesView" destination="Q5s-AT-2eK" id="RUy-3X-BHT"/>
+                        <outlet property="hint" destination="bsW-lZ-Pu1" id="8yd-0C-oHY"/>
+                        <outlet property="passcodeCollectionView" destination="VuU-1F-cEg" id="JDx-gy-RKW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xfa-vq-BGF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-220" y="104.7976011994003"/>
+        </scene>
+    </scenes>
 </document>

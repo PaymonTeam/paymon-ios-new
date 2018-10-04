@@ -40,13 +40,21 @@ struct VCIdentifier {
     
     static let groupSettingViewController = "GroupSettingViewController"
     static let friendProfileViewController = "FriendProfileViewController"
-
-
-    
+    static let passcodeViewController = "PasscodeViewController"
+   
 }
 
 struct UserDefaultKey {
     static let ethernAddress = "ethernAdd"
+    static let NOTIFICATION_WORRY = "notification_worry_"
+    static let NOTIFICATION_VIBRATION = "notification_vibration_"
+    static let NOTIFICATION_MESSAGE_SOUND = "notification_message_sound_"
+
+    static let NOTIFICATION_TRANSACTIONS = "notification_transactions_"
+    static let NOTIFICATION_TRANSACTIONS_SOUND = "notification_transactions_sound_"
+    
+    static let SECURITY_PASSCODE = "security_password_protected_"
+    static let SECURITY_PASSCODE_VALUE = "security_passcode_value_"
 }
 
 struct Ethereum {
@@ -134,6 +142,5 @@ struct StoryBoard {
     static let bitcoin = UIStoryboard(name: "Bitcoin", bundle: Bundle.main)
     static let contacts = UIStoryboard(name: "Contacts", bundle: Bundle.main)
     static let passcode = UIStoryboard(name: "Passcode", bundle: Bundle.main)
-    
 }
 

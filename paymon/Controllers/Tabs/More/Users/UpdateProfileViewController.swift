@@ -89,9 +89,8 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
 
-        needRemoveObservers = true
-
         UserManager.updateAvatar(info: info, avatarView: avatar, vc: self)
-
+        
+        needRemoveObservers = true
     }
 }

@@ -258,10 +258,7 @@ public class UserManager {
         
     }
     
-    static func authByToken(window : UIWindow) {
-
-//        guard let startViewController = StoryBoard.main.instantiateInitialViewController() as? PaymonNavigationController else {return}
-        guard let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: "NavigationControllerTab") as? UINavigationController else {return}
+    static func authByToken() {
 
             let auth = RPC.PM_authToken()
             
@@ -275,13 +272,11 @@ public class UserManager {
                 
                 if e != nil || !(p is RPC.PM_userFull) {
                     print("Error auth by token", e as Any)
-//                    DispatchQueue.main.async {
-//
-//                    window.rootViewController?.present(tabsViewController, animated: false, completion: nil)
-//                    }
+
                 } else {
                     User.isAuthenticated = true
                     User.currentUser = (p as! RPC.PM_userFull)
+                    print(User.currentUser.photoUrl.url)
                     
                     User.saveConfig()
                     User.loadConfig()
@@ -289,36 +284,44 @@ public class UserManager {
                     NotificationManager.instance.postNotificationName(id: NotificationManager.userAuthorized)
                     NetworkManager.instance.sendFutureRequests()
                 }
-                
-                DispatchQueue.main.async {
-                    window.rootViewController?.present(tabsViewController, animated: false, completion: nil)
-                }
-                
             }
     }
     
     static func updateAvatar(info: [UIImagePickerController.InfoKey : Any], avatarView : CircularImageView, vc : UIViewController){
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
-            var imageURL : URL!
+            var resizeImage = UIImage()
             
-            imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL
+            let widthPixel = image.size.width * image.scale
+//            let heigthPixel = image.size.height * image.scale
             
+//            print("Image: width \(widthPixel) height: \(heigthPixel)")
+            if widthPixel < 256 {
+                _ = SimpleOkAlertController.init(title: "Upload photo failed".localized, message: "The minimum width of the photo can be 256 points".localized, vc: vc)
+                return
+            }
+            if widthPixel > 512 {
+                resizeImage = image.resizeWithWidth(width: 512)!
+            } else {
+                resizeImage = image
+            }
+//            print("Resize Image: width \(resizeImage.size.width * resizeImage.scale) height: \(resizeImage.size.height * resizeImage.scale)")
+
             let packet = RPC.PM_setProfilePhoto()
             
             let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
             
             NetworkManager.instance.sendPacket(packet) { packet, error in
                 
-                
                 if (packet is RPC.PM_boolTrue) {
                     Utils.stageQueue.run {
-                        PMFileManager.instance.startUploading(url: imageURL, onFinished: {
+                        PMFileManager.instance.startUploading(jpegData: resizeImage.jpegData(compressionQuality: 0.85)!, onFinished: {
                             
                             DispatchQueue.main.async {
                                 MBProgressHUD.hide(for: vc.view, animated: true)
                                 Utils.showSuccesHud(vc: vc)
-                                avatarView.image = image
+                                
+                                avatarView.image = resizeImage
 
                             }
                             print("File has uploaded")

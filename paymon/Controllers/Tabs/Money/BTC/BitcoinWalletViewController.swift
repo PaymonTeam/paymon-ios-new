@@ -84,7 +84,6 @@ class BitcoinWalletViewController: PaymonViewController {
 
     }
     
-    
     override func viewDidLoad() {
         setLayoutOptions()
         getWalletInfo()

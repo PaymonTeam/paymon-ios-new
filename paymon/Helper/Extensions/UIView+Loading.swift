@@ -13,30 +13,6 @@ import MBProgressHUD
 let kLoading = "Loading"
 
 extension UIView {
-
-    /// To show the loading on view
-    func showLoading() {
-        guard (self.subviews.last is MBProgressHUD) == false else { return }
-        let progressHud = MBProgressHUD.showAdded(to: self, animated: false)
-        progressHud.label.text = kLoading
-    }
-    /// To hide the loading from view
-    func hideLoading() {
-        MBProgressHUD.hide(for: self, animated: true)
-    }
-    /// To show the loading on window
-    func showLoadingOnWindow() {
-        if let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window {
-            let progressHud = MBProgressHUD.showAdded(to: window, animated: false)
-            progressHud.label.text = kLoading
-        }
-    }
-    /// To hide the loading from window
-    func hideLoadingOnWindow() {
-        if let app = UIApplication.shared.delegate as? AppDelegate, let window = app.window {
-            MBProgressHUD.hide(for: window, animated: true)
-        }
-    }
     
     func addUIViewBackground(name : String) {
         

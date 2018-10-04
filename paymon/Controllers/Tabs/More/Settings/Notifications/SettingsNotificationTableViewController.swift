@@ -63,17 +63,17 @@ class SettingsNotificationTableViewController: UITableViewController {
     
     // Load all the notification settings of user.
     func loadSettings() {
-        switchWorry.setOn(User.notificationSwitchWorry, animated: true)
-        switchVibration.setOn(User.notificationSwitchVibration, animated: true)
-        switchTransactions.setOn(User.notificationSwitchTransactions, animated: true)
+        switchWorry.setOn(User.notificationWorry, animated: true)
+        switchVibration.setOn(User.notificationVibration, animated: true)
+        switchTransactions.setOn(User.notificationTransactions, animated: true)
     }
     
     // Save all the changes, user made in the notification settings.
     func saveSettings () {
-        User.notificationSwitchWorry = switchWorry.isOn
-        User.notificationSwitchVibration = switchVibration.isOn
-        User.notificationSwitchTransactions = switchTransactions.isOn
+        User.notificationWorry = switchWorry.isOn
+        User.notificationVibration = switchVibration.isOn
+        User.notificationTransactions = switchTransactions.isOn
         
-        User.saveNotificationSettings()
+//        User.saveNotificationSettings()
     }
 }

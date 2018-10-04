@@ -30,21 +30,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        User.loadConfig()
+        NetworkManager.instance.reconnect()
+
         NotificationManager.instance.addObserver(self, id: NotificationManager.didConnectedToServer)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didDisconnectedFromServer)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didEstablishedSecuredConnection)
         NotificationManager.instance.addObserver(self, id: NotificationManager.authByTokenFailed)
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        window?.rootViewController = StoryBoard.main.instantiateInitialViewController()
 
-        User.loadConfig()
-
-        NetworkManager.instance.reconnect()
 
         //setup ether
 //        loadEthenWallet()
-        let vc = StoryBoard.main.instantiateInitialViewController()
-        self.window?.rootViewController = vc
 
         return true
     }
@@ -98,19 +99,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if id == NotificationManager.didEstablishedSecuredConnection {
             if User.currentUser != nil {
-                UserManager.authByToken(window: self.window!)
-            } else {
-                print("current user nil")
-                guard let startViewController = StoryBoard.main.instantiateInitialViewController() as? PaymonNavigationController else {return}
-
-                DispatchQueue.main.async {
-                    self.window?.rootViewController?.navigationController?.present(startViewController, animated: false, completion: nil)
-                }
-                
+                UserManager.authByToken()
             }
         } else if id == NotificationManager.didDisconnectedFromServer {
             if !User.isAuthenticated {
-
+                
             }
         } else if id == NotificationManager.authByTokenFailed {
             User.clearConfig()

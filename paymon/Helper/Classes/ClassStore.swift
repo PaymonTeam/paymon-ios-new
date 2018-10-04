@@ -55,8 +55,6 @@ class ClassStore {
             object = RPC.PM_updateMessageID();
         case RPC.PM_requestPhoto.svuid:
             object = RPC.PM_requestPhoto();
-        case RPC.PM_updatePhotoID.svuid:
-            object = RPC.PM_updatePhotoID();
         case RPC.PM_file.svuid:
             object = RPC.PM_file();
         case RPC.PM_filePart.svuid:

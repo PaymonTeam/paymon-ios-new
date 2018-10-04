@@ -10,13 +10,6 @@ import UIKit
 import MBProgressHUD
 
 
-class GroupSettingContactsTableViewCell : UITableViewCell {
-    @IBOutlet weak var name: UILabel!
-    
-    @IBOutlet weak var photo: CircularImageView!
-    @IBOutlet weak var btnCross: UIButton!
-    @IBOutlet weak var cross: UIImageView!
-}
 
 class GroupSettingViewController: PaymonViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -29,7 +22,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     @IBOutlet weak var groupTitle: UITextField!
 
     var users:[RPC.UserObject] = []
-    var chatID: Int32!
+    var groupId: Int32!
     var participants = SharedArray<RPC.UserObject>()
     var isCreator:Bool = false
     var creatorID:Int32!
@@ -39,9 +32,9 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        participants = MessageManager.instance.groupsUsers.value(forKey: chatID)!
+        participants = MessageManager.instance.groupsUsers.value(forKey: groupId)!
         
-        group = MessageManager.instance.groups[chatID]!
+        group = MessageManager.instance.groups[groupId]!
         groupTitle.text = group.title
         creatorID = group.creatorID;
         isCreator = creatorID == User.currentUser?.id
@@ -107,7 +100,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     @IBAction func btnAddParticipantsTapped(_ sender: Any) {
         let createGroupViewController = storyboard?.instantiateViewController(withIdentifier: "CreateGroupViewController") as! CreateGroupViewController
         createGroupViewController.isGroupAlreadyCreated = true
-        createGroupViewController.chatID = chatID
+        createGroupViewController.chatID = groupId
         createGroupViewController.participantsFromGroup = participants
         
         self.navigationController?.pushViewController(createGroupViewController, animated: true)
@@ -123,50 +116,11 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     }
 
     
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
-//        picker.dismiss(animated: true)
-//        if let image = info[UIImagePickerControllerEditedImage] as? UIImage, let currentUser = User.currentUser {
-//            guard let photo = MediaManager.instance.savePhoto(image: image, user: currentUser) else {
-//                return
-//            }
-//            guard let photoFile = MediaManager.instance.getFile(ownerID: photo.user_id, fileID: photo.id) else {
-//                return
-//            }
-//            print("file saved \(photoFile)")
-//            let packet = RPC.PM_group_setPhoto()
-//            packet.photo = photo
-//            packet.id = chatID
-//            let oldPhotoID = group.photo.id!
-//            let photoID = photo.id!
-//            groupImage.image = image
-//            ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: oldPhotoID, newPhotoID: photoID)
-//            
-//            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
-//            
-//            NetworkManager.instance.sendPacket(packet) { packet, error in
-//                
-//                DispatchQueue.main.async {
-//                    MBProgressHUD.hide(for: self.view, animated: true)
-//                }
-//                
-//                if (packet is RPC.PM_boolTrue) {
-//                    Utils.stageQueue.run {
-//                        PMFileManager.instance.startUploading(photo: photo, onFinished: {
-//                            print("File has uploaded")
-//                            
-//                        }, onError: { code in
-//                            print("file upload failed \(code)")
-//                            
-//                        }, onProgress: { p in
-//                        })
-//                    }
-//                } else {
-//                    
-//                    PMFileManager.instance.cancelFileUpload(fileID: photoID);
-//                }
-//            }
-//        }
-//    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        GroupManager.updateAvatar(groupId: self.groupId, info: info, avatarView: groupImage, vc: self)
+    }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         guard let chatVC = viewController as? ChatViewController else {return}
@@ -189,7 +143,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
 
         let setSettings = RPC.PM_group_setSettings()
-        setSettings.id = chatID;
+        setSettings.id = groupId;
         setSettings.title = groupTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         newGroupTitle = groupTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -202,7 +156,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
             let manager = MessageManager.instance
             if (response != nil) {
                 DispatchQueue.main.async {
-                    manager.groups[self.chatID]?.title = self.groupTitle.text!
+                    manager.groups[self.groupId]?.title = self.groupTitle.text!
                     Utils.showSuccesHud(vc: self)
                 }
             }
@@ -218,7 +172,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         alert.addAction(UIAlertAction(title: "Ok".localized, style: .default, handler: { (nil) in
 
             let removeParticipant = RPC.PM_group_removeParticipant();
-            removeParticipant.id = self.chatID;
+            removeParticipant.id = self.groupId;
             removeParticipant.userID = user.id;
             
             NetworkManager.instance.sendPacket(removeParticipant) { response, e in

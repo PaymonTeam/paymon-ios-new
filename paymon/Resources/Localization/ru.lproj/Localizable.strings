@@ -128,6 +128,8 @@
 "Success"="Успешно";
 "An error occurred during the update"="Произошла ошибка во время обновления";
 "Update failed"="Ошибка обновления";
+"Upload photo failed"="Ошибка загрузки фото";
+"The minimum width of the photo can be 256 points"="Минимальная ширина фотографии может составлять 256 точек";
 "Countries"="Страны";
 "Enter your country"="Введите вашу страну";
 
@@ -142,6 +144,7 @@
 "Open"="Открыть";
 "Cancel"="Отмена";
 "Delete"="Удалить";
+"Logged in as "="Вы вошли как ";
 
 /*Notification settings*/
 "Messeges"="Сообщения";
@@ -230,3 +233,10 @@
 
 /*Contacts*/
 "Invite to Paymon"="Пригласить в Paymon";
+
+/*Passcode*/
+"Enter passcode"="Введите код-пароль";
+"Create a passcode"="Придумайте код-пароль";
+"Repeat passcode"="Повторите код-пароль";
+"Feature Touch ID"="Поддержка Touch ID";
+"Your device does not support Touch ID functions"="Ваше устройство не поддерживает функцию Touch ID";

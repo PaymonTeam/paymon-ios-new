@@ -31,8 +31,6 @@ class ProfileViewController: PaymonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        User.clearConfig()
-//        self.dismiss(animated: true, completion: nil)
         setLayoutOptions()
     }
     

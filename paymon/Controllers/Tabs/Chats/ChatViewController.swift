@@ -67,7 +67,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         
         if isGroup {
             guard let groupSettingVC = storyboard?.instantiateViewController(withIdentifier: VCIdentifier.groupSettingViewController) as? GroupSettingViewController else {return}
-            groupSettingVC.chatID = chatID
+            groupSettingVC.groupId = chatID
             
             navigationController?.pushViewController(groupSettingVC, animated: true)
         } else {

@@ -60,9 +60,9 @@ class NotificationSoundTableViewController: UITableViewController{
         AudioServicesCreateSystemSoundID(soundItem.url as CFURL, &soundID)
         AudioServicesPlaySystemSound(soundID)
         
-        User.notificationSound = soundItem.url.lastPathComponent
+        User.notificationMessageSound = soundItem.url.lastPathComponent
         
-        User.saveNotificationSettings()
+//        User.saveNotificationSettings()
         
     }
     
@@ -75,7 +75,7 @@ class NotificationSoundTableViewController: UITableViewController{
         
         let soundItem = sounds[indexPath.item]
         
-        if soundItem.url.lastPathComponent == User.notificationSound {
+        if soundItem.url.lastPathComponent == User.notificationMessageSound {
             cell.accessoryType = .checkmark
         }
         

@@ -727,24 +727,6 @@ class RPC {
         }
     }
 
-    class PM_updatePhotoID : Update {
-        static let svuid:Int32 = 1917996696
-
-        var oldID:Int64!
-        var newID:Int64!
-
-        override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
-            oldID = stream.readInt64(exception)
-            newID = stream.readInt64(exception)
-        }
-
-        override func serializeToStream(stream: SerializableData) {
-            stream.write(PM_updatePhotoID.svuid)
-            stream.write(oldID)
-            stream.write(newID)
-        }
-    }
-
     class Group : Packet {
         static let svuid:Int32 = 1150008731
 
@@ -881,25 +863,14 @@ class RPC {
         static let svuid:Int32 = 446580011
 
         var id:Int32!
-        var photo:PM_photo!
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             id = stream.readInt32(exception)
-            let magic:Int32 = stream.readInt32(exception)
-            if (magic != PM_photo.svuid) {
-//                if (exception) {
-                    //throw Error(String.format("wrong var magic:PM_photo, got %x", magic))
-                    print("Error desz")
-//                }
-                return
-            }
-            photo = try? MessageMedia.deserialize(stream: stream, constructor: magic) as! PM_photo
         }
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_group_setPhoto.svuid)
             stream.write(id)
-            photo.serializeToStream(stream: stream)
         }
     }
 

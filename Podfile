@@ -15,6 +15,7 @@ target 'paymon' do
     pod 'AlamofireObjectMapper'
     #pod 'PureLayout'
     #pod 'Charts'
+    #pod 'RSKImageCropper'
     pod 'ScrollableGraphView'
     pod 'SDWebImage', '~> 4.0'
     pod 'FLAnimatedImage', '~> 1.0'

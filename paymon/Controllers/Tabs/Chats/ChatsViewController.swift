@@ -107,8 +107,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
-        self.navigationItem.title = "Chats".localized
-        
+        self.navigationItem.title = "Update...".localized
+
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.8)]
         searchBar.placeholder = "Search for users or groups".localized
         searchBar.showsCancelButton = false

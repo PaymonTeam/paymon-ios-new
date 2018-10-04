@@ -18,7 +18,6 @@ class SettingsSecurityTableViewController: UITableViewController {
         super.viewDidLoad()
 
         setLayoutOptions()
-        loadSettings()
         
     }
     
@@ -26,6 +25,7 @@ class SettingsSecurityTableViewController: UITableViewController {
         passwordProtectCell.textLabel!.text! = "Password protect".localized
         
         switchPasswordProtect.onTintColor = UIColor.AppColor.Blue.primaryBlue
+        switchPasswordProtect.setOn(User.securityPasscode, animated: false)
 
         passwordProtectCell.accessoryView = switchPasswordProtect
         
@@ -54,35 +54,17 @@ class SettingsSecurityTableViewController: UITableViewController {
     }
     
     @objc func segmentControlChangeValue(_ segmentControl : UISegmentedControl) {
-        if switchPasswordProtect.isOn == false {
-            User.securityPasswordProtectedString = ""
-            
-            User.saveSecuritySettings()
+        if switchPasswordProtect.isOn == true {
+            guard let passcodeViewController = StoryBoard.passcode.instantiateViewController(withIdentifier: VCIdentifier.passcodeViewController) as? PasscodeViewController else {return}
+            passcodeViewController.isNewPassword = true
+            self.present(passcodeViewController, animated: true, completion: nil)
+        } else {
+            User.savePasscode(passcodeValue: "", setPasscode : false)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        saveSettings()
-        
-    }
-    
-    // Load the password protection setting from userDefaults.
-    func loadSettings() {
-        
-        switchPasswordProtect.setOn(User.securitySwitchPasswordProtected, animated: true)
-        
-    }
-    
-    // Save the changes made by user in the password protection setting.
-    func saveSettings () {
-        User.securitySwitchPasswordProtected = switchPasswordProtect.isOn
-        
-        if (switchPasswordProtect.isOn == false) {
-            User.securityPasswordProtectedString = ""
-        }
-        
-        User.saveSecuritySettings()
     }
 }

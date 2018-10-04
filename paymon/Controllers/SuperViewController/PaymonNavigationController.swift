@@ -12,7 +12,12 @@ class PaymonNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setLayoutOptions()
+        
+    }
+    
+    func setLayoutOptions() {
         self.navigationBar.setTransparent()
         self.navigationBar.titleTextAttributes = [NSAttributedString.Key(rawValue: NSAttributedString.Key.foregroundColor.rawValue): UIColor.white.withAlphaComponent(0.7)]
     }

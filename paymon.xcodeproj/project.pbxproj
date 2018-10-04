@@ -94,7 +94,6 @@
 		B019555B20FFAD7500F3DDB0 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B019555420FFAD7400F3DDB0 /* Request.m */; };
 		B019555C20FFAD7500F3DDB0 /* RPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555520FFAD7500F3DDB0 /* RPC.swift */; };
 		B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */; };
-		B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */; };
 		B01F0DE821086E5A008FB6F0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B01F0DEA21086E5A008FB6F0 /* Localizable.strings */; };
 		B01F0DED2108700F008FB6F0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B01F0DEC2108700F008FB6F0 /* User.storyboard */; };
 		B01F0DF621087264008FB6F0 /* ProfileInfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F0DF021087263008FB6F0 /* ProfileInfoTableViewController.swift */; };
@@ -129,6 +128,13 @@
 		B08E390821512C53008E09D3 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390721512C53008E09D3 /* FriendProfileViewController.swift */; };
 		B08E390B21513BF1008E09D3 /* FriendProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */; };
 		B098FAD32164D6B6006C8EC7 /* Passcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B098FAD22164D6B6006C8EC7 /* Passcode.storyboard */; };
+		B098FAD72164DB12006C8EC7 /* NumPadCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAD52164DB12006C8EC7 /* NumPadCollectionViewCell.swift */; };
+		B098FADE2164DF3F006C8EC7 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FADD2164DF3F006C8EC7 /* PasscodeViewController.swift */; };
+		B098FAE02164F0DD006C8EC7 /* InputCirclePasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FADF2164F0DD006C8EC7 /* InputCirclePasscodeView.swift */; };
+		B098FAE22165EFEA006C8EC7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAE12165EFEA006C8EC7 /* MainNavigationController.swift */; };
+		B098FAE421660C08006C8EC7 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAE321660C08006C8EC7 /* UIImage.swift */; };
+		B098FAE621663478006C8EC7 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAE521663478006C8EC7 /* GroupManager.swift */; };
+		B098FAE921663548006C8EC7 /* GroupSettingContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAE821663548006C8EC7 /* GroupSettingContactsTableViewCell.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
 		B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97920FCF7DB00718608 /* Main.storyboard */; };
 		B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */; };
@@ -306,7 +312,6 @@
 		B019555420FFAD7400F3DDB0 /* Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		B019555520FFAD7500F3DDB0 /* RPC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPC.swift; sourceTree = "<group>"; };
 		B019555E20FFADA500F3DDB0 /* NetworkReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
-		B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGuardViewCell.swift; sourceTree = "<group>"; };
 		B01F0DD42108661A008FB6F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B01F0DD52108661A008FB6F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B01F0DD6210866FF008FB6F0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -346,6 +351,13 @@
 		B08E390721512C53008E09D3 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
 		B08E390A21513BF1008E09D3 /* FriendProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileTableViewController.swift; sourceTree = "<group>"; };
 		B098FAD22164D6B6006C8EC7 /* Passcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Passcode.storyboard; sourceTree = "<group>"; };
+		B098FAD52164DB12006C8EC7 /* NumPadCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPadCollectionViewCell.swift; sourceTree = "<group>"; };
+		B098FADD2164DF3F006C8EC7 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
+		B098FADF2164F0DD006C8EC7 /* InputCirclePasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputCirclePasscodeView.swift; sourceTree = "<group>"; };
+		B098FAE12165EFEA006C8EC7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		B098FAE321660C08006C8EC7 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		B098FAE521663478006C8EC7 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
+		B098FAE821663548006C8EC7 /* GroupSettingContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingContactsTableViewCell.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B099C97520FCF7DB00718608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B099C97A20FCF7DB00718608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -611,6 +623,23 @@
 			path = "Friend profile";
 			sourceTree = "<group>";
 		};
+		B098FAD42164DAE0006C8EC7 /* Passcode */ = {
+			isa = PBXGroup;
+			children = (
+				B098FAD52164DB12006C8EC7 /* NumPadCollectionViewCell.swift */,
+				B098FADF2164F0DD006C8EC7 /* InputCirclePasscodeView.swift */,
+			);
+			path = Passcode;
+			sourceTree = "<group>";
+		};
+		B098FAE721663537006C8EC7 /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				B098FAE821663548006C8EC7 /* GroupSettingContactsTableViewCell.swift */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
 		B099C96920FCF7DB00718608 = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +782,7 @@
 				D816BA332120C395001B6FE8 /* SuperViewController */,
 				B099C9B020FDD25D00718608 /* Others */,
 				B099C9AB20FDD23C00718608 /* Tabs */,
+				B098FADD2164DF3F006C8EC7 /* PasscodeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -851,11 +881,12 @@
 		B099C9B520FDD28400718608 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				B098FAE721663537006C8EC7 /* Groups */,
+				B098FAD42164DAE0006C8EC7 /* Passcode */,
 				B08DFD8C215937A0002B5C1A /* Contact */,
 				B08DFD8B21593767002B5C1A /* Chats */,
 				B08DFD8A21593760002B5C1A /* Chat */,
 				B0ACFFF2211233CB007BE95C /* Money */,
-				B01F0DCB21072DDD008FB6F0 /* KeyGuardViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -915,6 +946,7 @@
 				B019550720FFAA6500F3DDB0 /* Utils.swift */,
 				B0011B8221023F9000A3CBF1 /* UserManager.swift */,
 				B0AC1D25211456E8004D8577 /* CryptoManager.swift */,
+				B098FAE521663478006C8EC7 /* GroupManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -928,6 +960,7 @@
 				B01954FD20FFAA3E00F3DDB0 /* UIView+Loading.swift */,
 				B0011B722100F15E00A3CBF1 /* NotificationName.swift */,
 				B0C396B1210A50C700E0C344 /* UINavigationBar.swift */,
+				B098FAE321660C08006C8EC7 /* UIImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1141,6 +1174,7 @@
 				B019552C20FFAB6B00F3DDB0 /* StartViewController.swift */,
 				B0011B762101E10400A3CBF1 /* SignUpViewController.swift */,
 				B08CA88A21030F2100AAA805 /* SignInViewController.swift */,
+				B098FAE12165EFEA006C8EC7 /* MainNavigationController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1485,9 +1519,11 @@
 				B01954F820FFA9F000F3DDB0 /* KeyGenerator.swift in Sources */,
 				D820C6A72101232E001D3B00 /* SendViewController.swift in Sources */,
 				B03D13712131878F00F442AF /* TransEmptyTableViewCell.swift in Sources */,
+				B098FAE421660C08006C8EC7 /* UIImage.swift in Sources */,
 				B0C396A7210A3B2600E0C344 /* GamesViewController.swift in Sources */,
 				B0AC1D2821146AA4004D8577 /* ExchangeRatesUIView.swift in Sources */,
 				B019555620FFAD7500F3DDB0 /* PMTimer.m in Sources */,
+				B098FAE921663548006C8EC7 /* GroupSettingContactsTableViewCell.swift in Sources */,
 				B01F0DF921087264008FB6F0 /* UpdateProfileViewController.swift in Sources */,
 				B019555820FFAD7500F3DDB0 /* Connection.m in Sources */,
 				B01954E620FFA92100F3DDB0 /* User.swift in Sources */,
@@ -1497,6 +1533,7 @@
 				B0EA22B42163A9AE00092B8A /* AboutProgramTableViewController.swift in Sources */,
 				B01954E320FFA92100F3DDB0 /* QRGenerater.swift in Sources */,
 				B0011B6B2100A1C400A3CBF1 /* SyncMode.swift in Sources */,
+				B098FAE02164F0DD006C8EC7 /* InputCirclePasscodeView.swift in Sources */,
 				B019551620FFAA6600F3DDB0 /* SerializedBuffer-Wrapper.mm in Sources */,
 				D849F8402113A07C009B425E /* BuffersStorage.cpp in Sources */,
 				B019551A20FFAA6600F3DDB0 /* Utils.swift in Sources */,
@@ -1518,6 +1555,7 @@
 				B0EA22B02163840E00092B8A /* SettingAccountViewController.swift in Sources */,
 				B01F0DF821087264008FB6F0 /* UpdateProfileInfoTableViewController.swift in Sources */,
 				D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */,
+				B098FADE2164DF3F006C8EC7 /* PasscodeViewController.swift in Sources */,
 				B03D136E213185A100F442AF /* BitcoinTransactions.swift in Sources */,
 				B019550020FFAA3E00F3DDB0 /* UIView+Loading.swift in Sources */,
 				B06960842152A6D500B1E693 /* CircularImageView.swift in Sources */,
@@ -1532,10 +1570,10 @@
 				0EA074D6210658D2002FF527 /* GroupSettingViewController.swift in Sources */,
 				0E074C27210E3B0700CB3853 /* SettingsSecurityTableViewController.swift in Sources */,
 				B019554020FFAC0F00F3DDB0 /* KeystoreService.swift in Sources */,
+				B098FAD72164DB12006C8EC7 /* NumPadCollectionViewCell.swift in Sources */,
 				B0AC1D23211452BB004D8577 /* CryptoType.swift in Sources */,
 				0EA66BA7210F818C00CC1162 /* AboutProgramViewController.swift in Sources */,
 				B01954E420FFA92100F3DDB0 /* ClassStore.swift in Sources */,
-				B01F0DCC21072DDD008FB6F0 /* KeyGuardViewCell.swift in Sources */,
 				B019552020FFAA6600F3DDB0 /* SerializableData.mm in Sources */,
 				B01954E920FFA94600F3DDB0 /* EnumCollection.swift in Sources */,
 				B03D1369212F771600F442AF /* WalletTableInfoUIView.swift in Sources */,
@@ -1558,6 +1596,7 @@
 				B0C396B5210A7CF200E0C344 /* SimpleOkAlertController.swift in Sources */,
 				0EA074D4210656FC002FF527 /* ChatMessageItemRcvViewCell.swift in Sources */,
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
+				B098FAE22165EFEA006C8EC7 /* MainNavigationController.swift in Sources */,
 				B0C7447721147C7F008885C1 /* ExchangeRatesForChartsParser.swift in Sources */,
 				B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
@@ -1575,6 +1614,7 @@
 				D849F8422113A07C009B425E /* SerializedBuffer.cpp in Sources */,
 				B08E390821512C53008E09D3 /* FriendProfileViewController.swift in Sources */,
 				B042CB8A2137EEE200B8F195 /* KeysViewController.swift in Sources */,
+				B098FAE621663478006C8EC7 /* GroupManager.swift in Sources */,
 				B03D13772131AE0500F442AF /* TransactionTableViewCell.swift in Sources */,
 				B019554520FFAC5900F3DDB0 /* ConnectionManager.swift in Sources */,
 				B019551F20FFAA6600F3DDB0 /* KeychainWrapper.swift in Sources */,

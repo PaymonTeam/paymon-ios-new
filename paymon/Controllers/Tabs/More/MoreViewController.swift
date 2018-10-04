@@ -14,9 +14,7 @@ class MoreViewController: UIViewController {
     @IBOutlet weak var avatar: CircularImageView!
     @IBOutlet weak var login: UILabel!
     @IBOutlet weak var name: UILabel!
-    
-    @IBAction func settingsClick(_ sender: Any) {
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
