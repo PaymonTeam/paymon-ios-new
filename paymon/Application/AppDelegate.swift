@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import UserNotifications
 //import web3swift
 //import Geth
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListener {
+class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListener, UNUserNotificationCenterDelegate {
     
 //    var keystore = KeystoreService()
     var window: UIWindow?
@@ -43,11 +44,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
         window?.makeKeyAndVisible()
         window?.rootViewController = StoryBoard.main.instantiateInitialViewController()
 
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
+            if granted {
+                DispatchQueue.main.async {
+                    application.registerForRemoteNotifications()
+                }
+                print("Permission for notif was granted")
+            }
+        }
 
         //setup ether
 //        loadEthenWallet()
 
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print("Device token is: \(deviceTokenString)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Cant register this device for notif \(error)")
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("I received notif")
+        print(userInfo)
+        //TODO Add local notif
     }
     
 //    func loadEthenWallet() {

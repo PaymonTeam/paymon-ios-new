@@ -288,17 +288,33 @@ extension ChatViewController: UITableViewDataSource {
                         cell.messageLabel.text = message.text
                         cell.messageLabel.sizeToFit()
                         cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
-                        cell.photo.loadPhoto(url: (MessageManager.instance.users[message.from_id]?.photoUrl.url)!)
-                        cell.photo.fromId = message.from_id
+                        
+                        if let photoUrl = MessageManager.instance.users[message.from_id]?.photoUrl {
+                            cell.photo.loadPhoto(url: (photoUrl.url))
+                            cell.photo.fromId = message.from_id
+                        }
                         
                         let tapPhoto = UITapGestureRecognizer(target: self, action: #selector(self.clickPhoto(_:)))
                         cell.photo.isUserInteractionEnabled = true
                         cell.photo.addGestureRecognizer(tapPhoto)
                         
                         let user = MessageManager.instance.users[message.from_id]
-                        cell.name.text = Utils.formatUserName(user!)
+                        if user != nil {
+                            cell.name.text = Utils.formatUserName(user!)
+                        }
                         return cell
+
+                    } else if message.action is RPC.PM_messageActionGroupCreate {
+                        if let group = MessageManager.instance.groups[message.to_peer.group_id] {
+                            if let creator = MessageManager.instance.users[group.creatorID] {
+                                let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableCretedGroupCell") as! ChatsTableCretedGroupCell
+                                cell.label.text = "\(Utils.formatUserName(creator)) "+"created the group chat ".localized+"\"\(group.title!)\""
+                                return cell
+                            }
+                        }
+                        
                     }
+
                 } else {
                     if message.itemType == nil || message.itemType == .NONE {
                         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageRcvViewCell") as! ChatMessageRcvViewCell
@@ -310,6 +326,7 @@ extension ChatViewController: UITableViewDataSource {
                 }
             }
         }
+        
         return UITableViewCell()
     }
     

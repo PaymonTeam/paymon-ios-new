@@ -135,6 +135,7 @@
 		B098FAE421660C08006C8EC7 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAE321660C08006C8EC7 /* UIImage.swift */; };
 		B098FAE621663478006C8EC7 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAE521663478006C8EC7 /* GroupManager.swift */; };
 		B098FAE921663548006C8EC7 /* GroupSettingContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAE821663548006C8EC7 /* GroupSettingContactsTableViewCell.swift */; };
+		B098FAED2167A041006C8EC7 /* ChatsTableCretedGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B098FAEC2167A041006C8EC7 /* ChatsTableCretedGroupCell.swift */; };
 		B099C97620FCF7DB00718608 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B099C97520FCF7DB00718608 /* AppDelegate.swift */; };
 		B099C97B20FCF7DB00718608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97920FCF7DB00718608 /* Main.storyboard */; };
 		B099C98020FCF7DC00718608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B099C97E20FCF7DC00718608 /* LaunchScreen.storyboard */; };
@@ -358,6 +359,8 @@
 		B098FAE321660C08006C8EC7 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		B098FAE521663478006C8EC7 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		B098FAE821663548006C8EC7 /* GroupSettingContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingContactsTableViewCell.swift; sourceTree = "<group>"; };
+		B098FAEA2167748B006C8EC7 /* paymon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = paymon.entitlements; sourceTree = "<group>"; };
+		B098FAEC2167A041006C8EC7 /* ChatsTableCretedGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableCretedGroupCell.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B099C97520FCF7DB00718608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B099C97A20FCF7DB00718608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -636,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				B098FAE821663548006C8EC7 /* GroupSettingContactsTableViewCell.swift */,
+				B098FAEC2167A041006C8EC7 /* ChatsTableCretedGroupCell.swift */,
 			);
 			path = Groups;
 			sourceTree = "<group>";
@@ -665,6 +669,7 @@
 		B099C97420FCF7DB00718608 /* paymon */ = {
 			isa = PBXGroup;
 			children = (
+				B098FAEA2167748B006C8EC7 /* paymon.entitlements */,
 				B000A5C2215B848F00365024 /* GameBackground.gif */,
 				B099C9A420FDD1EB00718608 /* Helper */,
 				B099C9A520FDD1F800718608 /* Resources */,
@@ -1298,6 +1303,14 @@
 					B099C97120FCF7DB00718608 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					B099C98520FCF7DC00718608 = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -1601,6 +1614,7 @@
 				B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
 				B0EA22AD216372EE00092B8A /* MoreTableViewController.swift in Sources */,
+				B098FAED2167A041006C8EC7 /* ChatsTableCretedGroupCell.swift in Sources */,
 				B0D43B4921401D7D0052B1A9 /* ContactWasTableViewCell.swift in Sources */,
 				B019551820FFAA6600F3DDB0 /* PMFileManager.swift in Sources */,
 				B019556220FFADA500F3DDB0 /* NetworkReachability.swift in Sources */,
@@ -1833,9 +1847,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = paymon/paymon.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CX6AZ34SLQ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5YNJ6HYTVJ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1867,11 +1882,11 @@
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/lib-ios",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.max;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.paymon.ios;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "New Paymon Provisioning Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -1887,9 +1902,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = paymon/paymon.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CX6AZ34SLQ;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 5YNJ6HYTVJ;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"/usr/local/cryptopp-ios/include",
@@ -1908,11 +1924,11 @@
 					"$(PROJECT_DIR)/Pods/OpenSSL-Universal/lib-ios",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.paymon.max;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.paymon.ios;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "New Paymon Provisioning Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "paymon/Application/paymon-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

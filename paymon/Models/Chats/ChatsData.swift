@@ -10,6 +10,7 @@ public class CellChatData {
     var photoUrl:RPC.PM_photoURL!
     var name = ""
     var lastMessageText = ""
+    var lastMessageType : PMFileManager.FileType!
     var timeString = ""
     var time:Int64 = 0
     var chatID:Int32!

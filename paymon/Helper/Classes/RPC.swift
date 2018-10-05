@@ -381,7 +381,7 @@ class RPC {
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_userFull.svuid)
             stream.write(isEmailHidden ? (flags | RPC.UserObject.USER_FLAG_HIDDEN_EMAIL) : (flags & ~RPC.UserObject.USER_FLAG_HIDDEN_EMAIL))
-            stream.write(PM_userFull.svuid)
+            stream.write(flags)
             stream.write(id)
             stream.write(login)
             stream.write(first_name)
@@ -622,7 +622,8 @@ class RPC {
 
         var id:Int64!
         var from_id:Int32!
-        var to_id:Peer!
+        var to_id:Int32!
+        var to_peer:Peer!
         var date:Int32! = 0
         var reply_to_msg_id:Int32! = 0
         var text:String!
@@ -656,7 +657,7 @@ class RPC {
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> MessageAction {
             var result:MessageAction
             switch(constructor) {
-            case PM_user.svuid:
+            case PM_messageActionGroupCreate.svuid:
                 result = PM_messageActionGroupCreate()
             default: throw RPCError.DeserializeError
             }
@@ -670,29 +671,10 @@ class RPC {
         static let svuid:Int32 = 42618952
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
-            let magic = stream.readInt32(exception)
-            if magic != RPC.SVUID_ARRAY {
-                print(String(format: "user full wrong Vector magic %x", magic))
-                return
-            }
-            let count = stream.readInt32(exception)
-            for _ in 0..<count {
-                guard let user = try? UserObject.deserialize(stream: stream, constructor: stream.readInt32(exception)) else {return}
-                users.append(user)
-            }
         }
         
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_messageActionGroupCreate.svuid)
-            stream.write(message)
-            stream.write(RPC.SVUID_ARRAY)
-            let count = Int32(users.count)
-            stream.write(count)
-            for i in 0..<count {
-                if let user = users.array[Int(i)] as? PM_userFull {
-                    user.serializeToStream(stream: stream)
-                }
-            }
         }
     }
 
@@ -1022,12 +1004,14 @@ class RPC {
             if ((flags & Message.MESSAGE_FLAG_FROM_ID) != 0) {
                 from_id = stream.readInt32(exception)
             }
-            to_id = try? Peer.deserialize(stream: stream, constructor: stream.readInt32(exception))
+            to_peer = try? Peer.deserialize(stream: stream, constructor: stream.readInt32(exception))
+            
+            to_id = to_peer is PM_peerUser ? to_peer.user_id : to_peer.group_id
             if (from_id == 0) {
-                if (to_id.user_id != 0) {
-                    from_id = to_id.user_id
+                if (to_peer.user_id != 0) {
+                    from_id = to_peer.user_id
                 } else {
-                    from_id = -to_id.channel_id
+                    from_id = -to_peer.channel_id
                 }
             }
             if ((flags & Message.MESSAGE_FLAG_REPLY) != 0) {
@@ -1057,7 +1041,10 @@ class RPC {
             if ((flags & Message.MESSAGE_FLAG_FROM_ID) != 0) {
                 stream.write(from_id)
             }
-            to_id.serializeToStream(stream: stream)
+            
+            if to_peer != nil {
+                to_peer.serializeToStream(stream: stream)
+            }
 
             if ((flags & Message.MESSAGE_FLAG_REPLY) != 0) {
                 stream.write(reply_to_msg_id)
@@ -1085,23 +1072,23 @@ class RPC {
                 from_id = stream.readInt32(exception)
             }
 
-            do {
-                to_id = try Peer.deserialize(stream: stream, constructor: stream.readInt32(exception))
-            } catch {
-                to_id = nil
-            }
+            
+            to_peer = try? Peer.deserialize(stream: stream, constructor: stream.readInt32(exception))
+            
+            to_id = to_peer is PM_peerUser ? to_peer.user_id : to_peer.group_id
 
             if to_id == nil {
                 print("Error PM_messageItem")
                 return
             }
             if (from_id == 0) {
-                if (to_id.user_id != 0) {
-                    from_id = to_id.user_id
+                if (to_peer.user_id != 0) {
+                    from_id = to_peer.user_id
                 } else {
-                    from_id = -to_id.channel_id
+                    from_id = -to_peer.channel_id
                 }
             }
+           
             if ((flags & Message.MESSAGE_FLAG_REPLY) != 0) {
                 reply_to_msg_id = stream.readInt32(exception)
             }
@@ -1125,8 +1112,7 @@ class RPC {
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_messageItem.svuid)
-            let b:Bool = unread
-            flags = b ? (flags | Message.MESSAGE_FLAG_UNREAD) : (flags & (~Message.MESSAGE_FLAG_UNREAD))
+            flags = unread ? (flags | Message.MESSAGE_FLAG_UNREAD) : (flags & (~Message.MESSAGE_FLAG_UNREAD))
             flags = (action != nil) ? (flags | Message.MESSAGE_FLAG_ACTION) : (flags & ~Message.MESSAGE_FLAG_ACTION)
             stream.write(flags)
             stream.write(id)
@@ -1134,8 +1120,9 @@ class RPC {
             if ((flags & Message.MESSAGE_FLAG_FROM_ID) != 0) {
                 stream.write(from_id)
             }
-            to_id.serializeToStream(stream: stream)
-
+            if to_peer != nil {
+                to_peer.serializeToStream(stream: stream)
+            }
             if ((flags & Message.MESSAGE_FLAG_REPLY) != 0) {
                 stream.write(reply_to_msg_id)
             }

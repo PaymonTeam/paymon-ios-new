@@ -72,7 +72,7 @@ class MessageManager : NotificationManagerListener {
 
         var chatID:Int32
 
-        if let to_id = msg.to_id.user_id {
+        if let to_id = msg.to_peer.user_id {
             if (msg.from_id == currentUser.id) {
                 chatID = to_id
             } else {
@@ -105,7 +105,7 @@ class MessageManager : NotificationManagerListener {
             } else {
                 lastMessages[ldmIndex] = msg.id
             }
-        } else if let to_id = msg.to_id.group_id {
+        } else if let to_id = msg.to_peer.group_id {
             chatID = to_id
 
             var list = groupMessages[chatID]
@@ -226,11 +226,11 @@ class MessageManager : NotificationManagerListener {
                 var messagesToShow:[Int64] = []
                 for msg in messages.array {
                     putMessage(msg, serverTime: true)
-                    var to_id = msg.to_id.user_id
+                    var to_id = msg.to_peer.user_id
                     var isGroup = false
                     if to_id == 0 {
                         isGroup = true
-                        to_id = msg.to_id.group_id
+                        to_id = msg.to_peer.group_id
                     }
                     if !isGroup {
                         if ((to_id == currentChatID && msg.from_id == User.currentUser!.id) || (to_id == User.currentUser!.id && msg.from_id == currentChatID)) {
@@ -272,7 +272,7 @@ class MessageManager : NotificationManagerListener {
                 newMessage.id = newID
                 newMessage.date = oldMessage.date
                 newMessage.from_id = oldMessage.from_id
-                newMessage.to_id = oldMessage.to_id
+                newMessage.to_peer = oldMessage.to_peer
                 newMessage.edit_date = oldMessage.edit_date
                 newMessage.flags = oldMessage.flags
                 newMessage.reply_to_msg_id = oldMessage.reply_to_msg_id
@@ -281,10 +281,10 @@ class MessageManager : NotificationManagerListener {
 
                 putMessage(newMessage, serverTime: false)
                 _ = messages.removeValue(forKey: oldID)
-                if (newMessage.to_id is RPC.PM_peerUser) {
-                    lastMessages[newMessage.to_id.user_id] = newMessage.id
-                } else if (newMessage.to_id is RPC.PM_peerGroup) {
-                    lastGroupMessages[newMessage.to_id.group_id] = newMessage.id
+                if (newMessage.to_peer is RPC.PM_peerUser) {
+                    lastMessages[newMessage.to_peer.user_id] = newMessage.id
+                } else if (newMessage.to_peer is RPC.PM_peerGroup) {
+                    lastGroupMessages[newMessage.to_peer.group_id] = newMessage.id
                 }
             }
         }
@@ -306,11 +306,11 @@ class MessageManager : NotificationManagerListener {
         message.itemType = .NONE
         message.from_id = User.currentUser!.id
         if isGroup {
-            message.to_id = RPC.PM_peerGroup()
-            message.to_id.group_id = chatId
+            message.to_peer = RPC.PM_peerGroup()
+            message.to_peer.group_id = chatId
         } else {
-            message.to_id = RPC.PM_peerUser()
-            message.to_id.user_id = chatId
+            message.to_peer = RPC.PM_peerUser()
+            message.to_peer.user_id = chatId
         }
         message.id = mid
         message.text = text

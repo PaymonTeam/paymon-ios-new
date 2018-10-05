@@ -218,10 +218,14 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                 var lastMsgPhoto:RPC.PM_photoURL? = nil
                 if let lastMessageID = MessageManager.instance.lastGroupMessages[group.id] {
                     if let msg = MessageManager.instance.messages[lastMessageID] {
-                        if (msg is RPC.PM_message) {
+                        if msg is RPC.PM_message {
                             lastMessageText = msg.text
-                        } else if (msg is RPC.PM_messageItem) {
-                            lastMessageText = String(describing: msg.itemType!)
+                            data.lastMessageType = .NONE
+                        } else if msg is RPC.PM_messageItem {
+                            if msg.action is RPC.PM_messageActionGroupCreate {
+                                lastMessageText = "Group chat created".localized
+                                data.lastMessageType = .ACTION
+                            }
                         }
                         data.time = Int64(msg.date)
                         lastMessageTimeString = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
@@ -308,6 +312,12 @@ extension ChatsViewController: UITableViewDataSource {
             cell.photo.loadPhoto(url: groupData.photoUrl.url)
             if groupData.lastMsgPhoto != nil {
                 cell.lastMessagePhoto.loadPhoto(url: (groupData.lastMsgPhoto?.url)!)
+            }
+            if groupData.lastMessageType == .ACTION {
+                cell.lastMessageText.textColor = UIColor.AppColor.Blue.primaryBlue.withAlphaComponent(0.6)
+            } else {
+                cell.lastMessageText.textColor = UIColor.white.withAlphaComponent(0.6)
+
             }
             return cell
         }

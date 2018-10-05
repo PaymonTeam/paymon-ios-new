@@ -14,6 +14,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <Contacts/CNContact.h>
+#import <UserNotifications/UserNotifications.h>
 //#import <Charts/Charts-Swift.h>
 //#import "BRWalletManager.h"
 //#import "BRWallet.h"

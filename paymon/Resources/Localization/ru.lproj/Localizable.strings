@@ -89,6 +89,8 @@
 "last seen "="Был(а) ";
 "Info"="Информация";
 "Participants: "="Участники: ";
+"created the group chat "="создал(а) группу ";
+"Group chat created"="Группа создана";
 
 /*Group settings*/
 "Are you sure to remove this user?"="Вы уверены, что хотите удалить этого пользователя из группы?";
