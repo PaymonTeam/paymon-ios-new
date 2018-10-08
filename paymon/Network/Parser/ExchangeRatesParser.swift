@@ -48,7 +48,6 @@ class ExchangeRateParser{
                 print("Error srializing json:", jsonError)
             }
             
-            print(result)
             NotificationCenter.default.post(Notification(name: .getCourse, object: result))
 
 

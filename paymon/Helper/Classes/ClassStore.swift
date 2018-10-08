@@ -37,6 +37,8 @@ class ClassStore {
             object = RPC.PM_user();
         case RPC.PM_userFull.svuid:
             object = RPC.PM_userFull();
+        case RPC.PM_userSelf.svuid:
+            object = RPC.PM_userSelf();
         case RPC.PM_addFriend.svuid:
             object = RPC.PM_addFriend();
         case RPC.PM_DHParams.svuid:

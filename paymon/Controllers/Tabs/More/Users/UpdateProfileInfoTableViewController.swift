@@ -144,7 +144,7 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
             return newLength <= 128
         case surnameInfo:
             return newLength <= 128
-        default: print("")
+        default: break
         }
         
         return true

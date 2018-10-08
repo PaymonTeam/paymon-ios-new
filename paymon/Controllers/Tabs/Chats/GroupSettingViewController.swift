@@ -54,7 +54,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         case groupTitle:
             return newLength <= 128
         
-        default: print("")
+        default: break
         }
         
         return true

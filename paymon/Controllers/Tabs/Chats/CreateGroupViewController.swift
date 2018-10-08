@@ -166,7 +166,6 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                     }
                 } else {
                     self.saveSelested = false
-                    print("response false")
                 }
             }
         } else {

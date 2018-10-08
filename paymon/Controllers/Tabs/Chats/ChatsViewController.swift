@@ -37,17 +37,18 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        
+        
         NotificationManager.instance.removeObserver(self, id: NotificationManager.dialogsNeedReload)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.userAuthorized)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didDisconnectedFromServer)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didReceivedNewMessages)
-        
-        super.viewWillDisappear(animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        list.removeAll()
         
         setLayoutOptions()
         
@@ -95,7 +96,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("hey")
         self.searchBarCancelButtonShow(show: true)
     }
     
@@ -178,6 +178,9 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if (id == NotificationManager.dialogsNeedReload || id == NotificationManager.didReceivedNewMessages) {
+            
+            self.filteredChats.removeAll()
+            self.list.removeAll()
             
             var array:[CellChatData] = []
             for user in MessageManager.instance.userContacts.values {
@@ -288,6 +291,8 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
 
 extension ChatsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("reload")
+
         return filteredChats.count
     }
     

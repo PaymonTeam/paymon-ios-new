@@ -109,7 +109,7 @@ class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDeleg
             return newLength <= 96
         case repeatPassword:
             return newLength <= 96
-        default: print("")
+        default: break
         }
         
         return true

@@ -75,9 +75,7 @@ class PasscodeViewController: PaymonViewController {
     }
     
     func clearInputRow() {
-
         inputKeyCode = []
-        print("Clear Input key code \(inputKeyCode.count)")
 
         for i in 0..<4 {
             inputCircles[i].clearColor()
@@ -86,7 +84,6 @@ class PasscodeViewController: PaymonViewController {
     
     func inputAction() {
         
-        print("Input key code \(inputKeyCode.count)")
         for i in 0..<inputKeyCode.count {
             inputCircles[i].fillColor()
         }
@@ -129,9 +126,8 @@ class PasscodeViewController: PaymonViewController {
                 if repeatNewPassword == newPassword {
                     User.savePasscode(passcodeValue: newPassword, setPasscode: true)
                     self.dismiss(animated: true, completion: nil)
-                    print(newPassword)
-                    print(repeatNewPassword)
                 } else {
+                    repeatNewPassword = ""
                     circlesView.shake()
                 }
             }
@@ -196,7 +192,7 @@ extension PasscodeViewController : UICollectionViewDelegate, UICollectionViewDat
                             appDelegate.window?.rootViewController = tabsViewController
                         }
                     } else {
-                        print("incorrect")
+                        print("incorrect Touch ID")
                     }
                     
                 })

@@ -11,7 +11,7 @@ class ProfileInfoTableViewController : UITableViewController {
     
     func updateView() {
         
-        guard let user = User.currentUser as RPC.PM_userFull? else {
+        guard let user = User.currentUser as RPC.PM_userSelf? else {
             return
         }
         

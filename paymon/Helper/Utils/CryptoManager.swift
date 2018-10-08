@@ -109,8 +109,6 @@ class CryptoManager {
     
     static func cutBitcoinWallet(scan : String) -> String{
         
-        print("scan is: " + scan)
-        
         var cutString = ""
         let parts = scan.components(separatedBy: ":")
         
@@ -120,7 +118,6 @@ class CryptoManager {
             } else {
                 cutString = scan
             }
-            print("cut string is: " + cutString)
         }
         
         return cutString

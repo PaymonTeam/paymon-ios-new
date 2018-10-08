@@ -13,10 +13,6 @@
         <scene sceneID="qZj-NI-Zzv">
             <objects>
                 <viewController storyboardIdentifier="SettingsViewController" title="Settings View Controller" id="eer-zw-zyR" customClass="SettingsViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="4w3-Qo-4ql"/>
-                        <viewControllerLayoutGuide type="bottom" id="x1a-jN-fN6"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lle-Oy-otN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,12 +26,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mtV-RC-GuQ" firstAttribute="leading" secondItem="lle-Oy-otN" secondAttribute="leading" id="2Qw-YH-4sb"/>
-                            <constraint firstItem="x1a-jN-fN6" firstAttribute="top" secondItem="mtV-RC-GuQ" secondAttribute="bottom" id="82i-cR-Isc"/>
-                            <constraint firstAttribute="trailing" secondItem="mtV-RC-GuQ" secondAttribute="trailing" id="oqC-Lb-fvP"/>
-                            <constraint firstItem="mtV-RC-GuQ" firstAttribute="top" secondItem="4w3-Qo-4ql" secondAttribute="bottom" id="xxa-0f-P21"/>
+                            <constraint firstItem="mtV-RC-GuQ" firstAttribute="leading" secondItem="zbx-fK-t4A" secondAttribute="leading" id="2Qw-YH-4sb"/>
+                            <constraint firstItem="zbx-fK-t4A" firstAttribute="bottom" secondItem="mtV-RC-GuQ" secondAttribute="bottom" id="82i-cR-Isc"/>
+                            <constraint firstItem="zbx-fK-t4A" firstAttribute="trailing" secondItem="mtV-RC-GuQ" secondAttribute="trailing" id="oqC-Lb-fvP"/>
+                            <constraint firstItem="mtV-RC-GuQ" firstAttribute="top" secondItem="zbx-fK-t4A" secondAttribute="top" id="xxa-0f-P21"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="VYV-35-3ZQ"/>
+                        <viewLayoutGuide key="safeArea" id="zbx-fK-t4A"/>
                     </view>
                     <navigationItem key="navigationItem" id="Qy9-iq-Gou"/>
                 </viewController>
@@ -47,11 +43,11 @@
         <scene sceneID="uGI-uI-AMV">
             <objects>
                 <tableViewController id="rTw-jc-ujB" customClass="SettingsTableViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="18" id="K6P-u7-DxR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="18" id="K6P-u7-DxR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="separatorColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection id="E1R-Rd-LRD">
                                 <cells>
@@ -59,7 +55,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Umz-Ht-da1" id="qSb-4l-UpG">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Notifications" translatesAutoresizingMaskIntoConstraints="NO" id="TRK-fb-IMV">
@@ -97,7 +93,7 @@
                                         <rect key="frame" x="0.0" y="98" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fpm-Ag-QVk" id="QGn-gE-rV1">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Account" translatesAutoresizingMaskIntoConstraints="NO" id="YBo-h4-LfX">
@@ -131,7 +127,7 @@
                                         <rect key="frame" x="0.0" y="142" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cj5-kg-NrS" id="TMM-td-gBO">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WalletSetting" translatesAutoresizingMaskIntoConstraints="NO" id="QSF-F2-UFJ">
@@ -162,7 +158,7 @@
                                         <rect key="frame" x="0.0" y="186" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7dL-LL-cjA" id="jjH-Rd-JS6">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Security" translatesAutoresizingMaskIntoConstraints="NO" id="43x-8q-Qug">
@@ -200,7 +196,7 @@
                                         <rect key="frame" x="0.0" y="249" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H8B-Ht-ekw" id="cgD-IZ-06x">
-                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutApp" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-bk-P0O">
@@ -238,7 +234,7 @@
                                         <rect key="frame" x="0.0" y="312" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5qZ-mm-cbI" id="Vzo-4I-51E">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jg2-NY-fdl">
@@ -289,10 +285,6 @@
         <scene sceneID="LKh-vN-56i">
             <objects>
                 <viewController title="About Program View Controller" id="Eai-zS-uWF" customClass="AboutProgramViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3L4-Yk-DKp"/>
-                        <viewControllerLayoutGuide type="bottom" id="qJd-Rp-r3U"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="i52-wZ-ebV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -319,19 +311,19 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="C54-tP-qrm" firstAttribute="centerX" secondItem="i52-wZ-ebV" secondAttribute="centerX" id="9N6-UU-yXW"/>
+                            <constraint firstItem="C54-tP-qrm" firstAttribute="centerX" secondItem="NsZ-Xt-6rZ" secondAttribute="centerX" id="9N6-UU-yXW"/>
                             <constraint firstItem="qye-3F-lyN" firstAttribute="top" secondItem="1Zs-qy-n6V" secondAttribute="bottom" constant="16" id="RDn-KG-7K9"/>
                             <constraint firstItem="1Zs-qy-n6V" firstAttribute="top" secondItem="C54-tP-qrm" secondAttribute="bottom" constant="16" id="UVT-7H-pth"/>
-                            <constraint firstItem="1Zs-qy-n6V" firstAttribute="leading" secondItem="3WB-cy-fyw" secondAttribute="leading" constant="16" id="WAe-Vz-WrA"/>
-                            <constraint firstItem="3WB-cy-fyw" firstAttribute="trailing" secondItem="1Zs-qy-n6V" secondAttribute="trailing" constant="16" id="Xzc-J5-pQZ"/>
+                            <constraint firstItem="1Zs-qy-n6V" firstAttribute="leading" secondItem="NsZ-Xt-6rZ" secondAttribute="leading" constant="16" id="WAe-Vz-WrA"/>
+                            <constraint firstItem="NsZ-Xt-6rZ" firstAttribute="trailing" secondItem="1Zs-qy-n6V" secondAttribute="trailing" constant="16" id="Xzc-J5-pQZ"/>
                             <constraint firstItem="1Zs-qy-n6V" firstAttribute="trailing" secondItem="i52-wZ-ebV" secondAttribute="trailingMargin" id="h6E-Cq-oEr"/>
                             <constraint firstItem="1Zs-qy-n6V" firstAttribute="leading" secondItem="i52-wZ-ebV" secondAttribute="leadingMargin" id="hZf-8N-mNy"/>
-                            <constraint firstItem="C54-tP-qrm" firstAttribute="top" secondItem="3L4-Yk-DKp" secondAttribute="bottom" constant="16" id="igd-uI-sHJ"/>
-                            <constraint firstItem="qye-3F-lyN" firstAttribute="leading" secondItem="3WB-cy-fyw" secondAttribute="leading" id="iuq-KF-3dN"/>
-                            <constraint firstItem="qye-3F-lyN" firstAttribute="trailing" secondItem="3WB-cy-fyw" secondAttribute="trailing" id="jYL-jh-MPc"/>
-                            <constraint firstItem="qJd-Rp-r3U" firstAttribute="top" secondItem="qye-3F-lyN" secondAttribute="bottom" id="odg-tz-eZE"/>
+                            <constraint firstItem="C54-tP-qrm" firstAttribute="top" secondItem="NsZ-Xt-6rZ" secondAttribute="top" constant="16" id="igd-uI-sHJ"/>
+                            <constraint firstItem="qye-3F-lyN" firstAttribute="leading" secondItem="NsZ-Xt-6rZ" secondAttribute="leading" id="iuq-KF-3dN"/>
+                            <constraint firstItem="qye-3F-lyN" firstAttribute="trailing" secondItem="NsZ-Xt-6rZ" secondAttribute="trailing" id="jYL-jh-MPc"/>
+                            <constraint firstItem="NsZ-Xt-6rZ" firstAttribute="bottom" secondItem="qye-3F-lyN" secondAttribute="bottom" id="odg-tz-eZE"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="3WB-cy-fyw"/>
+                        <viewLayoutGuide key="safeArea" id="NsZ-Xt-6rZ"/>
                     </view>
                     <connections>
                         <outlet property="versionLabel" destination="1Zs-qy-n6V" id="8iJ-xw-nNs"/>
@@ -448,10 +440,6 @@
         <scene sceneID="Bau-By-M4z">
             <objects>
                 <viewController title="Settings Notification View Controller" id="61e-18-5be" customClass="SettingsNotificationViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Gt9-Le-qho"/>
-                        <viewControllerLayoutGuide type="bottom" id="dx0-cG-3dX"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="25m-vc-tn6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -465,12 +453,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="zvY-7Z-ji4" firstAttribute="top" secondItem="Gt9-Le-qho" secondAttribute="bottom" id="8dQ-Yh-lKW"/>
-                            <constraint firstAttribute="trailing" secondItem="zvY-7Z-ji4" secondAttribute="trailing" id="ONE-KG-eeJ"/>
-                            <constraint firstItem="dx0-cG-3dX" firstAttribute="top" secondItem="zvY-7Z-ji4" secondAttribute="bottom" id="URP-o9-iaf"/>
-                            <constraint firstItem="zvY-7Z-ji4" firstAttribute="leading" secondItem="25m-vc-tn6" secondAttribute="leading" id="wKP-ey-XtL"/>
+                            <constraint firstItem="zvY-7Z-ji4" firstAttribute="top" secondItem="tAn-Ik-WM5" secondAttribute="top" id="8dQ-Yh-lKW"/>
+                            <constraint firstItem="tAn-Ik-WM5" firstAttribute="trailing" secondItem="zvY-7Z-ji4" secondAttribute="trailing" id="ONE-KG-eeJ"/>
+                            <constraint firstItem="tAn-Ik-WM5" firstAttribute="bottom" secondItem="zvY-7Z-ji4" secondAttribute="bottom" id="URP-o9-iaf"/>
+                            <constraint firstItem="zvY-7Z-ji4" firstAttribute="leading" secondItem="tAn-Ik-WM5" secondAttribute="leading" id="wKP-ey-XtL"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="9Zr-Uf-73K"/>
+                        <viewLayoutGuide key="safeArea" id="tAn-Ik-WM5"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="eio-Kh-9in"/>
                 </viewController>
@@ -592,10 +580,6 @@
         <scene sceneID="02c-5N-hfQ">
             <objects>
                 <viewController id="GXR-Qm-fWE" customClass="NotificationSoundViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="HxK-mk-zTh"/>
-                        <viewControllerLayoutGuide type="bottom" id="bhg-v4-yze"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UXU-ke-eXX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="583"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -609,12 +593,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="bhg-v4-yze" firstAttribute="top" secondItem="b0u-lZ-MGi" secondAttribute="bottom" id="ZeM-K3-PsM"/>
-                            <constraint firstItem="b0u-lZ-MGi" firstAttribute="top" secondItem="HxK-mk-zTh" secondAttribute="bottom" id="gqk-5J-n1g"/>
-                            <constraint firstAttribute="trailing" secondItem="b0u-lZ-MGi" secondAttribute="trailing" id="ha5-nq-Hgh"/>
-                            <constraint firstItem="b0u-lZ-MGi" firstAttribute="leading" secondItem="UXU-ke-eXX" secondAttribute="leading" id="rdH-ED-Rjm"/>
+                            <constraint firstItem="NdE-7c-UuX" firstAttribute="bottom" secondItem="b0u-lZ-MGi" secondAttribute="bottom" id="ZeM-K3-PsM"/>
+                            <constraint firstItem="b0u-lZ-MGi" firstAttribute="top" secondItem="NdE-7c-UuX" secondAttribute="top" id="gqk-5J-n1g"/>
+                            <constraint firstItem="NdE-7c-UuX" firstAttribute="trailing" secondItem="b0u-lZ-MGi" secondAttribute="trailing" id="ha5-nq-Hgh"/>
+                            <constraint firstItem="b0u-lZ-MGi" firstAttribute="leading" secondItem="NdE-7c-UuX" secondAttribute="leading" id="rdH-ED-Rjm"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="okp-CR-RrW"/>
+                        <viewLayoutGuide key="safeArea" id="NdE-7c-UuX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="bCW-fS-lyC"/>
                 </viewController>
@@ -632,28 +616,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" red="1" green="1" blue="1" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="K53-0x-dMS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SoundCell" id="K53-0x-dMS">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K53-0x-dMS" id="YZl-Ip-MDp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pCZ-WX-NfZ">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pCZ-WX-NfZ" id="rOx-d1-HYH">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IOV-VO-ICx">
-                                <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IOV-VO-ICx" id="pG5-vZ-cDA">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
@@ -675,10 +641,6 @@
         <scene sceneID="i7r-tf-ogl">
             <objects>
                 <viewController id="1qO-sg-WLi" customClass="SettingsSecurityViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="IUh-hr-44Z"/>
-                        <viewControllerLayoutGuide type="bottom" id="dY2-lS-OgX"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5Ks-yH-BwO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -692,12 +654,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dY2-lS-OgX" firstAttribute="top" secondItem="oSg-Jf-sSD" secondAttribute="bottom" id="HKl-tw-pye"/>
-                            <constraint firstAttribute="trailing" secondItem="oSg-Jf-sSD" secondAttribute="trailing" id="IO1-FJ-Mus"/>
-                            <constraint firstItem="oSg-Jf-sSD" firstAttribute="leading" secondItem="5Ks-yH-BwO" secondAttribute="leading" id="MG5-fg-Sdh"/>
-                            <constraint firstItem="oSg-Jf-sSD" firstAttribute="top" secondItem="IUh-hr-44Z" secondAttribute="bottom" id="O5B-QZ-9Co"/>
+                            <constraint firstItem="Heo-QN-TO9" firstAttribute="bottom" secondItem="oSg-Jf-sSD" secondAttribute="bottom" id="HKl-tw-pye"/>
+                            <constraint firstItem="Heo-QN-TO9" firstAttribute="trailing" secondItem="oSg-Jf-sSD" secondAttribute="trailing" id="IO1-FJ-Mus"/>
+                            <constraint firstItem="oSg-Jf-sSD" firstAttribute="leading" secondItem="Heo-QN-TO9" secondAttribute="leading" id="MG5-fg-Sdh"/>
+                            <constraint firstItem="oSg-Jf-sSD" firstAttribute="top" secondItem="Heo-QN-TO9" secondAttribute="top" id="O5B-QZ-9Co"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="h0b-72-VNJ"/>
+                        <viewLayoutGuide key="safeArea" id="Heo-QN-TO9"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zye-6S-VNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -772,10 +734,6 @@
         <scene sceneID="Clk-Gm-b8g">
             <objects>
                 <viewController id="f7e-4S-mu1" customClass="SettingAccountViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="oBi-Kz-8LN"/>
-                        <viewControllerLayoutGuide type="bottom" id="4Lv-EG-ifC"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="2Ae-rs-k9U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -789,12 +747,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="oXz-ob-rx9" firstAttribute="trailing" secondItem="rfx-qi-P0v" secondAttribute="trailing" id="2w8-yp-Zef"/>
-                            <constraint firstItem="oXz-ob-rx9" firstAttribute="leading" secondItem="rfx-qi-P0v" secondAttribute="leading" id="8xB-eU-p0u"/>
-                            <constraint firstItem="oXz-ob-rx9" firstAttribute="top" secondItem="oBi-Kz-8LN" secondAttribute="bottom" id="Bfx-Me-keF"/>
-                            <constraint firstItem="4Lv-EG-ifC" firstAttribute="top" secondItem="oXz-ob-rx9" secondAttribute="bottom" id="tHa-pL-5Ly"/>
+                            <constraint firstItem="oXz-ob-rx9" firstAttribute="trailing" secondItem="uQk-i3-TQy" secondAttribute="trailing" id="2w8-yp-Zef"/>
+                            <constraint firstItem="oXz-ob-rx9" firstAttribute="leading" secondItem="uQk-i3-TQy" secondAttribute="leading" id="8xB-eU-p0u"/>
+                            <constraint firstItem="oXz-ob-rx9" firstAttribute="top" secondItem="uQk-i3-TQy" secondAttribute="top" id="Bfx-Me-keF"/>
+                            <constraint firstItem="uQk-i3-TQy" firstAttribute="bottom" secondItem="oXz-ob-rx9" secondAttribute="bottom" id="tHa-pL-5Ly"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="rfx-qi-P0v"/>
+                        <viewLayoutGuide key="safeArea" id="uQk-i3-TQy"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="pGH-Ys-VJF"/>
                 </viewController>

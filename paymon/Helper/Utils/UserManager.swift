@@ -30,7 +30,7 @@ public class UserManager {
             NotificationCenter.default.post(name: .disableSignUpButtons, object: nil)
 
             if (p as? RPC.PM_userFull) != nil {
-                print("User has been registered")
+
                 let alertSuccess = UIAlertController(title: "Registration was successful".localized, message: "Congratulations, you have successfully registered. Account activation sent to your email. Confirm account and log in.".localized, preferredStyle: UIAlertController.Style.alert)
 
                 alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
@@ -63,25 +63,21 @@ public class UserManager {
         
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
         
-        print("Send packet")
-
-        
         NetworkManager.instance.auth(login: login, password: password, callback: { p, e in
             
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: vc.view, animated: true)
             }
 
-            if let user = p as? RPC.PM_userFull {
+            if let user = p as? RPC.PM_userSelf {
 
                 if user.confirmed {
-                    print("User has logged in")
+                    
                     User.currentUser = user
-                    print("\(String(describing: User.currentUser?.photoUrl))")
+
                     User.isAuthenticated = true
                     User.saveConfig()
                     User.loadConfig()
-
 
                     let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
                     
@@ -114,7 +110,6 @@ public class UserManager {
                             }
                             
                             if response is RPC.PM_boolTrue {
-                                print("email was resent")
                                 
                                 _ = SimpleOkAlertController.init(title: "Confirmation email".localized, message: "The letter was sent".localized, vc: vc)
 
@@ -137,8 +132,6 @@ public class UserManager {
                 }
 
             } else if let error = e {
-
-                print("User login failed")
 
                 let msg = (error.code == RPC.ERROR_AUTH ? "Invalid login or password".localized : "An error occurred during authorization".localized)
                 
@@ -194,7 +187,7 @@ public class UserManager {
             }
             
             if response is RPC.PM_boolTrue {
-                print("code sent")
+                
                  let forgotPasswordCodeViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordCodeViewController) as! ForgotPasswordCodeViewController
                 
                 forgotPasswordCodeViewController.emailValue = loginOrEmail
@@ -233,7 +226,6 @@ public class UserManager {
             }
             
             if response is RPC.PM_boolTrue {
-                print("code is true")
                     
                 let alertSuccess = UIAlertController(title: "New password".localized, message: "Password changed successfully".localized, preferredStyle: UIAlertController.Style.alert)
                 
@@ -265,19 +257,18 @@ public class UserManager {
             guard let user = User.currentUser else {
                 return
             }
-            
+ 
             auth.token = user.token
 
             let _ = NetworkManager.instance.sendPacket(auth) { p, e in
                 
-                if e != nil || !(p is RPC.PM_userFull) {
+                if e != nil || !(p is RPC.PM_userSelf) {
                     print("Error auth by token", e as Any)
 
                 } else {
+                    User.currentUser = p as? RPC.PM_userSelf
                     User.isAuthenticated = true
-                    User.currentUser = (p as! RPC.PM_userFull)
-                    print(User.currentUser.photoUrl.url)
-                    
+
                     User.saveConfig()
                     User.loadConfig()
 
@@ -324,7 +315,6 @@ public class UserManager {
                                 avatarView.image = resizeImage
 
                             }
-                            print("File has uploaded")
                             
                         }, onError: { code in
                             print("file upload failed \(code)")

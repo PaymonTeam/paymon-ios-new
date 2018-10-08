@@ -20,7 +20,6 @@ class SimpleOkAlertController: UIAlertController {
         }))
         
         DispatchQueue.main.async {
-            
             if !self.isBeingPresented {
                 vc.present(self, animated: true)
             }

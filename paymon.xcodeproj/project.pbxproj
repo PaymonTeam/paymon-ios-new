@@ -110,6 +110,7 @@
 		B03D137521318F3300F442AF /* TransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D137421318F3300F442AF /* TransactionType.swift */; };
 		B03D13772131AE0500F442AF /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D13762131AE0500F442AF /* TransactionTableViewCell.swift */; };
 		B03D137B2132D3BA00F442AF /* BitcoinTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D137A2132D3BA00F442AF /* BitcoinTransferViewController.swift */; };
+		B03D41962168C01D008F24BA /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03D41952168C01D008F24BA /* CacheManager.swift */; };
 		B042CB8A2137EEE200B8F195 /* KeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B042CB892137EEE200B8F195 /* KeysViewController.swift */; };
 		B042CB8C2137F92500B8F195 /* CopyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B042CB8B2137F92400B8F195 /* CopyLabel.swift */; };
 		B042CB8E2138239000B8F195 /* TransferInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B042CB8D2138239000B8F195 /* TransferInformationViewController.swift */; };
@@ -334,6 +335,7 @@
 		B03D137421318F3300F442AF /* TransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionType.swift; sourceTree = "<group>"; };
 		B03D13762131AE0500F442AF /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		B03D137A2132D3BA00F442AF /* BitcoinTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinTransferViewController.swift; sourceTree = "<group>"; };
+		B03D41952168C01D008F24BA /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		B042CB892137EEE200B8F195 /* KeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeysViewController.swift; sourceTree = "<group>"; };
 		B042CB8B2137F92400B8F195 /* CopyLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CopyLabel.swift; sourceTree = "<group>"; };
 		B042CB8D2138239000B8F195 /* TransferInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferInformationViewController.swift; sourceTree = "<group>"; };
@@ -359,7 +361,6 @@
 		B098FAE321660C08006C8EC7 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		B098FAE521663478006C8EC7 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		B098FAE821663548006C8EC7 /* GroupSettingContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSettingContactsTableViewCell.swift; sourceTree = "<group>"; };
-		B098FAEA2167748B006C8EC7 /* paymon.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = paymon.entitlements; sourceTree = "<group>"; };
 		B098FAEC2167A041006C8EC7 /* ChatsTableCretedGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableCretedGroupCell.swift; sourceTree = "<group>"; };
 		B099C97220FCF7DB00718608 /* paymon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = paymon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B099C97520FCF7DB00718608 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -669,7 +670,6 @@
 		B099C97420FCF7DB00718608 /* paymon */ = {
 			isa = PBXGroup;
 			children = (
-				B098FAEA2167748B006C8EC7 /* paymon.entitlements */,
 				B000A5C2215B848F00365024 /* GameBackground.gif */,
 				B099C9A420FDD1EB00718608 /* Helper */,
 				B099C9A520FDD1F800718608 /* Resources */,
@@ -952,6 +952,7 @@
 				B0011B8221023F9000A3CBF1 /* UserManager.swift */,
 				B0AC1D25211456E8004D8577 /* CryptoManager.swift */,
 				B098FAE521663478006C8EC7 /* GroupManager.swift */,
+				B03D41952168C01D008F24BA /* CacheManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1399,6 +1400,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-paymon/Pods-paymon-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -1409,6 +1411,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -1487,6 +1490,7 @@
 				0EA66BA1210F807700CC1162 /* NotificationSoundTableViewController.swift in Sources */,
 				B0EA22B22163845200092B8A /* SettingAccountTableViewController.swift in Sources */,
 				B0011B732100F15E00A3CBF1 /* NotificationName.swift in Sources */,
+				B03D41962168C01D008F24BA /* CacheManager.swift in Sources */,
 				B019551E20FFAA6600F3DDB0 /* KeychainItemAccessibility.swift in Sources */,
 				0EA074D0210656B5002FF527 /* ChatMessageViewCell.swift in Sources */,
 				0EA074CA210655F3002FF527 /* ChatsTableGroupViewCell.swift in Sources */,

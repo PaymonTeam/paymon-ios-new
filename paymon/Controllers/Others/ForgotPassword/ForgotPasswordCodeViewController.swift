@@ -74,7 +74,7 @@ class ForgotPasswordCodeViewController: PaymonViewController, UITextFieldDelegat
         switch (textField) {
         case recoveryCode:
             return newLength <= 10
-        default: print("")
+        default: break
         }
         
         return true

@@ -36,6 +36,7 @@ class SettingsTableViewController : UITableViewController {
             let startViewController = StoryBoard.main.instantiateInitialViewController()
             
             User.clearConfig()
+            MessageManager.dispose()
             NetworkManager.instance.reconnect()
             appDelegate.window?.rootViewController = startViewController
         })

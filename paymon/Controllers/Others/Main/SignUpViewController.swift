@@ -129,7 +129,8 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
             emailValue = email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             emailValid = Utils.validateEmail(emailValue)
             textField.backgroundColor = emailValid ? blueLight : whiteLight
-        default: print("")
+        default:
+            break
         }
         
         if loginValid && passwordValid && repeatPasswordValid && emailValid {
@@ -154,7 +155,7 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
             return newLength <= 96
         case email:
             return newLength <= 128
-        default: print("")
+        default: break
         }
         
         return true

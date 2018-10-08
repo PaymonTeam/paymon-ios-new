@@ -15,5 +15,8 @@ class TabsViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let name = "Max"
+//        CacheManager.instance.saveString(string: name, key: "name")
+        
     }
 }

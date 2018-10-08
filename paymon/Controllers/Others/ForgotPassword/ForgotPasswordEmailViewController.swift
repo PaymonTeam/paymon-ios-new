@@ -72,7 +72,7 @@ class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelega
         switch (textField) {
         case loginOrEmail:
             return newLength <= 128
-        default: print("")
+        default: break
         }
         
         return true

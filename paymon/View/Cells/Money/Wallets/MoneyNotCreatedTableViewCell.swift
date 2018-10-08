@@ -41,7 +41,7 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
             // Create Paymon wallet code
             break
         default:
-            print("Default")
+            break
         }
     }
     
@@ -59,7 +59,7 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
             // Restore Paymon wallet code
             break
         default:
-            print("Default")
+            break
         }
     }
     

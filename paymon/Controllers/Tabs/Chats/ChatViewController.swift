@@ -30,7 +30,6 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     var startView = true
     
     private var updateMessagesId : NSObjectProtocol!
-
     
     @IBAction func onSendClicked() {
         
@@ -168,7 +167,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                             var i = 0
                             for msg in messagesToAdd {
                                 guard let message = MessageManager.instance.messages[msg] else {return}
-                                
+//                                print("message file type \(String(describing: message.itemType))")
                                 if lastMessageData == nil {
                                     lastMessageData = message
                                 } else {
@@ -190,9 +189,9 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                             }
                         }
                     }
+                    let beforeContentSize = self.tableView.contentSize
+
                     DispatchQueue.main.async {
-                        
-                        let beforeContentSize = self.tableView.contentSize
 
                         self.tableView.reloadData()
 
@@ -273,6 +272,7 @@ extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let message = MessageManager.instance.messages[messages[indexPath.row]] {
+            print(message.itemType)
             if message.from_id == User.currentUser!.id {
                 if message.itemType == nil || message.itemType == .NONE {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageViewCell") as! ChatMessageViewCell

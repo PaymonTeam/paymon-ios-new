@@ -62,9 +62,9 @@ class PMFileManager {
     var uploadingFiles: [Int64: UploadingFile] = [:]
     var uploadingFileID : Int64! = 0
 
-    public func startUploading(jpegData : Data, onFinished:OnFinished?, onError:OnError?, onProgress:OnProgress?) {
+    public func startUploading(jpegData : Data?, onFinished:OnFinished?, onError:OnError?, onProgress:OnProgress?) {
 
-        if let data = jpegData as? Data {
+        if let data = jpegData {
             let uploadingFile = UploadingFile()
             print("fileSize=\(Int32(data.count))")
             uploadingFile.fileSize = Int32(data.count)

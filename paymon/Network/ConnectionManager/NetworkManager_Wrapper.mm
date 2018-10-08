@@ -86,7 +86,7 @@ static const NSTimeInterval sleepTimeout = 60.0;
         lastPacketLength = 0;
         [self start];
         
-        NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//        NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
 //        filePath = [documents stringByAppendingPathComponent:@"log"];
 //        filePath2 = [documents stringByAppendingPathComponent:@"log2"];
 //        filePath3 = [documents stringByAppendingPathComponent:@"log3"];
@@ -212,7 +212,7 @@ void print(uint8_t *buffer, int size) {
             NSLog(@"first byte %x", (uint8_t) packetLength);
 
             bufferBytes += (buffer->limit() - 1);
-            NSData *data12 = [[NSData alloc] initWithBytes:buffer->bytes()+buffer->position()-1 length:1];
+//            NSData *data12 = [[NSData alloc] initWithBytes:buffer->bytes()+buffer->position()-1 length:1];
 //            [self writeToFile:self->filePath2 data:data12];
             AES_ctr128_encrypt(bufferBytes, bufferBytes, 1, &encryptKey, encryptIv, encryptCount, &encryptNum);
         } else {
@@ -224,7 +224,7 @@ void print(uint8_t *buffer, int size) {
 
             buffer->writeInt32(packetLength);
             
-            NSData *data12 = [[NSData alloc] initWithBytes:buffer->bytes()+buffer->position()-4 length:4];
+//            NSData *data12 = [[NSData alloc] initWithBytes:buffer->bytes()+buffer->position()-4 length:4];
 //            [self writeToFile:self->filePath2 data:data12];
             
             bufferBytes += (buffer->limit() - 4);
@@ -241,7 +241,7 @@ void print(uint8_t *buffer, int size) {
 
         ////
         size = (size_t) buff->limit();
-        NSData *data23 = [[NSData alloc] initWithBytes:buff->bytes() length:(NSUInteger) size];
+//        NSData *data23 = [[NSData alloc] initWithBytes:buff->bytes() length:(NSUInteger) size];
 //        [self writeToFile:self->filePath2 data:data23];
         ////
         

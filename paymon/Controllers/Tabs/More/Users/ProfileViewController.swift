@@ -31,6 +31,8 @@ class ProfileViewController: PaymonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let name = try? CacheManager.instance.storage.object(forKey: "name")
+        
         setLayoutOptions()
     }
     

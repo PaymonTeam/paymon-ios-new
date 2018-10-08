@@ -18,7 +18,6 @@ class StartViewController: PaymonViewController {
         super.viewDidLoad()
 
         setLayoutOptions()
-
     }
 
     func setLayoutOptions() {

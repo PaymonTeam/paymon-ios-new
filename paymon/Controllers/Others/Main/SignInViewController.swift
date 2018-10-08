@@ -95,7 +95,7 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
             return newLength <= 20
         case password:
             return newLength <= 96
-        default: print("")
+        default: break
         }
         
         return true
@@ -112,12 +112,14 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
             
             signInBottomConstraint.constant = notification.name == UIResponder.keyboardWillShowNotification ? keyboardFrame!.height + 8 : 8
             
-            UIView.animate(withDuration: 0,
-                           delay: 0,
-                           options: UIView.AnimationOptions.curveEaseOut,
-                           animations: {
-                            self.view.layoutIfNeeded()
-            }, completion: nil)
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0,
+                               delay: 0,
+                               options: UIView.AnimationOptions.curveEaseOut,
+                               animations: {
+                                self.view.layoutIfNeeded()
+                }, completion: nil)
+            }
         }
     }
     

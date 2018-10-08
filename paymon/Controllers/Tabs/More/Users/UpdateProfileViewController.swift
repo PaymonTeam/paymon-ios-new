@@ -15,7 +15,6 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
     
     func addObservers() {
             observerUpdateTrue = NotificationCenter.default.addObserver(forName: .updateProfileInfoTrue, object: nil, queue: nil ){ notification in
-                print("change!")
                 DispatchQueue.main.async {
                     self.updateItem.isEnabled = true
                 }

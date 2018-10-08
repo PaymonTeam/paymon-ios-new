@@ -33,14 +33,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
 
         self.navigationController?.delegate = self
         guard let captureDevice = AVCaptureDevice.default(for: .video) else {return}
-        
-        print("capure device was created")
 
         do {
             let input = try AVCaptureDeviceInput(device: captureDevice)
             session.addInput(input)
         } catch {
-            print("ERROR")
+            print("ERROR Input")
         }
 
         let output = AVCaptureMetadataOutput()

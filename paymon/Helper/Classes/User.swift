@@ -6,7 +6,7 @@
 import Foundation
 
 class User {
-    public static var currentUser: RPC.PM_userFull!
+    public static var currentUser: RPC.PM_userSelf!
     public static var isAuthenticated = false
     public static var notificationWorry = true
     public static var notificationVibration = true
@@ -21,56 +21,63 @@ class User {
     
     public static func saveConfig() {
         if currentUser != nil {
+
             let stream = SerializedStream()
             currentUser!.serializeToStream(stream: stream!)
             let userString = stream!.out.base64EncodedString()
+
             KeychainWrapper.standard.set(userString, forKey: "user", withAccessibility: KeychainItemAccessibility.always)
         } else {
             KeychainWrapper.standard.removeObject(forKey: "user")
         }
         
-        print("User save config")
     }
 
     public static func loadConfig() {
-        print("load config")
+//        KeychainWrapper.standard.removeObject(forKey: "user")
 
         if currentUser == nil {
-            if let retrievedString = KeychainWrapper.standard.string(forKey: "user") {
+            if let retrievedString = KeychainWrapper.standard.string(forKey: "user", withAccessibility: KeychainItemAccessibility.always) {
                 let data = Data(base64Encoded: retrievedString)
                 let stream = SerializedStream(data: data)
                 if let deserialize = try? RPC.UserObject.deserialize(stream: stream!, constructor: stream!.readInt32(nil)) {
-                    if (deserialize is RPC.PM_userFull) {
-                        currentUser = deserialize as? RPC.PM_userFull;
-                        self.userId = String(currentUser.id)
+                    if deserialize is RPC.PM_userSelf {
+                        currentUser = deserialize as? RPC.PM_userSelf
                     } else {
+                        print("load config user nil")
+
+                        currentUser = nil
+                        stream!.close()
                         return
                     }
                 } else {
                     print("Error deser user")
+                    stream!.close()
+
                     return
                 }
                 stream!.close()
             } else {
+                print("Keychain has not user")
                 return
             }
         }
-        
-        securityPasscode = UserDefaults.standard.bool(forKey: UserDefaultKey.SECURITY_PASSCODE + userId)
-        securityPasscodeValue = UserDefaults.standard.string(forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId) ?? ""
+        self.userId = String(currentUser.id)
 
+        securityPasscode = KeychainWrapper.standard.bool(forKey: UserDefaultKey.SECURITY_PASSCODE + userId) ?? false
+        securityPasscodeValue = KeychainWrapper.standard.string(forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId) ?? ""
     }
     
     public static func savePasscode(passcodeValue : String, setPasscode : Bool) {
+
         securityPasscode = setPasscode
         securityPasscodeValue = passcodeValue
-        UserDefaults.standard.set(setPasscode, forKey: UserDefaultKey.SECURITY_PASSCODE + userId)
-        UserDefaults.standard.set(passcodeValue, forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId)
+        KeychainWrapper.standard.set(setPasscode, forKey: UserDefaultKey.SECURITY_PASSCODE + userId)
+        KeychainWrapper.standard.set(passcodeValue, forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId)
     }
 
     public static func clearConfig() {
         isAuthenticated = false
-        KeychainWrapper.standard.removeObject(forKey: "user")
         currentUser = nil
         notificationWorry = true
         notificationVibration = true
@@ -78,5 +85,6 @@ class User {
         notificationMessageSound = "Note.mp3"
         securityPasscode = false
         securityPasscodeValue = ""
+        saveConfig()
     }
 }

@@ -106,11 +106,8 @@ class FriendProfileViewController: PaymonViewController {
     }
     
     func getUserInfo() {
-        print(id)
         let request = RPC.PM_getUserInfo()
         request.user_id = id
-        
-        print(request)
         
         let _ = NetworkManager.instance.sendPacket(request) { response, e in
             

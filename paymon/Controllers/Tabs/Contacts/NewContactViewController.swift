@@ -239,7 +239,6 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
                 let data = CellContactData()
                 
                 let username = Utils.formatUserName(user)
-                print(username)
                 
                 var lastMessageTime = ""
                 

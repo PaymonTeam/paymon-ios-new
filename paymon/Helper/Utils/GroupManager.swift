@@ -48,7 +48,6 @@ public class GroupManager {
                                 avatarView.image = resizeImage
                                 
                             }
-                            print("File has uploaded")
                             
                         }, onError: { code in
                             print("file upload failed \(code)")

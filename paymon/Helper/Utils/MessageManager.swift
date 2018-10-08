@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 class MessageManager : NotificationManagerListener {
-    public static let instance = MessageManager()
+    public static var instance = MessageManager()
 
     var messages = SharedDictionary<Int64,RPC.Message>()
     var lastMessages = SharedDictionary<Int32,Int64>()
@@ -26,6 +26,10 @@ class MessageManager : NotificationManagerListener {
     private init() {
         NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
         NotificationManager.instance.addObserver(self, id: NotificationManager.doLoadChatMessages)
+    }
+    
+    public static func dispose() {
+        self.instance = MessageManager()
     }
 
     public static func generateMessageID() -> Int64 {
@@ -170,7 +174,6 @@ class MessageManager : NotificationManagerListener {
                     }
 
                     for grp in packet.groups {
-
                         self.putGroup(grp)
                     }
                     
@@ -247,6 +250,7 @@ class MessageManager : NotificationManagerListener {
                     messagesToShow.sort(by: {e1, e2 in
                         return e1 > e2
                     })
+
                     NotificationManager.instance.postNotificationName(id: NotificationManager.chatAddMessages, args: messagesToShow, false)
                 }
             }
