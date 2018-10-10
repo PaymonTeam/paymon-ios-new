@@ -38,9 +38,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        
-        
+
         NotificationManager.instance.removeObserver(self, id: NotificationManager.dialogsNeedReload)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.userAuthorized)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didDisconnectedFromServer)
@@ -344,6 +342,7 @@ extension ChatsViewController: UITableViewDelegate {
             chatViewController.isGroup = false
         }
         chatViewController.chatID = data.chatID
+        print(data.chatID)
         
         self.navigationItem.title = "Chats".localized
 

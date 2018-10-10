@@ -44,15 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
         window?.makeKeyAndVisible()
         window?.rootViewController = StoryBoard.main.instantiateInitialViewController()
 
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
-            if granted {
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
-                }
-                print("Permission for notif was granted")
-            }
-        }
+        UNUserNotificationCenter.current().delegate = self
+        PushNotificationManager.shared.registrForNotification(application: application)
 
         //setup ether
 //        loadEthenWallet()
@@ -60,19 +53,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
         return true
     }
     
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        switch response.actionIdentifier {
+        case PushNotification.Action.answer:
+            if let textResponse =  response as? UNTextInputNotificationResponse {
+                let sendText =  textResponse.userText
+                print("Will send\(sendText)")
+                //TODO отправлять сообщение пользователю
+            }
+        case PushNotification.Action.skip:
+            //TODO сделать сообщение прочитаным
+            break
+        case PushNotification.Action.mute:
+            //TODO замутить чат на 8 часов
+            break
+        default:
+            Deeplinker.handleRemoteNotification(response.notification.request.content.userInfo)
+
+            break
+        }
+        
+        completionHandler()
+        
+    }
+    
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//
+//        print("Did recieved remote push!!!")
+//    }
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
         print("Device token is: \(deviceTokenString)")
+        //TODO: Send device token to server
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Cant register this device for notif \(error)")
     }
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("I received notif")
-        print(userInfo)
-        //TODO Add local notif
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        //TODO выяснить как будем управлять мутом и звуками
+        completionHandler([.alert, .badge, .sound])
     }
+    
     
 //    func loadEthenWallet() {
 //        //Choose your namespace and password
@@ -113,6 +139,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         
+        Deeplinker.checkDeepLink()
+
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

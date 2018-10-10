@@ -149,7 +149,9 @@ public class UserManager {
         
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
 
-        NetworkManager.instance.sendPacket(User.currentUser!) { response, error in
+        guard let user = User.currentUser else {return}
+
+        NetworkManager.instance.sendPacket(user) { response, error in
             
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: vc.view, animated: true)
@@ -336,5 +338,38 @@ public class UserManager {
                 }
             }
         }
+    }
+    
+    static func showEmail(isShow : Bool, vc: UIViewController) -> Bool {
+        
+        User.currentUser.isEmailHidden = isShow
+        
+        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
+
+        guard let user = User.currentUser else {return true}
+        
+        NetworkManager.instance.sendPacket(user) { response, error in
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: vc.view, animated: true)
+            }
+            
+            if (response != nil) {
+                User.saveConfig()
+                DispatchQueue.main.async {
+                    Utils.showSuccesHud(vc: vc)
+                    NotificationCenter.default.post(name: .updateView, object: nil)
+                    NotificationCenter.default.post(name: .updateString, object: nil)
+                }
+                
+                print("Email state was changed")
+            } else {
+                
+                _ = SimpleOkAlertController.init(title: "Show/Hide email".localized, message: "An error occurred during the update".localized, vc: vc)
+                
+                print("Email state changed error")
+            }
+        }
+        
+        return true
     }
 }

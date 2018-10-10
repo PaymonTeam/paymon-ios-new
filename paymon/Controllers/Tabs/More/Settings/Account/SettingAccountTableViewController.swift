@@ -11,6 +11,8 @@ import UIKit
 
 class SettingAccountTableViewController: UITableViewController {
     
+    var canChange = true
+    
     @IBOutlet weak var showEmailCell: UITableViewCell!
     let switchShowEmail = UISwitch()
     
@@ -19,7 +21,6 @@ class SettingAccountTableViewController: UITableViewController {
         super.viewDidLoad()
 
         setLayoutOptions()
-        loadSettings()
         
     }
     
@@ -28,7 +29,9 @@ class SettingAccountTableViewController: UITableViewController {
         switchShowEmail.onTintColor = UIColor.AppColor.Blue.primaryBlue
 
         showEmailCell.accessoryView = switchShowEmail
-
+        if User.currentUser != nil {
+            switchShowEmail.setOn(User.currentUser.isEmailHidden, animated: false)
+        }
         
         switchShowEmail.addTarget(self, action: #selector(segmentControlChangeValue(_:)), for: .valueChanged)
     }
@@ -55,35 +58,9 @@ class SettingAccountTableViewController: UITableViewController {
     }
     
     @objc func segmentControlChangeValue(_ segmentControl : UISegmentedControl) {
-        if switchShowEmail.isOn == false {
-            User.securityPasscodeValue = ""
-            
-//            User.saveSecuritySettings()
+        if canChange {
+            canChange = false
+            canChange = UserManager.showEmail(isShow: switchShowEmail.isOn, vc: self)
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        saveSettings()
-        
-    }
-    
-    // Load the password protection setting from userDefaults.
-    func loadSettings() {
-        
-        switchShowEmail.setOn(User.securityPasscode, animated: true)
-        
-    }
-    
-    // Save the changes made by user in the password protection setting.
-    func saveSettings () {
-        User.securityPasscode = switchShowEmail.isOn
-        
-        if (switchShowEmail.isOn == false) {
-            User.securityPasscodeValue = ""
-        }
-        
-//        User.saveSecuritySettings()
     }
 }

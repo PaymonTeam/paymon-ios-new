@@ -18,7 +18,7 @@ class MessageManager : NotificationManagerListener {
     var userContacts = SharedDictionary<Int32,RPC.UserObject>()
     var searchUsers = SharedDictionary<Int32,RPC.UserObject>()
     var groups = SharedDictionary<Int32,RPC.Group>()
-    var groupsUsers = SharedDictionary<Int32,SharedArray<RPC.UserObject>>()
+    var groupsUsers = SharedDictionary<Int32,[Int32]>()
     var chatDatesDicts = SharedDictionary<Int32,[String]>()
     var currentChatID:Int32 = 0
     static var lastMessageID = Utils.Atomic<Int64>()
@@ -46,8 +46,9 @@ class MessageManager : NotificationManagerListener {
         groups[group.id] = group
         groupsUsers[group.id] = group.users
         
-        for user in group.users.array {
-            putUser(user)
+        for user in group.users {
+            guard let userObject = users[user] else {return}
+            putUser(userObject)
         }
     }
 

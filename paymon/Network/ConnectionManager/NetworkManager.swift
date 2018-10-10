@@ -125,12 +125,6 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 let message = packet as! RPC.Message
                 MessageManager.instance.putMessage(message, serverTime: true)
 
-//                if User.notificationSwitchWorry {
-//                    if let user: RPC.UserObject = MessageManager.instance.users[message.from_id] {
-//                        _ = Utils.formatUserName(user)
-//                    }
-//                }
-
                 var messages: [RPC.Message] = []
                 messages.append(message)
                 DispatchQueue.main.async {

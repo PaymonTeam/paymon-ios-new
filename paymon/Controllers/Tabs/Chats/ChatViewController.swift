@@ -25,7 +25,7 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
     var messages: [Int64] = [] //RPC.Message?
     var chatID: Int32!
     var isGroup: Bool!
-    var users = SharedArray<RPC.UserObject>()
+    var users = [Int32]()
     var afterScroll = false
     var startView = true
     
@@ -106,8 +106,8 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         messageTextView.delegate = self
 
         if isGroup {
-            users = MessageManager.instance.groupsUsers.value(forKey: chatID)!
 
+            //TODO здесь заработает, когда будет кэш
             let group:RPC.Group! = MessageManager.instance.groups[chatID]!
 
             var text = "Participants: ".localized
@@ -167,7 +167,6 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                             var i = 0
                             for msg in messagesToAdd {
                                 guard let message = MessageManager.instance.messages[msg] else {return}
-//                                print("message file type \(String(describing: message.itemType))")
                                 if lastMessageData == nil {
                                     lastMessageData = message
                                 } else {
@@ -223,20 +222,24 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             if args.count == 1 {
                 if let messagesToAdd = args[0] as? [RPC.Message] {
                     messagesToAdd.forEach({ msg in
-                        DispatchQueue.global().sync {
-                            self.messages.append(msg.id)
+                        if (isGroup && msg.to_peer.group_id == chatID) || (!isGroup && msg.to_peer.user_id == chatID) {
+                            DispatchQueue.global().sync {
+                                self.messages.append(msg.id)
+                            }
+                            
+                            DispatchQueue.main.async {
+                                self.tableView.reloadData()
+                                
+                                if self.messages.count > 0 {
+                                    let index = IndexPath(row: self.messages.count - 1, section: 0)
+                                    self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
+                                    
+                                }
+                            }
                         }
                     })
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    
-                    if self.messages.count > 0 {
-                        let index = IndexPath(row: self.messages.count - 1, section: 0)
-                        self.tableView.scrollToRow(at: index, at: .bottom, animated: true)
-
-                    }
-                }
+                
             }
         }
     }
@@ -246,6 +249,11 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         NotificationManager.instance.removeObserver(self, id: NotificationManager.chatAddMessages)
         NotificationManager.instance.removeObserver(self, id: NotificationManager.didReceivedNewMessages)
         NotificationCenter.default.removeObserver(updateMessagesId)
+        
+        if let nc = UIApplication.shared.keyWindow?.rootViewController as? MainNavigationController {
+            nc.navigationBar.isHidden = true
+            
+        }
         
     }
     
@@ -272,7 +280,6 @@ extension ChatViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let message = MessageManager.instance.messages[messages[indexPath.row]] {
-            print(message.itemType)
             if message.from_id == User.currentUser!.id {
                 if message.itemType == nil || message.itemType == .NONE {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageViewCell") as! ChatMessageViewCell
@@ -280,6 +287,15 @@ extension ChatViewController: UITableViewDataSource {
                     cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                     cell.messageLabel.sizeToFit()
                     return cell
+                } else if message.action is RPC.PM_messageActionGroupCreate {
+                    
+                    if let group = MessageManager.instance.groups[message.to_peer.group_id] {
+                        if let creator = MessageManager.instance.users[group.creatorID] {
+                            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableCretedGroupCell") as! ChatsTableCretedGroupCell
+                            cell.label.text = "\(Utils.formatUserName(creator)) "+"created the group chat ".localized+"\"\(group.title!)\""
+                            return cell
+                        }
+                    }
                 }
             } else {
                 if isGroup {
@@ -305,6 +321,7 @@ extension ChatViewController: UITableViewDataSource {
                         return cell
 
                     } else if message.action is RPC.PM_messageActionGroupCreate {
+
                         if let group = MessageManager.instance.groups[message.to_peer.group_id] {
                             if let creator = MessageManager.instance.users[group.creatorID] {
                                 let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableCretedGroupCell") as! ChatsTableCretedGroupCell
@@ -335,7 +352,6 @@ extension ChatViewController: UITableViewDataSource {
 extension ChatViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print(scrollView.contentOffset.y)
         if scrollView.contentOffset.y == 0 && !startView {
             afterScroll = true
 

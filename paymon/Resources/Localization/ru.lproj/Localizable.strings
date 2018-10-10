@@ -147,6 +147,7 @@
 "Cancel"="Отмена";
 "Delete"="Удалить";
 "Logged in as "="Вы вошли как ";
+"Show/Hide email"="Показать/Скрыть электронный адрес";
 
 /*Notification settings*/
 "Messeges"="Сообщения";
@@ -156,6 +157,9 @@
 "Sounds"="Звуки";
 "Vibration"="Вибрация";
 "Transactions"="Транзакции";
+"Answer"="Ответить";
+"Skip"="Пропустить";
+"Do not disturb for 8 hours"="Не беспокоить 8 часов";
 
 /*Security Settings*/
 "Protect"="Защита";

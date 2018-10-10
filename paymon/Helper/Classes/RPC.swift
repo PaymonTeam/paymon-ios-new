@@ -306,16 +306,13 @@ class RPC {
             login = stream.readString(exception)
             first_name = stream.readString(exception)
             last_name = stream.readString(exception)
-//            token = stream.readByteArrayNSData(exception)
             let magic = stream.readInt32(exception)
             if magic != PM_photoURL.svuid {
                 print(String(format: "user wrong Vector magic %x", magic))
-
                 return
             }
             photoUrl = PM_photoURL()
             photoUrl.readParams(stream: stream, exception: exception)
-//            confirmed = stream.read(exception)
         }
 
         override func serializeToStream(stream: SerializableData) {
@@ -325,9 +322,7 @@ class RPC {
             stream.write(login)
             stream.write(first_name)
             stream.write(last_name)
-//            stream.writeByteArrayData(token)
             photoUrl.serializeToStream(stream: stream)
-//            stream.write(confirmed)
 
         }
     }
@@ -350,7 +345,6 @@ class RPC {
             if magic != PM_photoURL.svuid {
 
                 print(String(format: "user full wrong Vector magic %x", magic))
-
                 return
             }
             
@@ -416,12 +410,8 @@ class RPC {
             stream.write(email)
             stream.writeByteArrayData(token)
 
-            
-            //            stream.writeByteArrayData(token)
             photoUrl.serializeToStream(stream: stream)
-            stream.write(confirmed)
-            //            stream.write(walletKey)
-            //            stream.write(inviteCode)
+            stream.write(confirmed) 
         }
     }
     
@@ -739,7 +729,7 @@ class RPC {
         var creatorID:Int32!
         var title:String!
 
-        var users:SharedArray<RPC.UserObject>!
+        var users:[Int32]!
         var photoUrl:PM_photoURL!
 
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> Group {
@@ -757,25 +747,21 @@ class RPC {
             creatorID = stream.readInt32(exception)
             title = stream.readString(exception)
 
-            var magic:Int32 = stream.readInt32(exception)
+            var magic = stream.readInt32(exception)
             if (magic != RPC.SVUID_ARRAY) {
                 return
             }
-            let count:Int32 = stream.readInt32(exception)
+            let count = stream.readInt32(exception)
 
-            users = SharedArray<UserObject>()
+            users = [Int32]()
             for _ in 0..<count {
-                if let object = try? UserObject.deserialize(stream: stream, constructor: stream.readInt32(exception)) {
-                    users.append(object)
-                }
+
+                let uid = stream.readInt32(exception)
+                    users.append(uid)
             }
 
             magic = stream.readInt32(exception)
-//            if (magic != PM_photoURL.svuid) {
-//                    print("Error group pm photo desz")
-//                return
-//            }
-            
+
             photoUrl = PM_photoURL()
             photoUrl.readParams(stream: stream, exception: exception)
         }
@@ -786,7 +772,12 @@ class RPC {
             stream.write(id)
             stream.write(creatorID)
             stream.write(title)
-            RPC.writeArray(stream, users.array)
+            stream.write(RPC.SVUID_ARRAY)
+            stream.write(Int32(users.count))
+            for uid in users {
+                stream.write(uid)
+            }
+//            RPC.writeArray(stream, users.array)
             photoUrl.serializeToStream(stream: stream)
         }
     }
@@ -884,6 +875,7 @@ class RPC {
         var messages:[Message]! = []
         var groups:[Group]! = []
         var users:[UserObject]! = []
+        var peers:[Peer]! = []
         var count:Int32! = 0
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
@@ -932,6 +924,20 @@ class RPC {
                     return
                 }
             }
+            magic = stream.readInt32(exception)
+            if (magic != SVUID_ARRAY) {
+                print("magic != SVUID ARRAY 2")
+                return
+            }
+            count = stream.readInt32(exception)
+
+            for _ in 0..<count {
+                if let peer = try? Peer.deserialize(stream: stream, constructor: stream.readInt32(exception)) {
+                    peers.append(peer)
+                } else {
+                    return
+                }
+            }
         }
 
         override func serializeToStream(stream: SerializableData) {
@@ -939,6 +945,8 @@ class RPC {
             RPC.writeArray(stream, messages)
             RPC.writeArray(stream, groups)
             RPC.writeArray(stream, users)
+            RPC.writeArray(stream, peers)
+
         }
     }
 

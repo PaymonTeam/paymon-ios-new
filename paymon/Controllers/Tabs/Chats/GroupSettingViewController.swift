@@ -24,6 +24,8 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     var users:[RPC.UserObject] = []
     var groupId: Int32!
     var participants = SharedArray<RPC.UserObject>()
+    var participantsIds = [Int32]()
+
     var isCreator:Bool = false
     var creatorID:Int32!
     var group:RPC.Group!
@@ -32,7 +34,12 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        participants = MessageManager.instance.groupsUsers.value(forKey: groupId)!
+        participantsIds = MessageManager.instance.groupsUsers.value(forKey: groupId)!
+        let users = MessageManager.instance.users
+        
+        for id in participantsIds {
+            participants.append(users[id]!)
+        }
         
         group = MessageManager.instance.groups[groupId]!
         groupTitle.text = group.title

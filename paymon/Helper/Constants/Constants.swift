@@ -8,6 +8,38 @@
 
 import Foundation
 
+struct PushNotification {
+    
+    struct Category {
+        
+        static let messages = "messages"
+    }
+    
+    struct Action {
+        static let answer = "answer"
+        static let skip = "skip"
+        static let mute = "mute"
+    }
+    
+    struct Keys {
+        static let APS = "aps"
+        static let ALERT = "alert"
+        
+        static let CHAT_ID = "chat_id"
+        
+        static let TITLE = "title"
+        static let SUBTITLE = "subtitle"
+        static let BODY = "body"
+        static let SOUND = "sound"
+        
+        static let CATEGORY = "category"
+        static let MESSAGE_FROM_GROUP = "message_from_group"
+        static let MESSAGE_FROM_USER = "message_from_user"
+
+    }
+    
+}
+
 struct VCIdentifier {
     static let startViewController = "StartViewController"
     static let tabsViewController = "TabsViewController"

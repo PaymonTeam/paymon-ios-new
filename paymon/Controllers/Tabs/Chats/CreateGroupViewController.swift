@@ -40,6 +40,11 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
         let count = participantsFromGroup.count
         
         for user in MessageManager.instance.userContacts.values {
+            
+            if user.id == User.currentUser.id {
+                continue
+            }
+            
             for part in participantsFromGroup.array {
                 if user.id! != part.id! {
                     i += 1
@@ -50,6 +55,7 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                 usersData.append(user)
             }
             i = 0
+            
         }
         
         getUsersDict()
@@ -57,6 +63,22 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
         setLayoutOptions()
         searchBar.delegate = self
         self.navigationController?.delegate = self
+    }
+    
+    func moveToChat(group : RPC.Group) {
+        var navigationArray = self.navigationController?.viewControllers //To get all UIViewController stack as Array
+        navigationArray!.remove(at: (navigationArray?.count)! - 2)
+        navigationArray!.remove(at: (navigationArray?.count)! - 1)
+        
+        guard let chatViewController = StoryBoard.chat.instantiateViewController(withIdentifier: VCIdentifier.chatViewController) as? ChatViewController else {return}
+        chatViewController.chatID = group.id
+        chatViewController.isGroup = true
+        chatViewController.setValue(group.title, forKey: "title")
+        navigationArray!.append(chatViewController)
+        
+        DispatchQueue.main.async {
+            self.navigationController?.viewControllers = navigationArray!
+        }
     }
     
     func getUsersDict() {
@@ -194,7 +216,7 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                             if (response != nil) {
                                 let group:RPC.Group! = response as! RPC.Group?
                                 manager.putGroup(group)
-                                self.dismiss(animated: true, completion: nil)
+                                self.moveToChat(group: group)
                             }
                         }
                     }
