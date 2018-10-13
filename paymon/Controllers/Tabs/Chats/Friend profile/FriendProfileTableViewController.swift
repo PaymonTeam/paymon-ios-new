@@ -25,7 +25,7 @@ class FriendProfileTableViewController: UITableViewController {
                     if user.email != nil {
                         self.email.text = user.email
                     } else {
-                        self.email.text = "Information is closed".localized
+                        self.email.text = "Is hidden".localized
                     }
                 }
             }

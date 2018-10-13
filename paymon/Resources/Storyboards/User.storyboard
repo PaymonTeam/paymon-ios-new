@@ -249,7 +249,7 @@
                                                         <constraint firstAttribute="height" constant="24" id="gNX-TA-2uY"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0f-Jj-zi2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p0f-Jj-zi2">
                                                     <rect key="frame" x="56" y="0.0" width="271" height="55"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
@@ -372,6 +372,6 @@
     <resources>
         <image name="ArrowCheck" width="33" height="33"/>
         <image name="Edit" width="32" height="32"/>
-        <image name="Email" width="32" height="32"/>
+        <image name="Email" width="48" height="48"/>
     </resources>
 </document>

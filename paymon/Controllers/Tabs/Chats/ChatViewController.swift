@@ -91,6 +91,9 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
             if let messagesId = notification.object as? [Int64] {
                 self.messages = messagesId
                 
+//                let message = MessageManager.instance.messages[self.messages[self.messages.count-1]]
+//                print("THIS NEW MESSAGE \(message?.text)")
+                
                 DispatchQueue.main.async {
                     let index = IndexPath(row: self.messages.count > 0 ? self.messages.count - 1 : 0, section: 0)
                     self.tableView.insertRows(at: [index], with: .bottom)
@@ -188,6 +191,9 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
                             }
                         }
                     }
+                    
+                    print(self.messages[self.messages.count-1])
+
                     let beforeContentSize = self.tableView.contentSize
 
                     DispatchQueue.main.async {
@@ -279,7 +285,11 @@ extension ChatViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+//        print(self.messages[self.messages.count-1])
+//        print("index path \(MessageManager.instance.messages[messages[indexPath.row]]?.text)")
+        
         if let message = MessageManager.instance.messages[messages[indexPath.row]] {
+
             if message.from_id == User.currentUser!.id {
                 if message.itemType == nil || message.itemType == .NONE {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "ChatMessageViewCell") as! ChatMessageViewCell

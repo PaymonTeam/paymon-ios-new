@@ -110,7 +110,7 @@ open class Utils {
                         dateFormatter.dateFormat = "HH:mm"
                     } else {
                         if calendar.isDateInYesterday(date) {
-                            result = "Yesterday"
+                            result = "Yesterday".localized
                         } else {
                             dateFormatter.dateFormat = "EEEE"
                         }

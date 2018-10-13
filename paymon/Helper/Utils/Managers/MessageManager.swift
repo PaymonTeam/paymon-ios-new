@@ -16,12 +16,13 @@ class MessageManager : NotificationManagerListener {
     var groupMessages = SharedDictionary<Int32,SharedArray<RPC.Message>>()
     var users = SharedDictionary<Int32,RPC.UserObject>()
     var userContacts = SharedDictionary<Int32,RPC.UserObject>()
-    var searchUsers = SharedDictionary<Int32,RPC.UserObject>()
+    
     var groups = SharedDictionary<Int32,RPC.Group>()
     var groupsUsers = SharedDictionary<Int32,[Int32]>()
     var chatDatesDicts = SharedDictionary<Int32,[String]>()
+    
     var currentChatID:Int32 = 0
-    static var lastMessageID = Utils.Atomic<Int64>()
+    var lastMessageID = Utils.Atomic<Int64>()
 
     private init() {
         NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
@@ -32,7 +33,7 @@ class MessageManager : NotificationManagerListener {
         self.instance = MessageManager()
     }
 
-    public static func generateMessageID() -> Int64 {
+    public func generateMessageID() -> Int64 {
         return lastMessageID.incrementAndGet()
     }
 
@@ -53,6 +54,8 @@ class MessageManager : NotificationManagerListener {
     }
 
     public func putUser(_ user:RPC.UserObject) {
+        CacheManager.saveUser(userObject: user)
+
         if users[user.id] != nil {
             return
         }
@@ -67,7 +70,7 @@ class MessageManager : NotificationManagerListener {
         if messages[msg.id] != nil {
             return
         }
-
+        
         if serverTime {
             msg.date += Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
         }
@@ -305,7 +308,7 @@ class MessageManager : NotificationManagerListener {
         
         var messagesId = messages
         
-        let mid = MessageManager.generateMessageID()
+        let newId = messagesId[messagesId.count-1] + 1
         let message = RPC.PM_message()
         message.itemID = 0
         message.itemType = .NONE
@@ -317,15 +320,18 @@ class MessageManager : NotificationManagerListener {
             message.to_peer = RPC.PM_peerUser()
             message.to_peer.user_id = chatId
         }
-        message.id = mid
+        
+        message.id = newId
         message.text = text
         message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
         
         NetworkManager.instance.sendPacket(message) { p, e in
             if let update = p as? RPC.PM_updateMessageID {
+                
                 for i in 0..<messagesId.count {
                     if messagesId[i] == update.oldID {
                         messagesId.remove(at: i)
+                        
                         break
                     }
                 }
@@ -335,10 +341,9 @@ class MessageManager : NotificationManagerListener {
                 
             }
         }
-        messagesId.append(mid)
-        
-        NotificationCenter.default.post(name: .updateMessagesId, object: messagesId)
+        messagesId.append(newId)
+
         MessageManager.instance.putMessage(message, serverTime: false)
-        
+        NotificationCenter.default.post(name: .updateMessagesId, object: messagesId)
     }
 }

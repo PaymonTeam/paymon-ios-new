@@ -1398,6 +1398,7 @@ class RPC {
         
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_photoURL.svuid)
+            peer.serializeToStream(stream: stream)
             stream.write(url)
         }
     }

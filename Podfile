@@ -6,16 +6,13 @@ target 'paymon' do
 
     pod 'OpenSSL-Universal'
 
-
   use_frameworks!
 
     pod 'Alamofire', '~> 4.0'
     #pod 'web3swift', :git => 'https://github.com/MercuryProtocol/web3.swift.git', :branch => 'master'
     pod 'MBProgressHUD', '~> 1.0.0'
     pod 'AlamofireObjectMapper'
-    #pod 'PureLayout'
-    pod 'Cache'
-    #pod 'RSKImageCropper'
+    
     pod 'ScrollableGraphView'
     pod 'SDWebImage', '~> 4.0'
     pod 'FLAnimatedImage', '~> 1.0'

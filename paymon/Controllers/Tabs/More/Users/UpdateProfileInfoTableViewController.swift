@@ -89,7 +89,7 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
         
         observerUpdateProfile = NotificationCenter.default.addObserver(forName: .updateProfile, object: nil, queue: nil ){ notification in
 
-            UserManager.updateProfileInfo(name: self.nameInfo.text!, surname: self.surnameInfo.text!, vc: self)
+            UserManager.updateProfileInfo(name: self.nameInfo.text!, surname: self.surnameInfo.text!, vc: self.parent!)
         }
         
         observerUpdateView = NotificationCenter.default.addObserver(forName: .updateView, object: nil, queue: nil ){ notification in

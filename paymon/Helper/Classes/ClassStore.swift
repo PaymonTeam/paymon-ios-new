@@ -123,8 +123,6 @@ class ClassStore {
             object = RPC.PM_exit();
         case RPC.PM_postReferal.svuid:
             object = RPC.PM_postReferal();
-//        case RPC.PM_verifyPasswordRecoveryCode.svuid:
-//            object = RPC.PM_verifyPasswordRecoveryCode()
         case RPC.PM_restorePasswordRequestCode.svuid:
             object = RPC.PM_restorePasswordRequestCode()
         case RPC.PM_restorePassword.svuid:

@@ -25,7 +25,7 @@ class SettingAccountTableViewController: UITableViewController {
     }
     
     func setLayoutOptions() {
-        showEmailCell.textLabel!.text! = "Show email".localized
+        showEmailCell.textLabel!.text! = "Hide email address".localized
         switchShowEmail.onTintColor = UIColor.AppColor.Blue.primaryBlue
 
         showEmailCell.accessoryView = switchShowEmail

@@ -494,7 +494,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ChatsTable" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="74" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cyd-eX-Fm6">
-                                <rect key="frame" x="0.0" y="120" width="375" height="498"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="454"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ChatsTableViewCell" selectionStyle="gray" indentationWidth="10" reuseIdentifier="ChatsTableViewCell" id="Kec-gi-zU3" customClass="ChatsTableViewCell" customModule="paymon" customModuleProvider="target">
@@ -665,18 +665,39 @@
                                 <rect key="frame" x="8" y="64" width="359" height="56"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" smartDashesType="no" smartInsertDeleteType="no"/>
                             </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="A7J-7x-8zM">
+                                <rect key="frame" x="16" y="582" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Dialogs"/>
+                                    <segment title="All"/>
+                                    <segment title="Groups"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="segmentChanges:" destination="oFv-3Z-QeM" eventType="valueChanged" id="ddC-cu-GJo"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="cyd-eX-Fm6" firstAttribute="trailing" secondItem="9ot-0e-LGj" secondAttribute="trailing" id="BC6-SZ-9fs"/>
                             <constraint firstItem="DhL-bV-BP6" firstAttribute="top" secondItem="9ot-0e-LGj" secondAttribute="top" id="IXk-cm-Bc8"/>
                             <constraint firstItem="cyd-eX-Fm6" firstAttribute="leading" secondItem="9ot-0e-LGj" secondAttribute="leading" id="JYo-08-hXJ"/>
+                            <constraint firstItem="A7J-7x-8zM" firstAttribute="top" secondItem="cyd-eX-Fm6" secondAttribute="bottom" constant="8" id="OZ0-hc-ejv"/>
                             <constraint firstItem="DhL-bV-BP6" firstAttribute="leading" secondItem="9ot-0e-LGj" secondAttribute="leading" constant="8" id="SzJ-9X-qTr"/>
                             <constraint firstItem="DhL-bV-BP6" firstAttribute="trailing" secondItem="9ot-0e-LGj" secondAttribute="trailing" constant="-8" id="YCF-0u-B9d"/>
                             <constraint firstItem="cyd-eX-Fm6" firstAttribute="bottom" secondItem="9ot-0e-LGj" secondAttribute="bottom" id="bzq-Eh-jRI"/>
+                            <constraint firstItem="9ot-0e-LGj" firstAttribute="trailing" secondItem="A7J-7x-8zM" secondAttribute="trailing" constant="16" id="pUV-CB-LAm"/>
+                            <constraint firstItem="9ot-0e-LGj" firstAttribute="bottom" secondItem="A7J-7x-8zM" secondAttribute="bottom" constant="8" id="rSI-pn-OCc"/>
                             <constraint firstItem="cyd-eX-Fm6" firstAttribute="top" secondItem="DhL-bV-BP6" secondAttribute="bottom" id="ttQ-Ql-Jgt"/>
+                            <constraint firstItem="A7J-7x-8zM" firstAttribute="leading" secondItem="9ot-0e-LGj" secondAttribute="leading" constant="16" id="ubL-9N-gJB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9ot-0e-LGj"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="bzq-Eh-jRI"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Chats" id="URV-0w-KOe">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
@@ -692,6 +713,7 @@
                     <connections>
                         <outlet property="chatsTable" destination="cyd-eX-Fm6" id="w5a-OA-FqY"/>
                         <outlet property="searchBar" destination="DhL-bV-BP6" id="vKG-hC-qNP"/>
+                        <outlet property="segment" destination="A7J-7x-8zM" id="wHu-4F-QQW"/>
                         <segue destination="9H9-Yd-fzg" kind="show" id="CuY-4o-mEj"/>
                         <segue destination="uPV-OI-pZN" kind="show" id="7Ms-wK-CHw"/>
                     </connections>
@@ -1168,7 +1190,7 @@
                                                         <constraint firstAttribute="width" constant="24" id="kT8-6h-u0B"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sei-Dm-dyL">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sei-Dm-dyL">
                                                     <rect key="frame" x="56" y="0.0" width="271" height="55"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>

@@ -11,14 +11,16 @@ class ProfileInfoTableViewController : UITableViewController {
     
     func updateView() {
         
-        guard let user = User.currentUser as RPC.PM_userSelf? else {
+        guard let user = User.currentUser else {
             return
         }
         
         DispatchQueue.main.async {
             
             if (user.email != nil) {
-            self.emailInfo.text = user.email
+                self.emailInfo.text = user.email
+            } else {
+                self.emailInfo.text = "Is hidden".localized
             }
             
         }

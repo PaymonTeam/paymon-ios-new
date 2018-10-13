@@ -91,6 +91,8 @@
 "Participants: "="Участники: ";
 "created the group chat "="создал(а) группу ";
 "Group chat created"="Группа создана";
+"Groups"="Группы";
+"Dialogs"="Диалоги";
 
 /*Group settings*/
 "Are you sure to remove this user?"="Вы уверены, что хотите удалить этого пользователя из группы?";
@@ -100,6 +102,7 @@
 /*More*/
 "More"="Еще";
 "Help"="Помощь";
+"Yesterday"="Вчера";
 
 /*Profile*/
 
@@ -116,6 +119,7 @@
 "Send message"="Отправить сообщение";
 "Wallets"="Кошельки";
 "Information is closed"="Информация закрыта";
+"Is hidden"="Скрыто";
 
 /*Update profile*/
 "Change photo" = "Изменить фото";
@@ -173,6 +177,7 @@
 
 /*Account settings*/
 "Show email"="Показать электронный адрес";
+"Hide email address"="Скрыть электронный адрес";
 "Account"="Учетная запись";
 "Other users will be able to see your email address in your profile"="Другие пользователи смогут видеть адрес вашей электронной почты у вас профиле";
 

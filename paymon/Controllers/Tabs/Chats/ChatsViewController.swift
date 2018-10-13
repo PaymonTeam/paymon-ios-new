@@ -12,8 +12,12 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var chatsTable: UITableView!
+    @IBOutlet weak var segment: UISegmentedControl!
     
     var list:[CellChatData] = []
+    var groupsList:[CellChatData] = []
+    var dialogsList:[CellChatData] = []
+
     var filteredChats : [CellChatData] = []
     var isLoading:Bool = false
 
@@ -34,6 +38,25 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
 
             MessageManager.instance.loadChats(!NetworkManager.instance.isConnected)
         }
+    }
+    
+    
+    @IBAction func segmentChanges(_ sender: Any) {
+        setChatsList()
+    }
+    
+    func setChatsList() {
+        switch segment.selectedSegmentIndex {
+        case 0:
+            filteredChats = dialogsList
+        case 1:
+            filteredChats = list
+        case 2:
+            filteredChats = groupsList
+        default:
+            break
+        }
+        chatsTable.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,7 +80,6 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(ChatsViewController.refresh), for: UIControl.Event.valueChanged)
         chatsTable.addSubview(refresher)
-        
     }
     
     @objc func refresh() {
@@ -69,14 +91,27 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard !searchText.isEmpty else {
-            filteredChats = list
+            setChatsList()
             chatsTable.reloadData()
             return
         }
         
-        filteredChats = list.filter({chat -> Bool in
-            return chat.name.lowercased().contains(searchText.lowercased())
-        })
+        switch segment.selectedSegmentIndex {
+        case 0:
+            filteredChats = dialogsList.filter({chat -> Bool in
+                return chat.name.lowercased().contains(searchText.lowercased())
+            })
+        case 1:
+            filteredChats = list.filter({chat -> Bool in
+                return chat.name.lowercased().contains(searchText.lowercased())
+            })
+        case 2:
+            filteredChats = groupsList.filter({chat -> Bool in
+                return chat.name.lowercased().contains(searchText.lowercased())
+            })
+        default:
+            break
+        }
         
         chatsTable.reloadData()
     }
@@ -111,6 +146,10 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         searchBar.placeholder = "Search for users or groups".localized
         searchBar.showsCancelButton = false
         
+        segment.setTitle("Dialogs".localized, forSegmentAt: 0)
+        segment.setTitle("All".localized, forSegmentAt: 1)
+        segment.setTitle("Groups".localized, forSegmentAt: 2)
+
     }
     
     @IBAction func onClickAddContact(_ sender: Any) {
@@ -178,9 +217,14 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
         if (id == NotificationManager.dialogsNeedReload || id == NotificationManager.didReceivedNewMessages) {
             
             self.filteredChats.removeAll()
+            self.dialogsList.removeAll()
+            self.groupsList.removeAll()
             self.list.removeAll()
             
-            var array:[CellChatData] = []
+            var arrayAll:[CellChatData] = []
+            var arrayGroups:[CellChatData] = []
+            var arrayDialogs:[CellChatData] = []
+
             for user in MessageManager.instance.userContacts.values {
                 let data = CellDialogData()
                 
@@ -205,8 +249,20 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                 data.name = username
                 data.lastMessageText = lastMessageText
                 data.timeString = lastMessageTime
-                array.append(data)
+                
+                arrayDialogs.append(data)
+                arrayAll.append(data)
+                
+                if !arrayDialogs.isEmpty {
+                    arrayDialogs.sort {
+                        $0.time > $1.time
+                    }
+                    
+                }
+                
             }
+            
+            dialogsList.append(contentsOf: arrayDialogs)
             
             for group in MessageManager.instance.groups.values {
                 
@@ -245,21 +301,30 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                 data.lastMessageText = lastMessageText
                 data.timeString = lastMessageTimeString
                 data.lastMsgPhoto = lastMsgPhoto
-                array.append(data)
+                
+                arrayGroups.append(data)
+                arrayAll.append(data)
+
+                if !arrayGroups.isEmpty {
+                    arrayGroups.sort {
+                        $0.time > $1.time
+                    }
+                }
             }
             
+            groupsList.append(contentsOf: arrayGroups)
+
             self.navigationItem.title = "Chats".localized
 
-            if !array.isEmpty {
-                array.sort {
+            if !arrayAll.isEmpty {
+                arrayAll.sort {
                     $0.time > $1.time
                 }
-                list.removeAll()
-                list.append(contentsOf: array)
                 
-                filteredChats = list
+                list.append(contentsOf: arrayAll)
+                
+                setChatsList()
                 chatsTable.reloadData()
-            } else {
             }
             
             isLoading = false

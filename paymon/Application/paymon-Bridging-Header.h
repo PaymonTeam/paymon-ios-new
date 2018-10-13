@@ -15,6 +15,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Contacts/CNContact.h>
 #import <UserNotifications/UserNotifications.h>
+#import <CoreData/CoreData.h>
 //#import <Charts/Charts-Swift.h>
 //#import "BRWalletManager.h"
 //#import "BRWallet.h"

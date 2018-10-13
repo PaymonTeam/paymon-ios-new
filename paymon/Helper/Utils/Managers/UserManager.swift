@@ -157,8 +157,8 @@ public class UserManager {
                 MBProgressHUD.hide(for: vc.view, animated: true)
             }
             
-            if (response != nil) {
-                User.saveConfig() //TODO: разобраться в работе
+            if response is RPC.PM_boolTrue {
+                User.saveConfig()
                 DispatchQueue.main.async {
                     Utils.showSuccesHud(vc: vc)
                     NotificationCenter.default.post(name: .updateView, object: nil)
@@ -271,6 +271,8 @@ public class UserManager {
                     User.currentUser = p as? RPC.PM_userSelf
                     User.isAuthenticated = true
 
+                    CacheManager.saveUser(userObject: User.currentUser)
+                    
                     User.saveConfig()
                     User.loadConfig()
 
@@ -353,12 +355,10 @@ public class UserManager {
                 MBProgressHUD.hide(for: vc.view, animated: true)
             }
             
-            if (response != nil) {
+            if response is RPC.PM_boolTrue {
                 User.saveConfig()
                 DispatchQueue.main.async {
                     Utils.showSuccesHud(vc: vc)
-                    NotificationCenter.default.post(name: .updateView, object: nil)
-                    NotificationCenter.default.post(name: .updateString, object: nil)
                 }
                 
                 print("Email state was changed")
