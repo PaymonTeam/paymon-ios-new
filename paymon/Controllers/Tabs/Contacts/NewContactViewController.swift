@@ -38,6 +38,7 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         
         existUsersArray.removeAll()
         self.getContacts()
+        self.getContactsFromCache()
         
         searchBar.delegate = self
 
@@ -116,25 +117,10 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
                         
                         let username = Utils.formatUserName(packetUser)
                         
-//                        var lastMessageTime = ""
-//
-//                        if let lastMessageID = MessageManager.instance.lastMessages[user.id] {
-//
-//                            print("last message id \(lastMessageID)")
-//
-//
-//                            if let msg:RPC.Message = MessageManager.instance.messages[lastMessageID] {
-//
-//                                lastMessageTime = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
-//                                print("last message time \(lastMessageTime)")
-//                            }
-//                        }
                         data.chatID = packetUser.id
-                        data.photoUrl = packetUser.photoUrl
+                        data.photoUrl = packetUser.photoUrl.url
                         data.name = username
                         data.login = "@\(packetUser.login!)"
-                        
-//                        data.timeString = lastMessageTime
 
                         self.existUsersFilteredArray.append(data)
                         
@@ -231,45 +217,48 @@ class NewContactViewController: PaymonViewController, NotificationManagerListene
         }
     }
     
+    func getContactsFromCache() {
+        var array:[CellContactData] = []
+        for user in CacheManager.shared.getAllUserContacts() {
+            let data = CellContactData()
+            
+            let username = Utils.formatUserDataName(user)
+            
+            var lastMessageTime = ""
+            
+            if let lastMessageID = MessageManager.instance.lastMessages[user.id] {
+                if let msg:RPC.Message = MessageManager.instance.messages[lastMessageID] {
+                    
+                    data.time = Int64(msg.date)
+                    lastMessageTime = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
+                }
+            }
+            data.chatID = user.id
+            data.photoUrl = user.photoUrl
+            data.name = username
+            data.login = user.login
+            
+            data.timeString = lastMessageTime
+            array.append(data)
+        }
+        
+        if !array.isEmpty {
+            array.sort {
+                $0.time > $1.time
+            }
+            existUsersArray.removeAll()
+            existUsersArray.append(contentsOf: array)
+            existUsersFilteredArray = existUsersArray
+            
+            contactTableView.reloadData()
+        }
+        
+    }
+    
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if (id == NotificationManager.dialogsNeedReload || id == NotificationManager.didReceivedNewMessages) {
-            
-            var array:[CellContactData] = []
-            for user in MessageManager.instance.userContacts.values {
-                let data = CellContactData()
-                
-                let username = Utils.formatUserName(user)
-                
-                var lastMessageTime = ""
-                
-                if let lastMessageID = MessageManager.instance.lastMessages[user.id] {
-                    if let msg:RPC.Message = MessageManager.instance.messages[lastMessageID] {
-                        
-                        data.time = Int64(msg.date)
-                        lastMessageTime = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
-                    }
-                }
-                data.chatID = user.id
-                data.photoUrl = user.photoUrl
-                data.name = username
-                
-                data.timeString = lastMessageTime
-                array.append(data)
-            }
-            
-            self.navigationItem.title = "Contacts".localized
 
-            if !array.isEmpty {
-                array.sort {
-                    $0.time > $1.time
-                }
-                existUsersArray.removeAll()
-                existUsersArray.append(contentsOf: array)
-                existUsersFilteredArray = existUsersArray
-                
-                contactTableView.reloadData()
-            } else {
-            }
+            self.navigationItem.title = "Contacts".localized
             
             isLoading = false
         } else if (id == NotificationManager.didDisconnectedFromServer) {
@@ -324,7 +313,7 @@ extension NewContactViewController: UITableViewDataSource {
             } else {
                 cell.timeWhenWas.text = data.login!
             }
-            cell.avatar.loadPhoto(url: data.photoUrl.url)
+            cell.avatar.loadPhoto(url: data.photoUrl)
             return cell
         } else {
         let a = Array(phoneContactsFilteredDict.keys).sorted()

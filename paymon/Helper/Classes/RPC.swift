@@ -99,11 +99,13 @@ class RPC {
         var id:Int32!
         var login:String!
         var password:String!
+        var googleCloudToken:String!
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             id = stream.readInt32(exception)
             login = stream.readString(exception)
             password = stream.readString(exception)
+            googleCloudToken = stream.readString(exception)
         }
 
         override func serializeToStream(stream: SerializableData) {
@@ -111,6 +113,7 @@ class RPC {
             stream.write(id)
             stream.write(login)
             stream.write(password)
+            stream.write(googleCloudToken)
         }
     }
 
@@ -129,14 +132,19 @@ class RPC {
         static let svuid:Int32 = 359382942
 
         var token:Data!
-
+        var googleCloudToken:String!
+        
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             token = stream.readByteArrayNSData(exception)
+            googleCloudToken = stream.readString(exception)
+
         }
 
         override func serializeToStream(stream: SerializableData) {
             stream.write(PM_authToken.svuid)
             stream.writeByteArrayData(token)
+            stream.write(googleCloudToken)
+
         }
     }
 
@@ -277,7 +285,7 @@ class RPC {
         var email:String!
         var photoUrl:PM_photoURL!
         var confirmed:Bool!
-        var isEmailHidden:Bool!
+        var isEmailHidden:Bool = false
 
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> UserObject {
 

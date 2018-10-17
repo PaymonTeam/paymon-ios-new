@@ -34,7 +34,6 @@ class User {
     }
 
     public static func loadConfig() {
-//        KeychainWrapper.standard.removeObject(forKey: "user")
 
         if currentUser == nil {
             if let retrievedString = KeychainWrapper.standard.string(forKey: "user", withAccessibility: KeychainItemAccessibility.always) {
@@ -45,7 +44,6 @@ class User {
                         currentUser = deserialize as? RPC.PM_userSelf
                     } else {
                         print("load config user nil")
-
                         currentUser = nil
                         stream!.close()
                         return
@@ -62,6 +60,11 @@ class User {
                 return
             }
         }
+        
+        if !CacheManager.isAddedStorage {
+            CacheManager.shared.initDb()
+        }
+
         self.userId = String(currentUser.id)
 
         securityPasscode = KeychainWrapper.standard.bool(forKey: UserDefaultKey.SECURITY_PASSCODE + userId) ?? false
@@ -85,6 +88,7 @@ class User {
         notificationMessageSound = "Note.mp3"
         securityPasscode = false
         securityPasscodeValue = ""
+        CacheManager.isAddedStorage = false
         saveConfig()
     }
 }

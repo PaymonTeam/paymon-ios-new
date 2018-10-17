@@ -10,7 +10,9 @@ import Foundation
 
 class CryptoManager {
     
-    static func getPaymonWalletInfo() -> CellMoneyData {
+    static let shared = CryptoManager()
+    
+    func getPaymonWalletInfo() -> CellMoneyData {
         
         let paymonData = CellCreatedMoneyData()
         let userHavePaymonWallet = false
@@ -33,7 +35,7 @@ class CryptoManager {
         }
     }
     
-    static func getEthereumWalletInfo() -> CellMoneyData {
+    func getEthereumWalletInfo() -> CellMoneyData {
         
         let ethereumData : CellCreatedMoneyData
         let userHaveEtherWallet = true
@@ -54,12 +56,12 @@ class CryptoManager {
             /*******************/
 
         } else {
-            return getNotCreatedData(cryptoType: .ethereum)
+            return self.getNotCreatedData(cryptoType: .ethereum)
         }
         
     }
     
-    static func getBitcoinWalletInfo() -> CellMoneyData {
+    func getBitcoinWalletInfo() -> CellMoneyData {
         let bitcoinData = CellCreatedMoneyData()
         let userHaveBitcoinWallet = true
 
@@ -78,12 +80,12 @@ class CryptoManager {
             /*******************/
 
         } else {
-            return getNotCreatedData(cryptoType: .bitcoin)
+            return self.getNotCreatedData(cryptoType: .bitcoin)
         }
         
     }
     
-    static func getNotCreatedData(cryptoType : CryptoType) -> CellMoneyData {
+    func getNotCreatedData(cryptoType : CryptoType) -> CellMoneyData {
         let notCreated = CellMoneyData()
         
         switch cryptoType {
@@ -103,11 +105,11 @@ class CryptoManager {
         return notCreated
     }
     
-    static func checkBitcoinWallet(wallet : String) -> Bool {
+    func checkBitcoinWallet(wallet : String) -> Bool {
         return wallet.matches(Money.BITCOIN_WALLET_QR_REGEX)
     }
     
-    static func cutBitcoinWallet(scan : String) -> String{
+    func cutBitcoinWallet(scan : String) -> String{
         
         var cutString = ""
         let parts = scan.components(separatedBy: ":")

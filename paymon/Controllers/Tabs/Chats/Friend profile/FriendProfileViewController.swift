@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class FriendProfileViewController: PaymonViewController {
 
@@ -16,6 +17,7 @@ class FriendProfileViewController: PaymonViewController {
     @IBOutlet weak var login: UILabel!
     @IBOutlet weak var name: UILabel!
     
+    @IBOutlet weak var viewForTable: UserInfoTableInfoUIView!
     @IBOutlet weak var avatar: CircularImageView!
     @IBOutlet weak var headerView: UIView!
     
@@ -23,6 +25,17 @@ class FriendProfileViewController: PaymonViewController {
     
     var id : Int32!
     var fromChat = false
+    
+    func hideMenu(isHidden : Bool) {
+        if isHidden {
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+        } else {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+        headerView.isHidden = isHidden
+        stackButtons.isHidden = isHidden
+        viewForTable.isHidden = isHidden
+    }
     
     @IBAction func sendMessageClick(_ sender: Any) {
         if fromChat {
@@ -100,32 +113,54 @@ class FriendProfileViewController: PaymonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        hideMenu(isHidden: true)
         setLayoutOptions()
         getUserInfo()
         loadWallets()
     }
     
     func getUserInfo() {
-        let request = RPC.PM_getUserInfo()
-        request.user_id = id
         
-        let _ = NetworkManager.instance.sendPacket(request) { response, e in
+        if !getUserFromCache() {
+            let request = RPC.PM_getUserInfo()
+            request.user_id = id
             
-            if response == nil {
-                print("Error get user info")
-                return
-            }
-            
-            guard let user = response as? RPC.PM_userFull else {return}
-            DispatchQueue.main.async {
-                self.name.text = Utils.formatUserName(user)
-                self.login.text = "@\(user.login!)"
-                self.avatar.loadPhoto(url: user.photoUrl.url)
-            }
-            NotificationCenter.default.post(name: .setFriendProfileInfo, object: user)
+            let _ = NetworkManager.instance.sendPacket(request) { response, e in
+                
+                if response == nil {
+                    print("Error get user info")
+                    return
+                }
+                
+                guard let user = response as? RPC.PM_userFull else {return}
+                DispatchQueue.main.async {
+                    self.name.text = Utils.formatUserName(user)
+                    self.login.text = "@\(user.login!)"
+                    self.avatar.loadPhoto(url: user.photoUrl.url)
+                    self.hideMenu(isHidden: false)
 
+                }
+                NotificationCenter.default.post(name: .setFriendProfileInfo, object: user)
+                
+            }
         }
     }
+    
+    func getUserFromCache() -> Bool {
+        if let user = CacheManager.shared.getUserById(id: id) as UserData? {
+
+            self.name.text = Utils.formatUserDataName(user)
+            self.login.text = "@\(user.login!)"
+            self.avatar.loadPhoto(url: user.photoUrl!)
+
+            NotificationCenter.default.post(name: .setFriendProfileInfo, object: user)
+            hideMenu(isHidden: false)
+            return true
+        } else {
+            return false
+        }
+    }
+    
     
     func setLayoutOptions() {
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)

@@ -58,7 +58,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        ExchangeRateParser.parseCourse(crypto: Money.btc, fiat: fiatCurrancy)
+        ExchangeRateParser.shared.parseCourse(crypto: Money.btc, fiat: fiatCurrancy)
     }
     
     func getYourWalletInfo() {

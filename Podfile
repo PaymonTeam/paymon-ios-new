@@ -12,7 +12,7 @@ target 'paymon' do
     #pod 'web3swift', :git => 'https://github.com/MercuryProtocol/web3.swift.git', :branch => 'master'
     pod 'MBProgressHUD', '~> 1.0.0'
     pod 'AlamofireObjectMapper'
-    
+    pod 'CoreStore', '~> 5.0'
     pod 'ScrollableGraphView'
     pod 'SDWebImage', '~> 4.0'
     pod 'FLAnimatedImage', '~> 1.0'

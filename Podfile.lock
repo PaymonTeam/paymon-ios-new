@@ -3,6 +3,7 @@ PODS:
   - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.3)
+  - CoreStore (5.3.0)
   - FLAnimatedImage (1.0.12)
   - MBProgressHUD (1.0.0)
   - ObjectMapper (3.3.0)
@@ -15,6 +16,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AlamofireObjectMapper
+  - CoreStore (~> 5.0)
   - FLAnimatedImage (~> 1.0)
   - MBProgressHUD (~> 1.0.0)
   - OpenSSL-Universal
@@ -25,6 +27,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
+    - CoreStore
     - FLAnimatedImage
     - MBProgressHUD
     - ObjectMapper
@@ -35,6 +38,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
+  CoreStore: 6d2d5e7841e9b1f5d452b5ab881e478cf37f540e
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
@@ -42,6 +46,6 @@ SPEC CHECKSUMS:
   ScrollableGraphView: 6386dbae8d92e8ec9fda9f386f2ba6e2c90c59a3
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 593a772f29f98690aac881f5b6eb15fe848412b4
+PODFILE CHECKSUM: 7e7cf946a938b5ffa1f74112714bc4f6f5689741
 
 COCOAPODS: 1.5.3

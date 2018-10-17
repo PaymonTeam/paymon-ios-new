@@ -1,6 +1,7 @@
 import UIKit
 import Foundation
 import UserNotifications
+import CoreStore
 
 class ProfileViewController: PaymonViewController {
     
@@ -31,11 +32,10 @@ class ProfileViewController: PaymonViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let users = CacheManager.loadUsers()
-        for user in users {
-            print(user.id)
+        let user = CacheManager.shared.getAllUsers()
+        for u in user {
+            print("[name : \(u.name), login \(u.login)]")
         }
-        
         setLayoutOptions()
     }
     

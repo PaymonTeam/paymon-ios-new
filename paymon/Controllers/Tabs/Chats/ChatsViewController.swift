@@ -225,10 +225,10 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
             var arrayGroups:[CellChatData] = []
             var arrayDialogs:[CellChatData] = []
 
-            for user in MessageManager.instance.userContacts.values {
+            for user in CacheManager.shared.getAllUserContacts() {
                 let data = CellDialogData()
                 
-                let username = Utils.formatUserName(user)
+                let username = Utils.formatUserDataName(user)
                 var lastMessageText = ""
                 var lastMessageTime = ""
                 
@@ -264,7 +264,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
             
             dialogsList.append(contentsOf: arrayDialogs)
             
-            for group in MessageManager.instance.groups.values {
+            for group in CacheManager.shared.getAllGroups() {
                 
                 let data = CellGroupData()
                 
@@ -272,7 +272,7 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                 var lastMessageText = ""
                 var lastMessageTimeString = ""
                 
-                var lastMsgPhoto:RPC.PM_photoURL? = nil
+                var lastMsgPhoto:String! = nil
                 if let lastMessageID = MessageManager.instance.lastGroupMessages[group.id] {
                     if let msg = MessageManager.instance.messages[lastMessageID] {
                         if msg is RPC.PM_message {
@@ -287,9 +287,9 @@ class ChatsViewController: PaymonViewController, NotificationManagerListener, UI
                         data.time = Int64(msg.date)
                         lastMessageTimeString = Utils.formatDateTime(timestamp: Int64(msg.date), format24h: true)
                         
-                        let user = MessageManager.instance.users[msg.from_id]
-                        if (user != nil) {
-                            lastMsgPhoto = user!.photoUrl
+                        if let user = CacheManager.shared.getUserById(id: msg.from_id) as UserData?{
+                            lastMsgPhoto = user.photoUrl
+
                         }
                     }
                 }
@@ -369,7 +369,7 @@ extension ChatsViewController: UITableViewDataSource {
             cell.lastMessageText.text = data.lastMessageText
             cell.lastMessageTime.text = data.timeString
 //            print("url \(String(describing: data.photoUrl.url))")
-            cell.photo.loadPhoto(url: data.photoUrl.url)
+            cell.photo.loadPhoto(url: data.photoUrl)
             return cell
         } else if data is CellGroupData {
             let groupData = data as! CellGroupData
@@ -377,9 +377,9 @@ extension ChatsViewController: UITableViewDataSource {
             cell.title.text = groupData.name
             cell.lastMessageText.text = groupData.lastMessageText
             cell.lastMessageTime.text = groupData.timeString
-            cell.photo.loadPhoto(url: groupData.photoUrl.url)
+            cell.photo.loadPhoto(url: groupData.photoUrl)
             if groupData.lastMsgPhoto != nil {
-                cell.lastMessagePhoto.loadPhoto(url: (groupData.lastMsgPhoto?.url)!)
+                cell.lastMessagePhoto.loadPhoto(url: (groupData.lastMsgPhoto)!)
             }
             if groupData.lastMessageType == .ACTION {
                 cell.lastMessageText.textColor = UIColor.AppColor.Blue.primaryBlue.withAlphaComponent(0.6)

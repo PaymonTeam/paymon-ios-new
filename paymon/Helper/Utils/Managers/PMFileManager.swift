@@ -18,7 +18,7 @@ protocol IUploadingFile {
 }
 
 class PMFileManager {
-    public static let instance = PMFileManager()
+    public static let shared = PMFileManager()
     private init() {
     }
 

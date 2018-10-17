@@ -16,7 +16,7 @@ class MainNavigationController: UINavigationController {
         setLayoutOptions()
         
         if isLoggedIn() {
-            
+                    
             if User.securityPasscode {
                 let passcodeViewController = StoryBoard.passcode.instantiateViewController(withIdentifier: VCIdentifier.passcodeViewController) as! PasscodeViewController
                 viewControllers = [passcodeViewController]

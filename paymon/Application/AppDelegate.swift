@@ -46,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
 
         UNUserNotificationCenter.current().delegate = self
         PushNotificationManager.shared.registrForNotification(application: application)
-
         //setup ether
 //        loadEthenWallet()
 
@@ -151,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
     func didReceivedNotification(_ id: Int, _ args: [Any]) {
         if id == NotificationManager.didEstablishedSecuredConnection {
             if User.currentUser != nil {
-                UserManager.authByToken()
+                UserManager.shared.authByToken()
             }
         } else if id == NotificationManager.didDisconnectedFromServer {
             if !User.isAuthenticated {

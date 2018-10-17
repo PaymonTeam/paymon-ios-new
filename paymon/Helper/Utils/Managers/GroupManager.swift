@@ -10,7 +10,10 @@ import Foundation
 import MBProgressHUD
 
 public class GroupManager {
-    static func updateAvatar(groupId : Int32, info: [UIImagePickerController.InfoKey : Any], avatarView : CircularImageView, vc : UIViewController){
+    
+    static let shared = GroupManager()
+    
+    func updateAvatar(groupId : Int32, info: [UIImagePickerController.InfoKey : Any], avatarView : CircularImageView, vc : UIViewController){
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
             var resizeImage = UIImage()
@@ -39,7 +42,7 @@ public class GroupManager {
                 
                 if (packet is RPC.PM_boolTrue) {
                     Utils.stageQueue.run {
-                        PMFileManager.instance.startUploading(jpegData: resizeImage.jpegData(compressionQuality: 0.85)!, onFinished: {
+                        PMFileManager.shared.startUploading(jpegData: resizeImage.jpegData(compressionQuality: 0.85)!, onFinished: {
                             
                             DispatchQueue.main.async {
                                 MBProgressHUD.hide(for: vc.view, animated: true)
@@ -65,7 +68,7 @@ public class GroupManager {
                     _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
                     
                     //TODO переписать в Кастомный алерт
-                    PMFileManager.instance.cancelFileUpload(fileID: Int64(User.currentUser.id));
+                    PMFileManager.shared.cancelFileUpload(fileID: Int64(User.currentUser.id));
                 }
             }
         }

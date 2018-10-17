@@ -7,7 +7,7 @@
 //
 
 public class CellChatData {
-    var photoUrl:RPC.PM_photoURL!
+    var photoUrl:String!
     var name = ""
     var lastMessageText = ""
     var lastMessageType : PMFileManager.FileType!
@@ -20,5 +20,5 @@ public class CellDialogData : CellChatData {
     
 }
 public class CellGroupData : CellChatData {
-    var lastMsgPhoto:RPC.PM_photoURL!
+    var lastMsgPhoto:String!
 }

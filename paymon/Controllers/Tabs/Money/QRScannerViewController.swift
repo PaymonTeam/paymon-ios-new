@@ -81,7 +81,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                     guard let scan = object.stringValue else {return}
                     
                     session.stopRunning()
-                    result = CryptoManager.cutBitcoinWallet(scan: scan)
+                    result = CryptoManager.shared.cutBitcoinWallet(scan: scan)
                     
                         
 //                    } else if scan!.starts(with: QRScan.ETHEREUM_WALLET) {

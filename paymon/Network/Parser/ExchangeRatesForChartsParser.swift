@@ -16,7 +16,9 @@ public class Rate {
 
 class ExchangeRatesForChartsParser {
     
-    public class func parse(urlString : String, interval : String) {
+    static let shared = ExchangeRatesForChartsParser()
+    
+    func parse(urlString : String, interval : String) {
         
         guard let url = URL(string: urlString) else {
             return

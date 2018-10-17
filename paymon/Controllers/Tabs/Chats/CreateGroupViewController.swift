@@ -19,18 +19,18 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     @IBOutlet weak var tblVContacts: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var participantsFromGroup = SharedArray<RPC.UserObject>()
+    var participantsFromGroup = [UserData]()
     
-    var usersData:[RPC.UserObject] = []
+    var usersData:[UserContactData] = []
     var selectedUserData:NSMutableArray = []
     var isGroupAlreadyCreated:Bool = false
     var chatID: Int32!
     
-    var filteredOutput = [String:[RPC.UserObject]]()
+    var filteredOutput = [String:[UserContactData]]()
     
-    var outputDict = [String:[RPC.UserObject]]()
+    var outputDict = [String:[UserContactData]]()
     var tableSection = [String]()
-    var saveSelested = false
+    var saveSelected = false
 
     
     override func viewDidLoad() {
@@ -39,14 +39,14 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
         var i = 0
         let count = participantsFromGroup.count
         
-        for user in MessageManager.instance.userContacts.values {
+        for user in CacheManager.shared.getAllUserContacts() {
             
             if user.id == User.currentUser.id {
                 continue
             }
             
-            for part in participantsFromGroup.array {
-                if user.id! != part.id! {
+            for part in participantsFromGroup {
+                if user.id != part.id {
                     i += 1
                 }
             }
@@ -84,7 +84,7 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     func getUsersDict() {
         for user in usersData {
             
-            let key = Utils.formatUserName(user).substring(toIndex: 1).uppercased()
+            let key = Utils.formatUserDataName(user).substring(toIndex: 1).uppercased()
             
             if  var users = outputDict[key] {
                 users.append(user)
@@ -140,13 +140,16 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
 
-        if saveSelested {
+        if saveSelected {
             guard let settingsGroupVC = viewController as? GroupSettingViewController else {return}
             
             if selectedUserData.count != 0 {
                 for user in selectedUserData {
-                    let data = user as! RPC.UserObject
-                    settingsGroupVC.participants.append(data)
+                    if let data = user as? UserData {
+                        settingsGroupVC.participants.append(data)
+                        settingsGroupVC.group.users.append(data.id)
+                        CacheManager.shared.updateGroup(groupObject: settingsGroupVC.group)
+                    }
                 }
                 
                 settingsGroupVC.tableViewParticipants.reloadData()
@@ -164,8 +167,9 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
             let addParticipant:RPC.PM_group_addParticipants! =  RPC.PM_group_addParticipants();
             addParticipant.userIDs = []
             for user in self.selectedUserData {
-                let data = user as! RPC.UserObject
-                addParticipant.userIDs.append(data.id)
+                if let data = user as? UserData {
+                    addParticipant.userIDs.append(data.id)
+                }
             }
             if addParticipant.userIDs.isEmpty {
                 return ;
@@ -181,13 +185,13 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                 }
                 
                 if response is RPC.PM_boolTrue {
-                    self.saveSelested = true
+                    self.saveSelected = true
 
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                     }
                 } else {
-                    self.saveSelested = false
+                    self.saveSelected = false
                 }
             }
         } else {
@@ -202,7 +206,7 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                         let createGroup = RPC.PM_createGroup()
                         createGroup.userIDs = []
                         for user in self.selectedUserData {
-                            let data = user as! RPC.UserObject
+                            let data = user as! UserContactData
                             createGroup.userIDs.append(data.id)
                         }
                         createGroup.title = textField.text;
@@ -235,8 +239,8 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
         if let users = filteredOutput[key] {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "GroupContactsTableViewCell") as! GroupContactsTableViewCell
-            cell.name.text = Utils.formatUserName(users[indexPath.row])
-            cell.photo.loadPhoto(url: users[indexPath.row].photoUrl.url)
+            cell.name.text = Utils.formatUserDataName(users[indexPath.row])
+            cell.photo.loadPhoto(url: users[indexPath.row].photoUrl!)
             
             cell.accessoryType = selectedUserData.contains(users[indexPath.row]) ? .checkmark : .none
             

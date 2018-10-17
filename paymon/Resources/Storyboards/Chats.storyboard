@@ -1158,6 +1158,7 @@
                         <outlet property="name" destination="exn-h0-lkQ" id="phO-A1-5VW"/>
                         <outlet property="sendMessage" destination="UEl-2O-BG3" id="qwg-yb-bK0"/>
                         <outlet property="stackButtons" destination="g6K-U5-tjX" id="a00-QR-Ast"/>
+                        <outlet property="viewForTable" destination="Uvg-01-Ybw" id="TFX-uI-sqQ"/>
                         <outlet property="wallets" destination="nUL-p0-q0X" id="609-63-dxH"/>
                     </connections>
                 </viewController>

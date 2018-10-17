@@ -1,106 +1,330 @@
-//
-//  CacheManager.swift
-//  paymon
-//
-//  Created by Maxim Skorynin on 06/10/2018.
-//  Copyright © 2018 Maxim Skorynin. All rights reserved.
+////
+////  CacheManager.swift
+////  paymon
+////
+////  Created by Maxim Skorynin on 06/10/2018.
+////  Copyright © 2018 Maxim Skorynin. All rights reserved.
+////
 //
 
 import Foundation
+import CoreStore
 import CoreData
 
-class CacheManager {
-    private init() {}
+public class CacheManager {
     
-    static var context: NSManagedObjectContext {
-        return persistentContainer.viewContext
+    static let shared = CacheManager()
+    static var isAddedStorage = false
+    
+    func initDb() {
+        
+        CoreStore.defaultStack = DataStack(
+            xcodeModelName: "paymon",
+            migrationChain: []
+        )
+        let _ = CoreStore.defaultStack.addStorage(
+            SQLiteStore(fileName: "Paymon_\(String(describing: User.currentUser.id)).sqlite"),
+            completion: { (result) -> Void in
+                if result.isSuccess {
+                    print("Added storage Paymon")
+                    CacheManager.isAddedStorage = true
+                }
+        })
     }
     
-    static var persistentContainer: NSPersistentContainer = {
+    /*
+     *
+     *UserData
+     *
+     */
+    
+    func updateUser(userObject : RPC.UserObject) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            
+            if let userData = transaction.fetchOne(From<UserData>().where(\.id == userObject.id)) {
+                print("User существует, я его обновлю")
+                self.setUserDataInfo(userData: userData, userObject: userObject)
+                
+            } else {
+                print("User не существует, я его создаю")
+                let userData = transaction.create(Into<UserData>())
+                self.setUserDataInfo(userData: userData, userObject: userObject)
 
-        let container = NSPersistentContainer(name: "paymon")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-         
-                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update user")
+            case .failure(let error): print("Failure update user \(error)")
             }
         })
-        return container
-    }()
-    
-    static func save () {
-        
-        if context.hasChanges {
-            do {
-                try context.save()
-                print("SAVED")
-            } catch {
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
-        }
     }
     
-    public static func saveUser(userObject : RPC.UserObject) {
-        
-        if !checkUserExist(id: userObject.id) {
-            let userData = UserData(context: CacheManager.context)
+    func updateUser(userData: UserData) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
             
-            userData.setValue(userObject.last_name, forKey: "surname")
-            userData.setValue(userObject.photoUrl.url, forKey: "photoUrl")
-            userData.setValue(userObject.login, forKey: "login")
-            userData.setValue(userObject.first_name, forKey: "name")
-            userData.setValue(userObject.id, forKey: "id")
-            
-            userData.setValue(userObject.email, forKey: "email")
-            
-            CacheManager.save()
-        }
-        
-        
-    }
-    
-    
-    static func checkUserExist(id : Int32) -> Bool {
-        let fetchRequest : NSFetchRequest<UserData> = UserData.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
-        fetchRequest.fetchLimit = 1
-        
-        do {
-            let count = try CacheManager.context.count(for: fetchRequest)
-            if count == 0 {
-                print("User не используется - сохранить")
-                return false
+            if let userData = transaction.fetchOne(From<UserData>().where(\.id == userData.id)) {
+                print("UserData существует, я его обновлю")
+                self.setUserDataInfo(userData: userData, userObject: userData)
+
             } else {
-                print("User уже существует - отмена")
 
-                return true
+                print("UserData не существует, я его создаю")
+                let userData = transaction.create(Into<UserData>())
+                self.setUserDataInfo(userData: userData, userObject: userData)
+                
             }
-        } catch let error {
-            print("Could not fetch \(error)")
-            return true
-        }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update userData")
+            case .failure(let error): print("Failure update userData \(error)")
+            }
+        })
     }
     
-    public static func loadUsers() -> [UserData] {
-        
-        var result = [UserData]()
-        
-        do {
-            
-            let fetchRequest : NSFetchRequest<UserData> = UserData.fetchRequest()
-            guard let users = try CacheManager.context.fetch(fetchRequest) as? [UserData] else {
-                print("Cant return users")
-                return [UserData]()
+    func updateUserPhotoUrl(id : Int32, url : String) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            if let userContatctData = transaction.fetchOne(From<UserData>().where(\.id == id)) {
+                userContatctData.photoUrl = url
             }
-            
-            result = users
-
-        } catch let error{
-            print("Cant load users from CoreData \(error)", error.localizedDescription)
-        }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update userData url")
+            case .failure(let error): print("Failure update userData url\(error)")
+            }
+        })
+    }
+    
+    func getUserByIdSync(id : Int32) -> UserData? {
         
+        var result : UserData! = nil
+
+        DispatchQueue.main.sync {
+            if let user = CoreStore.fetchOne(
+                From<UserData>()
+                    .where(\.id == id)
+                ) as UserData? {
+                result = user
+            }
+        }
+        return result
+    }
+    
+    func getUserById(id : Int32) -> UserData? {
+        
+        guard let user = CoreStore.fetchOne(
+            From<UserData>()
+                .where(\.id == id)
+            ) as UserData? else {
+                return nil
+            }
+        
+        return user
+    }
+    
+    func getAllUsers() -> [UserData] {
+        
+        guard let result = CoreStore.defaultStack.fetchAll(From<UserData>()) else {
+            print("Could not get all user contacts")
+            return [UserData]()
+        }
         
         return result
+    }
+    
+
+    /*
+     *
+     *UserContactData
+     *
+     */
+    
+    func updateUserContact(userObject : RPC.UserObject) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            if let userContatctData = transaction.fetchOne(From<UserContactData>().where(\.id == userObject.id)) {
+                print("UserContatct существует, я его обновлю")
+                self.setUserDataInfo(userData: userContatctData, userObject: userObject)
+                
+            } else {
+                print("UserContatct не существует, я его создаю")
+                let userContatctData = transaction.create(Into<UserContactData>())
+                self.setUserDataInfo(userData: userContatctData, userObject: userObject)
+                return
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update userContatct")
+            case .failure(let error): print("Failure update userContatct \(error)")
+            }
+        })
+    }
+    
+    func updateUserContact(userContact : UserContactData) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            if let userContatctData = transaction.fetchOne(From<UserContactData>().where(\.id == userContact.id)) {
+                print("UserContatct существует, я его обновлю")
+                self.setUserDataInfo(userData: userContatctData, userObject: userContact)
+                
+            } else {
+                print("UserContatct не существует, я его создаю")
+                let userContatctData = transaction.create(Into<UserContactData>())
+                self.setUserDataInfo(userData: userContatctData, userObject: userContact)
+                return
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update userContatct")
+            case .failure(let error): print("Failure update userContatct \(error)")
+            }
+        })
+    }
+    
+    func updateUserContactPhotoUrl(id : Int32, url : String) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            if let userContatctData = transaction.fetchOne(From<UserContactData>().where(\.id == id)) {
+                userContatctData.photoUrl = url
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update userContatct url")
+            case .failure(let error): print("Failure update userContatct url\(error)")
+            }
+        })
+    }
+    
+    func getUserContactByIdSync(id : Int32) -> UserContactData? {
+        
+        var result = UserContactData()
+        
+        DispatchQueue.main.sync {
+            if let user = CoreStore.fetchOne(
+                From<UserContactData>()
+                    .where(\.id == id)
+                ) as UserContactData? {
+                result = user
+            }
+        }
+        return result
+    }
+
+    func getAllUserContacts() -> [UserContactData] {
+        
+        print("Get all contacts")
+        guard let result = CoreStore.defaultStack.fetchAll(From<UserContactData>()) else {
+            print("Could not get all user contacts")
+            return [UserContactData]()
+        }
+        
+        return result
+    }
+    
+    /*
+     *
+     *GroupData
+     *
+     */
+    
+    func updateGroup(groupObject : RPC.Group) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            
+            if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == groupObject.id)) {
+                print("Group существует, я ее обновлю")
+                self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
+            } else {
+                print("Group не существует, я ее создаю")
+                let groupData = transaction.create(Into<GroupData>())
+                self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
+
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update пroup")
+            case .failure(let error): print("Failure update group \(error)")
+            }
+        })
+    }
+    
+    func updateGroup(groupObject : GroupData) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            
+            if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == groupObject.id)) {
+                print("Group существует, я ее обновлю")
+                self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
+            } else {
+                print("Group не существует, я ее создаю")
+                let groupData = transaction.create(Into<GroupData>())
+                self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
+                
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update пroup")
+            case .failure(let error): print("Failure update group \(error)")
+            }
+        })
+    }
+    
+    func updateGroupUrl(id : Int32, url : String) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == id)) {
+                groupData.photoUrl = url
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update groupData url")
+            case .failure(let error): print("Failure update groupData url\(error)")
+            }
+        })
+    }
+    
+    func updateGroupTitle(id : Int32, title : String) {
+        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+            if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == id)) {
+                groupData.title = title
+            }
+        }, completion: { (result) -> Void in
+            switch result {
+            case .success: print("Success update groupData title")
+            case .failure(let error): print("Failure update groupData title\(error)")
+            }
+        })
+    }
+    
+    func getAllGroups() -> [GroupData] {
+        
+        print("Get all groups")
+        guard let result = CoreStore.defaultStack.fetchAll(From<GroupData>()) else {
+            print("Could not get all groups")
+            return [GroupData]()
+        }
+        
+        return result
+    }
+    
+    func getGroupByIdSync(id : Int32) -> GroupData? {
+        
+        var result : GroupData! = nil
+        
+        DispatchQueue.main.sync {
+            if let group = CoreStore.fetchOne(
+                From<GroupData>()
+                    .where(\.id == id)
+                ) as GroupData? {
+                result = group
+            }
+        }
+        return result
+    }
+    
+    func getGroupById(id : Int32) -> GroupData? {
+        
+        guard let group = CoreStore.fetchOne(
+            From<GroupData>()
+                .where(\.id == id)
+            ) as GroupData? else {
+            return nil
+        }
+        
+        return group
+        
     }
 }

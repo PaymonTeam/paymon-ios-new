@@ -14,12 +14,11 @@ class MessageManager : NotificationManagerListener {
     var lastGroupMessages = SharedDictionary<Int32,Int64>()
     var dialogMessages = SharedDictionary<Int32,SharedArray<RPC.Message>>()
     var groupMessages = SharedDictionary<Int32,SharedArray<RPC.Message>>()
-    var users = SharedDictionary<Int32,RPC.UserObject>()
-    var userContacts = SharedDictionary<Int32,RPC.UserObject>()
+//    var users = SharedDictionary<Int32,RPC.UserObject>()
+//    var userContacts = SharedDictionary<Int32,RPC.UserObject>()
     
-    var groups = SharedDictionary<Int32,RPC.Group>()
-    var groupsUsers = SharedDictionary<Int32,[Int32]>()
-    var chatDatesDicts = SharedDictionary<Int32,[String]>()
+//    var groups = SharedDictionary<Int32,RPC.Group>()
+//    var groupsUsers = SharedDictionary<Int32,[Int32]>()
     
     var currentChatID:Int32 = 0
     var lastMessageID = Utils.Atomic<Int64>()
@@ -44,25 +43,25 @@ class MessageManager : NotificationManagerListener {
 
     public func putGroup(_ group:RPC.Group) {
 
-        groups[group.id] = group
-        groupsUsers[group.id] = group.users
+        CacheManager.shared.updateGroup(groupObject: group)
         
-        for user in group.users {
-            guard let userObject = users[user] else {return}
-            putUser(userObject)
-        }
+//        for user in group.users {
+//            
+//            guard let userData = CacheManager.shared.getUserByIdSync(id: user) as UserData? else{
+//                print("Fail get user by id")
+//                return
+//            }
+//            
+//            CacheManager.shared.updateUser(userData: userData)
+//            
+//        }
     }
 
     public func putUser(_ user:RPC.UserObject) {
-        CacheManager.saveUser(userObject: user)
-
-        if users[user.id] != nil {
-            return
-        }
-
-        users[user.id] = user
+        CacheManager.shared.updateUser(userObject: user)
+        
         if MessageManager.instance.dialogMessages[user.id] != nil {
-            userContacts[user.id] = user
+            CacheManager.shared.updateUserContact(userObject: user)
         }
     }
 

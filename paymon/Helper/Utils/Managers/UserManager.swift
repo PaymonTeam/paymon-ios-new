@@ -12,7 +12,9 @@ import MBProgressHUD
 
 public class UserManager {
     
-    static func signUpNewUser(login : String, password : String, email : String, viewController : UIViewController) {
+    static let shared = UserManager()
+    
+    func signUpNewUser(login : String, password : String, email : String, viewController : UIViewController) {
         
         let _ = MBProgressHUD.showAdded(to: viewController.view, animated: true)
         
@@ -59,7 +61,7 @@ public class UserManager {
         }
     }
     
-    static func signIn(login : String, password : String, vc : UIViewController) {
+    func signIn(login : String, password : String, vc : UIViewController) {
         
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
         
@@ -142,7 +144,7 @@ public class UserManager {
     }
     
 
-    static func updateProfileInfo(name: String, surname : String, vc : UIViewController) {
+    func updateProfileInfo(name: String, surname : String, vc : UIViewController) {
 
         User.currentUser!.first_name = name
         User.currentUser!.last_name = surname
@@ -177,7 +179,7 @@ public class UserManager {
     
     
     
-    static func sendCodeRecoveryToEmail(vc : UIViewController, loginOrEmail : String) {
+    func sendCodeRecoveryToEmail(vc : UIViewController, loginOrEmail : String) {
         let sendCodeToEmail = RPC.PM_restorePasswordRequestCode()
         sendCodeToEmail.loginOrEmail = loginOrEmail
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
@@ -213,7 +215,7 @@ public class UserManager {
         }
     }
     
-    static func setNewPassword(loginOrEmail : String, code: Int32, password : String, vc : UIViewController) {
+    func setNewPassword(loginOrEmail : String, code: Int32, password : String, vc : UIViewController) {
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
         
         let setNewPassword = RPC.PM_restorePassword()
@@ -252,7 +254,7 @@ public class UserManager {
         
     }
     
-    static func authByToken() {
+    func authByToken() {
 
             let auth = RPC.PM_authToken()
             
@@ -261,6 +263,7 @@ public class UserManager {
             }
  
             auth.token = user.token
+            auth.googleCloudToken = ""
 
             let _ = NetworkManager.instance.sendPacket(auth) { p, e in
                 
@@ -270,8 +273,8 @@ public class UserManager {
                 } else {
                     User.currentUser = p as? RPC.PM_userSelf
                     User.isAuthenticated = true
-
-                    CacheManager.saveUser(userObject: User.currentUser)
+                    
+//                    CacheManager.updateUser(userObject: User.currentUser)
                     
                     User.saveConfig()
                     User.loadConfig()
@@ -282,7 +285,7 @@ public class UserManager {
             }
     }
     
-    static func updateAvatar(info: [UIImagePickerController.InfoKey : Any], avatarView : CircularImageView, vc : UIViewController){
+    func updateAvatar(info: [UIImagePickerController.InfoKey : Any], avatarView : CircularImageView, vc : UIViewController){
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
             var resizeImage = UIImage()
@@ -310,7 +313,7 @@ public class UserManager {
                 
                 if (packet is RPC.PM_boolTrue) {
                     Utils.stageQueue.run {
-                        PMFileManager.instance.startUploading(jpegData: resizeImage.jpegData(compressionQuality: 0.85)!, onFinished: {
+                        PMFileManager.shared.startUploading(jpegData: resizeImage.jpegData(compressionQuality: 0.85)!, onFinished: {
                             
                             DispatchQueue.main.async {
                                 MBProgressHUD.hide(for: vc.view, animated: true)
@@ -336,13 +339,13 @@ public class UserManager {
                     _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
                     
                     //TODO переписать в Кастомный алерт
-                    PMFileManager.instance.cancelFileUpload(fileID: Int64(User.currentUser.id));
+                    PMFileManager.shared.cancelFileUpload(fileID: Int64(User.currentUser.id));
                 }
             }
         }
     }
     
-    static func showEmail(isShow : Bool, vc: UIViewController) -> Bool {
+    func showEmail(isShow : Bool, vc: UIViewController) -> Bool {
         
         User.currentUser.isEmailHidden = isShow
         

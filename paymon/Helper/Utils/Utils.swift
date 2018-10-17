@@ -38,13 +38,23 @@ open class Utils {
         return predicate.evaluate(with: login)
     }
 
+    static func formatUserDataName(_ user:UserData) -> String {
+        if (user.name != nil && user.surname != nil && !user.name!.isEmpty && !user.surname!.isEmpty) {
+            return "\(user.name!) \(user.surname!)"
+        } else {
+            return user.login!
+        }
+    }
+    
     static func formatUserName(_ user:RPC.UserObject) -> String {
         if (user.first_name != nil && user.last_name != nil && !user.first_name.isEmpty && !user.last_name.isEmpty) {
             return "\(user.first_name!) \(user.last_name!)"
         } else {
-            return user.login
+            return user.login!
         }
     }
+
+    
     
     static func showSuccesHud(vc: UIViewController) {
         let hud = MBProgressHUD.showAdded(to: vc.view, animated: true)

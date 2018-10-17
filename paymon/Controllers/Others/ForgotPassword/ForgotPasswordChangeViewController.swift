@@ -81,7 +81,7 @@ class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDeleg
             repeatPassword.shake()
             return
         } else {
-           UserManager.setNewPassword(loginOrEmail: self.emailValue, code: self.codeValue, password: password, vc: self)
+           UserManager.shared.setNewPassword(loginOrEmail: self.emailValue, code: self.codeValue, password: password, vc: self)
 
         }
         

@@ -167,7 +167,7 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBAction func signUpClick(_ sender: Any) {
         if (canSignUp) {
-            UserManager.signUpNewUser(login: loginValue, password: passwordValue, email: emailValue, viewController: self)
+            UserManager.shared.signUpNewUser(login: loginValue, password: passwordValue, email: emailValue, viewController: self)
         }
     }
 }

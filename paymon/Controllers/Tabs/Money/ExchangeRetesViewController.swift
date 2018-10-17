@@ -26,7 +26,7 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
             self.ratesTableView.reloadData()
             self.loading.startAnimating()
         }
-        ExchangeRateParser.parseAllExchangeRates()
+        ExchangeRateParser.shared.parseAllExchangeRates()
     }
     
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-        ExchangeRateParser.parseAllExchangeRates()
+        ExchangeRateParser.shared.parseAllExchangeRates()
         
     }
     

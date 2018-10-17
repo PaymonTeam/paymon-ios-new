@@ -29,9 +29,9 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
         
         if moneyArray != nil {
             /* We get the data using the class CryptoManager*/
-            moneyArray.append(CryptoManager.getBitcoinWalletInfo())
-            moneyArray.append(CryptoManager.getEthereumWalletInfo())
-            moneyArray.append(CryptoManager.getPaymonWalletInfo())
+            moneyArray.append(CryptoManager.shared.getBitcoinWalletInfo())
+            moneyArray.append(CryptoManager.shared.getEthereumWalletInfo())
+            moneyArray.append(CryptoManager.shared.getPaymonWalletInfo())
         }
     }
     

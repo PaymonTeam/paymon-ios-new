@@ -111,12 +111,12 @@ class ChatViewController: PaymonViewController, NotificationManagerListener {
         if isGroup {
 
             //TODO здесь заработает, когда будет кэш
-            let group:RPC.Group! = MessageManager.instance.groups[chatID]!
-
-            var text = "Participants: ".localized
-            text.append("\(group.users.count)")
-            
-            chatSubtitle.text = text
+            if let group = CacheManager.shared.getGroupById(id: chatID) {
+                var text = "Participants: ".localized
+                text.append("\(group.users.count)")
+                
+                chatSubtitle.text = text
+            }
 
         } else {
             chatSubtitle.text = "Online"
@@ -299,12 +299,10 @@ extension ChatViewController: UITableViewDataSource {
                     return cell
                 } else if message.action is RPC.PM_messageActionGroupCreate {
                     
-                    if let group = MessageManager.instance.groups[message.to_peer.group_id] {
-                        if let creator = MessageManager.instance.users[group.creatorID] {
-                            let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableCretedGroupCell") as! ChatsTableCretedGroupCell
-                            cell.label.text = "\(Utils.formatUserName(creator)) "+"created the group chat ".localized+"\"\(group.title!)\""
-                            return cell
-                        }
+                    if let group = CacheManager.shared.getGroupById(id: message.to_peer.group_id) {
+                        let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableCretedGroupCell") as! ChatsTableCretedGroupCell
+                        cell.label.text = "\(Utils.formatUserName(User.currentUser)) "+"created the group chat ".localized+"\"\(group.title!)\""
+                        return cell
                     }
                 }
             } else {
@@ -315,8 +313,9 @@ extension ChatViewController: UITableViewDataSource {
                         cell.messageLabel.sizeToFit()
                         cell.timeLabel.text = Utils.formatChatDateTime(timestamp: Int64(message.date), format24h: false)
                         
-                        if let photoUrl = MessageManager.instance.users[message.from_id]?.photoUrl {
-                            cell.photo.loadPhoto(url: (photoUrl.url))
+                        if let user = CacheManager.shared.getUserById(id: message.from_id) {
+                            cell.name.text = Utils.formatUserDataName(user)
+                            cell.photo.loadPhoto(url: (user.photoUrl!))
                             cell.photo.fromId = message.from_id
                         }
                         
@@ -324,18 +323,14 @@ extension ChatViewController: UITableViewDataSource {
                         cell.photo.isUserInteractionEnabled = true
                         cell.photo.addGestureRecognizer(tapPhoto)
                         
-                        let user = MessageManager.instance.users[message.from_id]
-                        if user != nil {
-                            cell.name.text = Utils.formatUserName(user!)
-                        }
                         return cell
 
                     } else if message.action is RPC.PM_messageActionGroupCreate {
 
-                        if let group = MessageManager.instance.groups[message.to_peer.group_id] {
-                            if let creator = MessageManager.instance.users[group.creatorID] {
+                        if let group = CacheManager.shared.getGroupById(id: message.to_peer.group_id) {
+                            if let creator = CacheManager.shared.getUserById(id: group.creatorId) {
                                 let cell = tableView.dequeueReusableCell(withIdentifier: "ChatsTableCretedGroupCell") as! ChatsTableCretedGroupCell
-                                cell.label.text = "\(Utils.formatUserName(creator)) "+"created the group chat ".localized+"\"\(group.title!)\""
+                                cell.label.text = "\(Utils.formatUserDataName(creator)) "+"created the group chat ".localized+"\"\(group.title!)\""
                                 return cell
                             }
                         }

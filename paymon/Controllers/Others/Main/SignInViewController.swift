@@ -38,7 +38,7 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
             return
         } else {
             self.view.endEditing(true)
-            UserManager.signIn(login: (login.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, password: (password.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, vc: self)
+            UserManager.shared.signIn(login: (login.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, password: (password.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, vc: self)
         }
     }
     

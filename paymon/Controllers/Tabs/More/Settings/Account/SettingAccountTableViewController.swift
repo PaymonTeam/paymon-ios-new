@@ -60,7 +60,7 @@ class SettingAccountTableViewController: UITableViewController {
     @objc func segmentControlChangeValue(_ segmentControl : UISegmentedControl) {
         if canChange {
             canChange = false
-            canChange = UserManager.showEmail(isShow: switchShowEmail.isOn, vc: self)
+            canChange = UserManager.shared.showEmail(isShow: switchShowEmail.isOn, vc: self)
         }
     }
 }

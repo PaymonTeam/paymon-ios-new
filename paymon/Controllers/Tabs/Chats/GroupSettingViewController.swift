@@ -21,30 +21,32 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     @IBOutlet weak var addParticipants: UIButton!
     @IBOutlet weak var groupTitle: UITextField!
 
-    var users:[RPC.UserObject] = []
     var groupId: Int32!
-    var participants = SharedArray<RPC.UserObject>()
+    var participants = [UserData]()
     var participantsIds = [Int32]()
 
     var isCreator:Bool = false
-    var creatorID:Int32!
-    var group:RPC.Group!
+    var creatorId:Int32!
+    var group:GroupData!
     var newGroupTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        participantsIds = MessageManager.instance.groupsUsers.value(forKey: groupId)!
-        let users = MessageManager.instance.users
-        
-        for id in participantsIds {
-            participants.append(users[id]!)
+        if let groupData = CacheManager.shared.getGroupById(id: groupId) {
+            participantsIds = groupData.users
+            group = groupData
         }
         
-        group = MessageManager.instance.groups[groupId]!
+        for id in participantsIds {
+            if let user = CacheManager.shared.getUserById(id: id){
+                participants.append(user)
+            }
+        }
+        
         groupTitle.text = group.title
-        creatorID = group.creatorID;
-        isCreator = creatorID == User.currentUser?.id
+        creatorId = group.creatorId
+        isCreator = creatorId == User.currentUser?.id
         
         self.groupTitle.delegate = self
         self.navigationController?.delegate = self
@@ -126,7 +128,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         
-        GroupManager.updateAvatar(groupId: self.groupId, info: info, avatarView: groupImage, vc: self)
+        GroupManager.shared.updateAvatar(groupId: self.groupId, info: info, avatarView: groupImage, vc: self)
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
@@ -137,6 +139,7 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         }
         
         var text = "Participants: ".localized
+        print("participance count \(participants.count)")
         text.append("\(participants.count)")
         
         chatVC.chatSubtitle.text = text
@@ -154,16 +157,14 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         setSettings.title = groupTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         newGroupTitle = groupTitle.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        print("new group title: \(newGroupTitle)")
         NetworkManager.instance.sendPacket(setSettings) { response, e in
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
             }
 
-            let manager = MessageManager.instance
             if (response != nil) {
+                CacheManager.shared.updateGroupTitle(id: self.groupId, title: self.groupTitle.text!)
                 DispatchQueue.main.async {
-                    manager.groups[self.groupId]?.title = self.groupTitle.text!
                     Utils.showSuccesHud(vc: self)
                 }
             }
@@ -187,7 +188,8 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
                     
                     DispatchQueue.main.async {
                         let _ = self.participants.remove(at: sender.tag)
-
+                        self.group.users.remove(at: sender.tag)
+                        CacheManager.shared.updateGroup(groupObject: self.group)
                         self.tableViewParticipants.reloadData()
                     }
                 }
@@ -205,10 +207,10 @@ class GroupSettingViewController: PaymonViewController, UITableViewDataSource, U
         let row = indexPath.row
         let data = participants[row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSettingContactsTableViewCell") as! GroupSettingContactsTableViewCell
-        cell.name.text = Utils.formatUserName(data)
-        cell.photo.loadPhoto(url: data.photoUrl.url)
+        cell.name.text = Utils.formatUserDataName(data)
+        cell.photo.loadPhoto(url: data.photoUrl!)
         
-        if data.id != creatorID && isCreator {
+        if data.id != creatorId && isCreator {
             
             cell.btnCross.addTarget(self, action:#selector(btnCrossTapped), for: .touchUpInside)
             cell.btnCross.tag = row

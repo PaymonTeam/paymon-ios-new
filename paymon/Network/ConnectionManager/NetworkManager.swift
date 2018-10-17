@@ -134,26 +134,23 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 let update = packet as! RPC.PM_updateMessageID
                 MessageManager.instance.updateMessageID(oldID: update.oldID, newID: update.newID)
             }
-//            else if packet is RPC.PM_updatePhotoID {
-//                let update = packet as! RPC.PM_updatePhotoID
-//                print("OLD PHOTO ID \(update.oldID) - NEW PHOTO ID \(update.newID)")
-////                MediaManager.instance.updatePhotoID(oldID: update.oldID, newID: update.newID)
-//                DispatchQueue.main.async {
-//                    ObservableMediaManager.instance.postPhotoUpdateIDNotification(oldPhotoID: update.oldID, newPhotoID: update.newID)
-//                }
-//            }
+
             else if (packet is RPC.PM_photoURL) {
                 let update = packet as! RPC.PM_photoURL
                 if let peerUser = update.peer as? RPC.PM_peerUser {
-                    MessageManager.instance.users[peerUser.user_id]?.photoUrl.url = update.url
-                    MessageManager.instance.userContacts[peerUser.user_id]?.photoUrl.url = update.url
+                    
+//                    MessageManager.instance.users[peerUser.user_id]?.photoUrl.url = update.url
+                    CacheManager.shared.updateUserPhotoUrl(id: peerUser.user_id, url: update.url)
+//                    MessageManager.instance.userContacts[peerUser.user_id]?.photoUrl.url = update.url
+                    CacheManager.shared.updateUserContactPhotoUrl(id: peerUser.user_id, url: update.url)
+
                     if User.currentUser?.id == peerUser.user_id {
                         User.currentUser?.photoUrl.url = update.url
                         User.saveConfig()
                     }
 
                 } else if let peerGroup = update.peer as? RPC.PM_peerGroup {
-                    MessageManager.instance.groups[peerGroup.group_id]?.photoUrl.url = update.url
+                    CacheManager.shared.updateGroupUrl(id: peerGroup.group_id, url: update.url)
                 }
             } else if (packet is RPC.PM_error) {
                 error = packet as? RPC.PM_error
@@ -360,6 +357,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
         auth.id = 0
         auth.login = login
         auth.password = password
+        auth.googleCloudToken = ""
 
         sendPacket(auth, onComplete: callback)
     }

@@ -28,6 +28,14 @@ class FriendProfileTableViewController: UITableViewController {
                         self.email.text = "Is hidden".localized
                     }
                 }
+            } else if let user = notification.object as? UserData {
+                DispatchQueue.main.async {
+                    if user.email != nil {
+                        self.email.text = user.email
+                    } else {
+                        self.email.text = "Is hidden".localized
+                    }
+                }
             }
 
         }

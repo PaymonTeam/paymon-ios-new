@@ -17,7 +17,9 @@ struct ExchangeRate {
 
 class ExchangeRateParser{
     
-    static func parseCourse(crypto: String, fiat: String) {
+    static let shared = ExchangeRateParser()
+    
+    func parseCourse(crypto: String, fiat: String) {
         var result : Double!
         
         let urlString = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=\(crypto)&tsyms=\(fiat)"
@@ -38,12 +40,6 @@ class ExchangeRateParser{
                     result = rates[fiat] as? Double
                 }
                 
-//                if let rates = json["ETH"] as? [String: Any] {
-//                    for rate in rates {
-//                        result.append(ExchangeRate(crypto: "ETH", fiat: rate.key, value: rate.value as? Double ?? Double(rate.value as! Int)))
-//                    }
-//                }
-                
             } catch let jsonError{
                 print("Error srializing json:", jsonError)
             }
@@ -54,7 +50,7 @@ class ExchangeRateParser{
         }.resume()
     }
     
-    static func parseAllExchangeRates(){
+    func parseAllExchangeRates(){
         var result : [ExchangeRate] = [ExchangeRate]()
         
         let urlString = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR,RUB"
@@ -88,8 +84,6 @@ class ExchangeRateParser{
             }
             
             NotificationCenter.default.post(Notification(name: .updateRates, object: result))
-            
-//            print(result)
             
         }.resume()
     }

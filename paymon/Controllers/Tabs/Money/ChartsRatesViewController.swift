@@ -54,19 +54,19 @@ class ChartsRatesViewController: PaymonViewController, UITabBarDelegate, Scrolla
         switch item.tag {
         case 0:
 
-            ExchangeRatesForChartsParser.parse(urlString: urlHour, interval: ExchangeRatesConst.hour)
+            ExchangeRatesForChartsParser.shared.parse(urlString: urlHour, interval: ExchangeRatesConst.hour)
         case 1:
-            ExchangeRatesForChartsParser.parse(urlString: urlDay, interval: ExchangeRatesConst.day)
+            ExchangeRatesForChartsParser.shared.parse(urlString: urlDay, interval: ExchangeRatesConst.day)
         case 2:
-            ExchangeRatesForChartsParser.parse(urlString: urlWeek, interval: ExchangeRatesConst.week)
+            ExchangeRatesForChartsParser.shared.parse(urlString: urlWeek, interval: ExchangeRatesConst.week)
         case 3:
-            ExchangeRatesForChartsParser.parse(urlString: urlOneMonth, interval: ExchangeRatesConst.oneMonth)
+            ExchangeRatesForChartsParser.shared.parse(urlString: urlOneMonth, interval: ExchangeRatesConst.oneMonth)
         case 4:
-            ExchangeRatesForChartsParser.parse(urlString: urlThreeMonths, interval: ExchangeRatesConst.threeMonth)
+            ExchangeRatesForChartsParser.shared.parse(urlString: urlThreeMonths, interval: ExchangeRatesConst.threeMonth)
         case 5:
-            ExchangeRatesForChartsParser.parse(urlString: urlSixMonths, interval: ExchangeRatesConst.sixMonth)
+            ExchangeRatesForChartsParser.shared.parse(urlString: urlSixMonths, interval: ExchangeRatesConst.sixMonth)
         case 6:
-            ExchangeRatesForChartsParser.parse(urlString: urlYear, interval: ExchangeRatesConst.year)
+            ExchangeRatesForChartsParser.shared.parse(urlString: urlYear, interval: ExchangeRatesConst.year)
         default:
             break
         }
@@ -108,7 +108,7 @@ class ChartsRatesViewController: PaymonViewController, UITabBarDelegate, Scrolla
         urlSixMonths = String(format: ExchangeRatesConst.urlChartsSixMonths, crypto, fiat)
         urlYear = String(format: ExchangeRatesConst.urlChartsYear, crypto, fiat)
         
-        ExchangeRatesForChartsParser.parse(urlString: urlHour, interval: ExchangeRatesConst.hour)
+        ExchangeRatesForChartsParser.shared.parse(urlString: urlHour, interval: ExchangeRatesConst.hour)
     }
     
     func setLayoutOptions() {

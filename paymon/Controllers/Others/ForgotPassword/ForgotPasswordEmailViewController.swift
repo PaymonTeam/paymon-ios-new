@@ -51,7 +51,7 @@ class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelega
             loginOrEmail.shake()
             return
         } else {
-            UserManager.sendCodeRecoveryToEmail(vc: self, loginOrEmail: loginOrEmailString)
+            UserManager.shared.sendCodeRecoveryToEmail(vc: self, loginOrEmail: loginOrEmailString)
         }
         
     }
