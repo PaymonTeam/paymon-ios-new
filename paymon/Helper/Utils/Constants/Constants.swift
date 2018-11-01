@@ -73,6 +73,10 @@ struct VCIdentifier {
     static let groupSettingViewController = "GroupSettingViewController"
     static let friendProfileViewController = "FriendProfileViewController"
     static let passcodeViewController = "PasscodeViewController"
+    static let mainNavigationController = "MainNavigationController"
+
+    
+    
    
 }
 
@@ -87,6 +91,11 @@ struct UserDefaultKey {
     
     static let SECURITY_PASSCODE = "security_password_protected_"
     static let SECURITY_PASSCODE_VALUE = "security_passcode_value_"
+    
+    static let TIME_FORMAT = "time_format_"
+    static let HAVE_BITCOIN_WALLET = "have_bitcoin_wallet_"
+    static let BITCOIN_PRIVATE_KEY = "bitcoin_private_key_"
+
 }
 
 struct Ethereum {
@@ -98,7 +107,7 @@ struct Etherscan {
     static let apiKey = "1KDW41TE2CPJI7DC2UWSXUWRQ6WFUR885E"
 }
 
-struct Wallet {
+struct EthWallet {
     static let defaultCurrency = "USD"
     static let supportedCurrencies = ["BTC","ETH","USD","EUR","CNY","GBP"]
 }

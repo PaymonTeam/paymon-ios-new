@@ -23,7 +23,7 @@ class PMFileManager {
     }
 
     public enum FileType: Int32 {
-        case NONE = 0, PHOTO, AUDIO, DOCUMENT, STICKER, ACTION, VIDEO, WALLET
+        case NONE = 0, PHOTO = 1, AUDIO = 2, DOCUMENT = 3, STICKER = 4, ACTION = 5, VIDEO = 6, WALLET = 7
     }
     typealias OnFinished = ()->()
     typealias OnError = (Int32)->()
@@ -100,7 +100,7 @@ class PMFileManager {
 
             uploadingFiles[uploadingFile.id] = uploadingFile
 
-            let _ = NetworkManager.instance.sendPacket(file) { response, error in
+            let _ = NetworkManager.shared.sendPacket(file) { response, error in
                 if (response != nil && error == nil) {
                     if (response is RPC.PM_boolTrue) {
                         self.continueFileUpload(fileID: uploadingFile.id)
@@ -149,7 +149,7 @@ class PMFileManager {
                 filePart.bytes = data
                 uploadingFile.currentUploaded += bytesToSendCount
 
-                let _ = NetworkManager.instance.sendPacket(filePart) { response, error in
+                let _ = NetworkManager.shared.sendPacket(filePart) { response, error in
                     if (response != nil && error == nil) {
                         if (response is RPC.PM_boolTrue) {
                             uploadingFile.currentPart += 1

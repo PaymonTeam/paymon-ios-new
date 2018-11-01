@@ -63,26 +63,34 @@ class CryptoManager {
     
     func getBitcoinWalletInfo() -> CellMoneyData {
         let bitcoinData = CellCreatedMoneyData()
-        let userHaveBitcoinWallet = true
-
-        if (userHaveBitcoinWallet) {
-
-            /*Block for test. Here we get bitcoin wallet info*/
-            bitcoinData.currancyAmount = 1.023
-            bitcoinData.fiatAmount = 87403.04
-            bitcoinData.cryptoHint = Money.btc
-            bitcoinData.icon = Money.btcIcon
-            bitcoinData.fiatHint = Money.rub
-            bitcoinData.fiatColor = UIColor.AppColor.Green.rub
-            bitcoinData.cryptoColor = UIColor.AppColor.Orange.bitcoin
-            bitcoinData.cryptoType = .bitcoin
-            return bitcoinData
-            /*******************/
-
+    
+        if BitcoinManager.shared.wallet == nil {
+            let privateKey = BitcoinManager.shared.loadPrivateKey()
+            if privateKey != nil {
+                BitcoinManager.shared.restoreFromPrivateKey(privateKey: privateKey!)
+            } else {
+                return self.getNotCreatedData(cryptoType: .bitcoin)
+            }
+        }
+        
+        if User.currentUser != nil {
+            if User.haveBitcoinWallet {
+                /*Block for test. Here we get bitcoin wallet info*/
+                bitcoinData.currancyAmount = BitcoinManager.shared.getBalance()
+                bitcoinData.fiatAmount = (BitcoinManager.shared.getBalance() + 1) * 1000
+                bitcoinData.cryptoHint = Money.btc
+                bitcoinData.icon = Money.btcIcon
+                bitcoinData.fiatHint = Money.rub
+                bitcoinData.fiatColor = UIColor.AppColor.Green.rub
+                bitcoinData.cryptoColor = UIColor.AppColor.Orange.bitcoin
+                bitcoinData.cryptoType = .bitcoin
+                return bitcoinData
+            } else {
+                return self.getNotCreatedData(cryptoType: .bitcoin)
+            }
         } else {
             return self.getNotCreatedData(cryptoType: .bitcoin)
         }
-        
     }
     
     func getNotCreatedData(cryptoType : CryptoType) -> CellMoneyData {

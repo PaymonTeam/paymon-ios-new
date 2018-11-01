@@ -17,6 +17,7 @@ along with Paymon.  If not, see <http://www.gnu.org/licenses/>.
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class NetworkManager: NSObject, NetworkManagerDelegate {
     class FutureRequest {
@@ -31,7 +32,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
         }
     }
 
-    static let instance = NetworkManager()
+    static let shared = NetworkManager()
 
     var requestsMap: [Int64: PacketResponseFunc]
     var nm: NetworkManager_Wrapper!
@@ -45,7 +46,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
     var keepAliveThread: Thread!
 
     static func keepAliveProc() {
-        let nm = NetworkManager.instance
+        let nm = NetworkManager.shared
         nm.lastKeepAlive = Utils.currentTimeMillis() + Int64(10 * 1000)
         var lastKeepAliveTime: Int64 = nm.lastKeepAlive / 1000
 
@@ -99,7 +100,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
             self.sendFutureRequests()
         }, messageID: request.id)
     }
-
+    
     public func generateMessageID() -> Int64 {
         var messageId = Int64(floor((((Double(Utils.currentTimeMillis() + Int64(1 * 1000))) * 4294967296.0) / 1000.0)))
         if messageId <= lastOutgoingMessageId {
@@ -123,26 +124,15 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
 
             if (packet is RPC.Message) {
                 let message = packet as! RPC.Message
-                MessageManager.instance.putMessage(message, serverTime: true)
+                MessageDataManager.shared.updateMessage(messageObject: message)
 
-                var messages: [RPC.Message] = []
-                messages.append(message)
-                DispatchQueue.main.async {
-                    NotificationManager.instance.postNotificationName(id: NotificationManager.didReceivedNewMessages, args: messages)
-                }
-            } else if (packet is RPC.PM_updateMessageID) {
-                let update = packet as! RPC.PM_updateMessageID
-                MessageManager.instance.updateMessageID(oldID: update.oldID, newID: update.newID)
-            }
-
-            else if (packet is RPC.PM_photoURL) {
+            } else if (packet is RPC.PM_photoURL) {
                 let update = packet as! RPC.PM_photoURL
                 if let peerUser = update.peer as? RPC.PM_peerUser {
                     
-//                    MessageManager.instance.users[peerUser.user_id]?.photoUrl.url = update.url
-                    CacheManager.shared.updateUserPhotoUrl(id: peerUser.user_id, url: update.url)
-//                    MessageManager.instance.userContacts[peerUser.user_id]?.photoUrl.url = update.url
-                    CacheManager.shared.updateUserContactPhotoUrl(id: peerUser.user_id, url: update.url)
+                    UserDataManager.shared.updateUserPhotoUrl(id: peerUser.user_id, url: update.url)
+
+                    ChatsDataManager.shared.updateChatsPhotoUrl(id: peerUser.user_id, url: update.url)
 
                     if User.currentUser?.id == peerUser.user_id {
                         User.currentUser?.photoUrl.url = update.url
@@ -150,7 +140,7 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                     }
 
                 } else if let peerGroup = update.peer as? RPC.PM_peerGroup {
-                    CacheManager.shared.updateGroupUrl(id: peerGroup.group_id, url: update.url)
+                    GroupDataManager.shared.updateGroupUrl(id: peerGroup.group_id, url: update.url)
                 }
             } else if (packet is RPC.PM_error) {
                 error = packet as? RPC.PM_error
@@ -160,16 +150,14 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 switch error.code {
                 case RPC.ERROR_KEY:
                     print("ERROR_KEY, reconnecting")
-                    NetworkManager.instance.reconnect()
+                    NetworkManager.shared.reconnect()
                 case RPC.ERROR_AUTH_TOKEN:
                     print("ERROR_AUTH_TOKEN")
-                    NetworkManager.instance.reconnect()
-                    DispatchQueue.main.async {
-                        NotificationManager.instance.postNotificationName(id: NotificationManager.authByTokenFailed)
-                    }
-
+                    UserManager.shared.authByToken()
                 case RPC.ERROR_AUTH:
+                    
                     print("ERROR_AUTH")
+                    NetworkManager.shared.reconnect()
 
                 case RPC.ERROR_SPAMMING:
                     print("ERROR_SPAMMING")
@@ -350,16 +338,6 @@ class NetworkManager: NSObject, NetworkManagerDelegate {
                 print("wrapData error")
             }
         }, sync: false)
-    }
-
-    func auth(login: String, password: String, callback: PacketResponseFunc!) {
-        let auth = RPC.PM_auth()
-        auth.id = 0
-        auth.login = login
-        auth.password = password
-        auth.googleCloudToken = ""
-
-        sendPacket(auth, onComplete: callback)
     }
 
     func handshake() {

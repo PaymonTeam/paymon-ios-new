@@ -6,343 +6,67 @@
 import Foundation
 import UIKit
 
-class MessageManager : NotificationManagerListener {
-    public static var instance = MessageManager()
-
-    var messages = SharedDictionary<Int64,RPC.Message>()
-    var lastMessages = SharedDictionary<Int32,Int64>()
-    var lastGroupMessages = SharedDictionary<Int32,Int64>()
-    var dialogMessages = SharedDictionary<Int32,SharedArray<RPC.Message>>()
-    var groupMessages = SharedDictionary<Int32,SharedArray<RPC.Message>>()
-//    var users = SharedDictionary<Int32,RPC.UserObject>()
-//    var userContacts = SharedDictionary<Int32,RPC.UserObject>()
-    
-//    var groups = SharedDictionary<Int32,RPC.Group>()
-//    var groupsUsers = SharedDictionary<Int32,[Int32]>()
-    
-    var currentChatID:Int32 = 0
+public class MessageManager {
+    static var shared = MessageManager()
+    var isChatsLoaded = false
     var lastMessageID = Utils.Atomic<Int64>()
-
-    private init() {
-        NotificationManager.instance.addObserver(self, id: NotificationManager.didReceivedNewMessages)
-        NotificationManager.instance.addObserver(self, id: NotificationManager.doLoadChatMessages)
-    }
     
     public static func dispose() {
-        self.instance = MessageManager()
+        self.shared = MessageManager()
     }
 
     public func generateMessageID() -> Int64 {
         return lastMessageID.incrementAndGet()
     }
 
-    deinit {
-        NotificationManager.instance.removeObserver(self, id: NotificationManager.didReceivedNewMessages)
-        NotificationManager.instance.removeObserver(self, id: NotificationManager.doLoadChatMessages)
-    }
+    public func loadChats() {
 
-    public func putGroup(_ group:RPC.Group) {
+        self.isChatsLoaded = true
 
-        CacheManager.shared.updateGroup(groupObject: group)
-        
-//        for user in group.users {
-//            
-//            guard let userData = CacheManager.shared.getUserByIdSync(id: user) as UserData? else{
-//                print("Fail get user by id")
-//                return
-//            }
-//            
-//            CacheManager.shared.updateUser(userData: userData)
-//            
-//        }
-    }
-
-    public func putUser(_ user:RPC.UserObject) {
-        CacheManager.shared.updateUser(userObject: user)
-        
-        if MessageManager.instance.dialogMessages[user.id] != nil {
-            CacheManager.shared.updateUserContact(userObject: user)
-        }
-    }
-
-    public func putMessage(_ msg:RPC.Message, serverTime:Bool) {
-        if messages[msg.id] != nil {
+        if User.currentUser == nil {
+            self.isChatsLoaded = false
             return
         }
-        
-        if serverTime {
-            msg.date += Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
-        }
-        messages[msg.id] = msg
-
-        let currentUser:RPC.UserObject! = User.currentUser
-
-        var chatID:Int32
-
-        if let to_id = msg.to_peer.user_id {
-            if (msg.from_id == currentUser.id) {
-                chatID = to_id
-            } else {
-                chatID = msg.from_id
-            }
-
-            var list = dialogMessages[chatID]
-            if list == nil {
-                list = SharedArray<RPC.Message>()
-                dialogMessages[chatID] = list
-            }
-            list!.append(msg)
-
-            var ldmIndex:Int32 = 0
-
-            if (to_id == currentUser.id && msg.from_id == currentUser.id) {
-                ldmIndex = to_id
-            } else {
-                if (to_id == currentUser.id) {
-                    ldmIndex = msg.from_id
-                } else {
-                    ldmIndex = to_id
-                }
-            }
-
-            if lastMessages[ldmIndex] != nil {
-                if !serverTime || msg.date > messages[lastMessages[ldmIndex]!]!.date {
-                    lastMessages[ldmIndex] = msg.id
-                }
-            } else {
-                lastMessages[ldmIndex] = msg.id
-            }
-        } else if let to_id = msg.to_peer.group_id {
-            chatID = to_id
-
-            var list = groupMessages[chatID]
-            if list == nil {
-                list = SharedArray<RPC.Message>()
-                groupMessages[chatID] = list
-            }
-            list!.append(msg)
-
-            var lgmIndex:Int32 = 0
-
-            if (to_id == currentUser.id && msg.from_id == currentUser.id) {
-                lgmIndex = to_id
-            } else {
-                if (to_id == currentUser.id) {
-                    lgmIndex = msg.from_id
-                } else {
-                    lgmIndex = to_id
-                }
-            }
-
-            if lastGroupMessages[lgmIndex] != nil {
-                if msg.date > messages[lastGroupMessages[lgmIndex]!]!.date {
-                    lastGroupMessages[lgmIndex] = msg.id
-                }
-            } else {
-                lastGroupMessages[lgmIndex] = msg.id
-            }
-        }
-    }
-
-    public func loadChats(_ fromCache:Bool) {
-        
-        if fromCache {
-            print("Load from cash")
-        } else {
-            if User.currentUser == nil {
+        let packet = RPC.PM_chatsAndMessages()
+        let _ = NetworkManager.shared.sendPacket(packet) { p, e in
+            if (p == nil || e != nil) {
+                print("Error request")
                 return
             }
-
-            let packet = RPC.PM_chatsAndMessages()
-
-            let _ = NetworkManager.instance.sendPacket(packet) { p, e in
-
-                if (p == nil && e != nil) {
-                    DispatchQueue.main.async {
-                        NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
-                    }
-                    print("Error request")
-
-                    return
-                }
-
-                if let packet = p as? RPC.PM_chatsAndMessages {
-                    
-                    for msg in packet.messages {
-                        self.putMessage(msg, serverTime: true)
-                    }
-                    
-                    for usr in packet.users {
-                        self.putUser(usr)
-                    }
-
-                    for grp in packet.groups {
-                        self.putGroup(grp)
-                    }
-                    
-                    DispatchQueue.main.async {
-
-                        NotificationManager.instance.postNotificationName(id: NotificationManager.dialogsNeedReload)
-                    }
-                }
+            
+            
+            if let packet = p as? RPC.PM_chatsAndMessages {
+                UserDataManager.shared.updateUsers(packet.users)
+                GroupDataManager.shared.updateGroups(packet.groups)
+                MessageDataManager.shared.updateMessages(packet.messages)
             }
-        }
-    }
-
-    public func loadMessages(chatID:Int32, count:Int32, offset:Int32, isGroup:Bool) {
-        if User.currentUser == nil || chatID == 0 {
-            return
-        }
-        let packet = RPC.PM_getChatMessages()
-
-        if (!isGroup) {
-            packet.chatID = RPC.PM_peerUser()
-            packet.chatID.user_id = chatID
-        } else {
-            packet.chatID = RPC.PM_peerGroup()
-            packet.chatID.group_id = chatID
-        }
-        packet.count = count
-        packet.offset = offset
-
-        NetworkManager.instance.sendPacket(packet) {response, e in
-            if response == nil {
-                return
-            }
-            if let packet = response as? RPC.PM_chatMessages {
-                if (packet.messages.count == 0) {
-                    return
-                }
-
-                var messagesToAdd: [Int64] = []
-                for msg in packet.messages {
-                    self.putMessage(msg, serverTime: true)
-                    messagesToAdd.append(msg.id)
-                }
-                DispatchQueue.main.async {
-                    NotificationManager.instance.postNotificationName(id: NotificationManager.chatAddMessages, args: messagesToAdd, true)
-                }
-            }
-        }
-    }
-
-    func didReceivedNotification(_ id: Int, _ args: [Any]) {
-        if (id == NotificationManager.didReceivedNewMessages) {
-            if let messages = args[0] as? SharedArray<RPC.Message> {
-                var messagesToShow:[Int64] = []
-                for msg in messages.array {
-                    putMessage(msg, serverTime: true)
-                    var to_id = msg.to_peer.user_id
-                    var isGroup = false
-                    if to_id == 0 {
-                        isGroup = true
-                        to_id = msg.to_peer.group_id
-                    }
-                    if !isGroup {
-                        if ((to_id == currentChatID && msg.from_id == User.currentUser!.id) || (to_id == User.currentUser!.id && msg.from_id == currentChatID)) {
-                            messagesToShow.append(msg.id)
-                        }
-                    } else {
-                        if (to_id == currentChatID) {
-                            messagesToShow.append(msg.id)
-                        }
-                    }
-                }
-                if (messagesToShow.count > 0) {
-
-                    messagesToShow.sort(by: {e1, e2 in
-                        return e1 > e2
-                    })
-
-                    NotificationManager.instance.postNotificationName(id: NotificationManager.chatAddMessages, args: messagesToShow, false)
-                }
-            }
-        }
-//        else if (id == NotificationManager.doLoadChatMessages) {
-//
-//        }
-    }
-
-    public func updateMessageID(oldID:Int64, newID:Int64) {
-        let omsg = messages[oldID]
-        if let oldMessage = omsg {
-            var newMessage: RPC.Message! = nil
-            if (oldMessage is RPC.PM_message) {
-                newMessage = RPC.PM_message()
-                newMessage.text = oldMessage.text
-            } else if (oldMessage is RPC.PM_messageItem) {
-                newMessage = RPC.PM_messageItem()
-                newMessage.itemType = oldMessage.itemType
-                newMessage.itemID = oldMessage.itemID
-            }
-            if (newMessage != nil) {
-                newMessage.id = newID
-                newMessage.date = oldMessage.date
-                newMessage.from_id = oldMessage.from_id
-                newMessage.to_peer = oldMessage.to_peer
-                newMessage.edit_date = oldMessage.edit_date
-                newMessage.flags = oldMessage.flags
-                newMessage.reply_to_msg_id = oldMessage.reply_to_msg_id
-                newMessage.unread = oldMessage.unread
-                newMessage.views = oldMessage.views
-
-                putMessage(newMessage, serverTime: false)
-                _ = messages.removeValue(forKey: oldID)
-                if (newMessage.to_peer is RPC.PM_peerUser) {
-                    lastMessages[newMessage.to_peer.user_id] = newMessage.id
-                } else if (newMessage.to_peer is RPC.PM_peerGroup) {
-                    lastGroupMessages[newMessage.to_peer.group_id] = newMessage.id
-                }
-            }
-        }
-        if (currentChatID != 0) {
-            // TODO: race condition
+            
             DispatchQueue.main.async {
-                NotificationManager.instance.postNotificationName(id: NotificationManager.messagesIDdidupdated, args: oldID, newID)
+                NotificationCenter.default.post(name: .endUpdateChats, object: nil)
             }
+            self.isChatsLoaded = false
         }
     }
     
-    public func sendMessage(text : String, isGroup : Bool, chatId : Int32!, messages: [Int64]) {
+    public func sendMessage(text : String, isGroup : Bool, chatId : Int32!) {
         
-        var messagesId = messages
-        
-        let newId = messagesId[messagesId.count-1] + 1
         let message = RPC.PM_message()
-        message.itemID = 0
-        message.itemType = .NONE
-        message.from_id = User.currentUser!.id
-        if isGroup {
-            message.to_peer = RPC.PM_peerGroup()
-            message.to_peer.group_id = chatId
-        } else {
-            message.to_peer = RPC.PM_peerUser()
-            message.to_peer.user_id = chatId
-        }
-        
-        message.id = newId
+        message.id = lastMessageID.incrementAndGet()
         message.text = text
+        message.flags = RPC.Message.MESSAGE_FLAG_FROM_ID
         message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
+        message.from_id = User.currentUser!.id
+        message.to_peer = isGroup ? RPC.PM_peerGroup(group_id: chatId) : RPC.PM_peerUser(user_id : chatId)
+        message.to_id = chatId
+        message.unread = true
+        message.itemType = .NONE
         
-        NetworkManager.instance.sendPacket(message) { p, e in
+        NetworkManager.shared.sendPacket(message) { p, e in
+            if p == nil || e != nil {return}
             if let update = p as? RPC.PM_updateMessageID {
-                
-                for i in 0..<messagesId.count {
-                    if messagesId[i] == update.oldID {
-                        messagesId.remove(at: i)
-                        
-                        break
-                    }
-                }
-                DispatchQueue.global().sync {
-                    messagesId.append(update.newID)
-                }
-                
+                message.id = update.newID
+                MessageDataManager.shared.updateMessage(messageObject: message)
             }
         }
-        messagesId.append(newId)
-
-        MessageManager.instance.putMessage(message, serverTime: false)
-        NotificationCenter.default.post(name: .updateMessagesId, object: messagesId)
     }
 }

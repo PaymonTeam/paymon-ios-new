@@ -25,6 +25,8 @@ extension Notification.Name {
     static let updateProfile = Notification.Name(rawValue: "updateProfile")
     static let updateView = Notification.Name(rawValue: "updateView")
     static let updateString = Notification.Name(rawValue: "updateString")
+    static let reloadChats = Notification.Name(rawValue: "reloadChats")
+
     static let updateProfileInfoTrue = Notification.Name(rawValue: "updateProfileInfoTrue")
     static let updateProfileInfoFalse = Notification.Name(rawValue: "updateProfileInfoFalse")
     static let showCountryPicker = Notification.Name(rawValue: "showCountryPicker")
@@ -38,6 +40,13 @@ extension Notification.Name {
     
     static let updateMessagesId = Notification.Name(rawValue: "updateMessagesId")
     static let updateCharts = Notification.Name(rawValue: "updateCharts")
+    static let setMainController = Notification.Name(rawValue: "setMainController")
+    static let endUpdateChats = Notification.Name(rawValue: "endUpdateChats")
+    static let walletChanged = Notification.Name(rawValue: "walletChanged")
+    static let walletWasCreated = Notification.Name(rawValue: "walletWasCreated")
+
+    
+    
 
     
 

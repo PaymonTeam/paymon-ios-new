@@ -14,4 +14,18 @@ class ChatsTableGroupViewCell : UITableViewCell {
     
     @IBOutlet weak var lastMessagePhoto: CircularImageView!
     
+    func configure(chat: ChatsData) {
+        self.title.text = chat.title
+        self.lastMessageText.text = chat.lastMessageText
+        self.lastMessageTime.text = Utils.formatDateTime(timestamp: chat.time, chatHeader : false, format24h: false)
+        self.photo.loadPhoto(url: chat.photoUrl)
+        self.lastMessagePhoto.loadPhoto(url: chat.lastMessagePhotoUrl)
+        
+        switch chat.itemType {
+            case 0: self.lastMessageText.textColor = UIColor.white.withAlphaComponent(0.6)
+            case 5: self.lastMessageText.textColor = UIColor.AppColor.Blue.primaryBlue.withAlphaComponent(0.6)
+            default:
+                break
+        }
+    }
 }

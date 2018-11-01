@@ -38,5 +38,19 @@ class MoneyCreatedTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
+    
+    func configure(data: CellCreatedMoneyData) {
+        self.icon.image = UIImage(named: data.icon)
+        self.cryptoAmount.text = data.currancyAmount.description
+        self.fiatAmount.text = data.fiatAmount.description
+        self.cryptoHint.text = data.cryptoHint
+        self.fiatHint.text = data.fiatHint
+        self.cryptoType = data.cryptoType
+        
+        self.cryptoHint.textColor = data.cryptoColor
+        self.cryptoAmount.textColor = data.cryptoColor
+        self.fiatHint.textColor = data.fiatColor
+        self.fiatAmount.textColor = data.fiatColor
+    }
 }
 

@@ -56,6 +56,7 @@
 
 "I still learning how to play" = "Я только учусь играть";
 "We'll play later" = "Сыграем позднее";
+"Such user already logged in"="Этот пользователь уже вошел в систему";
 
 /*Recovery password*/
 
@@ -103,6 +104,7 @@
 "More"="Еще";
 "Help"="Помощь";
 "Yesterday"="Вчера";
+"Today"="Сегодня";
 
 /*Profile*/
 
@@ -178,6 +180,8 @@
 /*Account settings*/
 "Show email"="Показать электронный адрес";
 "Hide email address"="Скрыть электронный адрес";
+"24-Hour Time"="24-часовой формат";
+"Time"="Время";
 "Account"="Учетная запись";
 "Other users will be able to see your email address in your profile"="Другие пользователи смогут видеть адрес вашей электронной почты у вас профиле";
 
@@ -235,6 +239,8 @@
 "Network fee"="Комиссия сети";
 "Total amount"="Конечная сумма";
 "Transfer info"="Информация";
+"Create a password for new Bitcoin wallet"="Придумайте пароль для нового Bitcoin кошелька";
+"New Bitcoin wallet"="Новый Bitcoin кошелек";
 
 /*Wllet view controller*/
 
@@ -251,3 +257,5 @@
 "Repeat passcode"="Повторите код-пароль";
 "Feature Touch ID"="Поддержка Touch ID";
 "Your device does not support Touch ID functions"="Ваше устройство не поддерживает функцию Touch ID";
+
+/**?

@@ -13,4 +13,10 @@ public class ContactWasTableViewCell : UITableViewCell {
     @IBOutlet weak var timeWhenWas: UILabel!
     @IBOutlet weak var avatar: CircularImageView!
     
+    func configure(data : ChatsData) {
+        self.name.text = data.title
+        self.timeWhenWas.text = "last seen ".localized + "\(Utils.formatDateTime(timestamp: data.time, chatHeader : false, format24h: false))"
+        
+        self.avatar.loadPhoto(url: data.photoUrl)
+    }
 }

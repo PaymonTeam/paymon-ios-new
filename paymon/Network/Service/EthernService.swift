@@ -17,7 +17,7 @@ class EthernService: BaseService {
         alamoRequest.method = .get
         let dict = [
             "fsyms": "ETH",
-            "tsyms": Wallet.supportedCurrencies.joined(separator: ",")
+            "tsyms": EthWallet.supportedCurrencies.joined(separator: ",")
         ]
         alamoRequest.parameters = dict as [String : AnyObject]
         alamoRequest.encoding = URLEncoding() as ParameterEncoding

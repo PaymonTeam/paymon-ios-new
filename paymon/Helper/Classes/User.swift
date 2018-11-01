@@ -16,14 +16,18 @@ class User {
 
     public static var securityPasscode = false
     public static var securityPasscodeValue = ""
-    
+    public static var timeFormatIs24 = true
     public static var userId : String = ""
+    
+    public static var haveBitcoinWallet = true
     
     public static func saveConfig() {
         if currentUser != nil {
 
             let stream = SerializedStream()
+        
             currentUser!.serializeToStream(stream: stream!)
+            
             let userString = stream!.out.base64EncodedString()
 
             KeychainWrapper.standard.set(userString, forKey: "user", withAccessibility: KeychainItemAccessibility.always)
@@ -35,6 +39,7 @@ class User {
 
     public static func loadConfig() {
 
+        print("load config")
         if currentUser == nil {
             if let retrievedString = KeychainWrapper.standard.string(forKey: "user", withAccessibility: KeychainItemAccessibility.always) {
                 let data = Data(base64Encoded: retrievedString)
@@ -42,6 +47,9 @@ class User {
                 if let deserialize = try? RPC.UserObject.deserialize(stream: stream!, constructor: stream!.readInt32(nil)) {
                     if deserialize is RPC.PM_userSelf {
                         currentUser = deserialize as? RPC.PM_userSelf
+                        self.setUserSettings()
+                        stream!.close()
+                        return
                     } else {
                         print("load config user nil")
                         currentUser = nil
@@ -51,32 +59,42 @@ class User {
                 } else {
                     print("Error deser user")
                     stream!.close()
-
                     return
                 }
-                stream!.close()
             } else {
                 print("Keychain has not user")
+                guard let window = UIApplication.shared.delegate?.window else {return}
+                window!.rootViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.mainNavigationController)
                 return
             }
+        } else {
+            self.setUserSettings()
+            if !CacheManager.isAddedStorage {
+                print("init")
+                CacheManager.shared.initDb()
+            }
         }
-        
-        if !CacheManager.isAddedStorage {
-            CacheManager.shared.initDb()
-        }
-
+    }
+    
+    public static func setUserSettings() {
         self.userId = String(currentUser.id)
-
+        
+        haveBitcoinWallet = KeychainWrapper.standard.bool(forKey: UserDefaultKey.HAVE_BITCOIN_WALLET + userId) ?? false
+        timeFormatIs24 = KeychainWrapper.standard.bool(forKey: UserDefaultKey.TIME_FORMAT + userId) ?? true
         securityPasscode = KeychainWrapper.standard.bool(forKey: UserDefaultKey.SECURITY_PASSCODE + userId) ?? false
         securityPasscodeValue = KeychainWrapper.standard.string(forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId) ?? ""
     }
     
     public static func savePasscode(passcodeValue : String, setPasscode : Bool) {
-
         securityPasscode = setPasscode
         securityPasscodeValue = passcodeValue
         KeychainWrapper.standard.set(setPasscode, forKey: UserDefaultKey.SECURITY_PASSCODE + userId)
         KeychainWrapper.standard.set(passcodeValue, forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId)
+    }
+    
+    public static func saveTimeFormat(is24 : Bool) {
+        timeFormatIs24 = is24
+        KeychainWrapper.standard.set(is24, forKey: UserDefaultKey.TIME_FORMAT + userId)
     }
 
     public static func clearConfig() {
@@ -88,7 +106,9 @@ class User {
         notificationMessageSound = "Note.mp3"
         securityPasscode = false
         securityPasscodeValue = ""
-        CacheManager.isAddedStorage = false
+        timeFormatIs24 = true
+        haveBitcoinWallet = false
+        CacheManager.shared.removeDb()
         saveConfig()
     }
 }

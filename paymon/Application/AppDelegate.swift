@@ -33,16 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
         // Override point for customization after application launch.
         
         User.loadConfig()
-        NetworkManager.instance.reconnect()
+        NetworkManager.shared.reconnect()
 
         NotificationManager.instance.addObserver(self, id: NotificationManager.didConnectedToServer)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didDisconnectedFromServer)
         NotificationManager.instance.addObserver(self, id: NotificationManager.didEstablishedSecuredConnection)
-        NotificationManager.instance.addObserver(self, id: NotificationManager.authByTokenFailed)
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        window?.rootViewController = StoryBoard.main.instantiateInitialViewController()
 
         UNUserNotificationCenter.current().delegate = self
         PushNotificationManager.shared.registrForNotification(application: application)
@@ -76,11 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
         completionHandler()
         
     }
-    
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//
-//        print("Did recieved remote push!!!")
-//    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
@@ -154,11 +144,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NotificationManagerListen
             }
         } else if id == NotificationManager.didDisconnectedFromServer {
             if !User.isAuthenticated {
-                
+                NetworkManager.shared.reconnect()
             }
-        } else if id == NotificationManager.authByTokenFailed {
-            User.clearConfig()
         }
+//        else if id == NotificationManager.authByTokenFailed {
+//            User.clearConfig()
+//        }
     }
 }
 

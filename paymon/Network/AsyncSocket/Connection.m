@@ -169,7 +169,7 @@ static bool hostSwapped;
 static NSString* ip;
 + (NSString*) ip { @synchronized(self) {
         if (!ip) {
-            ip = @"paymon.org";
+            ip = @"91.226.80.26";
         }
         return ip;
     }

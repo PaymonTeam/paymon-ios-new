@@ -14,6 +14,16 @@ public class UserManager {
     
     static let shared = UserManager()
     
+    func authSuccess() {
+        User.isAuthenticated = true
+        User.saveConfig()
+        User.loadConfig()
+        
+//        if !MessageManager.shared.isChatsLoaded {
+//            MessageManager.shared.loadChats()
+//        }
+    }
+    
     func signUpNewUser(login : String, password : String, email : String, viewController : UIViewController) {
         
         let _ = MBProgressHUD.showAdded(to: viewController.view, animated: true)
@@ -24,7 +34,7 @@ public class UserManager {
         register.email = email
         register.walletKey = "OoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOoOo";
         
-        let _ = NetworkManager.instance.sendPacket(register) { p,e in
+        let _ = NetworkManager.shared.sendPacket(register) { p,e in
 
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: viewController.view, animated: true)
@@ -60,43 +70,37 @@ public class UserManager {
             }
         }
     }
+
     
     func signIn(login : String, password : String, vc : UIViewController) {
         
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
         
-        NetworkManager.instance.auth(login: login, password: password, callback: { p, e in
-            
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: vc.view, animated: true)
-            }
+        let auth = RPC.PM_auth()
+        auth.id = 0
+        auth.login = login
+        auth.password = password
+        auth.googleCloudToken = ""
+        
+         NetworkManager.shared.sendPacket(auth) { p, e in
 
             if let user = p as? RPC.PM_userSelf {
 
                 if user.confirmed {
-                    
                     User.currentUser = user
-
-                    User.isAuthenticated = true
-                    User.saveConfig()
-                    User.loadConfig()
-
-                    let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
-                    
-                    DispatchQueue.main.async {
-                        vc.present(tabsViewController, animated: true)
-                    }
-                    
+                    self.authSuccess()
                 } else {
-
+                    DispatchQueue.main.async {
+                        MBProgressHUD.hide(for: vc.view, animated: true)
+                    }
                     let alert = UIAlertController(title: "Confirmation email".localized,
                           message: String(format: NSLocalizedString("You did not verify your account by email \n %@ \n\n Send mail again?".localized, comment: ""), user.email),
                           preferredStyle: .alert)
 
                     alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: { (action) in
                         User.clearConfig()
-                        NetworkManager.instance.reset()
-                        NetworkManager.instance.reconnect()
+                        NetworkManager.shared.reset()
+                        NetworkManager.shared.reconnect()
                     }))
 
                     alert.addAction(UIAlertAction(title: "Send".localized, style: .default, handler: { (action) in
@@ -105,7 +109,7 @@ public class UserManager {
                         
                         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
 
-                        NetworkManager.instance.sendPacket(resendEmail) { response, error in
+                        NetworkManager.shared.sendPacket(resendEmail) { response, error in
                             
                             DispatchQueue.main.async {
                                 MBProgressHUD.hide(for: vc.view, animated: true)
@@ -123,8 +127,8 @@ public class UserManager {
                             }
 
                             User.clearConfig()
-                            NetworkManager.instance.reset()
-                            NetworkManager.instance.reconnect()
+                            NetworkManager.shared.reset()
+                            NetworkManager.shared.reconnect()
                         }
 
                     }))
@@ -135,11 +139,20 @@ public class UserManager {
 
             } else if let error = e {
 
-                let msg = (error.code == RPC.ERROR_AUTH ? "Invalid login or password".localized : "An error occurred during authorization".localized)
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: vc.view, animated: true)
+                }
+                var msg : String!
+                switch error.code {
+                case RPC.ERROR_AUTH: msg = "Invalid login or password".localized
+                case RPC.ERROR_AUTH_ALREADY_EXISTS: msg = "Such user already logged in".localized
+                default: msg = "An error occurred during authorization".localized
+                    break
+                }
                 
                 _ = SimpleOkAlertController.init(title: "Login failed".localized, message: msg, vc: vc)
             }
-        })
+        }
         
     }
     
@@ -153,7 +166,7 @@ public class UserManager {
 
         guard let user = User.currentUser else {return}
 
-        NetworkManager.instance.sendPacket(user) { response, error in
+        NetworkManager.shared.sendPacket(user) { response, error in
             
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: vc.view, animated: true)
@@ -184,7 +197,7 @@ public class UserManager {
         sendCodeToEmail.loginOrEmail = loginOrEmail
         let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
         
-        NetworkManager.instance.sendPacket(sendCodeToEmail) { response, error in
+        NetworkManager.shared.sendPacket(sendCodeToEmail) { response, error in
             
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: vc.view, animated: true)
@@ -223,7 +236,7 @@ public class UserManager {
         setNewPassword.code = code
         setNewPassword.password = password
         
-        NetworkManager.instance.sendPacket(setNewPassword) { response, error in
+        NetworkManager.shared.sendPacket(setNewPassword) { response, error in
             
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: vc.view, animated: true)
@@ -256,6 +269,7 @@ public class UserManager {
     
     func authByToken() {
 
+        print("auth by token")
             let auth = RPC.PM_authToken()
             
             guard let user = User.currentUser else {
@@ -265,22 +279,18 @@ public class UserManager {
             auth.token = user.token
             auth.googleCloudToken = ""
 
-            let _ = NetworkManager.instance.sendPacket(auth) { p, e in
+            let _ = NetworkManager.shared.sendPacket(auth) { p, e in
                 
                 if e != nil || !(p is RPC.PM_userSelf) {
                     print("Error auth by token", e as Any)
 
                 } else {
                     User.currentUser = p as? RPC.PM_userSelf
-                    User.isAuthenticated = true
+                    self.authSuccess()
+                    MessageManager.shared.loadChats()
                     
-//                    CacheManager.updateUser(userObject: User.currentUser)
-                    
-                    User.saveConfig()
-                    User.loadConfig()
-
                     NotificationManager.instance.postNotificationName(id: NotificationManager.userAuthorized)
-                    NetworkManager.instance.sendFutureRequests()
+                    NetworkManager.shared.sendFutureRequests()
                 }
             }
     }
@@ -309,7 +319,7 @@ public class UserManager {
             
             let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
             
-            NetworkManager.instance.sendPacket(packet) { packet, error in
+            NetworkManager.shared.sendPacket(packet) { packet, error in
                 
                 if (packet is RPC.PM_boolTrue) {
                     Utils.stageQueue.run {
@@ -353,7 +363,7 @@ public class UserManager {
 
         guard let user = User.currentUser else {return true}
         
-        NetworkManager.instance.sendPacket(user) { response, error in
+        NetworkManager.shared.sendPacket(user) { response, error in
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: vc.view, animated: true)
             }

@@ -19,6 +19,8 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordForgot: UIButton!
     @IBOutlet weak var signIn: UIButton!
     @IBOutlet weak var signInBottomConstraint: NSLayoutConstraint!
+    private var setMainController: NSObjectProtocol!
+
     
     @IBOutlet weak var stackTestFields: UIView!
     @IBAction func passwordForgotClick(_ sender: Any) {
@@ -46,9 +48,12 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        
-        
+        setMainController = NotificationCenter.default.addObserver(forName: .setMainController, object: nil, queue: nil) {
+            notification in
+            
+            let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
+            self.present(tabsViewController, animated: true)
+        }
         setLayoutOptions()
 
     }
@@ -125,5 +130,6 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(setMainController)
     }
 }

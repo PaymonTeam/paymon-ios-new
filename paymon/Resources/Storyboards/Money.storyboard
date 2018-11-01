@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9z-FL-1YY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9z-FL-1YY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -243,11 +243,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="moneyTableView" destination="1VH-Cx-lCM" id="xEW-sM-Lcm"/>
+                        <segue destination="2Ki-0q-QZe" kind="show" id="2P3-wd-7UT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUT-Qb-dXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="-33.733133433283363"/>
+            <point key="canvasLocation" x="860" y="-34"/>
         </scene>
         <!--Exchange Retes View Controller-->
         <scene sceneID="nGr-x8-4r7">
@@ -475,8 +476,91 @@
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="-33.733133433283363"/>
         </scene>
+        <!--Title-->
+        <scene sceneID="Hdw-VQ-sep">
+            <objects>
+                <viewController storyboardIdentifier="CreateNewBtcWalletViewController" id="2Ki-0q-QZe" customClass="CreateNewBtcWalletViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Juh-sm-HqY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0o-Yz-Kcx">
+                                <rect key="frame" x="16" y="80" width="343" height="81"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="BUJ-V6-lRf">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="81"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c08-6j-knY" userLabel="Login Text Field">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="KVH-Ll-YCH"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="next" smartDashesType="no" textContentType="password"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Repeat password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wnw-yu-btW" userLabel="Login Text Field">
+                                                <rect key="frame" x="0.0" y="41" width="343" height="40"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.15397135419999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="eJ1-Aw-Gt0"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="go" smartDashesType="no" textContentType="password"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="BUJ-V6-lRf" firstAttribute="leading" secondItem="P0o-Yz-Kcx" secondAttribute="leading" id="1A9-hX-pmO"/>
+                                    <constraint firstAttribute="bottom" secondItem="BUJ-V6-lRf" secondAttribute="bottom" id="OR3-bU-gjk"/>
+                                    <constraint firstItem="BUJ-V6-lRf" firstAttribute="top" secondItem="P0o-Yz-Kcx" secondAttribute="top" id="ceX-kW-yvA"/>
+                                    <constraint firstAttribute="trailing" secondItem="BUJ-V6-lRf" secondAttribute="trailing" id="jx5-ds-1Zr"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVx-2A-vZH">
+                                <rect key="frame" x="16" y="165" width="343" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UVx-2A-vZH" firstAttribute="leading" secondItem="Z89-8v-JVZ" secondAttribute="leading" constant="16" id="2mI-LP-gs0"/>
+                            <constraint firstItem="UVx-2A-vZH" firstAttribute="top" secondItem="P0o-Yz-Kcx" secondAttribute="bottom" constant="4" id="5T0-eS-WNw"/>
+                            <constraint firstItem="Z89-8v-JVZ" firstAttribute="trailing" secondItem="P0o-Yz-Kcx" secondAttribute="trailing" constant="16" id="Sad-hP-MDd"/>
+                            <constraint firstItem="P0o-Yz-Kcx" firstAttribute="leading" secondItem="Z89-8v-JVZ" secondAttribute="leading" constant="16" id="W2c-cd-xDE"/>
+                            <constraint firstItem="P0o-Yz-Kcx" firstAttribute="top" secondItem="Z89-8v-JVZ" secondAttribute="top" constant="16" id="g8c-RK-iuB"/>
+                            <constraint firstItem="Z89-8v-JVZ" firstAttribute="trailing" secondItem="UVx-2A-vZH" secondAttribute="trailing" constant="16" id="tyf-bz-cra"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Z89-8v-JVZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="ca4-PR-zU4">
+                        <barButtonItem key="rightBarButtonItem" image="ArrowCheck" id="lCu-iV-coi">
+                            <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="createWallet:" destination="2Ki-0q-QZe" id="iar-AB-3hk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="hint" destination="UVx-2A-vZH" id="NDv-WV-Ge9"/>
+                        <outlet property="newPassword" destination="c08-6j-knY" id="80k-rA-gOi"/>
+                        <outlet property="repeatPassword" destination="Wnw-yu-btW" id="ZWh-dJ-HVn"/>
+                        <outlet property="stackViews" destination="P0o-Yz-Kcx" id="g27-rf-0Fh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uIY-iK-H7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="860" y="-683"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="ArrowCheck" width="33" height="33"/>
         <image name="Bitcoin" width="58" height="59"/>
         <image name="DisclosureIndicator" width="14" height="19"/>
         <image name="Update" width="23" height="20"/>

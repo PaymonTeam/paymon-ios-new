@@ -38,7 +38,7 @@ public class GroupManager {
             
             let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
             
-            NetworkManager.instance.sendPacket(packet) { packet, error in
+            NetworkManager.shared.sendPacket(packet) { packet, error in
                 
                 if (packet is RPC.PM_boolTrue) {
                     Utils.stageQueue.run {

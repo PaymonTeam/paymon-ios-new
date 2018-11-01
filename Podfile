@@ -16,7 +16,8 @@ target 'paymon' do
     pod 'ScrollableGraphView'
     pod 'SDWebImage', '~> 4.0'
     pod 'FLAnimatedImage', '~> 1.0'
-
+    pod 'ReverseExtension'
+    pod 'BitcoinKit'
 
   # Pods for paymon
 

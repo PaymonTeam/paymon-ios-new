@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MoneyNotCreatedTableViewCell: UITableViewCell {
     @IBOutlet weak var background: UIView!
@@ -18,8 +19,8 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
     var widthScreen : CGFloat!
     
     var cryptoType : CryptoType!
-
     var heightBackground : CGFloat!
+    var viewController : UIViewController!
     
     @IBOutlet weak var backgroundWidth: NSLayoutConstraint!
     
@@ -27,10 +28,19 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
         openAddFunc()
     }
     
+    func configure(data: CellMoneyData, vc: UIViewController) {
+        self.icon.image = UIImage(named: data.icon)
+        self.cryptoType = data.cryptoType
+        self.add.backgroundColor = data.cryptoColor
+        self.add.setTitleColor(UIColor.white.withAlphaComponent(0.7), for: .normal)
+        self.viewController = vc
+    }
+    
     @IBAction func createClick(_ sender: Any) {
         switch cryptoType {
         case .bitcoin?:
-            // Create Bitcoin wallet code
+            guard let createNewBtcWalletViewController = StoryBoard.money.instantiateViewController(withIdentifier: "CreateNewBtcWalletViewController") as? CreateNewBtcWalletViewController else {return}
+            viewController.navigationController?.pushViewController(createNewBtcWalletViewController, animated: true)
         break
             
         case .ethereum?:
@@ -38,7 +48,7 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
             break
             
         case .paymon?:
-            // Create Paymon wallet code
+            
             break
         default:
             break
@@ -49,6 +59,7 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
         switch cryptoType {
         case .bitcoin?:
             // Restore Bitcoin wallet code
+            BitcoinManager.shared.restoreFromPrivateKey(privateKey: "cPHoLzEtNQfRgYFFKAKTU61puFWf8WLTJHuqapZaZuFQVCKRZAex")
             break
             
         case .ethereum?:
@@ -56,7 +67,7 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
             break
             
         case .paymon?:
-            // Restore Paymon wallet code
+
             break
         default:
             break
@@ -65,7 +76,6 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         setLayoutOptions()
     }
     

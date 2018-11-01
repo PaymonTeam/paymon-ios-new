@@ -15,7 +15,7 @@ class RPC {
     public static let ERROR_REGISTER:Int32 = 0x3;
     public static let ERROR_AUTH:Int32 = 0x4;
     public static let ERROR_AUTH_TOKEN:Int32 = 0x5;
-    public static let ERROR_ADD_FRIEND:Int32 = 0x6;
+    public static let ERROR_AUTH_ALREADY_EXISTS:Int32 = 0x6;
     public static let ERROR_LOAD_USERS:Int32 = 0x7;
     public static let ERROR_LOAD_CHATS_AND_MESSAGES:Int32 = 0x8;
     public static let ERROR_LOAD_CHAT_MESSAGES:Int32 = 0x9;
@@ -195,6 +195,10 @@ class RPC {
         static let svuid:Int32 = 543732124
         
         var user_id:Int32!
+        
+        init(user_id : Int32) {
+            self.user_id = user_id
+        }
         
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             user_id = stream.readInt32(exception)
@@ -441,7 +445,9 @@ class RPC {
         }
     }
 
+    
     class Peer : Packet, Equatable {
+        
         var channel_id:Int32!
         var user_id:Int32!
         var group_id:Int32!
@@ -482,6 +488,15 @@ class RPC {
     class PM_peerUser : Peer {
         static let svuid:Int32 = 1226888699
 
+        override init() {
+            
+        }
+        
+        init(user_id : Int32) {
+            super.init()
+            self.user_id = user_id
+        }
+        
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             user_id = stream.readInt32(exception)
         }
@@ -495,6 +510,15 @@ class RPC {
     class PM_peerGroup : Peer {
         static let svuid:Int32 = 1778284232
 
+        override init() {
+            
+        }
+        
+        init(group_id : Int32) {
+            super.init()
+            self.group_id = group_id
+        }
+        
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             group_id = stream.readInt32(exception)
         }
@@ -639,7 +663,6 @@ class RPC {
         static var MESSAGE_FLAG_EDITED:Int32 = 0b10000
         static var MESSAGE_FLAG_ACTION:Int32 = 0b100000
 
-
         var id:Int64!
         var from_id:Int32!
         var to_id:Int32!
@@ -649,7 +672,7 @@ class RPC {
         var text:String!
         var flags:Int32! = 0
         var unread:Bool! = true
-        //        var entities:[MessageEntity]!
+        
         var views:Int32! = 0
         var edit_date:Int32! = 0
         var itemType:PMFileManager.FileType!
@@ -673,6 +696,7 @@ class RPC {
     class MessageAction:Packet {
         var message:String!
         var users:SharedArray<RPC.UserObject>!
+        var type: Int16!
         
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> MessageAction {
             var result:MessageAction
@@ -689,8 +713,10 @@ class RPC {
     
     class PM_messageActionGroupCreate:MessageAction {
         static let svuid:Int32 = 42618952
-
+        
+        
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
+            type = 5
         }
         
         override func serializeToStream(stream: SerializableData) {
@@ -1044,7 +1070,7 @@ class RPC {
             }
             to_peer = try? Peer.deserialize(stream: stream, constructor: stream.readInt32(exception))
             
-            to_id = to_peer is PM_peerUser ? to_peer.user_id : to_peer.group_id
+            to_id = to_peer is PM_peerUser ? (User.currentUser.id == from_id ? to_peer.user_id : from_id) : to_peer.group_id
             if (from_id == 0) {
                 if (to_peer.user_id != 0) {
                     from_id = to_peer.user_id
@@ -1065,7 +1091,7 @@ class RPC {
             if ((flags & Message.MESSAGE_FLAG_EDITED) != 0) {
                 edit_date = stream.readInt32(exception)
             }
-
+            itemType = .NONE
         }
 
         override func serializeToStream(stream: SerializableData) {
@@ -1110,7 +1136,6 @@ class RPC {
                 from_id = stream.readInt32(exception)
             }
 
-            
             to_peer = try? Peer.deserialize(stream: stream, constructor: stream.readInt32(exception))
             
             to_id = to_peer is PM_peerUser ? to_peer.user_id : to_peer.group_id

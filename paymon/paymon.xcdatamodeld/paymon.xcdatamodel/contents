@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ChatsData" representedClassName="ChatsData" syncable="YES" codeGenerationType="class">
-        <attribute name="chatId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="fileType" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isGroup" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lastMessagePhotoUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="lastMessageText" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="ChatMessageData" representedClassName="ChatMessageData" syncable="YES">
+        <attribute name="action" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dateString" attributeType="String" syncable="YES"/>
+        <attribute name="fromId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="itemType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="text" attributeType="String" syncable="YES"/>
+        <attribute name="toId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="toPeer" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="unread" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="ChatsData" representedClassName="ChatsData" syncable="YES">
+        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isGroup" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="itemType" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastMessageFromId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastMessagePhotoUrl" attributeType="String" syncable="YES"/>
+        <attribute name="lastMessageText" attributeType="String" syncable="YES"/>
+        <attribute name="photoUrl" attributeType="String" syncable="YES"/>
+        <attribute name="time" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="GroupData" representedClassName="GroupData" syncable="YES">
         <attribute name="creatorId" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -18,11 +30,11 @@
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="users" attributeType="Transformable" customClassName="[Int32]" syncable="YES"/>
     </entity>
-    <entity name="UserContactData" representedClassName="UserContactData" syncable="YES">
+    <entity name="UserContactsData" representedClassName="UserContactsData" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isEmailHidden" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="login" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isEmailHidden" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="login" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,16 +42,18 @@
     <entity name="UserData" representedClassName="UserData" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isContact" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isEmailHidden" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="login" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="photoUrl" optional="YES" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
+        <attribute name="photoUrl" attributeType="String" defaultValueString="&quot;&quot;" syncable="YES"/>
         <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="GroupData" positionX="-27" positionY="90" width="128" height="120"/>
-        <element name="UserContactData" positionX="-45" positionY="54" width="128" height="150"/>
-        <element name="UserData" positionX="-54" positionY="-9" width="128" height="150"/>
-        <element name="ChatsData" positionX="-36" positionY="81" width="128" height="180"/>
+        <element name="ChatMessageData" positionX="-40.41796875" positionY="92.71484375" width="128" height="193"/>
+        <element name="ChatsData" positionX="100.01953125" positionY="-236.1484375" width="128" height="180"/>
+        <element name="GroupData" positionX="-208.47265625" positionY="34.81640625" width="128" height="120"/>
+        <element name="UserContactsData" positionX="-54" positionY="-90" width="128" height="150"/>
+        <element name="UserData" positionX="-201.421875" positionY="-239.10546875" width="128" height="165"/>
     </elements>
 </model>

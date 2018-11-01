@@ -88,12 +88,16 @@ open class Utils {
         
     }
     
-    public static func formatChatDateTime(timestamp:Int64, format24h:Bool) -> String {
+    public static func formatChatDateTime(timestamp:Int32, format24h:Bool) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
         
-        dateFormatter.dateFormat = "HH:mm"
+        if User.timeFormatIs24 {
+            dateFormatter.dateFormat = "HH:mm"
+        } else {
+            dateFormatter.dateFormat = "hh:mm a"
+        }
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
 
         let result = dateFormatter.string(from: date)
@@ -102,44 +106,50 @@ open class Utils {
     }
 
 
-    public static func formatDateTime(timestamp:Int64, format24h:Bool) -> String {
+    public static func formatDateTime(timestamp:Int32, chatHeader: Bool, format24h:Bool) -> String {
         let dateFormatter = DateFormatter()
         let calendar = Calendar.current
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
         
-        var result : String = ""
-        
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
         let dateNow = Date()
         
-        if calendar.component(.year, from: date) - calendar.component(.year, from: dateNow) == 0 {
-            if calendar.component(.month, from: date) - calendar.component(.month, from: dateNow) == 0 {
-                if calendar.component(.weekOfMonth, from: date) - calendar.component(.weekOfMonth, from: dateNow) == 0 {
-                    if calendar.component(.day, from: date) - calendar.component(.day, from: dateNow) == 0 {
-                        dateFormatter.dateFormat = "HH:mm"
-                    } else {
-                        if calendar.isDateInYesterday(date) {
-                            result = "Yesterday".localized
-                        } else {
-                            dateFormatter.dateFormat = "EEEE"
-                        }
-                    }
-                } else {
-                    dateFormatter.dateFormat = "d MMM"
-                }
+        let yearDiff = calendar.component(.year, from: date) - calendar.component(.year, from: dateNow)
+        let monthDiff = calendar.component(.month, from: date) - calendar.component(.month, from: dateNow)
+        let dayDiff = calendar.component(.day, from: date) - calendar.component(.day, from: dateNow)
+        let weekDiff = calendar.component(.weekOfMonth, from: date) - calendar.component(.weekOfMonth, from: dateNow)
+        var pattern = ""
+        
+        if dayDiff == 0 && monthDiff == 0 && weekDiff == 0 && yearDiff == 0 {
+            if !chatHeader {
+                pattern = "HH:mm"
             } else {
-                dateFormatter.dateFormat = "d MMM"
+                pattern = "Today".localized
             }
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday".localized
+        } else if weekDiff != 0 && yearDiff == 0 || yearDiff == 0 && monthDiff < 0
+            || yearDiff == 0 && monthDiff == 0 && weekDiff == 0  && dayDiff < 0 {
+            pattern = "d MMM"
+        } else if yearDiff != 0  {
+            pattern = "dd.MM.yyyy"
         } else {
-            dateFormatter.dateFormat = "dd.MM.yyyy"
+            print(yearDiff)
+            print(monthDiff)
+            print(dayDiff)
+            print(weekDiff)
+            print("-----------")
+
+            pattern = "HH:mm"
         }
         
-        if (result != "Yesterday") {
-            result = dateFormatter.string(from: date)
+        if !User.timeFormatIs24 {
+            pattern = pattern.replacingOccurrences(of: "HH:mm", with: "hh:mm a")
         }
         
-        return result
+        dateFormatter.dateFormat = pattern
+        return dateFormatter.string(from: date)
     }
     
     public static func formatDateTimeCharts(timestamp:Int64, interval : String) -> String {
@@ -153,7 +163,11 @@ open class Utils {
         
         switch(interval) {
         case ExchangeRatesConst.hour, ExchangeRatesConst.day:
-            dateFormatter.dateFormat = "HH:mm"
+            if User.timeFormatIs24 {
+                dateFormatter.dateFormat = "HH:mm"
+            } else {
+                dateFormatter.dateFormat = "hh:mm a"
+            }
             break
         case ExchangeRatesConst.week, ExchangeRatesConst.oneMonth, ExchangeRatesConst.threeMonth, ExchangeRatesConst.sixMonth:
             dateFormatter.dateFormat = "d MMM"

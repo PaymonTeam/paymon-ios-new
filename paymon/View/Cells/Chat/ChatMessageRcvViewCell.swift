@@ -10,26 +10,16 @@ import QuartzCore
 class ChatMessageRcvViewCell : UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-
-    override func draw(_ rect: CGRect) {
-
-        let gray = UIColor.white.withAlphaComponent(0.8)
-
-        let bubbleSpace = CGRectMake(self.messageLabel.frame.minX - 16 - timeLabel.frame.width, self.messageLabel.frame.minY - 6,
-                                     self.messageLabel.frame.width + 28 + timeLabel.frame.width, self.messageLabel.frame.height + 14)
-        let bubblePath = UIBezierPath(roundedRect: bubbleSpace, cornerRadius: 13.0)
-
-        gray.setFill()
-        bubblePath.fill()
-
+    @IBOutlet weak var bubble: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        bubble.layer.cornerRadius = 18
     }
 
-    func CGRectMake(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> CGRect {
-        return CGRect(x: x, y: y, width: width, height: height)
+    func configure(message: ChatMessageData) {
+        self.messageLabel.text = message.text
+        self.timeLabel.text = Utils.formatChatDateTime(timestamp: message.date, format24h: false)
     }
-
-    override func prepareForReuse() {
-        self.setNeedsDisplay()
-        super.prepareForReuse()
-    }
+    
 }
