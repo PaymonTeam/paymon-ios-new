@@ -17,6 +17,8 @@ class BitcoinWalletViewController: PaymonViewController {
     @IBOutlet weak var cryptoBalance: UILabel!
     
     @IBOutlet weak var fiatBalance: UILabel!
+    private var walletWasCreated: NSObjectProtocol!
+    private var updateBtcBalance: NSObjectProtocol!
     
     var privateKey : String!
     var publicKey : String!
@@ -33,13 +35,18 @@ class BitcoinWalletViewController: PaymonViewController {
         
         let privateKey = UIAlertAction(title: "Private key".localized, style: .default, handler: { (alert: UIAlertAction!) -> Void in
             
-            guard let keysViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
-            
-            //TODO: Set private key here
-            keysViewController.keyValue = self.privateKey
-            
-            self.present(keysViewController, animated: true, completion: nil)
-            
+            BitcoinManager.shared.checkPasswordWallet(vc: self, completionHandler: { (isSuccess:Bool) in
+                if isSuccess {
+                    guard let keysViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
+                    
+                    //TODO: Set private key here
+                    keysViewController.keyValue = self.privateKey
+                    
+                    self.present(keysViewController, animated: true, completion: nil)
+                } else {
+                    _ = SimpleOkAlertController.init(title: "Security password".localized, message: "Incorrect password".localized, vc: self)
+                }
+            })
         })
         
         let publicKey = UIAlertAction(title: "Public key".localized, style: .default, handler: { (alert: UIAlertAction!) -> Void in
@@ -56,7 +63,6 @@ class BitcoinWalletViewController: PaymonViewController {
         keysMenu.addAction(privateKey)
         
         self.present(keysMenu, animated: true, completion: nil)
-
         
     }
     
@@ -65,14 +71,14 @@ class BitcoinWalletViewController: PaymonViewController {
         
         let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
         let delete = UIAlertAction(title: "Delete".localized, style: .destructive, handler: { (alert: UIAlertAction!) -> Void in
-            //TODO: Add Delete wallet func
+            BitcoinManager.shared.deleteWallet(vc: self)
         })
         
         let backup = UIAlertAction(title: "Backup".localized, style: .default, handler: { (alert: UIAlertAction!) -> Void in
-            //TODO: Add Backup wallet func
+            BitcoinManager.shared.backup(vc: self)
         })
         let recovery = UIAlertAction(title: "Recovery".localized, style: .default, handler: { (alert: UIAlertAction!) -> Void in
-            //TODO: Add Recovery wallet func
+            BitcoinManager.shared.restoreByPrivateKey(vc: self)
         })
         
         funcsMenu.addAction(cancel)
@@ -85,8 +91,29 @@ class BitcoinWalletViewController: PaymonViewController {
     }
     
     override func viewDidLoad() {
+        
         setLayoutOptions()
         getWalletInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        walletWasCreated = NotificationCenter.default.addObserver(forName: .walletWasCreated, object: nil, queue: nil) {
+            notification in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        updateBtcBalance = NotificationCenter.default.addObserver(forName: .updateBtcBalance, object: nil, queue: nil) {
+            notification in
+            DispatchQueue.main.async {
+                self.cryptoBalance.text = String(format: "%.\(User.symbCount)f", BitcoinManager.shared.getBalance().double)
+                self.fiatBalance.text = String(format: "%.2f", BitcoinManager.shared.getFiatBalance().double)
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(walletWasCreated)
+        NotificationCenter.default.removeObserver(updateBtcBalance)
     }
     
     func setLayoutOptions() {
@@ -105,25 +132,16 @@ class BitcoinWalletViewController: PaymonViewController {
     }
     
     func getWalletInfo() {
-        //get Bitcoin wallet info (Balance(crypto and fiat), Private and Public Keys)
-        
-        // cryptoBalance =
-        // fiatBalance =
-        // privateKey =
-        // publicKey =
+        fiatSymbol.text = User.currencyCodeSymb
+        cryptoBalance.text = String(format: "%.\(User.symbCount)f", BitcoinManager.shared.getBalance().double)
+        fiatBalance.text = String(format: "%.2f", BitcoinManager.shared.getFiatBalance().double)
+        privateKey = BitcoinManager.shared.wallet?.privateKey.toWIF()
+        publicKey = BitcoinManager.shared.wallet?.publicKey.toLegacy().base58
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let transferViewController = segue.destination as? BitcoinTransferViewController else {return}
-        
-        let localLang = Locale.current.languageCode
-        if localLang != nil {
-            if localLang! == "ru" {
-                transferViewController.fiatCurrancy = Money.rub
-            } else {
-                transferViewController.fiatCurrancy = Money.usd
-            }
-        }
+        transferViewController.publicKey = publicKey
     }
     
 }

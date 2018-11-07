@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MBProgressHUD
 
-class CreateNewBtcWalletViewController: UIViewController {
+class CreateNewBtcWalletViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var repeatPassword: UITextField!
     @IBOutlet weak var newPassword: UITextField!
@@ -18,6 +18,7 @@ class CreateNewBtcWalletViewController: UIViewController {
     
     var password : String! = ""
     var repeatPasswordString: String! = ""
+    var isRestore = false
     @IBOutlet weak var hint: UILabel!
     
     private var walletWasCreated: NSObjectProtocol!
@@ -27,8 +28,13 @@ class CreateNewBtcWalletViewController: UIViewController {
             notification in
             self.walletCreated()
         }
-        
+        newPassword.delegate = self
+        repeatPassword.delegate = self
         setLayoutOptions()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(walletWasCreated)
     }
     
     func setLayoutOptions() {
@@ -63,13 +69,32 @@ class CreateNewBtcWalletViewController: UIViewController {
             return
         }
     
-        let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
-        BitcoinManager.shared.createBtcWallet(password: password)
+        if !isRestore {
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+            BitcoinManager.shared.createBtcWallet(password: password)
+        } else {
+            BitcoinManager.shared.restoreByPrivateKey(vc: self)
+        }
     }
     
     func walletCreated() {
-        BitcoinManager.shared.savePrivateKey()
+        User.savePasswordWallet(password: password)
         MBProgressHUD.hide(for: self.view, animated: true)
         navigationController?.popViewController(animated: true)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        
+        switch (textField) {
+        case newPassword:
+            return newLength <= 96
+        case repeatPassword:
+            return newLength <= 96
+        default: break
+        }
+        
+        return true
     }
 }

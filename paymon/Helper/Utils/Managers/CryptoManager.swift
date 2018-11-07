@@ -11,6 +11,7 @@ import Foundation
 class CryptoManager {
     
     static let shared = CryptoManager()
+    var btcInfoIsLoaded = false
     
     func getPaymonWalletInfo() -> CellMoneyData {
         
@@ -23,7 +24,7 @@ class CryptoManager {
             paymonData.fiatAmount = 6723.13
             paymonData.cryptoHint = Money.pmnc
             paymonData.icon = Money.pmncIcon
-            paymonData.fiatHint = Money.rub
+            paymonData.fiatHint = User.currencyCode
             paymonData.fiatColor = UIColor.AppColor.Green.rub
             paymonData.cryptoColor = UIColor.AppColor.Blue.paymon
             paymonData.cryptoType = .paymon
@@ -48,7 +49,7 @@ class CryptoManager {
             ethereumData.fiatAmount = 23552.98
             ethereumData.cryptoHint = Money.eth
             ethereumData.icon = Money.ethIcon
-            ethereumData.fiatHint = Money.rub
+            ethereumData.fiatHint = User.currencyCode
             ethereumData.fiatColor = UIColor.AppColor.Green.rub
             ethereumData.cryptoColor = UIColor.AppColor.Gray.ethereum
             ethereumData.cryptoType = .ethereum
@@ -67,27 +68,22 @@ class CryptoManager {
         if BitcoinManager.shared.wallet == nil {
             let privateKey = BitcoinManager.shared.loadPrivateKey()
             if privateKey != nil {
-                BitcoinManager.shared.restoreFromPrivateKey(privateKey: privateKey!)
+                BitcoinManager.shared.restoreFromMemory(privateKey: privateKey!)
             } else {
                 return self.getNotCreatedData(cryptoType: .bitcoin)
             }
         }
         
         if User.currentUser != nil {
-            if User.haveBitcoinWallet {
-                /*Block for test. Here we get bitcoin wallet info*/
-                bitcoinData.currancyAmount = BitcoinManager.shared.getBalance()
-                bitcoinData.fiatAmount = (BitcoinManager.shared.getBalance() + 1) * 1000
-                bitcoinData.cryptoHint = Money.btc
-                bitcoinData.icon = Money.btcIcon
-                bitcoinData.fiatHint = Money.rub
-                bitcoinData.fiatColor = UIColor.AppColor.Green.rub
-                bitcoinData.cryptoColor = UIColor.AppColor.Orange.bitcoin
-                bitcoinData.cryptoType = .bitcoin
-                return bitcoinData
-            } else {
-                return self.getNotCreatedData(cryptoType: .bitcoin)
-            }
+            bitcoinData.currancyAmount = BitcoinManager.shared.getBalance()
+            bitcoinData.fiatAmount = BitcoinManager.shared.getFiatBalance()
+            bitcoinData.cryptoHint = Money.btc
+            bitcoinData.icon = Money.btcIcon
+            bitcoinData.fiatHint = User.currencyCode
+            bitcoinData.fiatColor = UIColor.AppColor.Green.rub
+            bitcoinData.cryptoColor = UIColor.AppColor.Orange.bitcoin
+            bitcoinData.cryptoType = .bitcoin
+            return bitcoinData
         } else {
             return self.getNotCreatedData(cryptoType: .bitcoin)
         }

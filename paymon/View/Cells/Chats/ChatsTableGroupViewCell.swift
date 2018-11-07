@@ -17,7 +17,7 @@ class ChatsTableGroupViewCell : UITableViewCell {
     func configure(chat: ChatsData) {
         self.title.text = chat.title
         self.lastMessageText.text = chat.lastMessageText
-        self.lastMessageTime.text = Utils.formatDateTime(timestamp: chat.time, chatHeader : false, format24h: false)
+        self.lastMessageTime.text = Utils.formatDateTime(timestamp: chat.time, chatHeader : false)
         self.photo.loadPhoto(url: chat.photoUrl)
         self.lastMessagePhoto.loadPhoto(url: chat.lastMessagePhotoUrl)
         

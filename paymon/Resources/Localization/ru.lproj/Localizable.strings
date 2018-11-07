@@ -94,6 +94,7 @@
 "Group chat created"="Группа создана";
 "Groups"="Группы";
 "Dialogs"="Диалоги";
+"Enter group title"="Введите название группы";
 
 /*Group settings*/
 "Are you sure to remove this user?"="Вы уверены, что хотите удалить этого пользователя из группы?";
@@ -170,12 +171,15 @@
 /*Security Settings*/
 "Protect"="Защита";
 "Security password"="Пароль безопасности";
+"Enter security password"="Введите пароль безопасности";
+"Enter the password that was specified when creating or restoring the wallet"="Введите пароль, указанный при создании или восстановлении кошелька";
 "Password protect"="Пароль безопасности";
 "Set the password for the application"="Установите пароль на приложение";
 "Enter password"="Введите пароль";
 "Enter your secret password"="Введите ваш секретный пароль";
 "Input your password"="Введите пароль";
 "You can protect your application with a digital password"="Вы можете защитить свое приложение цифровым паролем";
+"Incorrect password"="Не верный пароль";
 
 /*Account settings*/
 "Show email"="Показать электронный адрес";
@@ -219,7 +223,16 @@
 "Public key"="Публичный ключ";
 "Back"="Назад";
 "Chart"="График";
-
+"Download..."="Загрузка...";
+"A number of simbols after comma"="Колличество символов после запятой";
+"Currancy"="Валюта";
+"You can choose the main currency of your wallet"="Вы можете выбрать основную валюту вашего кошелька";
+"For convenience, select the number of decimal places"="Для удобства, выберите число десятичных знаков";
+"Rubles"="Рубли";
+"Dollars"="Доллары";
+"2 symbols"="2 знака";
+"4 symbols"="4 знака";
+"6 symbols"="6 знака";
 
 /*Money transfer*/
 
@@ -241,6 +254,15 @@
 "Transfer info"="Информация";
 "Create a password for new Bitcoin wallet"="Придумайте пароль для нового Bitcoin кошелька";
 "New Bitcoin wallet"="Новый Bitcoin кошелек";
+"Remove wallet"="Удаление кошелька";
+"Remove"="Удалить";
+"Enter private key"="Введите приватный ключ";
+"Restore wallet"="Восстановление кошелька";
+"You entered an incorrect private key"="Вы ввели неправильный приватный ключ";
+"Standart fee"="Стандартная комиссия";
+"Create"="Создать";
+"The minimum fee is 0.00001 BTC"="Минимальная сумма комиссии составляет 0.00001 BTC";
+"Before removing your wallet, make sure you back up your wallet"="Перед тем, как удалить кошелек, убедитесь, что вы сделали его резервную копию";
 
 /*Wllet view controller*/
 

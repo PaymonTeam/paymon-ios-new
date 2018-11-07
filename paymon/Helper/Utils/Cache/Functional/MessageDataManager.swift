@@ -19,7 +19,7 @@ class MessageDataManager {
         messageData.toId = messageObject.to_id
         messageData.fromId = messageObject.from_id
         messageData.date = messageObject.date
-        messageData.dateString = Utils.formatDateTime(timestamp: messageObject.date, chatHeader : true, format24h: false)
+        messageData.dateString = Utils.formatDateTime(timestamp: messageObject.date, chatHeader : true)
         messageData.text = messageObject.text
         messageData.itemType = Int16(messageObject.itemType.rawValue)
         messageData.action = messageObject.action != nil ? messageObject.action.type : 0

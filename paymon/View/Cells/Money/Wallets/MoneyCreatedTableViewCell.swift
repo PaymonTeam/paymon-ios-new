@@ -15,6 +15,7 @@ class MoneyCreatedTableViewCell: UITableViewCell {
     @IBOutlet weak var cryptoAmount: UILabel!
     @IBOutlet weak var fiatHint: UILabel!
     @IBOutlet weak var cryptoHint: UILabel!
+    @IBOutlet weak var download: UILabel!
     
     var cryptoType : CryptoType!
     
@@ -36,21 +37,40 @@ class MoneyCreatedTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        download.text = "Download...".localized
     }
     
     func configure(data: CellCreatedMoneyData) {
         self.icon.image = UIImage(named: data.icon)
-        self.cryptoAmount.text = data.currancyAmount.description
-        self.fiatAmount.text = data.fiatAmount.description
+        self.cryptoAmount.text = String(format: "%.\(User.symbCount)f", data.currancyAmount.double)
+        self.fiatAmount.text = String(format: "%.2f", data.fiatAmount.double)
         self.cryptoHint.text = data.cryptoHint
         self.fiatHint.text = data.fiatHint
         self.cryptoType = data.cryptoType
-        
+        showBalance(cryptoType: data.cryptoType)
         self.cryptoHint.textColor = data.cryptoColor
         self.cryptoAmount.textColor = data.cryptoColor
         self.fiatHint.textColor = data.fiatColor
         self.fiatAmount.textColor = data.fiatColor
+    }
+    
+    func showBalance(cryptoType : CryptoType) {
+        if cryptoType == CryptoType.ethereum {
+            return
+        }
+        if cryptoType == CryptoType.bitcoin && CryptoManager.shared.btcInfoIsLoaded {
+            self.download.isHidden = true
+            self.cryptoAmount.isHidden = false
+            self.fiatAmount.isHidden = false
+            self.cryptoHint.isHidden = false
+            self.fiatHint.isHidden = false
+        } else {
+            self.download.isHidden = false
+            self.cryptoAmount.isHidden = true
+            self.fiatAmount.isHidden = true
+            self.cryptoHint.isHidden = true
+            self.fiatHint.isHidden = true
+        }
     }
 }
 

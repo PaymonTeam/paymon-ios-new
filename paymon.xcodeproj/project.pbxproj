@@ -191,6 +191,9 @@
 		B0EBB91421778F0300856ED2 /* ChatMessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EBB91221778F0300856ED2 /* ChatMessageData.swift */; };
 		B0EE21232171FD8A000107C3 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE21212171FD8A000107C3 /* UserData.swift */; };
 		B0F2B8A6218222D900A3C339 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2B8A5218222D900A3C339 /* LaunchScreenViewController.swift */; };
+		B0F2D5F321905C1600BE6938 /* SettingsWalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2D5F221905C1600BE6938 /* SettingsWalletViewController.swift */; };
+		B0F2D5F521905C6300BE6938 /* SettingsWalletTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2D5F421905C6300BE6938 /* SettingsWalletTableViewController.swift */; };
+		B0F2D5F72190861000BE6938 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2D5F62190861000BE6938 /* Errors.swift */; };
 		D816BA352120C3CE001B6FE8 /* PaymonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */; };
 		D820C69E210122B5001D3B00 /* Ethur.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D820C69D210122B5001D3B00 /* Ethur.storyboard */; };
 		D820C6A52101232E001D3B00 /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D820C6A02101232E001D3B00 /* CoinDetailsViewController.swift */; };
@@ -444,6 +447,9 @@
 		B0EBB91221778F0300856ED2 /* ChatMessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageData.swift; sourceTree = "<group>"; };
 		B0EE21212171FD8A000107C3 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		B0F2B8A5218222D900A3C339 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		B0F2D5F221905C1600BE6938 /* SettingsWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWalletViewController.swift; sourceTree = "<group>"; };
+		B0F2D5F421905C6300BE6938 /* SettingsWalletTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWalletTableViewController.swift; sourceTree = "<group>"; };
+		B0F2D5F62190861000BE6938 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		C3764DFE35E2623F4092A261 /* Pods_paymon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_paymon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05E199DF40685C191ADE6F1 /* Pods-paymonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-paymonTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-paymonTests/Pods-paymonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D816BA342120C3CE001B6FE8 /* PaymonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymonViewController.swift; sourceTree = "<group>"; };
@@ -922,6 +928,7 @@
 		B099C9AF20FDD25700718608 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				B0F2D5F121905BF500BE6938 /* Money */,
 				B0EA22AE2163835600092B8A /* Account */,
 				0EA66BA5210F816E00CC1162 /* AboutTheProgram */,
 				0EA66BA2210F80BB00CC1162 /* Security */,
@@ -1100,6 +1107,7 @@
 				B0AC1D22211452BB004D8577 /* CryptoType.swift */,
 				B0C7447B2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift */,
 				B03D137421318F3300F442AF /* TransactionType.swift */,
+				B0F2D5F62190861000BE6938 /* Errors.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -1311,6 +1319,15 @@
 				B0E3D11021806D0A0090ED3D /* UserContactsDataManager.swift */,
 			);
 			path = Functional;
+			sourceTree = "<group>";
+		};
+		B0F2D5F121905BF500BE6938 /* Money */ = {
+			isa = PBXGroup;
+			children = (
+				B0F2D5F221905C1600BE6938 /* SettingsWalletViewController.swift */,
+				B0F2D5F421905C6300BE6938 /* SettingsWalletTableViewController.swift */,
+			);
+			path = Money;
 			sourceTree = "<group>";
 		};
 		D816BA332120C395001B6FE8 /* SuperViewController */ = {
@@ -1639,6 +1656,7 @@
 				B0AC1D2A211472DA004D8577 /* ExchangeRetesViewController.swift in Sources */,
 				B019550120FFAA3E00F3DDB0 /* DecimalExtension.swift in Sources */,
 				0EB732432136FD2A0069B383 /* NewContactViewController.swift in Sources */,
+				B0F2D5F321905C1600BE6938 /* SettingsWalletViewController.swift in Sources */,
 				B019551920FFAA6600F3DDB0 /* ByteArray_Wrapper.mm in Sources */,
 				B0AC1D26211456E8004D8577 /* CryptoManager.swift in Sources */,
 				B08DFD86215928BE002B5C1A /* UserInfoTableInfoUIView.swift in Sources */,
@@ -1681,6 +1699,7 @@
 				0EC1A6B1213BAE8E0089CE1E /* AddContactViewController.swift in Sources */,
 				B019555720FFAD7500F3DDB0 /* Packet.swift in Sources */,
 				B0011B712100D88A00A3CBF1 /* GCDAsyncSocket.m in Sources */,
+				B0F2D5F72190861000BE6938 /* Errors.swift in Sources */,
 				0EA074CE21065686002FF527 /* ChatMessageRcvViewCell.swift in Sources */,
 				B0D43B5E214665D70052B1A9 /* GroupChatMessageRcvViewCell.swift in Sources */,
 				0E0402C9210644A500D6F703 /* ChatsViewController.swift in Sources */,
@@ -1746,6 +1765,7 @@
 				B01954D520FFA8DA00F3DDB0 /* Keychain.swift in Sources */,
 				B098FAE22165EFEA006C8EC7 /* MainNavigationController.swift in Sources */,
 				B0C7447721147C7F008885C1 /* ExchangeRatesForChartsParser.swift in Sources */,
+				B0F2D5F521905C6300BE6938 /* SettingsWalletTableViewController.swift in Sources */,
 				B0C7447C2114A4A6008885C1 /* TypeInterfaceOrientationMask.swift in Sources */,
 				D820C6A62101232E001D3B00 /* ReceiveViewController.swift in Sources */,
 				B0EA22AD216372EE00092B8A /* MoreTableViewController.swift in Sources */,

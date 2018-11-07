@@ -18,10 +18,6 @@ public class UserManager {
         User.isAuthenticated = true
         User.saveConfig()
         User.loadConfig()
-        
-//        if !MessageManager.shared.isChatsLoaded {
-//            MessageManager.shared.loadChats()
-//        }
     }
     
     func signUpNewUser(login : String, password : String, email : String, viewController : UIViewController) {

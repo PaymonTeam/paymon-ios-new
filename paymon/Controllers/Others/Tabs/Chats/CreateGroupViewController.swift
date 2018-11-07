@@ -221,7 +221,7 @@ class CreateGroupViewController: PaymonViewController , UITableViewDataSource, U
                     }
                 }))
                 alert.addTextField { (textField) in
-                    textField.placeholder = "Enter group title"
+                    textField.placeholder = "Enter group title".localized
                 }
                 self.present(alert, animated: true, completion: nil)
             }

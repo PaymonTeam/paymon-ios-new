@@ -43,6 +43,7 @@ class BtcApi {
     func postTx(withRawTx rawTx: String, completionHandler: @escaping (_ txId: String?, _ error: String?) -> ()) {
         let url = "\(apiEndPoint)/tx/send"
         print("url = \(url)")
+        print("rawTx = \(rawTx)")
         post(url: url, parameters: ["rawtx": rawTx], completion:  { (data) in
             guard let data = data else {
                 completionHandler(nil, "response data is nil")
@@ -50,6 +51,7 @@ class BtcApi {
             }
             do {
                 let tx = try JSONDecoder().decode(CodableTx.self, from: data)
+                print(tx.txid)
                 completionHandler(tx.txid, nil)
             } catch {
                 print("Serialize Error")
@@ -109,6 +111,35 @@ class BtcApi {
             completion(data)
         }
         task.resume()
+    }
+    
+    func getBalance(publicKey : String, isTestNet: Bool, completionHandler: @escaping (Int64) -> ()) {
+        let network = !isTestNet ? "main" : "test3"
+        
+        let urlString = "https://api.blockcypher.com/v1/btc/\(network)/addrs/\(publicKey)/balance"
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        print(url)
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            guard let data = data else {return}
+            
+            if let error = err {
+                print("Error url session shared", error)
+            }
+            
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] else {return}
+                if let balance = json["final_balance"] as? Int64 {
+                    completionHandler(balance)
+                }
+                
+            } catch let jsonError{
+                print("Error srializing json:", jsonError)
+            }
+            
+            }.resume()
     }
     
 }

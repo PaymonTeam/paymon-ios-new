@@ -20,19 +20,18 @@ struct BitcoinTransaction {
 class BitcoinTransactions {
     
     public class func getTransactions(){
-        //get Bitcoin transactions
-        
         var result : [BitcoinTransaction] = []
         
-        //For Example
-        result.append(BitcoinTransaction(type: .received, from: "Maks Skorynin", amount: "+939.03", time: "12:07", avatar: UIImage()))
-        result.append(BitcoinTransaction(type: .received, from: "Maks Skorynin", amount: "+939.03", time: "12:07", avatar: UIImage()))
-        result.append(BitcoinTransaction(type: .sent, from: "Anatoliy Marko", amount: "-51234.2", time: "Yestarday", avatar: UIImage()))
-        result.append(BitcoinTransaction(type: .sent, from: "Anatoliy Marko", amount: "-51234.2", time: "Yestarday", avatar: UIImage()))
-        
+        for tx in BitcoinManager.shared.getTxHistory() {
+            
+            let inputAddress = tx.inputs[0].address
+            let from = tx.outputs[0].scriptPubKey.addresses[0]
+            let value = inputAddress ==  BitcoinManager.shared.publicKey ? tx.outputs[0].value : tx.outputs[1].value
+            let transactionType : TransactionType = tx.inputs[0].address != BitcoinManager.shared.publicKey ? .received : .sent
+            
+           result.append(BitcoinTransaction(type: transactionType, from: from, amount: value.description, time: Utils.formatDateTime(timestamp: Int32(tx.time), chatHeader: false, abbreviation: TimeZone.current.abbreviation()), avatar: UIImage()))
+        }
         NotificationCenter.default.post(Notification(name: .updateTransaction, object: result))
-
-        
     }
     
 }

@@ -82,6 +82,12 @@
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Download..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IML-zb-FXk">
+                                                            <rect key="frame" x="130" y="19.5" width="85.5" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="0.60411658653846156" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -90,9 +96,12 @@
                                                         <constraint firstItem="An0-7r-7vZ" firstAttribute="centerY" secondItem="fVg-8G-drq" secondAttribute="centerY" id="GNC-Hj-KOO"/>
                                                         <constraint firstItem="4dG-hS-ltU" firstAttribute="centerY" secondItem="fVg-8G-drq" secondAttribute="centerY" id="Jp1-BP-Azc"/>
                                                         <constraint firstAttribute="trailing" secondItem="Of3-GK-iPB" secondAttribute="trailing" constant="16" id="L6p-XW-lKt"/>
+                                                        <constraint firstItem="IML-zb-FXk" firstAttribute="centerY" secondItem="fVg-8G-drq" secondAttribute="centerY" id="YMC-PR-g8I"/>
                                                         <constraint firstItem="LoO-pC-5i2" firstAttribute="centerY" secondItem="fVg-8G-drq" secondAttribute="centerY" id="YOx-ZR-hhM"/>
                                                         <constraint firstItem="Of3-GK-iPB" firstAttribute="centerY" secondItem="fVg-8G-drq" secondAttribute="centerY" id="lpY-gt-p4B"/>
+                                                        <constraint firstItem="SZQ-pQ-FQ7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="An0-7r-7vZ" secondAttribute="trailing" constant="16" id="qZ3-BA-mNj"/>
                                                         <constraint firstItem="Of3-GK-iPB" firstAttribute="leading" secondItem="LoO-pC-5i2" secondAttribute="trailing" constant="16" id="xkd-2w-77s"/>
+                                                        <constraint firstItem="IML-zb-FXk" firstAttribute="centerX" secondItem="fVg-8G-drq" secondAttribute="centerX" id="ysp-5f-Tre"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -109,6 +118,7 @@
                                             <outlet property="background" destination="fVg-8G-drq" id="mNo-GD-4WL"/>
                                             <outlet property="cryptoAmount" destination="oaN-0X-Pto" id="wmk-Z5-DIz"/>
                                             <outlet property="cryptoHint" destination="c0p-cZ-y8d" id="DJ9-yf-fDA"/>
+                                            <outlet property="download" destination="IML-zb-FXk" id="Lmr-ML-XLT"/>
                                             <outlet property="fiatAmount" destination="SZQ-pQ-FQ7" id="cma-bc-CYy"/>
                                             <outlet property="fiatHint" destination="5fr-Ec-vdD" id="zNd-4h-9JY"/>
                                             <outlet property="icon" destination="An0-7r-7vZ" id="nJu-aP-qH3"/>

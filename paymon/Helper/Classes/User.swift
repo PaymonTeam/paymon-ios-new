@@ -18,8 +18,10 @@ class User {
     public static var securityPasscodeValue = ""
     public static var timeFormatIs24 = true
     public static var userId : String = ""
-    
-    public static var haveBitcoinWallet = true
+    public static var currencyCode : String = "USD"
+    public static var currencyCodeSymb : String = "$"
+    public static var passwordWallet : String = ""
+    public static var symbCount : Int32 = 2
     
     public static func saveConfig() {
         if currentUser != nil {
@@ -76,13 +78,26 @@ class User {
         }
     }
     
+    public static func setCurrencyCodeSymb() {
+        switch currencyCode {
+        case Money.rub: currencyCodeSymb = "₽"
+        case Money.usd: currencyCodeSymb = "$"
+        default:
+            break
+        }
+    }
+    
     public static func setUserSettings() {
         self.userId = String(currentUser.id)
         
-        haveBitcoinWallet = KeychainWrapper.standard.bool(forKey: UserDefaultKey.HAVE_BITCOIN_WALLET + userId) ?? false
+        passwordWallet = KeychainWrapper.standard.string(forKey: UserDefaultKey.PASSWORD_WALLET + userId) ?? ""
+        currencyCode = KeychainWrapper.standard.string(forKey: UserDefaultKey.CURRENCY_CODE + userId) ?? "USD"
+        setCurrencyCodeSymb()
+        symbCount = Int32(KeychainWrapper.standard.integer(forKey: UserDefaultKey.SYMB_COUNT + userId) ?? 2)
         timeFormatIs24 = KeychainWrapper.standard.bool(forKey: UserDefaultKey.TIME_FORMAT + userId) ?? true
         securityPasscode = KeychainWrapper.standard.bool(forKey: UserDefaultKey.SECURITY_PASSCODE + userId) ?? false
         securityPasscodeValue = KeychainWrapper.standard.string(forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId) ?? ""
+        ExchangeRateParser.shared.parseCourseForWallet(crypto: Money.btc, fiat: currencyCode)
     }
     
     public static func savePasscode(passcodeValue : String, setPasscode : Bool) {
@@ -96,6 +111,23 @@ class User {
         timeFormatIs24 = is24
         KeychainWrapper.standard.set(is24, forKey: UserDefaultKey.TIME_FORMAT + userId)
     }
+    
+    public static func saveCurrencyCode(currencyCode: String) {
+        self.currencyCode = currencyCode
+        setCurrencyCodeSymb()
+        KeychainWrapper.standard.set(currencyCode, forKey: UserDefaultKey.CURRENCY_CODE + userId)
+    }
+    
+    public static func saveSymbCount(symbCount : Int32) {
+        self.symbCount = symbCount
+        KeychainWrapper.standard.set(Int(symbCount), forKey: UserDefaultKey.SYMB_COUNT + userId)
+    }
+    
+    public static func savePasswordWallet(password : String) {
+        self.passwordWallet = password
+        KeychainWrapper.standard.set(password, forKey: UserDefaultKey.PASSWORD_WALLET + userId)
+    }
+    
 
     public static func clearConfig() {
         isAuthenticated = false
@@ -107,7 +139,9 @@ class User {
         securityPasscode = false
         securityPasscodeValue = ""
         timeFormatIs24 = true
-        haveBitcoinWallet = false
+        currencyCode = "USD"
+        passwordWallet = ""
+        symbCount = 2
         CacheManager.shared.removeDb()
         saveConfig()
     }

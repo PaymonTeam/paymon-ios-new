@@ -36,6 +36,7 @@ struct CodableTx: Codable {
         case txid
         case inputs = "vin"
         case outputs = "vout"
+
     }
 }
 
@@ -79,6 +80,7 @@ extension Output {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         index = try container.decode(Int64.self, forKey: .index)
         scriptPubKey = try container.decode(ScriptPubKey.self, forKey: .scriptPubKey)
+//        spentHeight = try container.decode(Int64.self, forKey: .spentHeight)
         
         guard let decimalValue = Decimal(string: try container.decode(String.self, forKey: .value)) else {
             throw DecodingError.typeMismatch(
@@ -108,14 +110,11 @@ extension CodableTx {
     func amount(addresses: [String]) -> Decimal {
         let amount = outputs
             .filter({ $0.scriptPubKey.addresses
-                // [Bool] : 各txoutが自分のアドレス宛どうかの配列
                 .map { addresses.contains($0) }
-                // [Bool] : receiveの場合は自分宛のもののみTrue, sentの場合は相手宛のもののみTrueの配列
-                .contains(direction(addresses: addresses) == .received)
+                .contains(direction(addresses: addresses) == .sent)
             })
-            .map { $0.value }
-            .reduce(0, +)
-        
+            .map { $0.value }[1]
+        print(amount)
         return amount
     }
 }

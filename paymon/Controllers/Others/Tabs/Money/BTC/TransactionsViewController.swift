@@ -10,15 +10,13 @@ import UIKit
 
 class TransactionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var navigationBar: UINavigationBar!
-
     @IBOutlet weak var loading: UIActivityIndicatorView!
-    
     @IBOutlet weak var transactionsTableView: UITableView!
     
+    private var updateBtcTransactions: NSObjectProtocol!
     private var updateTransactions : NSObjectProtocol!
 
     var transactions : [BitcoinTransaction] = []
-    
     var transactionsShow : [BitcoinTransaction] = []
     
     @IBAction func filterClick(_ sender: Any) {
@@ -66,11 +64,27 @@ class TransactionsViewController: UIViewController, UITableViewDelegate, UITable
             self.transactionsTableView.reloadData()
             self.loading.startAnimating()
         }
-        BitcoinTransactions.getTransactions()
+        BitcoinManager.shared.updateTxHistory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        BitcoinTransactions.getTransactions()
+        updateBtcTransactions = NotificationCenter.default.addObserver(forName: .updateBtcBalance, object: nil, queue: nil) {
+            notification in
+            BitcoinTransactions.getTransactions()
+        }
+        
+        updateTransactions = NotificationCenter.default.addObserver(forName: .updateTransaction, object: nil, queue: OperationQueue.main ){ notification in
+            print("Update transaction")
+            if let transactions = notification.object as? [BitcoinTransaction] {
+                self.transactions = transactions
+                self.transactionsShow = transactions
+                
+                DispatchQueue.main.async {
+                    self.transactionsTableView.reloadData()
+                    self.loading.stopAnimating()
+                }
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -81,20 +95,8 @@ class TransactionsViewController: UIViewController, UITableViewDelegate, UITable
         navigationBar.setTransparent()
         navigationBar.topItem?.title = "History".localized
         
-        updateTransactions = NotificationCenter.default.addObserver(forName: .updateTransaction, object: nil, queue: OperationQueue.main ){ notification in
-            
-            if let transactions = notification.object as? [BitcoinTransaction] {
-                self.transactions = transactions
-                self.transactionsShow = transactions
-                
-                DispatchQueue.main.async {
-                    self.transactionsTableView.reloadData()
-//                    self.tableHeightConstraint.constant = self.transactionsTableView.contentSize.height
-                    self.loading.stopAnimating()
-                }
-            }
-        }
-        
+        BitcoinManager.shared.updateTxHistory()
+
         transactionsTableView.delegate = self
         transactionsTableView.dataSource = self
         
@@ -113,31 +115,17 @@ class TransactionsViewController: UIViewController, UITableViewDelegate, UITable
         if !transactions.isEmpty {
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTransaction") as? TransactionTableViewCell else {return UITableViewCell()}
-            
             let data = transactionsShow[indexPath.row]
-            
-            cell.avatar.image = data.avatar
-            cell.amount.text = data.amount
-            cell.time.text = data.time
-            cell.from.text = data.from
-            
-            switch data.type {
-            case .received:
-                cell.amount.textColor = UIColor.AppColor.Green.recivedTrans
-            case .sent:
-                cell.amount.textColor = UIColor.AppColor.Red.sentTrans
-            }
-        
+            cell.configure(data: data)
             return cell
-            
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellEmpty") as! TransEmptyTableViewCell
-
             return cell
         }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(updateTransactions)
+        NotificationCenter.default.removeObserver(updateBtcTransactions)
     }
 }

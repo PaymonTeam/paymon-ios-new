@@ -106,10 +106,13 @@ open class Utils {
     }
 
 
-    public static func formatDateTime(timestamp:Int32, chatHeader: Bool, format24h:Bool) -> String {
+    
+    public static func formatDateTime(timestamp:Int32, chatHeader: Bool, abbreviation : String? = nil) -> String {
         let dateFormatter = DateFormatter()
         let calendar = Calendar.current
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+        
+        dateFormatter.timeZone = TimeZone(abbreviation: abbreviation == nil ? "GMT" : abbreviation!) //Set timezone that you want
+        
         dateFormatter.locale = NSLocale.current
         
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
@@ -135,11 +138,6 @@ open class Utils {
         } else if yearDiff != 0  {
             pattern = "dd.MM.yyyy"
         } else {
-            print(yearDiff)
-            print(monthDiff)
-            print(dayDiff)
-            print(weekDiff)
-            print("-----------")
 
             pattern = "HH:mm"
         }

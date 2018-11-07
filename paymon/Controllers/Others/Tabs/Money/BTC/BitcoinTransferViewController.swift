@@ -18,6 +18,10 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     @IBOutlet weak var amountAndWalletView: UIView!
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var fiat: UITextField!
+    @IBOutlet weak var feeView: UIView!
+    @IBOutlet weak var feeSwitch: UISwitch!
+    @IBOutlet weak var fee: UITextField!
+    @IBOutlet weak var feeHint: UILabel!
     
     @IBOutlet weak var line: UIView!
     @IBOutlet weak var walletInfoView: UIView!
@@ -31,26 +35,45 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     private var getCourse : NSObjectProtocol!
     private var setBtcAddress : NSObjectProtocol!
     
+    let toSatoshi:Double! = 100000000.0
+    let minValueFee:Double! = 1000
+    
     var cryptoValue : Double! = 0.0
     var fiatValue : Double! = 0.0
+    var feeValue : Double! = 1000
     
     var addressIsNotEmpty = false
     var amountIsCorrect = false
 
     var course : Double!
-    var fiatCurrancy : String!
     
     var publicKey : String!
-    var yourWalletBalanceValue = 1000000.0
+    var yourWalletBalanceValue : Double!
+    var toAddress:String! = ""
     
     @objc func endEditing() {
         self.view.endEditing(true)
     }
     
+    @IBAction func feeSwitchClick(_ sender: Any) {
+        if feeSwitch.isOn {
+            fee.text = ""
+            fee.isEnabled = true
+            fee.font = UIFont(name: (fee.font?.fontName)!, size: 22)
+            fee.textColor = UIColor.white
+            feeValue = 0
+        } else {
+            fee.text = "Standart fee".localized
+            fee.isEnabled = false
+            fee.font = UIFont(name: (fee.font?.fontName)!, size: 14)
+            fee.textColor = UIColor.white.withAlphaComponent(0.4)
+            feeValue = 1000
+        }
+    }
+    
     @IBAction func yourWalletClick(_ sender: Any) {
         guard let keysViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
         
-        //TODO: Set public key here
         keysViewController.keyValue = self.publicKey
         
         self.present(keysViewController, animated: true, completion: nil)
@@ -58,16 +81,20 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        ExchangeRateParser.shared.parseCourse(crypto: Money.btc, fiat: fiatCurrancy)
+        ExchangeRateParser.shared.parseCourse(crypto: Money.btc, fiat: User.currencyCode)
     }
     
     func getYourWalletInfo() {
-        //TODO: Need to get balance of BTC wallet, public key
+
+        yourWalletBalanceValue = Double(BitcoinManager.shared.getFiatBalance().description)
+        yourWalletBalance.text = String(format: "\(User.currencyCodeSymb) %.2f", yourWalletBalanceValue)
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        getYourWalletInfo()
         setLayoutOptions()
         self.loading.startAnimating()
         
@@ -82,6 +109,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         fiat.addTarget(self, action: #selector(fiatDidChanged(_:)), for: .editingChanged)
         crypto.addTarget(self, action: #selector(cryptoDidChanged(_:)), for: .editingChanged)
         address.addTarget(self, action: #selector(addressDidChanged(_:)), for: .editingChanged)
+        fee.addTarget(self, action: #selector(feeDidChanged(_:)), for: .editingChanged)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -114,7 +142,8 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     
     func setLayoutOptions() {
         self.addressView.layer.cornerRadius = 30
-        
+        fee.text = "Standart fee".localized
+        fee.isEnabled = false
         let widthScreen = UIScreen.main.bounds.width
         
         self.addressView.setGradientLayer(frame: CGRect(x: 0, y: 0, width: widthScreen, height: self.addressView.frame.height), topColor: UIColor.AppColor.Orange.bitcoinBalanceLight.cgColor, bottomColor: UIColor.AppColor.Orange.bitcoinBalanceDark.cgColor)
@@ -122,6 +151,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         self.send.setGradientLayer(frame: CGRect(x: 0, y: 0, width: send.frame.width, height: self.send.frame.height), topColor: UIColor.AppColor.Orange.bitcoinBalanceLight.cgColor, bottomColor: UIColor.AppColor.Orange.bitcoinBalanceDark.cgColor)
         
         self.send.layer.cornerRadius = self.send.frame.width/2
+        self.feeView.layer.cornerRadius = self.feeView.frame.height/2
         
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)
         
@@ -141,10 +171,26 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         self.walletInfoView.alpha = 0
         self.line.alpha = 0
         
-        self.fiatHint.text = fiatCurrancy
-        self.fiat.placeholder = fiatCurrancy
+        self.fiatHint.text = User.currencyCode
+        self.fiat.placeholder = User.currencyCode
+        self.feeHint.text = "Network fee".localized
+        self.fee.placeholder = "BTC"
+        self.feeSwitch.onTintColor = UIColor.AppColor.Blue.primaryBlue
         
         self.send.isEnabled = false
+    }
+    
+    @objc func feeDidChanged(_ textField : UITextField) {
+        
+        guard let feeString = textField.text?.replacingOccurrences(of: ",", with: ".") else {return}
+        textField.text = feeString
+        print(feeString)
+        if !feeString.isEmpty && feeString != "." && feeString.components(separatedBy: ".").count < 3 {
+            feeValue = Double(feeString)! * toSatoshi
+        } else {
+            feeValue = 1000
+        }
+        print(feeValue)
     }
     
     @objc func fiatDidChanged(_ textField : UITextField) {
@@ -152,9 +198,10 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         guard let fiatString = textField.text?.replacingOccurrences(of: ",", with: ".") else {return}
         textField.text = fiatString
         
-        if !fiatString.isEmpty && fiatString != "," && fiatString.components(separatedBy: ".").count < 3 {
+        if !fiatString.isEmpty && fiatString != "." && fiatString.components(separatedBy: ".").count < 3 {
             fiatValue = Double(fiatString)
             crypto.text = String(format: "%.7f", fiatValue / course)
+            cryptoValue = fiatValue / course
             
             amountIsCorrect = true
         } else {
@@ -171,9 +218,10 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         guard let cryptoString = textField.text?.replacingOccurrences(of: ",", with: ".") else {return}
         textField.text = cryptoString
         
-        if !cryptoString.isEmpty && cryptoString != "," && cryptoString.components(separatedBy: ".").count < 3 {
+        if !cryptoString.isEmpty && cryptoString != "." && cryptoString.components(separatedBy: ".").count < 3 {
             cryptoValue = Double(cryptoString)
             fiat.text = String(format: "%.2f", cryptoValue * course)
+            fiatValue = cryptoValue * course
             amountIsCorrect = true
 
         } else {
@@ -187,21 +235,35 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     }
     
     @objc func addressDidChanged(_ textField : UITextField) {
-        addressIsNotEmpty = !(textField.text?.isEmpty)! && (textField.text?.matches(Money.BITCOIN_WALLET_REGEX))!
+        toAddress = textField.text
+//        addressIsNotEmpty = !(toAddress?.isEmpty)! && (toAddress?.matches(Money.BITCOIN_WALLET_REGEX))!
+        //TODO: remove after tests
+        addressIsNotEmpty = true
         showSendButton()
 
     }
     
     @IBAction func sendClick(_ sender: Any) {
-        if fiatValue < yourWalletBalanceValue {
-            //TODO: present InformationViewController
-            
+        
+        if feeValue * toSatoshi < minValueFee {
+            _ = SimpleOkAlertController.init(title: "Network fee".localized, message: "The minimum fee is 0.00001 BTC".localized, vc: self)
+            return
+        }
+        
+        if Decimal(cryptoValue * toSatoshi + feeValue) < BitcoinManager.shared.balanceSatoshi {
+        
             let transferInfoVC = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.transferInformationViewController) as! TransferInformationViewController
+            transferInfoVC.toAddress = toAddress
+            transferInfoVC.balanceValue = yourWalletBalanceValue
+            transferInfoVC.amountToSend = cryptoValue * toSatoshi
+            transferInfoVC.feeToSend = feeValue
+            transferInfoVC.course = course
             
             self.navigationController?.pushViewController(transferInfoVC, animated: true)
             
         } else {
-            _ = SimpleOkAlertController.init(title: "Transfer".localized, message: "You do not have enough money".localized, vc: self)        }
+            _ = SimpleOkAlertController.init(title: "Transfer".localized, message: "You do not have enough money".localized, vc: self)
+        }
     }
     
     func showHints(isEmpty : Bool) {

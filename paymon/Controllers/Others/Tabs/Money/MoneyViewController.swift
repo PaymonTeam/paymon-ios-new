@@ -13,11 +13,14 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
     var moneyArray : [CellMoneyData]!
     
     @IBOutlet weak var moneyTableView: UITableView!
-
+    private var walletWasCreated: NSObjectProtocol!
+    private var updateBtcBalance: NSObjectProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ExchangeRateParser.shared.parseCourseForWallet(crypto: Money.btc, fiat: User.currencyCode)
+
         moneyTableView.delegate = self
         moneyTableView.dataSource = self
 
@@ -30,6 +33,11 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(walletWasCreated)
+        NotificationCenter.default.removeObserver(updateBtcBalance)
+    }
+    
     func getWalletsInfo() {
         if moneyArray != nil {
             moneyArray.removeAll()
@@ -38,11 +46,24 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
             moneyArray.append(CryptoManager.shared.getEthereumWalletInfo())
             moneyArray.append(CryptoManager.shared.getPaymonWalletInfo())
         }
-        moneyTableView.reloadData()
+        DispatchQueue.main.async {
+            self.moneyTableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         getWalletsInfo()
+        walletWasCreated = NotificationCenter.default.addObserver(forName: .walletWasCreated, object: nil, queue: nil) {
+            notification in
+            Utils.showSuccesHud(vc: self)
+
+            self.getWalletsInfo()
+        }
+        
+        updateBtcBalance = NotificationCenter.default.addObserver(forName: .updateBtcBalance, object: nil, queue: nil) {
+            notification in
+            self.getWalletsInfo()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

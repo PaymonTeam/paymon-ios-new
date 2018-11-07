@@ -45,9 +45,40 @@ class ExchangeRateParser{
             }
             
             NotificationCenter.default.post(Notification(name: .getCourse, object: result))
-
-
         }.resume()
+    }
+    
+    func parseCourseForWallet(crypto: String, fiat: String) {
+        var result : Double!
+        
+        let urlString = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=\(crypto)&tsyms=\(fiat)"
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, err) in
+            guard let data = data else {return}
+            
+            if let error = err {
+                print("Error url session shared", error)
+            }
+            
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any] else {return}
+                if let rates = json[crypto] as? [String: Any] {
+                    result = rates[fiat] as? Double
+                }
+                
+            } catch let jsonError{
+                print("Error srializing json:", jsonError)
+            }
+            
+            BitcoinManager.shared.course = Decimal(String(format: "%.2f", result))
+            if BitcoinManager.shared.wallet != nil {
+                BitcoinManager.shared.updateTxHistory()
+            }
+            
+            }.resume()
     }
     
     func parseAllExchangeRates(){

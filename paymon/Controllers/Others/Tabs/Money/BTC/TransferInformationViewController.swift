@@ -23,17 +23,42 @@ class TransferInformationViewController: UIViewController {
     @IBOutlet weak var fromHint: UILabel!
     
     @IBOutlet weak var stackView: UIView!
-    
+    let toSatoshi:Double! = 100000000.0
+
     var balanceValue : Double!
     var toAddress : String!
-    var networkFeeValue : Double!
     var totalAmountValue : Double!
+    var amountToSend: Double!
+    var feeToSend:Double!
+    var course:Double!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setLayoutOptions()
+        toWallet.text = toAddress
         
+        let feeForView = feeToSend / toSatoshi * course
+        print(amountToSend)
+        totalAmountValue = amountToSend / toSatoshi * course + feeForView
+        
+        print(totalAmountValue)
+        
+        networkFeeAmount.text = String(format: "\(User.currencyCodeSymb) %.2f", feeForView)
+        yourWalletBalance.text = String(format: "\(User.currencyCodeSymb) %.2f", balanceValue)
+        totalAmount.text = String(format: "\(User.currencyCodeSymb) %.2f",totalAmountValue)
+        
+        setLayoutOptions()
+    }
+    
+    @IBAction func sendClick(_ sender: Any) {
+        print(toAddress!)
+        BitcoinManager.shared.checkPasswordWallet(vc: self, completionHandler: { (isSuccess:Bool) in
+            if isSuccess {
+                BitcoinManager.shared.sendToAddress(amount: Int64(self.amountToSend), fee: Int64(self.feeToSend), toAddress: self.toAddress!)
+            } else {
+                _ = SimpleOkAlertController.init(title: "Security password".localized, message: "Incorrect password".localized, vc: self)
+            }
+        })
     }
     
     func setLayoutOptions() {

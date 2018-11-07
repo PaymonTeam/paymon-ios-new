@@ -15,7 +15,7 @@ public class ContactWasTableViewCell : UITableViewCell {
     
     func configure(data : ChatsData) {
         self.name.text = data.title
-        self.timeWhenWas.text = "last seen ".localized + "\(Utils.formatDateTime(timestamp: data.time, chatHeader : false, format24h: false))"
+        self.timeWhenWas.text = "last seen ".localized + "\(Utils.formatDateTime(timestamp: data.time, chatHeader : false))"
         
         self.avatar.loadPhoto(url: data.photoUrl)
     }

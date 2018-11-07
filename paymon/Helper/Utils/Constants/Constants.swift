@@ -74,6 +74,10 @@ struct VCIdentifier {
     static let friendProfileViewController = "FriendProfileViewController"
     static let passcodeViewController = "PasscodeViewController"
     static let mainNavigationController = "MainNavigationController"
+    static let createNewBtcWalletViewController = "CreateNewBtcWalletViewController"
+
+    
+    
 
     
     
@@ -93,8 +97,11 @@ struct UserDefaultKey {
     static let SECURITY_PASSCODE_VALUE = "security_passcode_value_"
     
     static let TIME_FORMAT = "time_format_"
-    static let HAVE_BITCOIN_WALLET = "have_bitcoin_wallet_"
     static let BITCOIN_PRIVATE_KEY = "bitcoin_private_key_"
+    static let CURRENCY_CODE = "currency_code_"
+    static let SYMB_COUNT = "symb_count_"
+    static let PASSWORD_WALLET = "password_wallet_"
+
 
 }
 
