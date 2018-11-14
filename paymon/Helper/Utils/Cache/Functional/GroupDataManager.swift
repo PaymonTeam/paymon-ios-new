@@ -47,24 +47,23 @@ class GroupDataManager {
     }
     
     func updateGroup(groupObject : GroupData) {
-        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
-            
-            if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == groupObject.id)) {
-//                print("Group существует, я ее обновлю")
-                self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
-            } else {
-//                print("Group не существует, я ее создаю")
-                let groupData = transaction.create(Into<GroupData>())
-                self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
+        do {
+            try CoreStore.defaultStack.perform(synchronous: {(transaction) -> Void in
                 
-            }
-        }, completion: { _ in
-//            (result) -> Void in
-//            switch result {
-//            case .success: print("Success update пroup")
-//            case .failure(let error): print("Failure update group \(error)")
-//            }
-        })
+                if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == groupObject.id)) {
+                    //                print("Group существует, я ее обновлю")
+                    self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
+                } else {
+                    //                print("Group не существует, я ее создаю")
+                    let groupData = transaction.create(Into<GroupData>())
+                    self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
+                    
+                }
+            })
+        } catch let error {
+            print("couldn't update group", error)
+        }
+        
     }
     
     func updateGroupUrl(id : Int32, url : String) {

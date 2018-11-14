@@ -11,11 +11,9 @@ import FLAnimatedImage
 
 class GamesViewController: PaymonViewController {
     
-    
     @IBOutlet weak var gamePad: UIView!
     @IBOutlet weak var background: FLAnimatedImageView!
     override func viewDidLoad() {
-
         
         setLayoutOptions()
     }

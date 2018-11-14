@@ -58,9 +58,8 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
     @IBAction func restoreClick(_ sender: Any) {
         switch cryptoType {
         case .bitcoin?:
-            guard let createNewBtcWalletViewController = StoryBoard.money.instantiateViewController(withIdentifier: VCIdentifier.createNewBtcWalletViewController) as? CreateNewBtcWalletViewController else {return}
-            createNewBtcWalletViewController.isRestore = true
-            viewController.navigationController?.pushViewController(createNewBtcWalletViewController, animated: true)
+            guard let restoreBtcViewController = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.restoreBtcViewController) as? RestoreBtcViewController else {return}
+            viewController.navigationController?.pushViewController(restoreBtcViewController, animated: true)
             break
             
         case .ethereum?:

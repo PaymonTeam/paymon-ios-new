@@ -29,8 +29,11 @@ class LaunchScreenViewController : UIViewController {
     func showMainController() {
         print("ShowMainController")
         guard let window = UIApplication.shared.delegate?.window else {return}
-        window!.rootViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.mainNavigationController)
-        window!.makeKeyAndVisible()
+        DispatchQueue.main.async {
+            window!.rootViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.mainNavigationController)
+            window!.makeKeyAndVisible()
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

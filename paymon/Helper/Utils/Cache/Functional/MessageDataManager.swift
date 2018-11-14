@@ -17,26 +17,32 @@ class MessageDataManager {
         messageData.id = messageObject.id
         messageData.unread = messageObject.unread
         messageData.toId = messageObject.to_id
+        print(messageObject.from_id)
         messageData.fromId = messageObject.from_id
         messageData.date = messageObject.date
-        messageData.dateString = Utils.formatDateTime(timestamp: messageObject.date, chatHeader : true)
+        messageData.dateString = Utils.formatDateTimeChatHeader(timestamp: messageObject.date)
         messageData.text = messageObject.text
         messageData.itemType = Int16(messageObject.itemType.rawValue)
         messageData.action = messageObject.action != nil ? messageObject.action.type : 0
-
     }
     
     func saveMessage(messageObject : RPC.Message) {
-        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
-            
-            if let messageData = transaction.fetchOne(From<ChatMessageData>().where(\.id == messageObject.id)) {
-                self.saveChatMessageData(messageData: messageData, messageObject: messageObject)
+//        do {
+            CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
+                if let messageData = transaction.fetchOne(From<ChatMessageData>().where(\.id == messageObject.id)) {
+                    self.saveChatMessageData(messageData: messageData, messageObject: messageObject)
+                } else {
+                    let messageData = transaction.create(Into<ChatMessageData>())
+                    print("create")
+                    self.saveChatMessageData(messageData: messageData, messageObject: messageObject)
+                }
+            }, completion: { (nil) -> Void in
                 
-            } else {
-                let messageData = transaction.create(Into<ChatMessageData>())
-                self.saveChatMessageData(messageData: messageData, messageObject: messageObject)
-            }
-        }, completion: { _ in})
+            })
+//        } catch let error{
+//            print("Couldn't save message", error)
+//        }
+        
     }
     
     func updateMessage(messageObject : RPC.Message) {
@@ -44,8 +50,8 @@ class MessageDataManager {
         
         if messageObject.to_peer is RPC.PM_peerUser {
             guard let uid = messageObject.from_id == User.currentUser.id ? messageObject.to_peer.user_id : messageObject.from_id else {
-                return
-            }
+                    return
+                }
             if let user = UserDataManager.shared.getUserByIdSync(id: uid) {
                 self.setChatsDataByUserData(userObject: user, messageObject: messageObject)
             } else {
@@ -96,25 +102,15 @@ class MessageDataManager {
         }
     }
     
-//    func getMessagesByChatId(chatId : Int32) -> [ChatMessageData] {
-//
-//        guard let chatData = CoreStore.fetchAll(
-//            From<ChatMessageData>()
-//                .where(\.toId == chatId)
-//            ) as [ChatMessageData]? else {
-//                return [ChatMessageData]()
-//        }
-//        return chatData
-//    }
-    
     func getMessagesByChatId(chatId : Int32) -> ListMonitor<ChatMessageData>? {
-        
+
         if let result = CoreStore.defaultStack.monitorSectionedList(
             From<ChatMessageData>()
                 .sectionBy(\.dateString)
-                .orderBy(.ascending(\.date))
-                .where(\.toId == chatId)) as ListMonitor<ChatMessageData>? {
-            
+                .where(\.toId == chatId)
+                .orderBy(.ascending(\.date))) as ListMonitor<ChatMessageData>? {
+            CoreStore.defaultStack.refreshAndMergeAllObjects()
+
             return result
         } else {
             print("Could not get all chats")

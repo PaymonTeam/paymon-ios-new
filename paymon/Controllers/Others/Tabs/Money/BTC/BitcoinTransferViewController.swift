@@ -86,7 +86,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     
     func getYourWalletInfo() {
 
-        yourWalletBalanceValue = Double(BitcoinManager.shared.getFiatBalance().description)
+        yourWalletBalanceValue = BitcoinManager.shared.fiatBalance.double
         yourWalletBalance.text = String(format: "\(User.currencyCodeSymb) %.2f", yourWalletBalanceValue)
 
     }
@@ -251,16 +251,16 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         }
         
         if Decimal(cryptoValue * toSatoshi + feeValue) < BitcoinManager.shared.balanceSatoshi {
-        
+
             let transferInfoVC = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.transferInformationViewController) as! TransferInformationViewController
             transferInfoVC.toAddress = toAddress
             transferInfoVC.balanceValue = yourWalletBalanceValue
             transferInfoVC.amountToSend = cryptoValue * toSatoshi
             transferInfoVC.feeToSend = feeValue
             transferInfoVC.course = course
-            
+
             self.navigationController?.pushViewController(transferInfoVC, animated: true)
-            
+
         } else {
             _ = SimpleOkAlertController.init(title: "Transfer".localized, message: "You do not have enough money".localized, vc: self)
         }

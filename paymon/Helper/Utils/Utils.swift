@@ -8,6 +8,11 @@ import UIKit
 import MBProgressHUD
 
 open class Utils {
+    private static let DAY_SEC :Int64 = 24 * 3600;
+    private static let WEEK_SEC :Int64 = 7 * DAY_SEC;
+    private static let MONTH_SEC :Int64 = 31 * DAY_SEC;
+    private static let YEAR_SEC :Int64 = 12 * MONTH_SEC;
+    
     public static let stageQueue = Queue(name: "stageQueue")!
 
     public static func currentTimeMillis() -> Int64 {
@@ -54,8 +59,6 @@ open class Utils {
         }
     }
 
-    
-    
     static func showSuccesHud(vc: UIViewController) {
         let hud = MBProgressHUD.showAdded(to: vc.view, animated: true)
         hud.mode = .customView
@@ -66,31 +69,9 @@ open class Utils {
         
     }
     
-    static func getAllCountries() -> [String] {
-        var countries: [String] = []
-        var localeIdentifier : String!
-        
-        if Locale.current.languageCode! == "ru" {
-            localeIdentifier = "ru_RU"
-        } else {
-            localeIdentifier = "en_UK"
-        }
-        
-        for code in NSLocale.isoCountryCodes as [String] {
-            let id = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
-            
-//            print(code)
-            let name = NSLocale(localeIdentifier: localeIdentifier).displayName(forKey: NSLocale.Key.identifier, value: id) ?? "Country not found for code: \(code)"
-            countries.append(name)
-        }
-        
-        return countries
-        
-    }
-    
-    public static func formatChatDateTime(timestamp:Int32, format24h:Bool) -> String {
+    public static func formatMessageDateTime(timestamp:Int32) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
+//        dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation()!)
         dateFormatter.locale = NSLocale.current
         
         if User.timeFormatIs24 {
@@ -105,14 +86,9 @@ open class Utils {
         return result
     }
 
-
-    
-    public static func formatDateTime(timestamp:Int32, chatHeader: Bool, abbreviation : String? = nil) -> String {
+    public static func formatDateTimeChatHeader(timestamp:Int32) -> String {
         let dateFormatter = DateFormatter()
         let calendar = Calendar.current
-        
-        dateFormatter.timeZone = TimeZone(abbreviation: abbreviation == nil ? "GMT" : abbreviation!) //Set timezone that you want
-        
         dateFormatter.locale = NSLocale.current
         
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
@@ -125,11 +101,7 @@ open class Utils {
         var pattern = ""
         
         if dayDiff == 0 && monthDiff == 0 && weekDiff == 0 && yearDiff == 0 {
-            if !chatHeader {
-                pattern = "HH:mm"
-            } else {
-                pattern = "Today".localized
-            }
+            return "Today".localized
         } else if calendar.isDateInYesterday(date) {
             return "Yesterday".localized
         } else if weekDiff != 0 && yearDiff == 0 || yearDiff == 0 && monthDiff < 0
@@ -138,7 +110,41 @@ open class Utils {
         } else if yearDiff != 0  {
             pattern = "dd.MM.yyyy"
         } else {
-
+            pattern = "HH:mm"
+        }
+        
+        if !User.timeFormatIs24 {
+            pattern = pattern.replacingOccurrences(of: "HH:mm", with: "hh:mm a")
+        }
+        
+        dateFormatter.dateFormat = pattern
+        return dateFormatter.string(from: date)
+    }
+    
+    public static func formatDateTime(timestamp:Int32) -> String {
+        let dateFormatter = DateFormatter()
+        let calendar = Calendar.current
+        dateFormatter.locale = NSLocale.current
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        let dateNow = Date()
+        
+        let yearDiff = calendar.component(.year, from: date) - calendar.component(.year, from: dateNow)
+        let monthDiff = calendar.component(.month, from: date) - calendar.component(.month, from: dateNow)
+        let dayDiff = calendar.component(.day, from: date) - calendar.component(.day, from: dateNow)
+        let weekDiff = calendar.component(.weekOfMonth, from: date) - calendar.component(.weekOfMonth, from: dateNow)
+        var pattern = ""
+        
+        if dayDiff == 0 && monthDiff == 0 && weekDiff == 0 && yearDiff == 0 {
+                pattern = "HH:mm"
+        } else if calendar.isDateInYesterday(date) {
+            return "Yesterday".localized
+        } else if weekDiff != 0 && yearDiff == 0 || yearDiff == 0 && monthDiff < 0
+            || yearDiff == 0 && monthDiff == 0 && weekDiff == 0  && dayDiff < 0 {
+            pattern = "d MMM"
+        } else if yearDiff != 0  {
+            pattern = "dd.MM.yyyy"
+        } else {
             pattern = "HH:mm"
         }
         
@@ -152,7 +158,6 @@ open class Utils {
     
     public static func formatDateTimeCharts(timestamp:Int64, interval : String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
         
         var result : String = ""

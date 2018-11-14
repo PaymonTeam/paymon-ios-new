@@ -19,7 +19,7 @@ class ChatMessageRcvViewCell : UITableViewCell {
 
     func configure(message: ChatMessageData) {
         self.messageLabel.text = message.text
-        self.timeLabel.text = Utils.formatChatDateTime(timestamp: message.date, format24h: false)
+        self.timeLabel.text = Utils.formatMessageDateTime(timestamp: message.date)
     }
     
 }

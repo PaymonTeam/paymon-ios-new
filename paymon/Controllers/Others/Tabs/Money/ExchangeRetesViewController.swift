@@ -37,6 +37,14 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
         
         self.loading.startAnimating()
         
+        navigationBar.setTransparent()
+        navigationBar.topItem?.title = "Exchange rates".localized
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
         updateRates = NotificationCenter.default.addObserver(forName: .updateRates, object: nil, queue: OperationQueue.main ){ notification in
             
             if let exchangeRates = notification.object as? [ExchangeRate] {
@@ -48,15 +56,6 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
                 }
             }
         }
-        
-        navigationBar.setTransparent()
-        navigationBar.topItem?.title = "Exchange rates".localized
-
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        
         ExchangeRateParser.shared.parseAllExchangeRates()
         
     }

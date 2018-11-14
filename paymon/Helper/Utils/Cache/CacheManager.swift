@@ -15,27 +15,32 @@ public class CacheManager {
     
     static let shared = CacheManager()
     static var isAddedStorage = false
+    private var storage : LocalStorage?
     
     func initDb() {
         print("Start init")
-        CoreStore.defaultStack = DataStack(
-            xcodeModelName: "paymon",
-            migrationChain: []
-        )
-        let _ = CoreStore.defaultStack.addStorage(
-            SQLiteStore(fileName: "Paymon_\(String(describing: User.currentUser.id!)).sqlite"),
-            completion: { (result) -> Void in
-                if result.isSuccess {
-                    print("Added storage Paymon")
-                    CacheManager.isAddedStorage = true
-                    NotificationCenter.default.post(name: .setMainController, object: nil)
-                    UserDataManager.shared.updateOrCreateUser(userObject: User.currentUser)
-                }
-        })
+            CoreStore.defaultStack = DataStack(
+                xcodeModelName: "paymon",
+                migrationChain: []
+            )
+//        if storage == nil {
+            self.storage = CoreStore.defaultStack.addStorage(
+                SQLiteStore(fileName: "Paymon_\(String(describing: User.currentUser.id!)).sqlite",
+                    localStorageOptions: .preventProgressiveMigration),
+                
+                completion: { (result) -> Void in
+                    if result.isSuccess {
+                        print("Added storage Paymon")
+                        CacheManager.isAddedStorage = true
+                        NotificationCenter.default.post(name: .setMainController, object: nil)
+                        UserDataManager.shared.updateOrCreateUser(userObject: User.currentUser)
+                    }
+            }) as? LocalStorage
+//        }
     }
     
     func removeDb() {
-        CoreStore.defaultStack = DataStack()
+//        CoreStore.defaultStack = DataStack()
         CacheManager.isAddedStorage = false
     }
 }

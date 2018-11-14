@@ -29,6 +29,8 @@ class MoneyCreatedTableViewCell: UITableViewCell {
     }
     
     func setLayoutOptions() {
+        download.text = "Download...".localized
+
         let width: CGFloat = UIScreen.main.bounds.width
         
         self.background.setGradientLayer(frame: CGRect(x: 0, y: self.background.frame.minY, width: width, height: self.background.frame.height), topColor: UIColor.white.cgColor, bottomColor: UIColor.AppColor.Blue.primaryBlueUltraLight.cgColor)
@@ -37,7 +39,6 @@ class MoneyCreatedTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        download.text = "Download...".localized
     }
     
     func configure(data: CellCreatedMoneyData) {

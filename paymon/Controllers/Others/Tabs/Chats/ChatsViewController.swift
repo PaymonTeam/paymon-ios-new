@@ -4,7 +4,7 @@
 //
 import Foundation
 import UIKit
-//import web3swift
+
 import Contacts
 import ContactsUI
 import CoreStore
@@ -64,7 +64,7 @@ class ChatsViewController: PaymonViewController, UISearchBarDelegate, ListSectio
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        allChats.removeObserver(self)
+        allChats.removeObserver(self)
     }
     
     func setChats() {
@@ -83,7 +83,7 @@ class ChatsViewController: PaymonViewController, UISearchBarDelegate, ListSectio
     }
     
     func listMonitorWillChange(_ monitor: ListMonitor<ChatsData>) {
-            self.chatsTable.beginUpdates()
+        self.chatsTable.beginUpdates()
     }
     
     func listMonitorDidChange(_ monitor: ListMonitor<ChatsData>) {
@@ -91,7 +91,9 @@ class ChatsViewController: PaymonViewController, UISearchBarDelegate, ListSectio
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatsData>, didInsertObject object: ChatsData, toIndexPath indexPath: IndexPath) {
-        self.chatsTable.insertRows(at: [indexPath], with: .none)
+//        DispatchQueue.main.async {
+            self.chatsTable.insertRows(at: [indexPath], with: .none)
+//        }
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatsData>, didDeleteObject object: ChatsData, fromIndexPath indexPath: IndexPath) {

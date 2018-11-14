@@ -58,16 +58,15 @@ class UserDataManager {
     }
     
     func updateUser(userObject : UserData) {
-        CoreStore.defaultStack.perform(asynchronous: {(transaction) -> Void in
-            let userData = transaction.fetchOne(From<UserData>().where(\.id == userObject.id))
-            self.setUserDataInfo(userData: userData!, userObject: userObject)
-        }, completion: { _ in
-//            (result) -> Void in
-//            switch result {
-//            case .success: print("Success update user")
-//            case .failure(let error): print("Failure update user \(error)")
-//            }
-        })
+        do {
+            try CoreStore.defaultStack.perform(synchronous: {(transaction) -> Void in
+                let userData = transaction.fetchOne(From<UserData>().where(\.id == userObject.id))
+                self.setUserDataInfo(userData: userData!, userObject: userObject)
+            })
+        } catch let error {
+            print("couldn't update user", error)
+        }
+        
     }
     
     func createUser(userObject : RPC.UserObject) {
@@ -89,13 +88,7 @@ class UserDataManager {
             if let userContatctData = transaction.fetchOne(From<UserData>().where(\.id == id)) {
                 userContatctData.photoUrl = url
             }
-        }, completion: { _ in
-//            (result) -> Void in
-//            switch result {
-//            case .success: print("Success update userData url")
-//            case .failure(let error): print("Failure update userData url\(error)")
-//            }
-        })
+        }, completion: { _ in })
     }
     
     func updateUserContact(id : Int32, isContact : Bool) {

@@ -74,9 +74,9 @@ class ExchangeRateParser{
             }
             
             BitcoinManager.shared.course = Decimal(String(format: "%.2f", result))
-            if BitcoinManager.shared.wallet != nil {
-                BitcoinManager.shared.updateTxHistory()
-            }
+//            if BitcoinManager.shared.wallet != nil {
+//                BitcoinManager.shared.updateBalance()
+//            }
             
             }.resume()
     }

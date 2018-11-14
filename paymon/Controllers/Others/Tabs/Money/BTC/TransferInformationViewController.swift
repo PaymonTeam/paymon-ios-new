@@ -54,7 +54,7 @@ class TransferInformationViewController: UIViewController {
         print(toAddress!)
         BitcoinManager.shared.checkPasswordWallet(vc: self, completionHandler: { (isSuccess:Bool) in
             if isSuccess {
-                BitcoinManager.shared.sendToAddress(amount: Int64(self.amountToSend), fee: Int64(self.feeToSend), toAddress: self.toAddress!)
+//                BitcoinManager.shared.sendToSomeAddress(amount: Int64(self.amountToSend), fee: Int64(self.feeToSend), toAddress: self.toAddress!, vc: self)
             } else {
                 _ = SimpleOkAlertController.init(title: "Security password".localized, message: "Incorrect password".localized, vc: self)
             }

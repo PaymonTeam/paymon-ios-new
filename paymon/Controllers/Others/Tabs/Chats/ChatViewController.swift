@@ -42,7 +42,6 @@ class ChatViewController: PaymonViewController, ListSectionObserver {
     }
     
     func setLayoutOptions() {
-//        self.tableView.frame = CGRect(x: self.tableView.frame.origin.x, y: self.tableView.frame.origin.y, width: self.tableView.frame.size.width, height: self.view.frame.size.height - self.tableView.frame.origin.y)
 
         messageTextView.layer.cornerRadius = messageTextView.frame.height/2
         messageTextView.text = "To write a message".localized
@@ -101,29 +100,25 @@ class ChatViewController: PaymonViewController, ListSectionObserver {
     
     func listMonitorDidChange(_ monitor: ListMonitor<ChatMessageData>) {
         self.tableView.endUpdates()
-        self.reloadChat()
+        if !firstLoaded {
+            self.reloadChat()
+        }
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatMessageData>, didInsertObject object: ChatMessageData, toIndexPath indexPath: IndexPath) {
 
         if object.toId == chatID {
-//                self.tableView.beginUpdates()
                 self.tableView.re.insertRows(at: [indexPath], with: .none)
-//                self.tableView.endUpdates()
         }
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatMessageData>, didDeleteObject object: ChatMessageData, fromIndexPath indexPath: IndexPath) {
-//        self.tableView.beginUpdates()
         self.tableView.re.deleteRows(at: [indexPath], with: .left)
-//        self.tableView.endUpdates()
 
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatMessageData>, didInsertSection sectionInfo: NSFetchedResultsSectionInfo, toSectionIndex sectionIndex: Int) {
-//            self.tableView.beginUpdates()
             self.tableView.re.insertSections(IndexSet(integer: sectionIndex), with: .none)
-//            self.tableView.endUpdates()
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatMessageData>, didUpdateObject object: ChatMessageData, atIndexPath indexPath: IndexPath) {
@@ -155,19 +150,20 @@ class ChatViewController: PaymonViewController, ListSectionObserver {
     
     func setMessages() {
         messages = MessageDataManager.shared.getMessagesByChatId(chatId: chatID)
-        messages.addObserver(self)
         
+        messages.addObserver(self)
+
         if messages.numberOfObjects() == 1 {
             let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
         } else {
+            firstLoaded = true
             showTable()
         }
         
-        loadMessages(offset: 0, count : 100)
+        loadMessages(offset: 0, count : 30)
     }
     
     func reloadChat() {
-        print("number of obj: \(messages.numberOfObjects()) count: \(messageCountForUpdate!)")
         if messages.numberOfObjects() == messageCountForUpdate {
             showTable()
             firstLoaded = true
@@ -199,7 +195,7 @@ class ChatViewController: PaymonViewController, ListSectionObserver {
         self.tableView.re.scrollViewDidReachTop = { scrollView in
             if self.firstLoaded {
                 print("top")
-                self.loadMessages(offset: 10, count: 10)
+//                self.loadMessages(offset: 10, count: 10)
             }
         }
 
@@ -261,7 +257,7 @@ class ChatViewController: PaymonViewController, ListSectionObserver {
             if let packet = response as? RPC.PM_chatMessages {
                 if (packet.messages.count != 0) {
                     self.messageCountForUpdate = packet.messages.count
-                    print(self.messageCountForUpdate)
+                    print("message count update \(self.messageCountForUpdate)")
                     self.reloadChat()
                     MessageDataManager.shared.updateMessages(packet.messages)
                 }
@@ -285,7 +281,6 @@ class ChatViewController: PaymonViewController, ListSectionObserver {
 extension ChatViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        
         let sectionsCount = messages.numberOfSections()
         reverseSection(sectionsCount: sectionsCount)
         
@@ -351,13 +346,13 @@ extension ChatViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+
         let label = UILabel()
         label.text = messages.sectionInfoAtIndex(safeSectionIndex: reverseSections[section])!.name
         label.textColor = UIColor.white.withAlphaComponent(0.4)
         label.center = tableView.center
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .center
-        
         return label
     }
 }

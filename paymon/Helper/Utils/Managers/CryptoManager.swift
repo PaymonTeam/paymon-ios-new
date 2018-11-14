@@ -64,29 +64,32 @@ class CryptoManager {
     
     func getBitcoinWalletInfo() -> CellMoneyData {
         let bitcoinData = CellCreatedMoneyData()
-    
-        if BitcoinManager.shared.wallet == nil {
-            let privateKey = BitcoinManager.shared.loadPrivateKey()
-            if privateKey != nil {
-                BitcoinManager.shared.restoreFromMemory(privateKey: privateKey!)
+        
+            if BitcoinManager.shared.wallet == nil {
+//                let keychain = Keychain()
+//                if let seed = keychain.get(for: "seed_\(String(describing: User.currentUser.id))") {
+//                    BitcoinManager.shared.importWallet(seed: seed)
+//                } else {
+//                    return self.getNotCreatedData(cryptoType: .bitcoin)
+//                }
+                return self.getNotCreatedData(cryptoType: .bitcoin)
+
+            }
+        
+            if User.currentUser != nil {
+                bitcoinData.currancyAmount = BitcoinManager.shared.balance
+                bitcoinData.fiatAmount = BitcoinManager.shared.fiatBalance
+                bitcoinData.cryptoHint = Money.btc
+                bitcoinData.icon = Money.btcIcon
+                bitcoinData.fiatHint = User.currencyCode
+                bitcoinData.fiatColor = UIColor.AppColor.Green.rub
+                bitcoinData.cryptoColor = UIColor.AppColor.Orange.bitcoin
+                bitcoinData.cryptoType = .bitcoin
+                return bitcoinData
             } else {
                 return self.getNotCreatedData(cryptoType: .bitcoin)
             }
-        }
-        
-        if User.currentUser != nil {
-            bitcoinData.currancyAmount = BitcoinManager.shared.getBalance()
-            bitcoinData.fiatAmount = BitcoinManager.shared.getFiatBalance()
-            bitcoinData.cryptoHint = Money.btc
-            bitcoinData.icon = Money.btcIcon
-            bitcoinData.fiatHint = User.currencyCode
-            bitcoinData.fiatColor = UIColor.AppColor.Green.rub
-            bitcoinData.cryptoColor = UIColor.AppColor.Orange.bitcoin
-            bitcoinData.cryptoType = .bitcoin
-            return bitcoinData
-        } else {
-            return self.getNotCreatedData(cryptoType: .bitcoin)
-        }
+           
     }
     
     func getNotCreatedData(cryptoType : CryptoType) -> CellMoneyData {

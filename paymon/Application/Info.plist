@@ -28,6 +28,8 @@
 	<string>App want to access contact of your phone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Using for uploading photos</string>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>Using for get ringtones</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

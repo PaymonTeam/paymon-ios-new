@@ -1,25 +1,16 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireObjectMapper (5.1.0):
-    - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.3)
-  - BitcoinKit (1.0.2)
-  - CoreStore (5.3.0)
+  - CoreStore (5.3.1)
   - FLAnimatedImage (1.0.12)
-  - KeychainAccess (3.1.1)
+  - KeychainAccess (3.1.2)
   - MBProgressHUD (1.0.0)
-  - ObjectMapper (3.3.0)
   - OpenSSL-Universal (1.0.2.13)
   - ReverseExtension (0.5.0)
-  - ScrollableGraphView (4.0.5)
+  - ScrollableGraphView (4.0.6)
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0)
-  - AlamofireObjectMapper
-  - BitcoinKit
   - CoreStore (~> 5.0)
   - FLAnimatedImage (~> 1.0)
   - KeychainAccess
@@ -31,33 +22,25 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
-    - AlamofireObjectMapper
-    - BitcoinKit
     - CoreStore
     - FLAnimatedImage
     - KeychainAccess
     - MBProgressHUD
-    - ObjectMapper
     - OpenSSL-Universal
     - ReverseExtension
     - ScrollableGraphView
     - SDWebImage
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
-  BitcoinKit: 5502c14d72ab665fbe00dc72abd74439a38ef9bc
-  CoreStore: 6d2d5e7841e9b1f5d452b5ab881e478cf37f540e
+  CoreStore: 89d0c8e7a9d76d0c533018b4850245c973f4ecbd
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
-  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   OpenSSL-Universal: 401888162f11c33ebbd46f782d9229da35c61327
   ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
-  ScrollableGraphView: 6386dbae8d92e8ec9fda9f386f2ba6e2c90c59a3
+  ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: 7e45fe3c9af3b0a20da06456f20aff1eb837e249
+PODFILE CHECKSUM: 13e647ef7a3acb4ea8e6240075a96577aae397eb
 
 COCOAPODS: 1.5.3

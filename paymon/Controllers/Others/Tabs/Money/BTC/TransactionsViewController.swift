@@ -64,17 +64,16 @@ class TransactionsViewController: UIViewController, UITableViewDelegate, UITable
             self.transactionsTableView.reloadData()
             self.loading.startAnimating()
         }
-        BitcoinManager.shared.updateTxHistory()
+//        BitcoinManager.shared.updateTxHistory()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateBtcTransactions = NotificationCenter.default.addObserver(forName: .updateBtcBalance, object: nil, queue: nil) {
+        updateBtcTransactions = NotificationCenter.default.addObserver(forName: .updateBtcTransactions, object: nil, queue: nil) {
             notification in
             BitcoinTransactions.getTransactions()
         }
         
         updateTransactions = NotificationCenter.default.addObserver(forName: .updateTransaction, object: nil, queue: OperationQueue.main ){ notification in
-            print("Update transaction")
             if let transactions = notification.object as? [BitcoinTransaction] {
                 self.transactions = transactions
                 self.transactionsShow = transactions
@@ -95,7 +94,7 @@ class TransactionsViewController: UIViewController, UITableViewDelegate, UITable
         navigationBar.setTransparent()
         navigationBar.topItem?.title = "History".localized
         
-        BitcoinManager.shared.updateTxHistory()
+//        BitcoinManager.shared.updateTxHistory()
 
         transactionsTableView.delegate = self
         transactionsTableView.dataSource = self

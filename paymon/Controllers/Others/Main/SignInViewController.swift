@@ -51,8 +51,11 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         setMainController = NotificationCenter.default.addObserver(forName: .setMainController, object: nil, queue: nil) {
             notification in
             
-            let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
-            self.present(tabsViewController, animated: true)
+            DispatchQueue.main.async {
+                let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
+                self.present(tabsViewController, animated: true)
+            }
+            
         }
         setLayoutOptions()
 
@@ -97,7 +100,7 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         
         switch (textField) {
         case login:
-            return newLength <= 20
+            return newLength <= 128
         case password:
             return newLength <= 96
         default: break

@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import BRCore.Ethereum
 
 class RPC {
     public static let SVUID_ARRAY:Int32 = 1550732454;
@@ -838,7 +839,7 @@ class RPC {
         static let svuid:Int32 = 1066060061
 
         var id:Int32!
-        var userIDs:[Int32]!
+        var userIDs:[Int32]! = []
 
         override func readParams(stream: SerializableData, exception: UnsafeMutablePointer<Bool>?) {
             id = stream.readInt32(exception)

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dej-Os-zfy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dej-Os-zfy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -167,7 +167,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="24o-BQ-FGo">
-                                                    <rect key="frame" x="46" y="8" width="30.5" height="15"/>
+                                                    <rect key="frame" x="54" y="8" width="30.5" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                                     <color key="textColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -206,7 +206,7 @@
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TSb-nO-k9J" secondAttribute="trailing" constant="70" id="GfB-7A-ZbJ"/>
                                                 <constraint firstItem="WTz-ji-JtE" firstAttribute="leading" secondItem="9aW-6D-1mj" secondAttribute="leading" constant="8" id="OCK-eK-pjq"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="24o-BQ-FGo" secondAttribute="trailing" constant="70" id="QFH-gv-4Kf"/>
-                                                <constraint firstItem="24o-BQ-FGo" firstAttribute="leading" secondItem="WTz-ji-JtE" secondAttribute="trailing" constant="8" id="YBG-Ou-boz"/>
+                                                <constraint firstItem="24o-BQ-FGo" firstAttribute="leading" secondItem="WTz-ji-JtE" secondAttribute="trailing" constant="16" id="YBG-Ou-boz"/>
                                                 <constraint firstItem="WTz-ji-JtE" firstAttribute="bottom" secondItem="TSb-nO-k9J" secondAttribute="bottom" id="ni5-Gs-dNR"/>
                                                 <constraint firstAttribute="bottom" secondItem="TSb-nO-k9J" secondAttribute="bottom" constant="2" id="uBM-4b-Cg5"/>
                                                 <constraint firstItem="TSb-nO-k9J" firstAttribute="leading" secondItem="WTz-ji-JtE" secondAttribute="trailing" constant="8" id="wOl-3L-ozh"/>

@@ -164,6 +164,7 @@
 "Sounds"="Звуки";
 "Vibration"="Вибрация";
 "Transactions"="Транзакции";
+"Transaction"="Транзакция";
 "Answer"="Ответить";
 "Skip"="Пропустить";
 "Do not disturb for 8 hours"="Не беспокоить 8 часов";
@@ -233,6 +234,11 @@
 "2 symbols"="2 знака";
 "4 symbols"="4 знака";
 "6 symbols"="6 знака";
+"Please write down and save the passphrase of 12 words. The code phrase is needed to restore the wallet."="Запишите и сохраните кодовую фразу из 12 слов. Кодовая фраза необходима для восстановления кошелька.";
+"Seed"="Кодовая фраза";
+"The passphrase was copied to the clipboard"="Кодовая фраза была скопирована в буфе обмена";
+"I saved the passphrase"="Я сохранил кодовую фразу";
+"We strongly recommend making a backup!"="Мы настоятельно рекомендуем сделать резервную копию!";
 
 /*Money transfer*/
 
@@ -241,6 +247,7 @@
 "QR-Code scan"="Сканер QR-кода";
 "Can't read this QR-code"="Невозможно считать QR-код";
 "Make sure that the purse of the recipient is correct. To do this, click on the icon on the right."="Убедитесь, что кошелек получаетеля введен верно. Для этого нажмите на иконку справа";
+"Failed to generate random seed. Please try again later"="Не удалось создать случайную фразу(seed). Пожалуйста, попробуйте позже";
 "Bitcoin address"="Bitcoin адрес";
 "Your wallet"="Ваш кошелек";
 "Send"="Отправить";
@@ -256,13 +263,17 @@
 "New Bitcoin wallet"="Новый Bitcoin кошелек";
 "Remove wallet"="Удаление кошелька";
 "Remove"="Удалить";
-"Enter private key"="Введите приватный ключ";
+"Enter passphrase"="Введите кодовую фразу";
 "Restore wallet"="Восстановление кошелька";
 "You entered an incorrect private key"="Вы ввели неправильный приватный ключ";
+"You entered an incorrect address"="Вы ввели неправильный адрес";
 "Standart fee"="Стандартная комиссия";
 "Create"="Создать";
 "The minimum fee is 0.00001 BTC"="Минимальная сумма комиссии составляет 0.00001 BTC";
 "Before removing your wallet, make sure you back up your wallet"="Перед тем, как удалить кошелек, убедитесь, что вы сделали его резервную копию";
+"Restore"="Восстановить";
+"Enter the passphrase from the wallet you want to restore"="Введите кодовую фразу от кошелька, который хотите восстановить";
+"The passphrase should consist of 12 words"="Кодовая фраза должна состоять из 12 слов";
 
 /*Wllet view controller*/
 

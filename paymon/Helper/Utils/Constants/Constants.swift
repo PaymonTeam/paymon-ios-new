@@ -75,12 +75,8 @@ struct VCIdentifier {
     static let passcodeViewController = "PasscodeViewController"
     static let mainNavigationController = "MainNavigationController"
     static let createNewBtcWalletViewController = "CreateNewBtcWalletViewController"
-
-    
-    
-
-    
-    
+    static let backupBtcWalletViewController = "BackupBtcWalletViewController"
+    static let restoreBtcViewController = "RestoreBtcViewController"
    
 }
 
@@ -101,32 +97,9 @@ struct UserDefaultKey {
     static let CURRENCY_CODE = "currency_code_"
     static let SYMB_COUNT = "symb_count_"
     static let PASSWORD_WALLET = "password_wallet_"
+    static let ROW_SEED_FOR_BACKUP = "row_seed_for_backup_"
+    static let IS_BTC_WALLET_BACKUP = "is_btc_wallet_backup_"
 
-
-}
-
-struct Ethereum {
-    static let rinkebyEnodeRawUrl = "enode://a24ac7c5484ef4ed0c5eb2d36620ba4e4aa13b8c84684e1b4aab0cebea2ae45cb4d375b77eab56516d34bfbd3c1a833fc51296ff084b770b94fb9028c4d25ccf@52.169.42.101:30303?discport=30304"
-    static let ropstenEnodeRawUrl = "enode://a24ac7c5484ef4ed0c5eb2d36620ba4e4aa13b8c84684e1b4aab0cebea2ae45cb4d375b77eab56516d34bfbd3c1a833fc51296ff084b770b94fb9028c4d25ccf@52.169.42.101:30303?discport=30304"
-}
-
-struct Etherscan {
-    static let apiKey = "1KDW41TE2CPJI7DC2UWSXUWRQ6WFUR885E"
-}
-
-struct EthWallet {
-    static let defaultCurrency = "USD"
-    static let supportedCurrencies = ["BTC","ETH","USD","EUR","CNY","GBP"]
-}
-
-struct Common {
-    static let githubUrl = "https://github.com/flypaper0/ethereum-wallet"
-}
-
-struct Send {
-    static let defaultGasLimit: Decimal = 21000
-    static let defaultGasLimitToken: Decimal = 53000
-    static let defaultGasPrice: Decimal = 2000000000
 }
 
 struct ExchangeRatesConst {

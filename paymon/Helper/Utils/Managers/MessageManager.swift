@@ -34,7 +34,6 @@ public class MessageManager {
                 return
             }
             
-            
             if let packet = p as? RPC.PM_chatsAndMessages {
                 UserDataManager.shared.updateUsers(packet.users)
                 GroupDataManager.shared.updateGroups(packet.groups)
@@ -54,7 +53,7 @@ public class MessageManager {
         message.id = lastMessageID.incrementAndGet()
         message.text = text
         message.flags = RPC.Message.MESSAGE_FLAG_FROM_ID
-        message.date = Int32(Utils.currentTimeMillis() / 1000) + Int32(TimeZone.autoupdatingCurrent.secondsFromGMT())
+        message.date = Int32(Utils.currentTimeMillis() / 1000)
         message.from_id = User.currentUser!.id
         message.to_peer = isGroup ? RPC.PM_peerGroup(group_id: chatId) : RPC.PM_peerUser(user_id : chatId)
         message.to_id = chatId
@@ -65,7 +64,9 @@ public class MessageManager {
             if p == nil || e != nil {return}
             if let update = p as? RPC.PM_updateMessageID {
                 message.id = update.newID
-                MessageDataManager.shared.updateMessage(messageObject: message)
+//                DispatchQueue.main.sync {
+                    MessageDataManager.shared.updateMessage(messageObject: message)
+//                }
             }
         }
     }

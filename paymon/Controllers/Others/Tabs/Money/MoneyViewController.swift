@@ -47,7 +47,9 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
             moneyArray.append(CryptoManager.shared.getPaymonWalletInfo())
         }
         DispatchQueue.main.async {
-            self.moneyTableView.reloadData()
+            if self.moneyTableView != nil {
+                self.moneyTableView.reloadData()
+            }
         }
     }
     
@@ -55,7 +57,7 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
         getWalletsInfo()
         walletWasCreated = NotificationCenter.default.addObserver(forName: .walletWasCreated, object: nil, queue: nil) {
             notification in
-            Utils.showSuccesHud(vc: self)
+//            Utils.showSuccesHud(vc: self)
 
             self.getWalletsInfo()
         }
@@ -87,18 +89,20 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? MoneyCreatedTableViewCell {
-            
-            switch cell.cryptoType {
-            case .bitcoin?:
+        DispatchQueue.main.async {
+            if let cell = tableView.cellForRow(at: indexPath) as? MoneyCreatedTableViewCell {
                 
-                guard let bitcoinWalletNavigationController = StoryBoard.bitcoin.instantiateInitialViewController() as? PaymonNavigationController else {return}
-                self.navigationController?.present(bitcoinWalletNavigationController, animated: true, completion: nil)
-
-            default:
-                break
+                switch cell.cryptoType {
+                case .bitcoin?:
+                    if CryptoManager.shared.btcInfoIsLoaded {
+                        guard let bitcoinWalletNavigationController = StoryBoard.bitcoin.instantiateInitialViewController() as? PaymonNavigationController else {return}
+                        self.navigationController?.present(bitcoinWalletNavigationController, animated: true, completion: nil)
+                    }
+                default:
+                    break
+                }
+                
             }
-            
         }
     }
 }

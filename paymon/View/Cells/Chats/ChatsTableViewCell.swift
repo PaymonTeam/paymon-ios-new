@@ -19,7 +19,7 @@ class ChatsTableViewCell : UITableViewCell {
     func configure(chat: ChatsData) {
         self.title.text = chat.title
         self.lastMessageText.text = chat.lastMessageText
-        self.lastMessageTime.text = Utils.formatDateTime(timestamp: chat.time, chatHeader : false)
+        self.lastMessageTime.text = Utils.formatDateTime(timestamp: chat.time)
         self.photo.loadPhoto(url: chat.photoUrl)
         
         if chat.lastMessageFromId == User.currentUser.id {
