@@ -10,8 +10,8 @@ import Foundation
 
 class CellCreatedMoneyData : CellMoneyData {
     var fiatHint : String!
-    var currancyAmount : Decimal!
-    var fiatAmount : Decimal!
+    var currancyAmount : Double!
+    var fiatAmount : Double!
     var cryptoHint : String!
     var fiatColor : UIColor!
 }

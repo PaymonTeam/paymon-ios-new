@@ -53,7 +53,7 @@ class CreateNewBtcWalletViewController: UIViewController, UITextFieldDelegate {
 //            _ = SimpleOkAlertController.init(title: "New Bitcoin wallet".localized, message: "Failed to generate random seed. Please try again later".localized, vc: self)
 //        }
         
-        walletWasCreated = NotificationCenter.default.addObserver(forName: .walletWasCreated, object: nil, queue: nil) {
+        walletWasCreated = NotificationCenter.default.addObserver(forName: .ethWalletWasCreated, object: nil, queue: nil) {
             notification in
             self.walletCreated()
         }
@@ -109,7 +109,7 @@ class CreateNewBtcWalletViewController: UIViewController, UITextFieldDelegate {
     }
     
     func walletCreated() {
-        User.savePasswordWallet(password: password)
+        User.saveBtcPasswordWallet(password: password)
         User.saveSeed(rowSeed: rowForBackup)
         DispatchQueue.main.async {
             MBProgressHUD.hide(for: self.view, animated: true)

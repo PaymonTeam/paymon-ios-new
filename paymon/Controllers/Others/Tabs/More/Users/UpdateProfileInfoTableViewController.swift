@@ -1,5 +1,6 @@
 import UIKit
 import Foundation
+import MBProgressHUD
 
 class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldDelegate {
     
@@ -7,9 +8,6 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
     @IBOutlet weak var nameInfo: UITextField!
     
     private var observerUpdateProfile : NSObjectProtocol!
-    
-    private var observerUpdateView : NSObjectProtocol!
-    private var observerUpdateString : NSObjectProtocol!
 
     var nameString = ""
     var surnameString = ""
@@ -88,16 +86,30 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
         super.viewDidLoad()
         
         observerUpdateProfile = NotificationCenter.default.addObserver(forName: .updateProfile, object: nil, queue: nil ){ notification in
+            DispatchQueue.main.async {
+                let _ = MBProgressHUD.showAdded(to: self.parent!.parent!.view, animated: true)
+            }
 
-            UserManager.shared.updateProfileInfo(name: self.nameInfo.text!, surname: self.surnameInfo.text!, vc: self.parent!)
-        }
-        
-        observerUpdateView = NotificationCenter.default.addObserver(forName: .updateView, object: nil, queue: nil ){ notification in
-            self.updateView()
-        }
-        
-        observerUpdateString = NotificationCenter.default.addObserver(forName: .updateString, object: nil, queue: nil ){ notification in
-            self.updateString()
+            UserManager.shared.updateProfileInfo(name: self.nameInfo.text!, surname: self.surnameInfo.text!) { isUpdated in
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.parent!.parent!.view, animated: true)
+                }
+                
+                if isUpdated {
+                    User.saveConfig()
+                    DispatchQueue.main.async {
+                        
+                        Utils.showSuccesHud(vc: self.parent!.parent!)
+                        self.updateView()
+                        self.updateString()
+                    }
+                    print("profile update success")
+                } else {
+                    _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: self.parent!.parent!)
+                    print("profile update error")
+                }
+                
+            }
         }
 
         let tapper = UITapGestureRecognizer(target: self, action: #selector(endEditing))
@@ -128,9 +140,6 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
         
         if UpdateProfileInfoTableViewController.needRemoveObservers {
             NotificationCenter.default.removeObserver(observerUpdateProfile)
-            NotificationCenter.default.removeObserver(observerUpdateView)
-
-            NotificationCenter.default.removeObserver(observerUpdateString)
         }
         
     }

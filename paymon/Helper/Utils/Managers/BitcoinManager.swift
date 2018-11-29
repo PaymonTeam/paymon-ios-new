@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import MBProgressHUD
 import KeychainAccess
-import BRCore
 
 public class BitcoinManager {
     
@@ -28,11 +27,11 @@ public class BitcoinManager {
 
     private(set) var fiatBalance : Decimal! = 0.00 {
         didSet {
-            NotificationCenter.default.post(name: .updateBtcBalance, object: nil)
+            NotificationCenter.default.post(name: .updateBalance, object: nil)
         }
     }
     var publicKey : String!
-    var course: Decimal! = 1.0
+    var course: Double! = 1.0
     
 //    func createBtcWallet(mnemonic : [String]) {
 //        let seed = Mnemonic.seed(mnemonic: mnemonic)
@@ -224,30 +223,30 @@ public class BitcoinManager {
 //        }
 //    }
 //
-    func checkPasswordWallet(vc: UIViewController, completionHandler: @escaping (Bool) -> ()) {
-        print(User.passwordWallet)
-        let alertCheckPassword = UIAlertController(title: "Security password".localized, message: "Enter the password that was specified when creating or restoring the wallet".localized, preferredStyle: UIAlertController.Style.alert)
-
-        alertCheckPassword.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: nil))
-        alertCheckPassword.addAction(UIAlertAction(title: "Ok".localized, style: .default, handler: { (nil) in
-            let textField = alertCheckPassword.textFields![0] as UITextField
-            if User.passwordWallet == textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
-                completionHandler(true)
-            } else {
-                completionHandler(false)
-            }
-        }))
-        alertCheckPassword.addTextField { (textField) in
-            textField.placeholder = "Enter security password".localized
-            textField.isSecureTextEntry = true
-        }
-
-        DispatchQueue.main.async {
-            vc.present(alertCheckPassword, animated: true) {
-                () -> Void in
-            }
-        }
-    }
+//    func checkPasswordWallet(vc: UIViewController, completionHandler: @escaping (Bool) -> ()) {
+//        print(User.passwordBtcWallet)
+//        let alertCheckPassword = UIAlertController(title: "Security password".localized, message: "Enter the password that was specified when creating or restoring the wallet".localized, preferredStyle: UIAlertController.Style.alert)
+//
+//        alertCheckPassword.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: nil))
+//        alertCheckPassword.addAction(UIAlertAction(title: "Ok".localized, style: .default, handler: { (nil) in
+//            let textField = alertCheckPassword.textFields![0] as UITextField
+//            if User.passwordBtcWallet == textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+//                completionHandler(true)
+//            } else {
+//                completionHandler(false)
+//            }
+//        }))
+//        alertCheckPassword.addTextField { (textField) in
+//            textField.placeholder = "Enter security password".localized
+//            textField.isSecureTextEntry = true
+//        }
+//
+//        DispatchQueue.main.async {
+//            vc.present(alertCheckPassword, animated: true) {
+//                () -> Void in
+//            }
+//        }
+//    }
 //
 //    func getUnspentTransactions() {
 //        let blockStore = try! SQLiteBlockStore.default()

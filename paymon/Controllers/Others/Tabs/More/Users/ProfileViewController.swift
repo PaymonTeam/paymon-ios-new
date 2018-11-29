@@ -31,11 +31,6 @@ class ProfileViewController: PaymonViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let user = UserDataManager.shared.getAllUsers()
-        for u in user {
-            print("[name : \(u.name), login \(u.login)]")
-        }
         setLayoutOptions()
     }
     

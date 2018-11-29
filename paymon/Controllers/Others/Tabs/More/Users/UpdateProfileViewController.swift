@@ -1,5 +1,6 @@
 import UIKit
 import Foundation
+import MBProgressHUD
 
 class UpdateProfileViewController: PaymonViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -87,8 +88,35 @@ class UpdateProfileViewController: PaymonViewController, UIImagePickerController
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-
-        UserManager.shared.updateAvatar(info: info, avatarView: avatar, vc: self)
+        
+        DispatchQueue.main.async {
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
+        
+        UserManager.shared.updateAvatar(info: info) { isUpdated, image, error in
+            DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
+            if isUpdated {
+                DispatchQueue.main.async {
+                    Utils.showSuccesHud(vc: self)
+                    self.avatar.image = image
+                }
+                
+            } else {
+                if error == 0 {
+                    _ = SimpleOkAlertController.init(title: "Upload photo failed".localized, message: "The minimum width of the photo can be 256 points".localized, vc: self)
+                } else if error == 1 {
+                    print("file upload failed")
+                    DispatchQueue.main.async {
+                        _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: self)
+                    }
+                } else {
+                    _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: self)
+                    PMFileManager.shared.cancelFileUpload(fileID: Int64(User.currentUser.id));
+                }
+            }
+        }
         
         needRemoveObservers = true
     }

@@ -8,8 +8,7 @@ target 'paymon' do
 
   use_frameworks!
 
-  #pod 'Alamofire', '~> 4.0'
-    #pod 'web3swift', :git => 'https://github.com/MercuryProtocol/web3.swift.git', :branch => 'master'
+  pod 'Alamofire', '~> 4.0'
     pod 'MBProgressHUD', '~> 1.0.0'
     #pod 'AlamofireObjectMapper'
     pod 'CoreStore', '~> 5.0'
@@ -17,10 +16,12 @@ target 'paymon' do
     pod 'SDWebImage', '~> 4.0'
     pod 'FLAnimatedImage', '~> 1.0'
     pod 'ReverseExtension'
-    #pod 'BitcoinKit'
+    pod 'web3swift', :git => 'https://github.com/bankex/web3swift.git'
     pod 'KeychainAccess'
+    pod 'BlockiesSwift'
+    pod 'DeckTransition', '~> 2.0'
 
-  # Pods for paymon
+    # Pods for paymon
 
   target 'paymonTests' do
     inherit! :search_paths

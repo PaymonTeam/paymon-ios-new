@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class SettingAccountTableViewController: UITableViewController {
     
@@ -69,13 +70,31 @@ class SettingAccountTableViewController: UITableViewController {
     }
     
     @objc func switchShowEmailChange(_ segmentControl : UISegmentedControl) {
+        let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+
         if canChange {
             canChange = false
-            canChange = UserManager.shared.showEmail(isShow: switchShowEmail.isOn, vc: self)
+            UserManager.shared.showEmail(isShow: switchShowEmail.isOn) { isDone in
+                
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
+                self.canChange = isDone
+                if isDone {
+                    User.saveConfig()
+                    DispatchQueue.main.async {
+                        Utils.showSuccesHud(vc: self)
+                    }
+                } else {
+                    _ = SimpleOkAlertController.init(title: "Show/Hide email".localized, message: "An error occurred during the update".localized, vc: self)
+                }
+            }
         }
     }
     
     @objc func switchTimeFormatChange(_ segmentControl : UISegmentedControl) {
+
         User.saveTimeFormat(is24: switchTimeFormat.isOn)
     }
 }

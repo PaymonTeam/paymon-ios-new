@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import UIKit
-import MBProgressHUD
 
 public class UserManager {
     
@@ -20,9 +18,7 @@ public class UserManager {
         User.loadConfig()
     }
     
-    func signUpNewUser(login : String, password : String, email : String, viewController : UIViewController) {
-        
-        let _ = MBProgressHUD.showAdded(to: viewController.view, animated: true)
+    func signUpNewUser(login : String, password : String, email : String, completionHandler: @escaping (Bool) -> ()) {
         
         let register = RPC.PM_register()
         register.login = login
@@ -32,45 +28,16 @@ public class UserManager {
         
         let _ = NetworkManager.shared.sendPacket(register) { p,e in
 
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: viewController.view, animated: true)
-            }
-            NotificationCenter.default.post(name: .disableSignUpButtons, object: nil)
-
             if (p as? RPC.PM_userFull) != nil {
-
-                let alertSuccess = UIAlertController(title: "Registration was successful".localized, message: "Congratulations, you have successfully registered. Account activation sent to your email. Confirm account and log in.".localized, preferredStyle: UIAlertController.Style.alert)
-
-                alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-                    viewController.navigationController?.popViewController(animated: true)
-                }))
-
-                DispatchQueue.main.async {
-                    viewController.present(alertSuccess, animated: true) {
-                        () -> Void in
-                    }
-                }
+                completionHandler(true)
             } else if e != nil {
-
-                let alertError = UIAlertController(title: "Registration Failed".localized, message: "Such login or email is already in use".localized, preferredStyle: UIAlertController.Style.alert)
-                let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-                    NotificationCenter.default.post(name: .enableSignUpButtons, object: nil)
-                })
-
-                alertError.addAction(alertAction)
-                DispatchQueue.main.async {
-                    viewController.present(alertError, animated: true) {
-                        () -> Void in
-                    }
-                }
+                completionHandler(false)
             }
         }
     }
 
     
-    func signIn(login : String, password : String, vc : UIViewController) {
-        
-        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
+    func signIn(login : String, password : String, completionHandler: @escaping (Bool, Bool, Int32) -> ()) {
         
         let auth = RPC.PM_auth()
         auth.id = 0
@@ -81,151 +48,60 @@ public class UserManager {
          NetworkManager.shared.sendPacket(auth) { p, e in
 
             if let user = p as? RPC.PM_userSelf {
+                User.currentUser = user
 
                 if user.confirmed {
-                    User.currentUser = user
                     self.authSuccess()
                 } else {
-                    DispatchQueue.main.async {
-                        MBProgressHUD.hide(for: vc.view, animated: true)
-                    }
-                    let alert = UIAlertController(title: "Confirmation email".localized,
-                          message: String(format: NSLocalizedString("You did not verify your account by email \n %@ \n\n Send mail again?".localized, comment: ""), user.email),
-                          preferredStyle: .alert)
-
-                    alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: { (action) in
-                        User.clearConfig()
-                        NetworkManager.shared.reset()
-                        NetworkManager.shared.reconnect()
-                    }))
-
-                    alert.addAction(UIAlertAction(title: "Send".localized, style: .default, handler: { (action) in
-
-                        let resendEmail = RPC.PM_resendEmail()
-                        
-                        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
-
-                        NetworkManager.shared.sendPacket(resendEmail) { response, error in
-                            
-                            DispatchQueue.main.async {
-                                MBProgressHUD.hide(for: vc.view, animated: true)
-                            }
-                            
-                            if response is RPC.PM_boolTrue {
-                                
-                                _ = SimpleOkAlertController.init(title: "Confirmation email".localized, message: "The letter was sent".localized, vc: vc)
-
-                            } else {
-                                
-                                _ = SimpleOkAlertController.init(title: "Confirmation email".localized, message: "The email was not sent. Check your internet connection.".localized, vc: vc)
-
-                                print("Error: email was not sent \(String(describing: error))")
-                            }
-
-                            User.clearConfig()
-                            NetworkManager.shared.reset()
-                            NetworkManager.shared.reconnect()
-                        }
-
-                    }))
-                    DispatchQueue.main.async {
-                        vc.present(alert, animated: true, completion: nil)
-                    }
+                    completionHandler(true, false, 0)
                 }
 
             } else if let error = e {
-
-                DispatchQueue.main.async {
-                    MBProgressHUD.hide(for: vc.view, animated: true)
-                }
-                var msg : String!
-                switch error.code {
-                case RPC.ERROR_AUTH: msg = "Invalid login or password".localized
-                case RPC.ERROR_AUTH_ALREADY_EXISTS: msg = "Such user already logged in".localized
-                default: msg = "An error occurred during authorization".localized
-                    break
-                }
-                
-                _ = SimpleOkAlertController.init(title: "Login failed".localized, message: msg, vc: vc)
+                completionHandler(false, false, error.code)
             }
         }
         
     }
     
 
-    func updateProfileInfo(name: String, surname : String, vc : UIViewController) {
+    func updateProfileInfo(name: String, surname : String, completionHandler: @escaping (Bool) -> ()) {
 
         User.currentUser!.first_name = name
         User.currentUser!.last_name = surname
         
-        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
-
         guard let user = User.currentUser else {return}
 
         NetworkManager.shared.sendPacket(user) { response, error in
             
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: vc.view, animated: true)
-            }
-            
             if response is RPC.PM_boolTrue {
-                User.saveConfig()
-                DispatchQueue.main.async {
-                    Utils.showSuccesHud(vc: vc)
-                    NotificationCenter.default.post(name: .updateView, object: nil)
-                    NotificationCenter.default.post(name: .updateString, object: nil)
-                }
-
-                print("profile update success")
+                completionHandler(true)
             } else {
-                
-                _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
-            
-                print("profile update error")
+                completionHandler(false)
             }
         }
     }
     
     
     
-    func sendCodeRecoveryToEmail(vc : UIViewController, loginOrEmail : String) {
+    func sendCodeRecoveryToEmail(loginOrEmail : String, completionHandler: @escaping ((Bool, Int32)) -> ()) {
         let sendCodeToEmail = RPC.PM_restorePasswordRequestCode()
         sendCodeToEmail.loginOrEmail = loginOrEmail
-        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
         
         NetworkManager.shared.sendPacket(sendCodeToEmail) { response, error in
             
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: vc.view, animated: true)
-            }
-            
             if response is RPC.PM_boolTrue {
-                
-                 let forgotPasswordCodeViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordCodeViewController) as! ForgotPasswordCodeViewController
-                
-                forgotPasswordCodeViewController.emailValue = loginOrEmail
-
-                    DispatchQueue.main.async {
-                        vc.navigationController?.pushViewController(forgotPasswordCodeViewController, animated: true)
-                    }
-                
+                completionHandler((true, 0))
             } else {
-                //TODO: Если вернуться назад, приходит false но без ошибки
-                if let err = error?.code! {
-                    if err == 27 {
-                        
-                        _ = SimpleOkAlertController.init(title: "Recovery password".localized, message: "This login or e-mail address is not exist".localized, vc: vc)
-                    } else {
-
-                        _ = SimpleOkAlertController.init(title: "Recovery password".localized, message: "An error occurred while sending the recovery code".localized, vc: vc)
-                    }
+                if error != nil {
+                    completionHandler((false, (error?.code)!))
+                } else {
+                    completionHandler((false, 0))
                 }
             }
         }
     }
     
-    func setNewPassword(loginOrEmail : String, code: Int32, password : String, vc : UIViewController) {
-        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
+    func setNewPassword(loginOrEmail : String, code: Int32, password : String, completionHandler: @escaping (Bool) -> ()) {
         
         let setNewPassword = RPC.PM_restorePassword()
         setNewPassword.loginOrEmail = loginOrEmail
@@ -233,31 +109,11 @@ public class UserManager {
         setNewPassword.password = password
         
         NetworkManager.shared.sendPacket(setNewPassword) { response, error in
-            
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: vc.view, animated: true)
-            }
-            
+
             if response is RPC.PM_boolTrue {
-                    
-                let alertSuccess = UIAlertController(title: "New password".localized, message: "Password changed successfully".localized, preferredStyle: UIAlertController.Style.alert)
-                
-                alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
-                    vc.navigationController?.popToViewController((vc.navigationController?.viewControllers[1])!, animated: true)
-                }))
-                
-                DispatchQueue.main.async {
-                    vc.present(alertSuccess, animated: true) {
-                        () -> Void in
-                    }
-                }
+                completionHandler(true)
             } else {
-                print("code is false \(String(describing: error?.code))")
-                DispatchQueue.main.async {
-                    vc.navigationController?.popViewController(animated: true)
-                    
-                    _ = SimpleOkAlertController.init(title: "New password".localized, message: "You entered an invalid recovery code".localized, vc: vc)
-                }
+                completionHandler(false)
             }
         }
         
@@ -291,17 +147,15 @@ public class UserManager {
             }
     }
     
-    func updateAvatar(info: [UIImagePickerController.InfoKey : Any], avatarView : CircularImageView, vc : UIViewController){
+    func updateAvatar(info: [UIImagePickerController.InfoKey : Any], completionHandler: @escaping ((Bool, UIImage, Int)) -> ()){
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             
             var resizeImage = UIImage()
-            
             let widthPixel = image.size.width * image.scale
 //            let heigthPixel = image.size.height * image.scale
-            
 //            print("Image: width \(widthPixel) height: \(heigthPixel)")
             if widthPixel < 256 {
-                _ = SimpleOkAlertController.init(title: "Upload photo failed".localized, message: "The minimum width of the photo can be 256 points".localized, vc: vc)
+                completionHandler((false, resizeImage, 0))
                 return
             }
             if widthPixel > 512 {
@@ -313,72 +167,37 @@ public class UserManager {
 
             let packet = RPC.PM_setProfilePhoto()
             
-            let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
-            
             NetworkManager.shared.sendPacket(packet) { packet, error in
                 
                 if (packet is RPC.PM_boolTrue) {
                     Utils.stageQueue.run {
                         PMFileManager.shared.startUploading(jpegData: resizeImage.jpegData(compressionQuality: 0.85)!, onFinished: {
-                            
-                            DispatchQueue.main.async {
-                                MBProgressHUD.hide(for: vc.view, animated: true)
-                                Utils.showSuccesHud(vc: vc)
-                                
-                                avatarView.image = resizeImage
-
-                            }
-                            
+                            completionHandler((true, resizeImage, -1))
                         }, onError: { code in
-                            print("file upload failed \(code)")
-                            
-                            DispatchQueue.main.async {
-                                _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
-                            }
-                            
+                            completionHandler((false, resizeImage, 1))
                         }, onProgress: { p in
                             
                         })
                     }
                 } else {
-                    
-                    _ = SimpleOkAlertController.init(title: "Update failed".localized, message: "An error occurred during the update".localized, vc: vc)
-                    
-                    //TODO переписать в Кастомный алерт
-                    PMFileManager.shared.cancelFileUpload(fileID: Int64(User.currentUser.id));
+                    completionHandler((false, resizeImage, 2))
                 }
             }
         }
     }
     
-    func showEmail(isShow : Bool, vc: UIViewController) -> Bool {
+    func showEmail(isShow : Bool, completionHandler: @escaping (Bool) -> ()){
         
         User.currentUser.isEmailHidden = isShow
-        
-        let _ = MBProgressHUD.showAdded(to: vc.view, animated: true)
-
-        guard let user = User.currentUser else {return true}
+        guard let user = User.currentUser else {return}
         
         NetworkManager.shared.sendPacket(user) { response, error in
-            DispatchQueue.main.async {
-                MBProgressHUD.hide(for: vc.view, animated: true)
-            }
             
             if response is RPC.PM_boolTrue {
-                User.saveConfig()
-                DispatchQueue.main.async {
-                    Utils.showSuccesHud(vc: vc)
-                }
-                
-                print("Email state was changed")
+                completionHandler(true)
             } else {
-                
-                _ = SimpleOkAlertController.init(title: "Show/Hide email".localized, message: "An error occurred during the update".localized, vc: vc)
-                
-                print("Email state changed error")
+                completionHandler(false)
             }
         }
-        
-        return true
     }
 }

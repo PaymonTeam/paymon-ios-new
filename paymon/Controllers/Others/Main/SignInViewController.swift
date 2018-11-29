@@ -40,9 +40,71 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
             return
         } else {
             self.view.endEditing(true)
-            UserManager.shared.signIn(login: (login.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, password: (password.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, vc: self)
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            UserManager.shared.signIn(login: (login.text?.trimmingCharacters(in: .whitespacesAndNewlines))!, password: (password.text?.trimmingCharacters(in: .whitespacesAndNewlines))!) { isAuth, isConfirmed, error in
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
+                if isAuth {
+                    if !isConfirmed {
+                    
+                        let alert = UIAlertController(title: "Confirmation email".localized,
+                        message: String(format: NSLocalizedString("You did not verify your account by email \n %@ \n\n Send mail again?".localized, comment: ""), User.currentUser.email), preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: { (action) in
+                            User.clearConfig()
+                            NetworkManager.shared.reset()
+                            NetworkManager.shared.reconnect()
+                        }))
+                        
+                        alert.addAction(UIAlertAction(title: "Send".localized, style: .default, handler: { (action) in
+                            
+                            let resendEmail = RPC.PM_resendEmail()
+                            
+                            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+                            
+                            NetworkManager.shared.sendPacket(resendEmail) { response, error in
+                                
+                                DispatchQueue.main.async {
+                                    MBProgressHUD.hide(for: self.view, animated: true)
+                                }
+                                
+                                if response is RPC.PM_boolTrue {
+                                    _ = SimpleOkAlertController.init(title: "Confirmation email".localized, message: "The letter was sent".localized, vc: self)
+                                    
+                                } else {
+                                    
+                                    _ = SimpleOkAlertController.init(title: "Confirmation email".localized, message: "The email was not sent. Check your internet connection.".localized, vc: self)
+                                    
+                                    print("Error: email was not sent \(String(describing: error))")
+                                }
+                                
+                                User.clearConfig()
+                                NetworkManager.shared.reset()
+                                NetworkManager.shared.reconnect()
+                            }
+                            
+                        }))
+                        DispatchQueue.main.async {
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                } else {
+
+                    var msg : String!
+                    switch error {
+                    case RPC.ERROR_AUTH: msg = "Invalid login or password".localized
+                    case RPC.ERROR_AUTH_ALREADY_EXISTS: msg = "Such user already logged in".localized
+                    default: msg = "An error occurred during authorization".localized
+                        break
+                    }
+                    _ = SimpleOkAlertController.init(title: "Login failed".localized, message: msg, vc: self)
+                }
+                }
+            }
         }
-    }
     
     override func viewDidLoad() {
         
@@ -50,7 +112,6 @@ class SignInViewController: PaymonViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         setMainController = NotificationCenter.default.addObserver(forName: .setMainController, object: nil, queue: nil) {
             notification in
-            
             DispatchQueue.main.async {
                 let tabsViewController = StoryBoard.tabs.instantiateViewController(withIdentifier: VCIdentifier.tabsViewController) as! TabsViewController
                 self.present(tabsViewController, animated: true)

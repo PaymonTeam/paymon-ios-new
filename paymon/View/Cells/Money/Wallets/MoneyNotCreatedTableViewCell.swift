@@ -44,7 +44,8 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
         break
             
         case .ethereum?:
-            // Create Ethereum wallet code
+            guard let createNewEthWalletViewController = StoryBoard.money.instantiateViewController(withIdentifier: VCIdentifier.createNewEthWalletViewController) as? CreateNewEthWalletViewController else {return}
+            viewController.navigationController?.pushViewController(createNewEthWalletViewController, animated: true)
             break
             
         case .paymon?:
@@ -63,7 +64,8 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
             break
             
         case .ethereum?:
-            // Restore Ethereum wallet code
+            guard let restoreEthViewController = StoryBoard.ethereum.instantiateViewController(withIdentifier: VCIdentifier.restoreEthViewController) as? RestoreEthViewController else {return}
+            viewController.navigationController?.pushViewController(restoreEthViewController, animated: true)
             break
             
         case .paymon?:

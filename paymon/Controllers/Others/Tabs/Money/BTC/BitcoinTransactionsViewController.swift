@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransactionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BitcoinTransactionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var navigationBar: UINavigationBar!
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var transactionsTableView: UITableView!
@@ -16,8 +16,8 @@ class TransactionsViewController: UIViewController, UITableViewDelegate, UITable
     private var updateBtcTransactions: NSObjectProtocol!
     private var updateTransactions : NSObjectProtocol!
 
-    var transactions : [BitcoinTransaction] = []
-    var transactionsShow : [BitcoinTransaction] = []
+    var transactions : [Transaction] = []
+    var transactionsShow : [Transaction] = []
     
     @IBAction func filterClick(_ sender: Any) {
         let filterMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -74,7 +74,7 @@ class TransactionsViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         updateTransactions = NotificationCenter.default.addObserver(forName: .updateTransaction, object: nil, queue: OperationQueue.main ){ notification in
-            if let transactions = notification.object as? [BitcoinTransaction] {
+            if let transactions = notification.object as? [Transaction] {
                 self.transactions = transactions
                 self.transactionsShow = transactions
                 

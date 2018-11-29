@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MBProgressHUD
 
 class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDelegate {
     
@@ -81,7 +82,34 @@ class ForgotPasswordChangeViewController: PaymonViewController, UITextFieldDeleg
             repeatPassword.shake()
             return
         } else {
-           UserManager.shared.setNewPassword(loginOrEmail: self.emailValue, code: self.codeValue, password: password, vc: self)
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            UserManager.shared.setNewPassword(loginOrEmail: self.emailValue, code: self.codeValue, password: password) { isGot in
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
+                if isGot {
+                    let alertSuccess = UIAlertController(title: "New password".localized, message: "Password changed successfully".localized, preferredStyle: UIAlertController.Style.alert)
+                    
+                    alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+                        self.navigationController?.popToViewController((self.navigationController?.viewControllers[1])!, animated: true)
+                    }))
+                    
+                    DispatchQueue.main.async {
+                        self.present(alertSuccess, animated: true) {
+                            () -> Void in
+                        }
+                    }
+                } else {
+                    print("code is false")
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                        
+                        _ = SimpleOkAlertController.init(title: "New password".localized, message: "You entered an invalid recovery code".localized, vc: self)
+                    }
+                }
+            }
 
         }
         

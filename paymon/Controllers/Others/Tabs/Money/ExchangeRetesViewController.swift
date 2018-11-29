@@ -18,15 +18,19 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
     
     var exchangeRates : [ExchangeRate] = []
     
-    private var updateRates : NSObjectProtocol!
-    
     @IBAction func updateClick(_ sender: Any) {
         exchangeRates.removeAll()
         DispatchQueue.main.async {
             self.ratesTableView.reloadData()
             self.loading.startAnimating()
         }
-        ExchangeRateParser.shared.parseAllExchangeRates()
+        ExchangeRateParser.shared.parseAllExchangeRates() { result in
+            self.exchangeRates = result
+            DispatchQueue.main.async {
+                self.ratesTableView.reloadData()
+                self.loading.stopAnimating()
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -44,20 +48,13 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        updateRates = NotificationCenter.default.addObserver(forName: .updateRates, object: nil, queue: OperationQueue.main ){ notification in
-            
-            if let exchangeRates = notification.object as? [ExchangeRate] {
-                self.exchangeRates = exchangeRates
-                
-                DispatchQueue.main.async {
-                    self.ratesTableView.reloadData()
-                    self.loading.stopAnimating()
-                }
+        ExchangeRateParser.shared.parseAllExchangeRates() { result in
+            self.exchangeRates = result
+            DispatchQueue.main.async {
+                self.ratesTableView.reloadData()
+                self.loading.stopAnimating()
             }
         }
-        ExchangeRateParser.shared.parseAllExchangeRates()
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -86,9 +83,5 @@ class ExchangeRetesViewController: PaymonViewController, UITableViewDelegate, UI
         
         return cell
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(updateRates)
     }
 }

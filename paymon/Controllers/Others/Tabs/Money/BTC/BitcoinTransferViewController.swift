@@ -32,7 +32,6 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     @IBOutlet weak var crypto: UITextField!
     @IBOutlet weak var yourWalletBalance: UILabel!
     
-    private var getCourse : NSObjectProtocol!
     private var setBtcAddress : NSObjectProtocol!
     
     let toSatoshi:Double! = 100000000.0
@@ -81,7 +80,14 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        ExchangeRateParser.shared.parseCourse(crypto: Money.btc, fiat: User.currencyCode)
+        ExchangeRateParser.shared.parseCourse(crypto: Money.btc, fiat: User.currencyCode) { result in
+            self.course = result
+            
+            DispatchQueue.main.async {
+                self.loading.stopAnimating()
+                self.showAmountAndInfoView()
+            }
+        }
     }
     
     func getYourWalletInfo() {
@@ -113,18 +119,6 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        getCourse = NotificationCenter.default.addObserver(forName: .getCourse, object: nil, queue: OperationQueue.main ){ notification in
-            
-            if let course = notification.object as? Double {
-                self.course = course
-                
-                DispatchQueue.main.async {
-                    self.loading.stopAnimating()
-                    self.showAmountAndInfoView()
-                }
-            }
-        }
         
         setBtcAddress = NotificationCenter.default.addObserver(forName: .setBtcAddress, object: nil, queue: OperationQueue.main ){ notification in
             
@@ -174,7 +168,7 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         self.fiatHint.text = User.currencyCode
         self.fiat.placeholder = User.currencyCode
         self.feeHint.text = "Network fee".localized
-        self.fee.placeholder = "BTC"
+        self.fee.placeholder = Money.btc
         self.feeSwitch.onTintColor = UIColor.AppColor.Blue.primaryBlue
         
         self.send.isEnabled = false
@@ -252,11 +246,11 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         
         if Decimal(cryptoValue * toSatoshi + feeValue) < BitcoinManager.shared.balanceSatoshi {
 
-            let transferInfoVC = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.transferInformationViewController) as! TransferInformationViewController
+            let transferInfoVC = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.ethereumTransferInformationViewController) as! EthereumTransferInformationViewController
             transferInfoVC.toAddress = toAddress
             transferInfoVC.balanceValue = yourWalletBalanceValue
             transferInfoVC.amountToSend = cryptoValue * toSatoshi
-            transferInfoVC.feeToSend = feeValue
+//            transferInfoVC.feeToSend = feeValue
             transferInfoVC.course = course
 
             self.navigationController?.pushViewController(transferInfoVC, animated: true)
@@ -313,22 +307,6 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
         self.view.layoutIfNeeded()
     }
     
-    @IBAction func unWindQrScan(_ segue: UIStoryboardSegue) {
-        
-        guard let qrScanVC = segue.source as? QRScannerViewController else {return}
-        
-        if !qrScanVC.result.isEmpty {
-        
-        addressIsNotEmpty = qrScanVC.resultValid
-
-            DispatchQueue.main.async {
-                self.address.text = qrScanVC.result
-                self.showSendButton()
-            }
-        }
-        
-    }
-    
     @objc func handleKeyboard(notification: NSNotification) {
         
         if let userInfo = notification.userInfo {
@@ -343,9 +321,5 @@ class BitcoinTransferViewController: PaymonViewController, UITextFieldDelegate {
                             self.view.layoutIfNeeded()
             }, completion: nil)
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(getCourse)
     }
 }

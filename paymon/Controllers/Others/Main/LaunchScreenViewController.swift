@@ -28,10 +28,15 @@ class LaunchScreenViewController : UIViewController {
     
     func showMainController() {
         print("ShowMainController")
-        guard let window = UIApplication.shared.delegate?.window else {return}
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Cant change state main controller")
+            return
+        }
+        print("change state main controller")
+
         DispatchQueue.main.async {
-            window!.rootViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.mainNavigationController)
-            window!.makeKeyAndVisible()
+            appDelegate.window?.rootViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.mainNavigationController)
+            appDelegate.window?.makeKeyAndVisible()
         }
         
     }

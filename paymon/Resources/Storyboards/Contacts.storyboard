@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d9Y-rJ-bfM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d9Y-rJ-bfM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -174,7 +174,7 @@
                         <outlet property="inviteFriends" destination="1bY-4w-FSb" id="hCo-zc-V8K"/>
                         <outlet property="inviteFriendsView" destination="n5D-N9-XmL" id="iLr-zd-viw"/>
                         <outlet property="searchBar" destination="qhX-7A-ngb" id="mag-m6-vLc"/>
-                        <segue destination="bKH-rf-xnn" kind="show" id="fny-Hz-O0Y"/>
+                        <segue destination="bKH-rf-xnn" kind="show" identifier="ContactDetailViewController" id="fny-Hz-O0Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ji9-xC-APK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -304,8 +304,8 @@
     </scenes>
     <resources>
         <image name="Contacts" width="32" height="32"/>
-        <image name="Group" width="42" height="42"/>
-        <image name="NonPhoto" width="256" height="256"/>
-        <image name="Phone" width="32" height="32"/>
+        <image name="Group" width="68" height="68"/>
+        <image name="NonPhoto" width="512" height="512"/>
+        <image name="Phone" width="48" height="48"/>
     </resources>
 </document>

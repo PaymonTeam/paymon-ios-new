@@ -64,7 +64,7 @@ class ChatsViewController: PaymonViewController, UISearchBarDelegate, ListSectio
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        allChats.removeObserver(self)
+//        allChats.removeObserver(self)
     }
     
     func setChats() {
@@ -91,9 +91,7 @@ class ChatsViewController: PaymonViewController, UISearchBarDelegate, ListSectio
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatsData>, didInsertObject object: ChatsData, toIndexPath indexPath: IndexPath) {
-//        DispatchQueue.main.async {
-            self.chatsTable.insertRows(at: [indexPath], with: .none)
-//        }
+        self.chatsTable.insertRows(at: [indexPath], with: .none)
     }
     
     func listMonitor(_ monitor: ListMonitor<ChatsData>, didDeleteObject object: ChatsData, fromIndexPath indexPath: IndexPath) {

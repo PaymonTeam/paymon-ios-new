@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MBProgressHUD
 
 class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     
@@ -22,8 +23,6 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBOutlet weak var topStackTextFields: UIView!
     @IBOutlet weak var stackTextFields: UIView!
-    private var disableSignUpButtons: NSObjectProtocol!
-    private var enableSignUpButtons: NSObjectProtocol!
     
     var canSignUp = false
     
@@ -39,18 +38,6 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     let whiteLight = UIColor.white.withAlphaComponent(0.15)
     
     override func viewDidLoad() {
-        
-        disableSignUpButtons = NotificationCenter.default.addObserver(forName: .disableSignUpButtons, object: nil, queue: nil) {
-            notification in
-            
-            self.updateButtons(canSignUp: false)
-        }
-        
-        enableSignUpButtons = NotificationCenter.default.addObserver(forName: .enableSignUpButtons, object: nil, queue: nil) {
-            notification in
-            
-            self.updateButtons(canSignUp: true)
-        }
         
         self.view.addUIViewBackground(name: "MainBackground")
         
@@ -167,7 +154,40 @@ class SignUpViewController: PaymonViewController, UITextFieldDelegate {
     
     @IBAction func signUpClick(_ sender: Any) {
         if (canSignUp) {
-            UserManager.shared.signUpNewUser(login: loginValue, password: passwordValue, email: emailValue, viewController: self)
+            let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+            self.updateButtons(canSignUp: false)
+
+            UserManager.shared.signUpNewUser(login: loginValue, password: passwordValue, email: emailValue) { isRegistered in
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+
+                if isRegistered {
+                    let alertSuccess = UIAlertController(title: "Registration was successful".localized, message: "Congratulations, you have successfully registered. Account activation sent to your email. Confirm account and log in.".localized, preferredStyle: UIAlertController.Style.alert)
+                    
+                    alertSuccess.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+                        self.navigationController?.popViewController(animated: true)
+                    }))
+                    
+                    DispatchQueue.main.async {
+                        self.present(alertSuccess, animated: true) {
+                            () -> Void in
+                        }
+                    }
+                } else {
+                    let alertError = UIAlertController(title: "Registration Failed".localized, message: "Such login or email is already in use".localized, preferredStyle: UIAlertController.Style.alert)
+                    let alertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+                        self.updateButtons(canSignUp: true)
+                    })
+                    
+                    alertError.addAction(alertAction)
+                    DispatchQueue.main.async {
+                        self.present(alertError, animated: true) {
+                            () -> Void in
+                        }
+                    }
+                }
+            }
         }
     }
 }

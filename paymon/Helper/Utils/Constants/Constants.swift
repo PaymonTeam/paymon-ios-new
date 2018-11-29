@@ -65,7 +65,7 @@ struct VCIdentifier {
     static let qrScanViewController = "QRScannerViewController"
     static let keysViewController = "KeysViewController"
     
-    static let transferInformationViewController = "TransferInformationViewController"
+    static let ethereumTransferInformationViewController = "EthereumTransferInformationViewController"
     static let chatViewController = "ChatViewController"
     
     static let contactDetailViewController = "ContactDetailViewController"
@@ -75,9 +75,16 @@ struct VCIdentifier {
     static let passcodeViewController = "PasscodeViewController"
     static let mainNavigationController = "MainNavigationController"
     static let createNewBtcWalletViewController = "CreateNewBtcWalletViewController"
+    static let createNewEthWalletViewController = "CreateNewEthWalletViewController"
+
     static let backupBtcWalletViewController = "BackupBtcWalletViewController"
+    static let backupEthWalletViewController = "BackupEthWalletViewController"
+    
     static let restoreBtcViewController = "RestoreBtcViewController"
-   
+    static let restoreEthViewController = "RestoreEthViewController"
+    
+    static let paymentSuccessViewController = "PaymentSuccessViewController"
+
 }
 
 struct UserDefaultKey {
@@ -96,9 +103,13 @@ struct UserDefaultKey {
     static let BITCOIN_PRIVATE_KEY = "bitcoin_private_key_"
     static let CURRENCY_CODE = "currency_code_"
     static let SYMB_COUNT = "symb_count_"
-    static let PASSWORD_WALLET = "password_wallet_"
+    static let PASSWORD_BTC_WALLET = "password_btc_wallet_"
+    static let PASSWORD_ETH_WALLET = "password_eth_wallet_"
+
     static let ROW_SEED_FOR_BACKUP = "row_seed_for_backup_"
     static let IS_BTC_WALLET_BACKUP = "is_btc_wallet_backup_"
+    static let IS_ETH_WALLET_BACKUP = "is_eth_wallet_backup_"
+
 
 }
 
@@ -148,19 +159,31 @@ struct Money {
     static let pmncIcon = "PmncIcon"
     
     static let BITCOIN_WALLET_QR_REGEX = "(^(bitcoin:)?(BITCOIN:-)?[13][a-zA-Z0-9]{25,34}$)$"
-    static let BITCOIN_WALLET_REGEX = "(^[13][a-zA-Z0-9]{25,34}$)$"
-    
+    static let ETHEREUM_WALLET_QR_REGEX = "(^(ethereum:)?(ETHEREUM:-)?0x[a-fA-F0-9]{40,44}$)$"
+
+    static let BITCOIN_WALLET_REGEX = "^[13][a-zA-Z0-9]{25,34}$"
+    static let ETHEREUM_WALLET_REGEX = "^0x[a-fA-F0-9]{40,44}$"
+    static let fromWei = 1000000000000000000.0
+    static let fromGwei : Double = 1000000000.0
+}
+
+struct Transaction {
+    var type : TransactionType
+    var from : String
+    var amount : String
+    var time : String
+    var avatar : UIImage
 }
 
 struct StoryBoard {
     static let main = UIStoryboard(name: "Main", bundle: Bundle.main)
-    static let ethur = UIStoryboard(name: "Ethur", bundle: Bundle.main)
     static let tabs = UIStoryboard(name: "Tabs", bundle: Bundle.main)
     static let user = UIStoryboard(name: "User", bundle: Bundle.main)
     static let forgotPassword = UIStoryboard(name: "ForgotPassword", bundle: Bundle.main)
     static let money = UIStoryboard(name: "Money", bundle: Bundle.main)
     static let chat = UIStoryboard(name: "Chats", bundle: Bundle.main)
     static let bitcoin = UIStoryboard(name: "Bitcoin", bundle: Bundle.main)
+    static let ethereum = UIStoryboard(name: "Ethereum", bundle: Bundle.main)
     static let contacts = UIStoryboard(name: "Contacts", bundle: Bundle.main)
     static let passcode = UIStoryboard(name: "Passcode", bundle: Bundle.main)
 }

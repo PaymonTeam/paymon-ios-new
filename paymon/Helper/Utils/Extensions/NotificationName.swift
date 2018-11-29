@@ -42,9 +42,11 @@ extension Notification.Name {
     static let updateCharts = Notification.Name(rawValue: "updateCharts")
     static let setMainController = Notification.Name(rawValue: "setMainController")
     static let endUpdateChats = Notification.Name(rawValue: "endUpdateChats")
-    static let walletChanged = Notification.Name(rawValue: "walletChanged")
-    static let walletWasCreated = Notification.Name(rawValue: "walletWasCreated")
-    static let updateBtcBalance = Notification.Name(rawValue: "updateBtcBalance")
+    
+    static let updateBalance = Notification.Name(rawValue: "updateBalance")
     static let updateBtcTransactions = Notification.Name(rawValue: "updateBtcTransactions")
+    
+    static let ethWalletWasCreated = Notification.Name(rawValue: "ethwalletWasCreated")
+    static let updateEthTransactions = Notification.Name(rawValue: "updateEthTransactions")
 
 }

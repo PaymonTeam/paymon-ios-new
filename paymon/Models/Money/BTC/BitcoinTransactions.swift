@@ -9,18 +9,10 @@
 import Foundation
 import UIKit
 
-struct BitcoinTransaction {
-    var type : TransactionType
-    var from : String
-    var amount : String
-    var time : String
-    var avatar : UIImage
-}
-
 class BitcoinTransactions {
     
     public class func getTransactions(){
-        var result : [BitcoinTransaction] = []
+        let result : [Transaction] = []
         
 //        for tx in BitcoinManager.shared.transactions {
 //            

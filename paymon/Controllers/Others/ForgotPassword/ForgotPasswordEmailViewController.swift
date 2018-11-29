@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MBProgressHUD
 
 class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelegate {
     
@@ -51,7 +52,30 @@ class ForgotPasswordEmailViewController: PaymonViewController, UITextFieldDelega
             loginOrEmail.shake()
             return
         } else {
-            UserManager.shared.sendCodeRecoveryToEmail(vc: self, loginOrEmail: loginOrEmailString)
+            DispatchQueue.main.async {
+                let _ = MBProgressHUD.showAdded(to: self.view, animated: true)
+            }
+            UserManager.shared.sendCodeRecoveryToEmail(loginOrEmail: loginOrEmailString) { isSent, error in
+                DispatchQueue.main.async {
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                }
+                
+                if isSent {
+                    let forgotPasswordCodeViewController = StoryBoard.forgotPassword.instantiateViewController(withIdentifier: VCIdentifier.forgotPasswordCodeViewController) as! ForgotPasswordCodeViewController
+                    
+                    forgotPasswordCodeViewController.emailValue = loginOrEmailString
+                    
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(forgotPasswordCodeViewController, animated: true)
+                    }
+                } else {
+                    if error == 27 {
+                        _ = SimpleOkAlertController.init(title: "Recovery password".localized, message: "This login or e-mail address is not exist".localized, vc: self)
+                    } else {
+                        _ = SimpleOkAlertController.init(title: "Recovery password".localized, message: "An error occurred while sending the recovery code".localized, vc: self)
+                    }
+                }
+            }
         }
         
     }

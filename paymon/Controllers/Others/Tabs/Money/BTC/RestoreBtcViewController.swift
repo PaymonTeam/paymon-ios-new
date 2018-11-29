@@ -31,10 +31,10 @@ class RestoreBtcViewController: UIViewController {
     override func viewDidLoad() {
         setLayoutOptions()
         
-        walletWasCreated = NotificationCenter.default.addObserver(forName: .walletWasCreated, object: nil, queue: nil) {
-            notification in
-            self.walletWasRestore()
-        }
+//        walletWasCreated = NotificationCenter.default.addObserver(forName: , object: nil, queue: nil) {
+//            notification in
+//            self.walletWasRestore()
+//        }
         
         passphrase.delegate = self
     }
@@ -100,7 +100,7 @@ class RestoreBtcViewController: UIViewController {
     }
     
     func walletWasRestore() {
-        User.savePasswordWallet(password: password)
+        User.saveBtcPasswordWallet(password: password)
         User.saveSeed(rowSeed: rowForRestore)
         DispatchQueue.main.async {
             MBProgressHUD.hide(for: self.view, animated: true)
@@ -111,17 +111,17 @@ class RestoreBtcViewController: UIViewController {
 
 extension RestoreBtcViewController: UITextViewDelegate {
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        
-        if textView.textColor == UIColor.white.withAlphaComponent(0.4) {
-            textView.text = ""
-            textView.textColor = UIColor.white.withAlphaComponent(0.8)
-        }
-    }
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "Enter passphrase".localized
-            textView.textColor = UIColor.white.withAlphaComponent(0.4)
-        }
-    }
+//    func textViewDidBeginEditing(_ textView: UITextView) {
+//        
+//        if textView.textColor == UIColor.white.withAlphaComponent(0.4) {
+//            textView.text = ""
+//            textView.textColor = UIColor.white.withAlphaComponent(0.8)
+//        }
+//    }
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if textView.text.isEmpty {
+//            textView.text = "Enter passphrase".localized
+//            textView.textColor = UIColor.white.withAlphaComponent(0.4)
+//        }
+//    }
 }

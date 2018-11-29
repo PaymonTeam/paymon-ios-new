@@ -12,6 +12,7 @@ class CryptoManager {
     
     static let shared = CryptoManager()
     var btcInfoIsLoaded = false
+    var ethInfoIsLoaded = false
     
     func getPaymonWalletInfo() -> CellMoneyData {
         
@@ -38,15 +39,11 @@ class CryptoManager {
     
     func getEthereumWalletInfo() -> CellMoneyData {
         
-        let ethereumData : CellCreatedMoneyData
-        let userHaveEtherWallet = true
+        let ethereumData = CellCreatedMoneyData()
         
-        if (userHaveEtherWallet) {
-        
-            ethereumData = CellCreatedMoneyData()
-            /*Block for test. Here we get ethereum wallet info*/
-            ethereumData.currancyAmount = 4.523
-            ethereumData.fiatAmount = 23552.98
+        if EthereumManager.shared.sender != nil {
+            ethereumData.currancyAmount = EthereumManager.shared.cryptoBalance
+            ethereumData.fiatAmount = EthereumManager.shared.fiatBalance
             ethereumData.cryptoHint = Money.eth
             ethereumData.icon = Money.ethIcon
             ethereumData.fiatHint = User.currencyCode
@@ -54,8 +51,6 @@ class CryptoManager {
             ethereumData.cryptoColor = UIColor.AppColor.Gray.ethereum
             ethereumData.cryptoType = .ethereum
             return ethereumData
-            /*******************/
-
         } else {
             return self.getNotCreatedData(cryptoType: .ethereum)
         }
@@ -77,8 +72,8 @@ class CryptoManager {
             }
         
             if User.currentUser != nil {
-                bitcoinData.currancyAmount = BitcoinManager.shared.balance
-                bitcoinData.fiatAmount = BitcoinManager.shared.fiatBalance
+//                bitcoinData.currancyAmount = BitcoinManager.shared.balance
+//                bitcoinData.fiatAmount = BitcoinManager.shared.fiatBalance
                 bitcoinData.cryptoHint = Money.btc
                 bitcoinData.icon = Money.btcIcon
                 bitcoinData.fiatHint = User.currencyCode
@@ -116,20 +111,35 @@ class CryptoManager {
         return wallet.matches(Money.BITCOIN_WALLET_QR_REGEX)
     }
     
-    func cutBitcoinWallet(scan : String) -> String{
+    func checkEthereumWallet(wallet : String) -> Bool {
+        return wallet.matches(Money.ETHEREUM_WALLET_QR_REGEX)
+    }
+    
+    
+    func cutWallet(scan : String, currency : String) -> String{
         
         var cutString = ""
         let parts = scan.components(separatedBy: ":")
         
-        if checkBitcoinWallet(wallet: scan) {
-            if parts.count == 2 {
-                cutString = parts[1].replacingOccurrences(of: "-", with: "")
-            } else {
-                cutString = scan
+        if currency == Money.btc {
+            if checkBitcoinWallet(wallet: scan) {
+                if parts.count == 2 {
+                    cutString = parts[1].replacingOccurrences(of: "-", with: "")
+                } else {
+                    cutString = scan
+                }
+            }
+        } else if currency == Money.eth {
+            if checkEthereumWallet(wallet: scan) {
+                if parts.count == 2 {
+                    cutString = parts[1].replacingOccurrences(of: "-", with: "")
+                } else {
+                    cutString = scan
+                }
             }
         }
-        
         return cutString
+
     }
     
 }

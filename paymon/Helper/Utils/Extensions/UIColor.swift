@@ -34,19 +34,20 @@ extension UIColor {
             static let primaryBlueLight = UIColor(netHex: 0x55b0d2)
             static let primaryBlueWhite = UIColor(netHex: 0x55b5ff)
             static let primaryBlueUltraLight = UIColor(netHex: 0xeffbff)
-            
 
             static let primaryBlue = UIColor(netHex: 0x0099cc)
             static let paymon = UIColor(netHex: 0x0099cc).withAlphaComponent(0.7)
             
             static let chatBlueBubble = UIColor(netHex: 0xbeefff).withAlphaComponent(1)
+            
+            static let ethereumBalanceLight = UIColor(netHex: 0xa0c8ff)
+            static let ethereumBalanceDark = UIColor(netHex: 0x49adff)
         }
         
         struct Orange {
             static let bitcoin = UIColor(netHex: 0xf5a623).withAlphaComponent(0.7)
             static let bitcoinBalanceLight = UIColor(netHex: 0xffd7a0)
             static let bitcoinBalanceDark = UIColor(netHex: 0xffc633)
-
         }
         
         struct Black {

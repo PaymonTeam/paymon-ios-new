@@ -14,12 +14,12 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var moneyTableView: UITableView!
     private var walletWasCreated: NSObjectProtocol!
-    private var updateBtcBalance: NSObjectProtocol!
+    private var updateBalance: NSObjectProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ExchangeRateParser.shared.parseCourseForWallet(crypto: Money.btc, fiat: User.currencyCode)
+        ExchangeRateParser.shared.parseCourseForWallet(crypto: Money.eth, fiat: User.currencyCode)
 
         moneyTableView.delegate = self
         moneyTableView.dataSource = self
@@ -35,7 +35,7 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(walletWasCreated)
-        NotificationCenter.default.removeObserver(updateBtcBalance)
+        NotificationCenter.default.removeObserver(updateBalance)
     }
     
     func getWalletsInfo() {
@@ -55,15 +55,15 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         getWalletsInfo()
-        walletWasCreated = NotificationCenter.default.addObserver(forName: .walletWasCreated, object: nil, queue: nil) {
+        walletWasCreated = NotificationCenter.default.addObserver(forName: .ethWalletWasCreated, object: nil, queue: nil) {
             notification in
-//            Utils.showSuccesHud(vc: self)
 
             self.getWalletsInfo()
         }
         
-        updateBtcBalance = NotificationCenter.default.addObserver(forName: .updateBtcBalance, object: nil, queue: nil) {
+        updateBalance = NotificationCenter.default.addObserver(forName: .updateBalance, object: nil, queue: nil) {
             notification in
+            print("update balance")
             self.getWalletsInfo()
         }
     }
@@ -97,6 +97,15 @@ class MoneyViewController: PaymonViewController, UITableViewDelegate, UITableVie
                     if CryptoManager.shared.btcInfoIsLoaded {
                         guard let bitcoinWalletNavigationController = StoryBoard.bitcoin.instantiateInitialViewController() as? PaymonNavigationController else {return}
                         self.navigationController?.present(bitcoinWalletNavigationController, animated: true, completion: nil)
+                    }
+                case .ethereum?:
+                    if CryptoManager.shared.ethInfoIsLoaded {
+                        guard let ethereumWalletNavigationController = StoryBoard.ethereum.instantiateInitialViewController() as? PaymonNavigationController else {return}
+                        DispatchQueue.main.async {
+                            self.navigationController?.present(ethereumWalletNavigationController, animated: true, completion: nil)
+                        }
+                    } else {
+                        print("eth info dont loaded")
                     }
                 default:
                     break

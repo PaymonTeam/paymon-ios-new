@@ -20,10 +20,14 @@ class User {
     public static var userId : String = ""
     public static var currencyCode : String = "USD"
     public static var currencyCodeSymb : String = "$"
-    public static var passwordWallet : String = ""
+    public static var passwordBtcWallet : String = ""
+    public static var passwordEthWallet : String = ""
+
     public static var symbCount : Int32 = 2
     public static var rowSeed : String = ""
     public static var isBackupBtcWallet : Bool = false
+    public static var isBackupEthWallet : Bool = false
+
     
     public static func saveConfig() {
         if currentUser != nil {
@@ -45,7 +49,6 @@ class User {
 
         print("load config")
         if currentUser == nil {
-            print("current user == nil")
 
             if let retrievedString = KeychainWrapper.standard.string(forKey: "user", withAccessibility: KeychainItemAccessibility.always) {
                 let data = Data(base64Encoded: retrievedString)
@@ -57,7 +60,6 @@ class User {
                         stream!.close()
                         return
                     } else {
-                        print("load config user nil")
                         currentUser = nil
                         stream!.close()
                         return
@@ -68,22 +70,16 @@ class User {
                     return
                 }
             } else {
-                print("Keychain has not user")
                 guard let window = UIApplication.shared.delegate?.window else {return}
                 window!.rootViewController = StoryBoard.main.instantiateViewController(withIdentifier: VCIdentifier.mainNavigationController)
                 return
             }
         } else {
-            print("current user != nil")
             self.setUserSettings()
             if !CacheManager.isAddedStorage {
                 print("init")
                 CacheManager.shared.initDb()
             }
-//            let keychain = Keychain()
-//            if let seed = keychain.get(for: "seed_\(String(describing: User.currentUser.id))") {
-//                BitcoinManager.shared.startSync()
-//            }
         }
     }
     
@@ -99,16 +95,21 @@ class User {
     public static func setUserSettings() {
         self.userId = String(currentUser.id)
         
+        isBackupEthWallet = KeychainWrapper.standard.bool(forKey: UserDefaultKey.IS_ETH_WALLET_BACKUP + userId) ?? false
         isBackupBtcWallet = KeychainWrapper.standard.bool(forKey: UserDefaultKey.IS_BTC_WALLET_BACKUP + userId) ?? false
         rowSeed = KeychainWrapper.standard.string(forKey: UserDefaultKey.ROW_SEED_FOR_BACKUP + userId) ?? ""
-        passwordWallet = KeychainWrapper.standard.string(forKey: UserDefaultKey.PASSWORD_WALLET + userId) ?? ""
+        passwordBtcWallet = KeychainWrapper.standard.string(forKey: UserDefaultKey.PASSWORD_BTC_WALLET + userId) ?? ""
+        passwordEthWallet = KeychainWrapper.standard.string(forKey: UserDefaultKey.PASSWORD_ETH_WALLET + userId) ?? ""
         currencyCode = KeychainWrapper.standard.string(forKey: UserDefaultKey.CURRENCY_CODE + userId) ?? "USD"
         setCurrencyCodeSymb()
         symbCount = Int32(KeychainWrapper.standard.integer(forKey: UserDefaultKey.SYMB_COUNT + userId) ?? 2)
         timeFormatIs24 = KeychainWrapper.standard.bool(forKey: UserDefaultKey.TIME_FORMAT + userId) ?? true
         securityPasscode = KeychainWrapper.standard.bool(forKey: UserDefaultKey.SECURITY_PASSCODE + userId) ?? false
         securityPasscodeValue = KeychainWrapper.standard.string(forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId) ?? ""
-        ExchangeRateParser.shared.parseCourseForWallet(crypto: Money.btc, fiat: currencyCode)
+        
+//        ExchangeRateParser.shared.parseCourseForWallet(crypto: Money.btc, fiat: currencyCode)
+        EthereumManager.shared.initWallet()
+
     }
     
     public static func savePasscode(passcodeValue : String, setPasscode : Bool) {
@@ -134,9 +135,9 @@ class User {
         KeychainWrapper.standard.set(Int(symbCount), forKey: UserDefaultKey.SYMB_COUNT + userId)
     }
     
-    public static func savePasswordWallet(password : String) {
-        self.passwordWallet = password
-        KeychainWrapper.standard.set(password, forKey: UserDefaultKey.PASSWORD_WALLET + userId)
+    public static func saveBtcPasswordWallet(password : String) {
+        self.passwordBtcWallet = password
+        KeychainWrapper.standard.set(password, forKey: UserDefaultKey.PASSWORD_BTC_WALLET + userId)
     }
     
     public static func saveSeed(rowSeed : String) {
@@ -152,6 +153,25 @@ class User {
         KeychainWrapper.standard.removeObject(forKey: UserDefaultKey.ROW_SEED_FOR_BACKUP + userId)
         KeychainWrapper.standard.set(true, forKey: UserDefaultKey.IS_BTC_WALLET_BACKUP + userId)
     }
+    
+    public static func saveEthPasswordWallet(password : String) {
+        self.passwordEthWallet = password
+        self.isBackupEthWallet = false
+        KeychainWrapper.standard.set(password, forKey: UserDefaultKey.PASSWORD_ETH_WALLET + userId)
+    }
+    
+    public static func backUpEthWallet() {
+        self.isBackupEthWallet = true
+        KeychainWrapper.standard.set(true, forKey: UserDefaultKey.IS_ETH_WALLET_BACKUP + userId)
+    }
+    
+    public static func deleteEthWallet() {
+        self.isBackupEthWallet = false
+        self.passwordEthWallet = ""
+        KeychainWrapper.standard.set(false, forKey: UserDefaultKey.IS_ETH_WALLET_BACKUP + userId)
+        KeychainWrapper.standard.set("", forKey: UserDefaultKey.PASSWORD_ETH_WALLET + userId)
+    }
+    
 
     public static func clearConfig() {
         isAuthenticated = false
@@ -164,9 +184,12 @@ class User {
         securityPasscodeValue = ""
         timeFormatIs24 = true
         currencyCode = "USD"
-        passwordWallet = ""
+        passwordBtcWallet = ""
+        passwordEthWallet = ""
         symbCount = 2
         rowSeed = ""
+        isBackupEthWallet = false
+        isBackupBtcWallet = false
         CacheManager.shared.removeDb()
         saveConfig()
     }

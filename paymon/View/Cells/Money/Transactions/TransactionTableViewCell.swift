@@ -22,7 +22,7 @@ class TransactionTableViewCell: UITableViewCell {
         lineHeight.constant = 0.5
     }
     
-    func configure(data: BitcoinTransaction) {
+    func configure(data: Transaction) {
         self.avatar.image = data.avatar
         self.amount.text = data.amount
         self.time.text = data.time

@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import BRCore.Ethereum
 
 class RPC {
     public static let SVUID_ARRAY:Int32 = 1550732454;

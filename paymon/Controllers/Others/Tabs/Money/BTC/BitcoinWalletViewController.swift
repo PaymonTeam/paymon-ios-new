@@ -84,12 +84,12 @@ class BitcoinWalletViewController: PaymonViewController {
             self.needBackUpHeight.constant = !User.isBackupBtcWallet ? 40 : 0
         }
         
-        walletWasCreated = NotificationCenter.default.addObserver(forName: .walletWasCreated, object: nil, queue: nil) {
+        walletWasCreated = NotificationCenter.default.addObserver(forName: .ethWalletWasCreated, object: nil, queue: nil) {
             notification in
             self.dismiss(animated: true, completion: nil)
         }
         
-        updateBtcBalance = NotificationCenter.default.addObserver(forName: .updateBtcBalance, object: nil, queue: nil) {
+        updateBtcBalance = NotificationCenter.default.addObserver(forName: .updateBalance, object: nil, queue: nil) {
             notification in
             DispatchQueue.main.async {
                 self.cryptoBalance.text = String(format: "%.\(User.symbCount)f", BitcoinManager.shared.balance.double)

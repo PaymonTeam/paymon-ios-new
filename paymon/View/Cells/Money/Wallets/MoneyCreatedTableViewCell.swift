@@ -43,12 +43,12 @@ class MoneyCreatedTableViewCell: UITableViewCell {
     
     func configure(data: CellCreatedMoneyData) {
         self.icon.image = UIImage(named: data.icon)
-        self.cryptoAmount.text = String(format: "%.\(User.symbCount)f", data.currancyAmount.double)
-        self.fiatAmount.text = String(format: "%.2f", data.fiatAmount.double)
+        self.cryptoAmount.text = String(format: "%.\(User.symbCount)f", data.currancyAmount)
+        self.fiatAmount.text = String(format: "%.2f", data.fiatAmount)
         self.cryptoHint.text = data.cryptoHint
         self.fiatHint.text = data.fiatHint
         self.cryptoType = data.cryptoType
-        showBalance(cryptoType: data.cryptoType)
+//        showBalance(cryptoType: data.cryptoType)
         self.cryptoHint.textColor = data.cryptoColor
         self.cryptoAmount.textColor = data.cryptoColor
         self.fiatHint.textColor = data.fiatColor
@@ -56,22 +56,36 @@ class MoneyCreatedTableViewCell: UITableViewCell {
     }
     
     func showBalance(cryptoType : CryptoType) {
-        if cryptoType == CryptoType.ethereum {
-            return
-        }
-        if cryptoType == CryptoType.bitcoin && CryptoManager.shared.btcInfoIsLoaded {
-            self.download.isHidden = true
-            self.cryptoAmount.isHidden = false
-            self.fiatAmount.isHidden = false
-            self.cryptoHint.isHidden = false
-            self.fiatHint.isHidden = false
-        } else {
-            self.download.isHidden = false
-            self.cryptoAmount.isHidden = true
-            self.fiatAmount.isHidden = true
-            self.cryptoHint.isHidden = true
-            self.fiatHint.isHidden = true
-        }
+//        if cryptoType == CryptoType.ethereum && CryptoManager.shared.ethInfoIsLoaded {
+//            print("show balance eth")
+////            DispatchQueue.main.async {
+//                self.download.isHidden = true
+//                self.cryptoAmount.isHidden = false
+//                self.fiatAmount.isHidden = false
+//                self.cryptoHint.isHidden = false
+//                self.fiatHint.isHidden = false
+////            }
+//        } else {
+//            self.download.isHidden = false
+//            self.cryptoAmount.isHidden = true
+//            self.fiatAmount.isHidden = true
+//            self.cryptoHint.isHidden = true
+//            self.fiatHint.isHidden = true
+//        }
+        
+//        if cryptoType == CryptoType.bitcoin && CryptoManager.shared.btcInfoIsLoaded {
+//            self.download.isHidden = true
+//            self.cryptoAmount.isHidden = false
+//            self.fiatAmount.isHidden = false
+//            self.cryptoHint.isHidden = false
+//            self.fiatHint.isHidden = false
+//        } else {
+//            self.download.isHidden = false
+//            self.cryptoAmount.isHidden = true
+//            self.fiatAmount.isHidden = true
+//            self.cryptoHint.isHidden = true
+//            self.fiatHint.isHidden = true
+//        }
     }
 }
 

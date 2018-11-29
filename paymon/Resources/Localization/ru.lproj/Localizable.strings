@@ -213,10 +213,13 @@
 "Enter old passcode"="Введите старый пароль";
 "Set a password for your wallet"="Установите пароль для вашего кошелька";
 "Enter the password of the wallet"="Введите пароль от кошелька";
+
 "This is address of your Bitcoin wallet. To send to someone, click on QR code."="Это адрес вашего Bitcoin кошелька. Чтобы отправить его кому-либо, нажмите на QR-код.";
 "What to do next?"="Что делать дальше?";
 "To find out the address of your wallet and the QR-code, hold the cell of wallet. \n\n To transfer, deposit or withdraw funds, click on the dell of wallet."="Чтобы узнать адрес вашего кошелька и QR-код, удерживайте ячейку кошелька. \n\n Чтобы перевести, внести или снять средства, щелкните по ячейке кошелька.";
-"Bitcoin wallet"="Биткоин кошелек";
+"Bitcoin wallet"="Bitcoin кошелек";
+"Ethereum wallet"="Ethereum кошелек";
+
 "Received"="Полученные";
 "Sent"="Отправленные";
 "All"="Все";
@@ -239,6 +242,9 @@
 "The passphrase was copied to the clipboard"="Кодовая фраза была скопирована в буфе обмена";
 "I saved the passphrase"="Я сохранил кодовую фразу";
 "We strongly recommend making a backup!"="Мы настоятельно рекомендуем сделать резервную копию!";
+"Backup Ethereum wallet from the Paymon app"="Резерваня копия Ethereum кошелька из приложения Paymon";
+"The file is damaged"="Файл поврежден";
+"An error occurred during recovery"="Во время восстановления произошла ошибка";
 
 /*Money transfer*/
 
@@ -249,6 +255,7 @@
 "Make sure that the purse of the recipient is correct. To do this, click on the icon on the right."="Убедитесь, что кошелек получаетеля введен верно. Для этого нажмите на иконку справа";
 "Failed to generate random seed. Please try again later"="Не удалось создать случайную фразу(seed). Пожалуйста, попробуйте позже";
 "Bitcoin address"="Bitcoin адрес";
+"Ethereum address"="Ethereum адрес";
 "Your wallet"="Ваш кошелек";
 "Send"="Отправить";
 "Transactions list is empty"="Список транзакций пуст";
@@ -260,7 +267,12 @@
 "Total amount"="Конечная сумма";
 "Transfer info"="Информация";
 "Create a password for new Bitcoin wallet"="Придумайте пароль для нового Bitcoin кошелька";
+"Create a password for new Ethereum wallet"="Придумайте пароль для нового Ethereum кошелька";
+"Use this password when recovering your wallet and when sending tokens"="Используйте этот пароль при восстановлении кошелька и при отправке денежных средств";
+
 "New Bitcoin wallet"="Новый Bitcoin кошелек";
+"New Ethereum wallet"="Новый Ethereum кошелек";
+
 "Remove wallet"="Удаление кошелька";
 "Remove"="Удалить";
 "Enter passphrase"="Введите кодовую фразу";
@@ -270,16 +282,35 @@
 "Standart fee"="Стандартная комиссия";
 "Create"="Создать";
 "The minimum fee is 0.00001 BTC"="Минимальная сумма комиссии составляет 0.00001 BTC";
+"The minimum gas limit is 21000 Gwei"="Минимальный gas лимит составляет 21000 Gwei";
 "Before removing your wallet, make sure you back up your wallet"="Перед тем, как удалить кошелек, убедитесь, что вы сделали его резервную копию";
+"Before you restore another wallet, make sure you back up your old wallet."="Перед тем, как восстановить другой кошелек, убедитесь, что вы сделали резервную копию старого кошелька";
+"Backup failed. Try later."="Не удалось выполнить резервное копирование. Попробуйте позднее.";
+"Failed to delete wallet. Try later."="Не удалось выполнить удаление кошелька. Попробуйте позднее.";
+"Download a backup wallet"="Загрузите резервную копию кошелька";
+"Download file"="Загрузить файл";
 "Restore"="Восстановить";
 "Enter the passphrase from the wallet you want to restore"="Введите кодовую фразу от кошелька, который хотите восстановить";
 "The passphrase should consist of 12 words"="Кодовая фраза должна состоять из 12 слов";
+
+"Payment completed successfully"="Перевод выполнен успешно";
+"Return to finance"="Вернуться в финансы";
+"Ethereum transfer"="Ethereum перевод";
+"Failed transfer, try later"="Не удалось сделать перевод, попробуйте позднее";
 
 /*Wllet view controller*/
 
 "Transfer"="Перевод";
 "Deposit"="Пополнение";
 "Withdraw"="Вывод";
+"1 Hour"="1 Час";
+"1 Day"="1 День";
+"1 Week"="1 Неделя";
+"1 Month"="1 Месяц";
+"3 Months"="3 Месяца";
+"6 Months"="6 Месяцев";
+"1 Year"="1 Год";
+
 
 /*Contacts*/
 "Invite to Paymon"="Пригласить в Paymon";

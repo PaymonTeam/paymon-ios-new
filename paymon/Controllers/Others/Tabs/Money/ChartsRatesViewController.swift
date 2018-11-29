@@ -53,7 +53,6 @@ class ChartsRatesViewController: PaymonViewController, UITabBarDelegate, Scrolla
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 0:
-
             ExchangeRatesForChartsParser.shared.parse(urlString: urlHour, interval: ExchangeRatesConst.hour)
         case 1:
             ExchangeRatesForChartsParser.shared.parse(urlString: urlDay, interval: ExchangeRatesConst.day)
@@ -120,7 +119,16 @@ class ChartsRatesViewController: PaymonViewController, UITabBarDelegate, Scrolla
         self.backItem.title = "Back".localized
         
         self.navigationBar.topItem?.title = "\(crypto) - \(fiat)"
+        if let tabItems = self.tabBar.items as [UITabBarItem]? {
+            tabItems[0].title = "1 Hour".localized
+            tabItems[1].title = "1 Day".localized
+            tabItems[2].title = "1 Week".localized
+            tabItems[3].title = "1 Month".localized
+            tabItems[4].title = "3 Months".localized
+            tabItems[5].title = "6 Months".localized
+            tabItems[6].title = "1 Year".localized
 
+        }
     }
     
     func createMultiPlotGraphOne(_ frame: CGRect) -> ScrollableGraphView {

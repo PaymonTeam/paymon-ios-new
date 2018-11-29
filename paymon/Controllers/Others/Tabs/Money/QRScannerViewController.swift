@@ -21,6 +21,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     var result = ""
     var resultValid = false
+    var currency = ""
     
     func failed() {
         let ac = UIAlertController(title: "Scanning not supported", message: "Your device does not support scanning a code from an item. Please use a device with a camera.", preferredStyle: .alert)
@@ -68,10 +69,19 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        guard let btcTransferVC = viewController as? BitcoinTransferViewController else {return}
-        btcTransferVC.address.text = result
-        btcTransferVC.addressIsNotEmpty = resultValid
-
+        if currency == Money.eth {
+            guard let ethTransferVC = viewController as? EthereumTransferViewController else {return}
+            ethTransferVC.address.text = result
+            ethTransferVC.toAddress = result
+            ethTransferVC.addressIsNotEmpty = resultValid
+            ethTransferVC.showSendButton()
+        } else if currency == Money.btc {
+            guard let btcTransferVC = viewController as? BitcoinTransferViewController else {return}
+            btcTransferVC.address.text = result
+            btcTransferVC.toAddress = result
+            btcTransferVC.showSendButton()
+            btcTransferVC.addressIsNotEmpty = resultValid
+        }
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -81,37 +91,11 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                     guard let scan = object.stringValue else {return}
                     
                     session.stopRunning()
-                    result = CryptoManager.shared.cutBitcoinWallet(scan: scan)
-                    
-                        
-//                    } else if scan!.starts(with: QRScan.ETHEREUM_WALLET) {
-//                        result = String(scan!.dropFirst(9))
-//                        delegate?.qrCaptureDidDetect(object: object)
-//
-//                    } else if scan!.starts(with: QRScan.ETHEREUM_WALLET_2) {
-//                        result = String(scan!.dropFirst(1))
-//                        delegate?.qrCaptureDidDetect(object: object)
-//
-//                    } else if scan!.starts(with: QRScan.ETHEREUM_WALLET_3) {
-//                        result = scan!
-//                        delegate?.qrCaptureDidDetect(object: object)
-//
-//                    } else if scan!.starts(with: QRScan.WEB_CONTENT) || scan!.starts(with: QRScan.WEB_CONTENT_2){
-//                        let alert = UIAlertController(title: "Open in browser?".localized, message: scan!, preferredStyle: .alert)
-//                        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .default, handler: { (action) in
-//
-//                        }))
-//                        alert.addAction(UIAlertAction(title: "Open".localized, style: .default, handler: { (nil) in
-//                            UIApplication.shared.open(URL(string: object.stringValue!)! as URL, options: [:], completionHandler: nil)                        }))
-//
-//                        present(alert, animated: true, completion: nil)
-//                    } else {
-
-//                    }
+                    result = CryptoManager.shared.cutWallet(scan: scan, currency: currency)
                     
                     if !result.isEmpty {
                         resultValid = true
-
+                        print("Result valid \(result)")
                         self.navigationController?.popViewController(animated: true)
                     } else {
                         resultValid = false
