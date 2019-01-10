@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sva-xb-Lfc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sva-xb-Lfc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -119,14 +119,29 @@
                                 <color key="textColor" white="1" alpha="0.60384114580000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCw-Qt-GXd">
+                                <rect key="frame" x="171.5" y="72" width="32" height="8"/>
+                                <color key="backgroundColor" white="1" alpha="0.80075620989999996" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="Oja-fa-KiD"/>
+                                    <constraint firstAttribute="height" constant="8" id="eMB-mn-2hA"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Q5s-AT-2eK" firstAttribute="top" secondItem="bsW-lZ-Pu1" secondAttribute="bottom" constant="32" id="01s-c9-p1R"/>
                             <constraint firstItem="bsW-lZ-Pu1" firstAttribute="centerX" secondItem="Q5s-AT-2eK" secondAttribute="centerX" id="5Uk-uQ-dFI"/>
                             <constraint firstItem="VuU-1F-cEg" firstAttribute="centerX" secondItem="NaC-CO-08s" secondAttribute="centerX" id="7J9-fl-guP"/>
+                            <constraint firstItem="sCw-Qt-GXd" firstAttribute="centerX" secondItem="NaC-CO-08s" secondAttribute="centerX" id="HVp-3l-8kU"/>
                             <constraint firstItem="VuU-1F-cEg" firstAttribute="top" secondItem="Q5s-AT-2eK" secondAttribute="bottom" constant="32" id="LZu-jS-7sh"/>
                             <constraint firstItem="VuU-1F-cEg" firstAttribute="centerY" secondItem="NaC-CO-08s" secondAttribute="centerY" constant="40" id="QCz-dp-fSd"/>
+                            <constraint firstItem="sCw-Qt-GXd" firstAttribute="top" secondItem="bLA-5Y-rGK" secondAttribute="top" constant="8" id="hDy-C6-58a"/>
                             <constraint firstItem="Q5s-AT-2eK" firstAttribute="centerX" secondItem="VuU-1F-cEg" secondAttribute="centerX" id="iLi-7H-OSR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bLA-5Y-rGK"/>
@@ -140,6 +155,7 @@
                         <outlet property="circlesView" destination="Q5s-AT-2eK" id="RUy-3X-BHT"/>
                         <outlet property="hint" destination="bsW-lZ-Pu1" id="8yd-0C-oHY"/>
                         <outlet property="passcodeCollectionView" destination="VuU-1F-cEg" id="JDx-gy-RKW"/>
+                        <outlet property="topElement" destination="sCw-Qt-GXd" id="Il7-4r-awq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xfa-vq-BGF" userLabel="First Responder" sceneMemberID="firstResponder"/>

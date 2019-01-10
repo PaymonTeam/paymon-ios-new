@@ -79,18 +79,27 @@ class EthereumManager {
     
     func initWallet() {
         initWeb()
-        
-        queue.addOperation {
-            if (self.keystoreManager?.addresses.count == 0) {
-                print("sender return")
-                return
-            } else {
-                self.ks = self.keystoreManager?.walletForAddress((self.keystoreManager?.addresses[0])!) as? EthereumKeystoreV3
+        if sender == nil {
+            queue.addOperation {
+                if (self.keystoreManager?.addresses.count == 0) {
+                    print("sender return")
+                    return
+                } else {
+                    self.ks = self.keystoreManager?.walletForAddress((self.keystoreManager?.addresses[0])!) as? EthereumKeystoreV3
+                }
+                guard let sender = self.ks?.addresses.first else {return}
+                self.sender = sender
+                print("sender \(sender)")
             }
-            guard let sender = self.ks?.addresses.first else {return}
-            self.sender = sender
-            print("sender \(sender)")
         }
+    }
+    
+    func setSender() {
+        guard let sender = self.ks?.addresses.first else {return}
+        User.currentUser.ethAddress = sender.address
+        self.sender = sender
+        print("sender \(sender)")
+        UserManager.shared.updateProfileInfo() {_ in}
     }
     
     func createWallet(password : String) {
@@ -105,9 +114,7 @@ class EthereumManager {
                 return
             }
             
-            guard let sender = self.ks?.addresses.first else {return}
-            self.sender = sender
-            print("sender \(sender)")
+            self.setSender()
         }
     }
     
@@ -123,6 +130,8 @@ class EthereumManager {
             do {
                 try FileManager.default.removeItem(atPath: self.keyPath)
                 self.sender = nil
+                User.currentUser.ethAddress = ""
+                UserManager.shared.updateProfileInfo() {_ in}
                 completionHandler(true)
             } catch {
                 completionHandler(false)
@@ -145,9 +154,8 @@ class EthereumManager {
                         
                         let keydata = try JSONEncoder().encode(self.ks!.keystoreParams)
                         FileManager.default.createFile(atPath: self.keyPath, contents: keydata, attributes: nil)
-                        guard let sender = self.ks?.addresses.first else {return}
-                        self.sender = sender
-                        print("sender \(sender)")
+                        self.setSender()
+
                         completionHandler((true, RestoreResult.success))
                     }
                 } catch AbstractKeystoreError.invalidPasswordError {

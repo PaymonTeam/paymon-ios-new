@@ -16,6 +16,7 @@ struct PasscodeKey{
 }
 
 class PasscodeViewController: PaymonViewController {
+    @IBOutlet weak var topElement: UIView!
     @IBOutlet weak var passcodeCollectionView: UICollectionView!
     @IBOutlet weak var circleOne: InputCirclePasscodeView!
     @IBOutlet weak var circleTwo: InputCirclePasscodeView!
@@ -70,7 +71,7 @@ class PasscodeViewController: PaymonViewController {
             hint.text = "Create a passcode".localized
         } else {
             hint.text = "Enter passcode".localized
-
+            topElement.isHidden = true
         }
     }
     

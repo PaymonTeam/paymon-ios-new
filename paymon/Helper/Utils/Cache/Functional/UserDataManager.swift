@@ -14,7 +14,6 @@ class UserDataManager {
     static let shared = UserDataManager()
     
     func setUserDataInfo(userData : UserData, userObject : RPC.UserObject) {
-//        print(userObject.id)
         userData.name = userObject.first_name
         userData.surname = userObject.last_name
         userData.id = userObject.id
@@ -23,10 +22,12 @@ class UserDataManager {
         userData.login = userObject.login
         userData.photoUrl = userObject.photoUrl.url
         userData.isContact = false
+        userData.btcAddress = userObject.btcAddress ?? ""
+        userData.ethAddress = userObject.ethAddress ?? ""
+        userData.pmntAddress = userObject.pmntAddress ?? ""
     }
     
     func setUserDataInfo(userData : UserData, userObject : UserData) {
-//        print(userObject.id)
         userData.name = userObject.name
         userData.surname = userObject.surname
         userData.id = userObject.id
@@ -35,6 +36,9 @@ class UserDataManager {
         userData.login = userObject.login
         userData.photoUrl = userObject.photoUrl
         userData.isContact = false
+        userData.btcAddress = userObject.btcAddress 
+        userData.ethAddress = userObject.ethAddress
+        userData.pmntAddress = userObject.pmntAddress
 
     }
     
@@ -54,7 +58,6 @@ class UserDataManager {
         } catch let error {
             print("Couldn't update or create user", error)
         }
-        
     }
     
     func updateUser(userObject : UserData) {

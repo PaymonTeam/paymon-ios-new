@@ -64,10 +64,7 @@ public class UserManager {
     }
     
 
-    func updateProfileInfo(name: String, surname : String, completionHandler: @escaping (Bool) -> ()) {
-
-        User.currentUser!.first_name = name
-        User.currentUser!.last_name = surname
+    func updateProfileInfo(completionHandler: @escaping (Bool) -> ()) {
         
         guard let user = User.currentUser else {return}
 
@@ -201,3 +198,5 @@ public class UserManager {
         }
     }
 }
+
+

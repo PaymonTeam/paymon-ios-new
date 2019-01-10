@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import DeckTransition
 
 class FriendProfileViewController: PaymonViewController {
 
@@ -21,10 +22,11 @@ class FriendProfileViewController: PaymonViewController {
     @IBOutlet weak var avatar: CircularImageView!
     @IBOutlet weak var headerView: UIView!
     
-    var funcsMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    var funcsMenu = UIAlertController(title: "Wallets".localized, message: "Here you can find out the public keys of this user".localized, preferredStyle: .actionSheet)
     
     var id : Int32!
     var fromChat = false
+    var friend : RPC.PM_userFull!
     
     func hideMenu(isHidden : Bool) {
         if isHidden {
@@ -56,47 +58,35 @@ class FriendProfileViewController: PaymonViewController {
         self.present(funcsMenu, animated: true, completion: nil)
     }
     
-    func loadWallets() {
+    func setWallets() {
         
-        let getBtcWallet = RPC.PM_BTC_getWalletKey()
-        getBtcWallet.uid = id
-        let _ = NetworkManager.shared.sendPacket(getBtcWallet) { response, e in
-            if response == nil {
-                return
-            } else {
-                print("This user does not have BTC wallet")
-            }
-            
-            guard let btcWallet = response as? RPC.PM_BTC_setWalletKey else {return}
-            
+        if !friend.btcAddress.isEmpty {
             let bitcoin = UIAlertAction(title: "Bitcoin", style: .default, handler: { (alert: UIAlertAction!) -> Void in
-                guard let keysViewController = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
+                guard let keysViewController = StoryBoard.money.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
                 
-                //TODO: Set private key here
-                keysViewController.keyValue = btcWallet.walletKey
+                keysViewController.keyValue = self.friend.btcAddress
+                keysViewController.currency = Money.btc
                 
+                let transitionDelegate = DeckTransitioningDelegate()
+                keysViewController.transitioningDelegate = transitionDelegate
+                keysViewController.modalPresentationStyle = .custom
                 self.present(keysViewController, animated: true, completion: nil)
+                
             })
             
             self.funcsMenu.addAction(bitcoin)
         }
         
-        let getEthWallet = RPC.PM_ETC_getWalletKey()
-        getEthWallet.uid = id
-        let _ = NetworkManager.shared.sendPacket(getEthWallet) { response, e in
-            if response == nil {
-                return
-            } else {
-                print("This user does not have ETH wallet")
-            }
-            
-            guard let ethWallet = response as? RPC.PM_ETC_setWalletKey else {return}
-            
+        if !friend.ethAddress.isEmpty {
             let ethereum = UIAlertAction(title: "Ethereum", style: .default, handler: { (alert: UIAlertAction!) -> Void in
-                guard let keysViewController = StoryBoard.bitcoin.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
+                guard let keysViewController = StoryBoard.money.instantiateViewController(withIdentifier: VCIdentifier.keysViewController) as? KeysViewController else {return}
                 
-                //TODO: Set private key here
-                keysViewController.keyValue = ethWallet.walletKey
+                keysViewController.keyValue = self.friend.ethAddress
+                keysViewController.currency = Money.eth
+                
+                let transitionDelegate = DeckTransitioningDelegate()
+                keysViewController.transitioningDelegate = transitionDelegate
+                keysViewController.modalPresentationStyle = .custom
                 
                 self.present(keysViewController, animated: true, completion: nil)
             })
@@ -106,60 +96,39 @@ class FriendProfileViewController: PaymonViewController {
         
         let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
         self.funcsMenu.addAction(cancel)
-        
+        self.hideMenu(isHidden: false)
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
      
         hideMenu(isHidden: true)
         setLayoutOptions()
         getUserInfo()
-        loadWallets()
     }
     
     func getUserInfo() {
+
+        let request = RPC.PM_getUserInfo(user_id: id)
         
-        if !getUserFromCache() {
-            let request = RPC.PM_getUserInfo(user_id: id)
+        let _ = NetworkManager.shared.sendPacket(request) { response, e in
             
-            let _ = NetworkManager.shared.sendPacket(request) { response, e in
-                
-                if response == nil {
-                    print("Error get user info")
-                    return
-                }
-                
-                guard let user = response as? RPC.PM_userFull else {return}
-                DispatchQueue.main.async {
-                    self.name.text = Utils.formatUserName(user)
-                    self.login.text = "@\(user.login!)"
-                    self.avatar.loadPhoto(url: user.photoUrl.url)
-                    self.hideMenu(isHidden: false)
-
-                }
-                NotificationCenter.default.post(name: .setFriendProfileInfo, object: user)
-                
+            if response == nil {
+                print("Error get user info")
+                return
             }
-        }
-    }
-    
-    func getUserFromCache() -> Bool {
-        if let user = UserDataManager.shared.getUserById(id: id) as UserData? {
-
-            self.name.text = Utils.formatUserDataName(user)
-            self.login.text = "@\(user.login!)"
-            self.avatar.loadPhoto(url: user.photoUrl!)
-
+            
+            guard let user = response as? RPC.PM_userFull else {return}
+            self.friend = user
+            DispatchQueue.main.async {
+                self.name.text = Utils.formatUserName(user)
+                self.login.text = "@\(user.login!)"
+                self.avatar.loadPhoto(url: user.photoUrl.url)
+                self.setWallets()
+            }
             NotificationCenter.default.post(name: .setFriendProfileInfo, object: user)
-            hideMenu(isHidden: false)
-            return true
-        } else {
-            return false
         }
     }
-    
     
     func setLayoutOptions() {
         self.view.setGradientLayer(frame: self.view.bounds, topColor: UIColor.AppColor.Black.primaryBlackLight.cgColor, bottomColor: UIColor.AppColor.Black.primaryBlack.cgColor)

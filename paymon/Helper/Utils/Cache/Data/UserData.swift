@@ -20,5 +20,8 @@ public class UserData: NSManagedObject {
     @NSManaged public var surname: String?
     @NSManaged public var isEmailHidden: Bool
     @NSManaged public var isContact: Bool
+    @NSManaged public var btcAddress: String
+    @NSManaged public var ethAddress: String
+    @NSManaged public var pmntAddress: String
 
 }

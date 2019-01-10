@@ -71,7 +71,6 @@ open class Utils {
     
     public static func formatMessageDateTime(timestamp:Int32) -> String {
         let dateFormatter = DateFormatter()
-//        dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation()!)
         dateFormatter.locale = NSLocale.current
         
         if User.timeFormatIs24 {
@@ -81,6 +80,22 @@ open class Utils {
         }
         let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
 
+        let result = dateFormatter.string(from: date)
+        
+        return result
+    }
+    
+    public static func formatTxInfoTime(timestamp:Int32) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale.current
+        
+        if User.timeFormatIs24 {
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        } else {
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        }
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        
         let result = dateFormatter.string(from: date)
         
         return result

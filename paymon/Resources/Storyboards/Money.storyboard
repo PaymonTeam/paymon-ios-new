@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1VH-Cx-lCM">
-                                <rect key="frame" x="0.0" y="64" width="375" height="246"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="164"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="246" id="ui1-VV-txR"/>
+                                    <constraint firstAttribute="height" constant="164" id="ui1-VV-txR"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="cellCreated" id="O3P-N5-Yzy" userLabel="Created Cell" customClass="MoneyCreatedTableViewCell" customModule="paymon" customModuleProvider="target">
@@ -131,17 +131,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irp-cc-1It">
-                                                    <rect key="frame" x="15" y="11" width="345" height="58"/>
+                                                    <rect key="frame" x="8" y="8" width="345" height="63.5"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitcoin" translatesAutoresizingMaskIntoConstraints="NO" id="fOM-5B-q3o">
-                                                            <rect key="frame" x="8" y="4" width="50" height="50"/>
+                                                            <rect key="frame" x="8" y="7" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="ETV-91-N1c"/>
                                                                 <constraint firstAttribute="height" constant="50" id="XPz-Fy-207"/>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZW4-fq-qqE">
-                                                            <rect key="frame" x="70" y="8.5" width="30" height="41"/>
+                                                            <rect key="frame" x="70" y="11.5" width="30" height="41"/>
                                                             <color key="backgroundColor" red="0.14901960780000001" green="0.5568627451" blue="0.80392156859999997" alpha="0.1545222356" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
                                                             <state key="normal" title="+">
@@ -152,17 +152,18 @@
                                                             </connections>
                                                         </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U7W-Pu-6YZ" userLabel="Buttons view">
-                                                            <rect key="frame" x="154" y="0.0" width="191" height="58"/>
+                                                            <rect key="frame" x="145" y="0.0" width="200" height="63.5"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKN-Tw-e8x" userLabel="line">
-                                                                    <rect key="frame" x="95" y="0.0" width="1" height="58"/>
+                                                                    <rect key="frame" x="99.5" y="0.0" width="1" height="63.5"/>
                                                                     <color key="backgroundColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="1" id="XP5-7Q-4bF"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9p-By-8zj">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="95" height="58"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="99.5" height="63.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <state key="normal" title="Create">
                                                                         <color key="titleColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="0.64110076121794868" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
@@ -171,7 +172,8 @@
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTX-Iq-hYE">
-                                                                    <rect key="frame" x="96" y="0.0" width="95" height="58"/>
+                                                                    <rect key="frame" x="100.5" y="0.0" width="99.5" height="63.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <state key="normal" title="Restore">
                                                                         <color key="titleColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="0.64110076121794868" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </state>
@@ -188,7 +190,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="tTX-Iq-hYE" secondAttribute="trailing" id="XBZ-y0-KYn"/>
                                                                 <constraint firstItem="tTX-Iq-hYE" firstAttribute="top" secondItem="U7W-Pu-6YZ" secondAttribute="top" id="Zxx-GU-tGR"/>
                                                                 <constraint firstItem="t9p-By-8zj" firstAttribute="leading" secondItem="U7W-Pu-6YZ" secondAttribute="leading" id="cYP-05-8gu"/>
-                                                                <constraint firstAttribute="width" constant="191" id="ccr-Pz-eNe"/>
+                                                                <constraint firstAttribute="width" constant="200" id="ccr-Pz-eNe"/>
                                                                 <constraint firstItem="tTX-Iq-hYE" firstAttribute="width" secondItem="t9p-By-8zj" secondAttribute="width" id="eJn-wJ-zdY"/>
                                                                 <constraint firstItem="t9p-By-8zj" firstAttribute="top" secondItem="U7W-Pu-6YZ" secondAttribute="top" id="jF8-T8-qPH"/>
                                                                 <constraint firstAttribute="bottom" secondItem="t9p-By-8zj" secondAttribute="bottom" id="jjh-hb-wr3"/>
@@ -223,14 +225,17 @@
                                             <outlet property="addRightConstraint" destination="WH2-17-4cS" id="kaD-0J-2oj"/>
                                             <outlet property="background" destination="irp-cc-1It" id="a3q-kG-0Cq"/>
                                             <outlet property="backgroundWidth" destination="5yn-TK-sFP" id="BpT-x1-JSH"/>
+                                            <outlet property="buttonWidth" destination="eJn-wJ-zdY" id="WhR-l8-Xls"/>
                                             <outlet property="buttonsView" destination="U7W-Pu-6YZ" id="LQj-RY-jA2"/>
+                                            <outlet property="create" destination="t9p-By-8zj" id="iV2-wF-BZZ"/>
                                             <outlet property="icon" destination="fOM-5B-q3o" id="sJ2-q5-SsQ"/>
+                                            <outlet property="restore" destination="tTX-Iq-hYE" id="RiX-lI-IaD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pYP-1t-IrB" customClass="ExchangeRatesUIView" customModule="paymon" customModuleProvider="target">
-                                <rect key="frame" x="16" y="318" width="343" height="284"/>
+                                <rect key="frame" x="16" y="236" width="343" height="366"/>
                                 <connections>
                                     <segue destination="QD5-lP-bX6" kind="embed" id="z3d-I1-Fur"/>
                                 </connections>
@@ -258,18 +263,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUT-Qb-dXh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860" y="-34"/>
+            <point key="canvasLocation" x="623" y="-34"/>
         </scene>
         <!--Exchange Retes View Controller-->
         <scene sceneID="nGr-x8-4r7">
             <objects>
                 <viewController id="QD5-lP-bX6" customClass="ExchangeRetesViewController" customModule="paymon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hb0-Op-ChA">
-                        <rect key="frame" x="0.0" y="0.0" width="343" height="284"/>
+                        <rect key="frame" x="0.0" y="0.0" width="343" height="366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wyL-d4-3VC">
-                                <rect key="frame" x="0.0" y="45" width="343" height="239"/>
+                                <rect key="frame" x="0.0" y="45" width="343" height="321"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellExchange" id="2I2-a7-vNj" customClass="ExchangeRatesTableViewCell" customModule="paymon" customModuleProvider="target">
@@ -338,7 +343,7 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="puN-z4-ori">
-                                <rect key="frame" x="161.5" y="132" width="20" height="20"/>
+                                <rect key="frame" x="161.5" y="173" width="20" height="20"/>
                             </activityIndicatorView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FUk-9s-p8R">
                                 <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
@@ -459,7 +464,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6t-8J-tl9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1608.8" y="-34.632683658170919"/>
+            <point key="canvasLocation" x="1337" y="-35"/>
         </scene>
         <!--Paymon Navigation Controller-->
         <scene sceneID="3Pa-M2-1pJ">
@@ -703,7 +708,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uIY-iK-H7a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="858.39999999999998" y="-684.10794602698661"/>
+            <point key="canvasLocation" x="622" y="-684"/>
         </scene>
         <!--Title-->
         <scene sceneID="Iqi-JB-ZUS">
@@ -795,7 +800,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BFj-GN-NqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1609" y="-684"/>
+            <point key="canvasLocation" x="1337" y="-684"/>
         </scene>
         <!--Keys View Controller-->
         <scene sceneID="ij0-F2-n53">

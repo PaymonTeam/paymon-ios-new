@@ -48,9 +48,7 @@ class EthereumWalletViewController: PaymonViewController {
         let transitionDelegate = DeckTransitioningDelegate()
         keysViewController.transitioningDelegate = transitionDelegate
         keysViewController.modalPresentationStyle = .custom
-//        DispatchQueue.main.async {
-            present(keysViewController, animated: true, completion: nil)
-//        }
+        present(keysViewController, animated: true, completion: nil)
     }
     
     @IBAction func funcsClick(_ sender: Any) {
@@ -179,5 +177,4 @@ class EthereumWalletViewController: PaymonViewController {
     @IBAction func unWindToFinance(_ segue: UIStoryboardSegue) {
         
     }
-    
 }

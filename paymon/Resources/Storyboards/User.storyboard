@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pUd-KA-j6f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pUd-KA-j6f">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,7 +40,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kga-b2-wwt">
                                 <rect key="frame" x="16" y="72" width="343" height="76"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Cz-sy-nOY" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Cz-sy-nOY" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                         <rect key="frame" x="16" y="13" width="50" height="50"/>
                                         <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -164,7 +164,7 @@
                                             <action selector="changePhotoClick:" destination="YGF-Tk-yIa" eventType="touchUpInside" id="whW-0l-Lpy"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qlk-W8-vuc" userLabel="Update Profile Photo" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qlk-W8-vuc" userLabel="Update Profile Photo" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                         <rect key="frame" x="141.5" y="8" width="60" height="60"/>
                                         <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                         <constraints>

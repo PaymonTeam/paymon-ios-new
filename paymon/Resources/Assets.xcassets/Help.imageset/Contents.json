@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "helpmore.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "helpmore@2x.png",
+      "filename" : "information-button.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "helpmore@3x.png",
       "scale" : "3x"
     }
   ],

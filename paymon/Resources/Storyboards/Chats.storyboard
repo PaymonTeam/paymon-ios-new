@@ -391,7 +391,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="359" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="G30-VC-Uk1" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="G30-VC-Uk1" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -944,7 +944,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-hv-fIw" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NonPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-hv-fIw" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                         <rect key="frame" x="16" y="10" width="70" height="70"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1073,7 +1073,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4G-ya-cAH">
                                 <rect key="frame" x="16" y="72" width="343" height="76"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pab-R7-iDk" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pab-R7-iDk" customClass="CircularImageView" customModule="paymon" customModuleProvider="target">
                                         <rect key="frame" x="16" y="13" width="50" height="50"/>
                                         <color key="backgroundColor" white="0.70620263400000005" alpha="0.15397135419999999" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1272,7 +1272,7 @@
         <image name="user-group" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hEC-nK-7Gi"/>
+        <segue reference="92d-rV-ycI"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.062745098040000002" green="0.52549019610000003" blue="0.75294117650000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

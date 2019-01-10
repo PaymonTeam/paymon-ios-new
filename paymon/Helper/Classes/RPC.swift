@@ -290,6 +290,9 @@ class RPC {
         var photoUrl:PM_photoURL!
         var confirmed:Bool!
         var isEmailHidden:Bool = false
+        var btcAddress : String!
+        var ethAddress : String!
+        var pmntAddress : String!
 
         static func deserialize(stream:SerializableData, constructor:Int32) throws -> UserObject {
 
@@ -364,6 +367,11 @@ class RPC {
             
             photoUrl.readParams(stream: stream, exception: exception)
             confirmed = stream.read(exception)
+            btcAddress = stream.readString(exception)
+            print("btc address \(String(describing: btcAddress))")
+            ethAddress = stream.readString(exception)
+            pmntAddress = stream.readString(exception)
+
         }
 
         override func serializeToStream(stream: SerializableData) {
@@ -380,6 +388,10 @@ class RPC {
 
             photoUrl.serializeToStream(stream: stream)
             stream.write(confirmed)
+            stream.write(btcAddress)
+            stream.write(ethAddress)
+            stream.write(pmntAddress)
+
         }
     }
     
@@ -407,6 +419,9 @@ class RPC {
             
             photoUrl.readParams(stream: stream, exception: exception)
             confirmed = stream.read(exception)
+            btcAddress = stream.readString(exception)
+            ethAddress = stream.readString(exception)
+            pmntAddress = stream.readString(exception)
 
         }
         
@@ -423,7 +438,10 @@ class RPC {
             stream.writeByteArrayData(token)
 
             photoUrl.serializeToStream(stream: stream)
-            stream.write(confirmed) 
+            stream.write(confirmed)
+            stream.write(btcAddress)
+            stream.write(ethAddress)
+            stream.write(pmntAddress)
         }
     }
     

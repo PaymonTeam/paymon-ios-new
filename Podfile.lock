@@ -1,36 +1,38 @@
 PODS:
-  - Alamofire (4.7.3)
+  - Alamofire (4.8.0)
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
   - BlockiesSwift (0.1.2)
   - CoreStore (5.3.1)
-  - CryptoSwift (0.13.0)
   - DeckTransition (2.1.0)
   - FLAnimatedImage (1.0.12)
+  - keccak.c (0.1.3)
   - KeychainAccess (3.1.2)
   - MBProgressHUD (1.0.0)
   - OpenSSL-Universal (1.0.2.13)
-  - PromiseKit (6.5.2):
-    - PromiseKit/CorePromise (= 6.5.2)
-    - PromiseKit/Foundation (= 6.5.2)
-    - PromiseKit/UIKit (= 6.5.2)
-  - PromiseKit/CorePromise (6.5.2)
-  - PromiseKit/Foundation (6.5.2):
+  - PromiseKit (6.7.1):
+    - PromiseKit/CorePromise (= 6.7.1)
+    - PromiseKit/Foundation (= 6.7.1)
+    - PromiseKit/UIKit (= 6.7.1)
+  - PromiseKit/CorePromise (6.7.1)
+  - PromiseKit/Foundation (6.7.1):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.5.2):
+  - PromiseKit/UIKit (6.7.1):
     - PromiseKit/CorePromise
   - ReverseExtension (0.5.0)
   - ScrollableGraphView (4.0.6)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
-  - secp256k1.swift (0.1.4)
+  - scrypt.c (0.1.1)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
+  - secp256k1.c (0.1.2)
   - SipHash (1.2.2)
-  - web3swift (2.0.5):
+  - web3swift (2.1.3):
     - BigInt (~> 3.1)
-    - CryptoSwift (~> 0.12)
+    - keccak.c (~> 0.1)
     - PromiseKit (~> 6.4)
-    - secp256k1.swift
+    - scrypt.c (~> 0.1)
+    - secp256k1.c (~> 0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -52,17 +54,18 @@ SPEC REPOS:
     - BigInt
     - BlockiesSwift
     - CoreStore
-    - CryptoSwift
     - DeckTransition
     - FLAnimatedImage
+    - keccak.c
     - KeychainAccess
     - MBProgressHUD
     - OpenSSL-Universal
     - PromiseKit
     - ReverseExtension
     - ScrollableGraphView
+    - scrypt.c
     - SDWebImage
-    - secp256k1.swift
+    - secp256k1.c
     - SipHash
 
 EXTERNAL SOURCES:
@@ -71,27 +74,28 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   web3swift:
-    :commit: 68dc4a890c963e75c5a6e4ccc39b12127dcc7440
+    :commit: a0c101978c93a875c1a191251bf4585cfd152562
     :git: https://github.com/bankex/web3swift.git
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   BlockiesSwift: 22d8d56dd187e6bfd16cb8c8fbd4fd4896c3e65d
   CoreStore: 89d0c8e7a9d76d0c533018b4850245c973f4ecbd
-  CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
   DeckTransition: ca707456e3d83928c895fed6f458cbf68c5cac84
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  keccak.c: 859583afdaccb4e4fcc0f0096064d101580313f4
   KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   OpenSSL-Universal: 401888162f11c33ebbd46f782d9229da35c61327
-  PromiseKit: 27c1601bfb73405871b805bcb8cf7e55c4dad3db
+  PromiseKit: ef376fb8b4e92edfeb66bd403b983eaa07fbde0c
   ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
+  scrypt.c: b42ae06183251329d2b2c620c226fb541a4a3592
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
+  secp256k1.c: db47b726585d80f027423682eb369729e61b3b20
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
-  web3swift: 2a33b0dd0fc8901f644d8f9234b0e9bc8611dc87
+  web3swift: 7a54c1e8a5c5b7619e7ab549e38ebffe888d1612
 
 PODFILE CHECKSUM: f693a5fdc97d38691dbfd2764d354196f673b8ea
 

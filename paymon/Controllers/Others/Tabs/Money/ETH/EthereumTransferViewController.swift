@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DeckTransition
 
 class EthereumTransferViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var yourWallet: UIButton!
@@ -16,6 +17,7 @@ class EthereumTransferViewController : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var addressView: UIView!
     @IBOutlet weak var amountAndWalletView: UIView!
     
+    @IBOutlet weak var gasPriceHint: UILabel!
     @IBOutlet weak var address: UITextField!
     @IBOutlet weak var fiat: UITextField!
     @IBOutlet weak var feeView: UIView!
@@ -56,6 +58,14 @@ class EthereumTransferViewController : UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    @IBAction func infoClick(_ sender: Any) {
+        guard let infoViewController = self.storyboard!.instantiateViewController(withIdentifier: "GasInfoViewController") as? GasInfoViewController else {return}
+        
+        let transitionDelegate = DeckTransitioningDelegate()
+        infoViewController.transitioningDelegate = transitionDelegate
+        infoViewController.modalPresentationStyle = .custom
+        present(infoViewController, animated: true, completion: nil)
+    }
     @IBAction func feeSwitchClick(_ sender: Any) {
         if feeSwitch.isOn {
             gasLimit.text = ""
@@ -176,7 +186,8 @@ class EthereumTransferViewController : UIViewController, UITextFieldDelegate {
         self.fiatHint.text = User.currencyCode
         self.fiat.placeholder = User.currencyCode
         self.feeHint.text = "Network fee".localized
-        self.gasLimit.placeholder = "Gas Limit"
+        self.gasLimit.placeholder = "Gas limit".localized
+        self.gasPriceHint.text = "Gas price (Gwei)".localized
         self.feeSwitch.onTintColor = UIColor.AppColor.Blue.ethereumBalanceDark
         
         self.send.isEnabled = false

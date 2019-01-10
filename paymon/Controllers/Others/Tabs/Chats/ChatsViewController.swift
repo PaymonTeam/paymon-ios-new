@@ -57,14 +57,14 @@ class ChatsViewController: PaymonViewController, UISearchBarDelegate, ListSectio
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if allChats.numberOfObjects() != 0 {
+        if allChats != nil && allChats.numberOfObjects() != 0 {
             segment.selectedSegmentIndex = 1
             allChats.refetch([.init(), OrderBy<ChatsData>(.descending(\.time))])
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-//        allChats.removeObserver(self)
+        allChats.removeObserver(self)
     }
     
     func setChats() {

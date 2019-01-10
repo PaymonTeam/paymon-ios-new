@@ -7,9 +7,9 @@
 //
 
 import UIKit
+import DeckTransition
 
 class SettingsSecurityTableViewController: UITableViewController {
-    
     
     @IBOutlet weak var passwordProtectCell: UITableViewCell!
     let switchPasswordProtect = UISwitch()
@@ -57,6 +57,11 @@ class SettingsSecurityTableViewController: UITableViewController {
         if switchPasswordProtect.isOn == true {
             guard let passcodeViewController = StoryBoard.passcode.instantiateViewController(withIdentifier: VCIdentifier.passcodeViewController) as? PasscodeViewController else {return}
             passcodeViewController.isNewPassword = true
+            
+            let transitionDelegate = DeckTransitioningDelegate()
+            passcodeViewController.transitioningDelegate = transitionDelegate
+            passcodeViewController.modalPresentationStyle = .custom
+            
             self.present(passcodeViewController, animated: true, completion: nil)
         } else {
             User.savePasscode(passcodeValue: "", setPasscode : false)

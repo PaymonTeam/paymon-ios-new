@@ -90,7 +90,10 @@ class UpdateProfileInfoTableViewController : UITableViewController, UITextFieldD
                 let _ = MBProgressHUD.showAdded(to: self.parent!.parent!.view, animated: true)
             }
 
-            UserManager.shared.updateProfileInfo(name: self.nameInfo.text!, surname: self.surnameInfo.text!) { isUpdated in
+            User.currentUser!.first_name = self.nameInfo.text!
+            User.currentUser!.last_name = self.surnameInfo.text!
+            
+            UserManager.shared.updateProfileInfo() { isUpdated in
                 DispatchQueue.main.async {
                     MBProgressHUD.hide(for: self.parent!.parent!.view, animated: true)
                 }

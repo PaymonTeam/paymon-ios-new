@@ -33,10 +33,10 @@ class GroupDataManager {
             try CoreStore.defaultStack.perform(synchronous: {(transaction) -> Void in
                 
                 if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == groupObject.id)) {
-                    //                print("Group существует, я ее обновлю")
+                    print("Group существует, я ее обновлю")
                     self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
                 } else {
-                    //                print("Group не существует, я ее создаю")
+                    print("Group не существует, я ее создаю")
                     let groupData = transaction.create(Into<GroupData>())
                     self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
                 }
@@ -51,10 +51,10 @@ class GroupDataManager {
             try CoreStore.defaultStack.perform(synchronous: {(transaction) -> Void in
                 
                 if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == groupObject.id)) {
-                    //                print("Group существует, я ее обновлю")
+                    print("Group существует, я ее обновлю")
                     self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
                 } else {
-                    //                print("Group не существует, я ее создаю")
+                    print("Group не существует, я ее создаю")
                     let groupData = transaction.create(Into<GroupData>())
                     self.setGroupDataInfo(groupData : groupData, groupObject : groupObject)
                     
@@ -71,13 +71,7 @@ class GroupDataManager {
             if let groupData = transaction.fetchOne(From<GroupData>().where(\.id == id)) {
                 groupData.photoUrl = url
             }
-        }, completion: { _ in
-//            (result) -> Void in
-//            switch result {
-//            case .success: print("Success update groupData url")
-//            case .failure(let error): print("Failure update groupData url\(error)")
-//            }
-        })
+        }, completion: { _ in })
     }
     
     func updateGroupTitle(id : Int32, title : String) {

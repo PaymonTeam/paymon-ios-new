@@ -84,6 +84,9 @@ struct VCIdentifier {
     static let restoreEthViewController = "RestoreEthViewController"
     
     static let paymentSuccessViewController = "PaymentSuccessViewController"
+    
+    static let ethTxInfoViewController = "EthTxInfoViewController"
+    static let officialDocsViewController = "OfficialDocsViewController"
 
 }
 
@@ -131,19 +134,8 @@ struct ExchangeRatesConst {
     static let year = "year"
 }
 
-struct QRScan {
-    
-    static let WEB_CONTENT = "http://"
-    static let WEB_CONTENT_2 = "https://"
-    
-//    static let BITCOIN_WALLET_2 = "BITCOIN:-"
-//    static let BITCOIN_WALLET_3 = "1"
-//    static let BITCOIN_WALLET_4 = "3"
-//    static let BITCOIN_WALLET_5 = "bitcoin:3"
-    
-    static let ETHEREUM_WALLET = "ethereum:0x"
-    static let ETHEREUM_WALLET_2 = " 0x"
-    static let ETHEREUM_WALLET_3 = "0x"
+struct Urls {
+    static let faq = ""
 }
 
 struct Money {
@@ -173,6 +165,7 @@ struct Transaction {
     var amount : String
     var time : String
     var avatar : UIImage
+    var txInfo : EthTransaction
 }
 
 struct StoryBoard {
@@ -186,5 +179,6 @@ struct StoryBoard {
     static let ethereum = UIStoryboard(name: "Ethereum", bundle: Bundle.main)
     static let contacts = UIStoryboard(name: "Contacts", bundle: Bundle.main)
     static let passcode = UIStoryboard(name: "Passcode", bundle: Bundle.main)
+    static let setting = UIStoryboard(name: "Setting", bundle: Bundle.main)
 }
 

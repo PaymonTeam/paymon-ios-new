@@ -14,10 +14,13 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var add: UIButton!
     
+    @IBOutlet weak var buttonWidth: NSLayoutConstraint!
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var addRightConstraint: NSLayoutConstraint!
     var widthScreen : CGFloat!
     
+    @IBOutlet weak var restore: UIButton!
+    @IBOutlet weak var create: UIButton!
     var cryptoType : CryptoType!
     var heightBackground : CGFloat!
     var viewController : UIViewController!
@@ -94,7 +97,12 @@ class MoneyNotCreatedTableViewCell: UITableViewCell {
         
         buttonsView.layer.cornerRadius = 30
         buttonsView.alpha = 0
-        
+        create.setTitle("Create".localized, for: .normal)
+        restore.setTitle("Restore".localized, for: .normal)
+//        restore.titleLabel?.numberOfLines = 0
+//        restore.titleLabel?.minimumScaleFactor = 0.5
+//        restore.titleLabel?.adjustsFontSizeToFitWidth = true
+
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(closeAddFunc(swipe:)))
         leftSwipe.direction = UISwipeGestureRecognizer.Direction.left
         

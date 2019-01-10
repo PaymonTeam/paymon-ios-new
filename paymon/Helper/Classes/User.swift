@@ -57,6 +57,7 @@ class User {
                     if deserialize is RPC.PM_userSelf {
                         currentUser = deserialize as? RPC.PM_userSelf
                         self.setUserSettings()
+                        
                         stream!.close()
                         return
                     } else {
@@ -76,10 +77,6 @@ class User {
             }
         } else {
             self.setUserSettings()
-            if !CacheManager.isAddedStorage {
-                print("init")
-                CacheManager.shared.initDb()
-            }
         }
     }
     
@@ -93,6 +90,12 @@ class User {
     }
     
     public static func setUserSettings() {
+        
+        if !CacheManager.isAddedStorage {
+            print("init DB")
+            CacheManager.shared.initDb()
+        }
+        
         self.userId = String(currentUser.id)
         
         isBackupEthWallet = KeychainWrapper.standard.bool(forKey: UserDefaultKey.IS_ETH_WALLET_BACKUP + userId) ?? false
@@ -107,9 +110,6 @@ class User {
         securityPasscode = KeychainWrapper.standard.bool(forKey: UserDefaultKey.SECURITY_PASSCODE + userId) ?? false
         securityPasscodeValue = KeychainWrapper.standard.string(forKey: UserDefaultKey.SECURITY_PASSCODE_VALUE + userId) ?? ""
         
-//        ExchangeRateParser.shared.parseCourseForWallet(crypto: Money.btc, fiat: currencyCode)
-        EthereumManager.shared.initWallet()
-
     }
     
     public static func savePasscode(passcodeValue : String, setPasscode : Bool) {

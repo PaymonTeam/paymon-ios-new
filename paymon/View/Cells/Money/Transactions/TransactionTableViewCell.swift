@@ -15,7 +15,8 @@ class TransactionTableViewCell: UITableViewCell {
     @IBOutlet weak var from: UILabel!
     @IBOutlet weak var amount: UILabel!
     @IBOutlet weak var time: UILabel!
-    
+
+    var txInfo : EthTransaction!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +24,8 @@ class TransactionTableViewCell: UITableViewCell {
     }
     
     func configure(data: Transaction) {
+        self.txInfo = data.txInfo
+        print("cell tx info \(self.txInfo.confirmations)")
         self.avatar.image = data.avatar
         self.amount.text = data.amount
         self.time.text = data.time

@@ -52,7 +52,6 @@ class EthereumTransactionsViewController: UIViewController, UITableViewDelegate,
         filterMenu.addAction(received)
         filterMenu.addAction(all)
         
-        
         self.present(filterMenu, animated: true, completion: nil)
     }
     
@@ -78,7 +77,7 @@ class EthereumTransactionsViewController: UIViewController, UITableViewDelegate,
         EthTransactions.getTransactions() { result in
             self.transactions = result
             self.transactionsShow = result
-            
+
             DispatchQueue.main.async {
                 self.transactionsTableView.reloadData()
                 self.loading.stopAnimating()
@@ -112,14 +111,24 @@ class EthereumTransactionsViewController: UIViewController, UITableViewDelegate,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if !transactions.isEmpty {
+        if !transactionsShow.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellTransaction") as? TransactionTableViewCell else {return UITableViewCell()}
             let data = transactionsShow[indexPath.row]
+
             cell.configure(data: data)
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cellEmpty") as! TransEmptyTableViewCell
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? TransactionTableViewCell {
+            guard let ethTxInfoViewController = self.storyboard?.instantiateViewController(withIdentifier: VCIdentifier.ethTxInfoViewController) as? EthTxInfoViewController else {return}
+            ethTxInfoViewController.tx = cell.txInfo
+            
+            self.navigationController?.pushViewController(ethTxInfoViewController, animated: true)
         }
     }
     

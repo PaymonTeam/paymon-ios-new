@@ -15,14 +15,8 @@ class LaunchScreenViewController : UIViewController {
     override func viewDidLoad() {
         setMainController = NotificationCenter.default.addObserver(forName: .setMainController, object: nil, queue: nil) {
             notification in
+            EthereumManager.shared.initWallet()
             self.showMainController()
-        }
-        print("show launch")
-        if User.currentUser != nil {
-            if !CacheManager.isAddedStorage {
-                print("Init DB")
-                CacheManager.shared.initDb()
-            }
         }
     }
     
